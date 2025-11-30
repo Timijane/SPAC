@@ -1,0 +1,406 @@
+/* --- 1. Variables and Base Styles --- */
+:root {
+    --deep-blue: #001f3f; /* Your deep blue */
+    --gold: #FFD700;      /* Your gold accent */
+    --white: #ffffff;
+    --dark-text: #333333;
+    --light-text: #f4f4f4;
+}
+
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+body {
+    font-family: 'Poppins', sans-serif;
+    color: var(--dark-text);
+    background-color: var(--white);
+    overflow-x: hidden; /* Prevents horizontal scroll from side menu */
+}
+
+/* --- 2. Buttons and CTAs --- */
+.cta-button {
+    display: inline-block;
+    padding: 10px 25px;
+    border-radius: 5px;
+    text-decoration: none;
+    font-weight: 600;
+    transition: background-color 0.3s, color 0.3s, border 0.3s;
+    cursor: pointer;
+    border: none;
+}
+
+.cta-button.gold {
+    background-color: var(--gold);
+    color: var(--deep-blue);
+}
+.cta-button.gold:hover {
+    background-color: #e0b800; /* Darker gold */
+}
+
+.cta-button.gold-outline {
+    background-color: transparent;
+    border: 2px solid var(--gold);
+    color: var(--gold);
+}
+.cta-button.gold-outline:hover {
+    background-color: var(--gold);
+    color: var(--deep-blue);
+}
+
+.cta-button.blue {
+    background-color: var(--deep-blue);
+    color: var(--white);
+}
+.cta-button.blue:hover {
+    background-color: #003366;
+}
+
+
+/* --- 3. Header and Dynamic Menu --- */
+header {
+    background-color: var(--deep-blue);
+    padding: 15px 5%;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    position: sticky;
+    top: 0;
+    z-index: 1000; /* Stays on top */
+}
+
+.logo {
+    height: 40px; /* Adjust as needed */
+}
+
+.desktop-nav {
+    display: none; /* Hidden by default for mobile-first design */
+}
+
+.desktop-nav a {
+    color: var(--white);
+    text-decoration: none;
+    margin-left: 25px;
+    font-weight: 400;
+}
+.desktop-nav a:hover {
+    color: var(--gold);
+}
+
+/* Hamburger Icon */
+.hamburger {
+    background: none;
+    border: none;
+    cursor: pointer;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+    height: 24px;
+    width: 30px;
+    padding: 0;
+}
+.bar {
+    display: block;
+    width: 100%;
+    height: 3px;
+    background-color: var(--white);
+    transition: transform 0.3s, opacity 0.3s;
+}
+
+/* Dynamic Side Menu */
+.side-menu {
+    height: 100%;
+    width: 0; /* Starts closed */
+    position: fixed;
+    z-index: 2000;
+    top: 0;
+    right: 0;
+    background-color: var(--deep-blue);
+    overflow-x: hidden;
+    transition: 0.3s;
+    padding-top: 60px;
+}
+
+.side-menu.open {
+    width: 40%; /* Opens to 40% width as requested */
+}
+
+.side-nav-content a {
+    padding: 10px 20px;
+    text-decoration: none;
+    font-size: 18px;
+    color: var(--light-text);
+    display: block;
+    transition: 0.3s;
+}
+
+.side-nav-content a:hover {
+    background-color: #003366;
+    color: var(--gold);
+}
+
+.close-btn {
+    position: absolute;
+    top: 0;
+    right: 25px;
+    font-size: 36px;
+    margin-left: 50px;
+    background: none;
+    border: none;
+    color: var(--white);
+    cursor: pointer;
+}
+
+/* --- 4. Hero Section --- */
+.hero-section {
+    position: relative;
+    width: 100%;
+    height: 80vh; /* Viewport height */
+    overflow: hidden;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+#hero-video {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    min-width: 100%;
+    min-height: 100%;
+    width: auto;
+    height: auto;
+    z-index: 1;
+    transform: translate(-50%, -50%);
+}
+
+.hero-content {
+    position: relative;
+    z-index: 5;
+    text-align: center;
+    color: var(--white);
+    /* Adding a dark overlay for text readability */
+    padding: 20px;
+    background-color: rgba(0, 0, 0, 0.4);
+    border-radius: 10px;
+}
+
+.hero-content h1 {
+    font-size: 2.5rem;
+    margin-bottom: 10px;
+    color: var(--gold);
+}
+
+/* --- 5. Main Content Area (Pure White Background) --- */
+.pure-white-background {
+    background-color: var(--white);
+    padding: 40px 5%;
+}
+
+/* --- 6. Dynamic Sliding Gallery --- */
+.sliding-gallery h2 {
+    text-align: center;
+    color: var(--deep-blue);
+    margin-bottom: 30px;
+    font-size: 2rem;
+}
+
+.gallery-container {
+    display: flex;
+    overflow-x: auto; /* Allows horizontal scrolling if items exceed width */
+    gap: 20px;
+    padding-bottom: 20px;
+}
+
+.gallery-item {
+    flex: 0 0 70%; /* Mobile: items take 70% of the container width */
+    max-width: 300px;
+    text-align: center;
+    text-decoration: none;
+    color: var(--dark-text);
+    opacity: 0; /* Start hidden for sliding effect */
+    transform: translateY(50px); /* Start below the center */
+    transition: all 0.6s ease-out;
+    border-radius: 8px;
+    overflow: hidden;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+}
+
+/* JavaScript adds this class when element is visible */
+.gallery-item.visible {
+    opacity: 1;
+    transform: translateY(0); /* Slides to the center */
+}
+
+.gallery-item img {
+    width: 100%;
+    height: 200px;
+    object-fit: cover;
+    display: block;
+}
+
+.item-title {
+    display: block;
+    padding: 10px 0;
+    background-color: var(--deep-blue);
+    color: var(--gold);
+    font-weight: 600;
+}
+
+/* --- 7. Featured Content Cards --- */
+.featured-content {
+    display: flex;
+    flex-direction: column; /* Stack vertically on mobile */
+    gap: 30px;
+    margin-top: 50px;
+}
+
+.card {
+    background-color: #f9f9f9;
+    padding: 30px;
+    border-left: 5px solid var(--gold);
+    border-radius: 8px;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.05);
+}
+
+.sermon-card h3 { color: var(--deep-blue); }
+.giving-card h3 { color: var(--deep-blue); }
+
+
+/* --- 8. Persistent Audio Player (Professional Touch) --- */
+.audio-player {
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    background-color: var(--dark-text); /* Dark bar for contrast */
+    color: var(--white);
+    padding: 10px 5%;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    z-index: 3000;
+}
+
+.audio-player.hidden {
+    display: none;
+}
+
+#sermon-audio {
+    /* Hide default HTML5 controls, we use a custom play button */
+    display: none;
+}
+
+#player-close {
+    background: none;
+    border: none;
+    color: var(--white);
+    font-size: 20px;
+    cursor: pointer;
+}
+
+
+/* --- 9. Footer --- */
+footer {
+    background-color: var(--deep-blue);
+    color: var(--light-text);
+    padding: 50px 5% 10px;
+}
+
+.footer-content {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    gap: 30px;
+    margin-bottom: 30px;
+}
+
+.footer-content h4 {
+    color: var(--gold);
+    margin-bottom: 15px;
+}
+
+.footer-links a, .footer-social a {
+    display: block;
+    color: var(--light-text);
+    text-decoration: none;
+    margin-bottom: 8px;
+    transition: color 0.3s;
+}
+
+.footer-links a:hover, .footer-social a:hover {
+    color: var(--gold);
+}
+
+.copyright {
+    text-align: center;
+    border-top: 1px solid rgba(255, 255, 255, 0.1);
+    padding-top: 15px;
+}
+
+/* --- 10. Cookie Banner --- */
+.cookie-banner {
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    background-color: rgba(0, 0, 0, 0.9);
+    color: var(--white);
+    padding: 15px 5%;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    z-index: 5000;
+}
+.cookie-banner p {
+    margin-right: 20px;
+    font-size: 0.9rem;
+}
+
+
+/* --- 11. Media Queries for Desktop (Tablet/Desktop Styles) --- */
+@media (min-width: 768px) {
+    header {
+        padding: 15px 8%;
+    }
+
+    /* Show desktop navigation */
+    .desktop-nav {
+        display: block;
+    }
+
+    /* Hide hamburger */
+    .hamburger {
+        display: none;
+    }
+
+    /* Dynamic menu covers smaller area on desktop */
+    .side-menu.open {
+        width: 300px; /* Fixed width */
+    }
+
+    .hero-content h1 {
+        font-size: 3.5rem;
+    }
+
+    /* Gallery items are smaller and fully visible */
+    .gallery-container {
+        justify-content: center;
+        flex-wrap: nowrap;
+    }
+
+    .gallery-item {
+        flex: 0 0 auto;
+    }
+
+    /* Cards side-by-side */
+    .featured-content {
+        flex-direction: row;
+        justify-content: space-between;
+    }
+    .card {
+        flex: 1;
+    }
+}
