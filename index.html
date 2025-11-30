@@ -1,308 +1,142 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>SPAC | Home</title>
-
-<style>
-/* ---------------- GLOBAL ---------------- */
-body {
-    margin: 0;
-    font-family: Arial, sans-serif;
-    background: #f9f9f9;
-}
-a { text-decoration: none; }
-
-/* ---------------- NAVBAR ---------------- */
-header {
-    width: 100%;
-    background: #fff;
-    box-shadow: 0 2px 4px rgba(0,0,0,0.1);
-    position: fixed;
-    top: 0;
-    z-index: 1000;
-}
-nav {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    padding: 12px 35px;
-}
-nav img {
-    height: 60px;
-    cursor: pointer;
-}
-nav a {
-    margin-left: 25px;
-    font-weight: bold;
-    color: #333;
-}
-
-/* ---------------- HERO VIDEO ---------------- */
-.hero {
-    margin-top: 90px;
-    height: 70vh;
-    width: 100%;
-    position: relative;
-    overflow: hidden;
-}
-.hero video {
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
-}
-.hero-text {
-    position: absolute;
-    top: 40%;
-    left: 6%;
-    color: white;
-    font-size: 45px;
-    font-weight: 700;
-    text-shadow: 0px 3px 10px black;
-}
-
-/* ---------------- SLIDER ---------------- */
-.slider-container {
-    margin: 50px auto;
-    width: 95%;
-    max-width: 1200px;
-    overflow: hidden;
-}
-.slider {
-    display: flex;
-    width: 700%;
-    animation: slide 30s infinite;
-}
-.slide {
-    width: 14.28%;
-}
-.slide img {
-    width: 100%;
-    height: 350px;
-    object-fit: cover;
-    border-radius: 12px;
-}
-
-/* SLIDE ANIMATION */
-@keyframes slide {
-    0%   { transform: translateX(0); }
-    14%  { transform: translateX(0); }
-    28%  { transform: translateX(-100%); }
-    42%  { transform: translateX(-200%); }
-    56%  { transform: translateX(-300%); }
-    70%  { transform: translateX(-400%); }
-    85%  { transform: translateX(-500%); }
-    100% { transform: translateX(-600%); }
-}
-
-/* ---------------- FOOTER ---------------- */
-footer {
-    background: #111;
-    color: #ddd;
-    padding: 40px;
-    margin-top: 60px;
-}
-.footer-grid {
-    display: flex;
-    justify-content: space-between;
-    flex-wrap: wrap;
-}
-footer div {
-    width: 30%;
-    min-width: 250px;
-}
-footer h3 {
-    color: #fff;
-}
-
-/* ---------------- CHAT BUBBLE ---------------- */
-.chat-btn {
-    position: fixed;
-    bottom: 20px;
-    right: 20px;
-    background: #ff0033;
-    padding: 15px 20px;
-    color: #fff;
-    border-radius: 50px;
-    cursor: pointer;
-    box-shadow: 0 3px 10px rgba(0,0,0,0.3);
-    font-weight: bold;
-    z-index: 999;
-}
-
-/* ---------------- COOKIE BANNER ---------------- */
-.cookie-box {
-    position: fixed;
-    bottom: 0;
-    width: 100%;
-    background: #222;
-    padding: 15px;
-    text-align: center;
-    color: #fff;
-    display: none;
-}
-.cookie-box button {
-    padding: 10px 20px;
-    margin-left: 15px;
-    background: #ff0033;
-    border: none;
-    color: #fff;
-    cursor: pointer;
-    border-radius: 5px;
-}
-</style>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SPAC Church - Official Website</title>
+    <link rel="stylesheet" href="style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet">
 </head>
-
-
-
-
 <body>
 
-<!-- ================= NAV ================= -->
-<header>
-    <nav>
-        <a href="index.html"><img src="spac1.png" alt="SPAC Logo"></a>
-
-        <div>
-            <a href="about.html">About</a>
-            <a href="branches.html">Branches</a>
-            <a href="ministries.html">Ministries</a>
-            <a href="departments.html">Departments</a>
-            <a href="books.html">Books</a>
-            <a href="radio.html">Radio</a>
-            <a href="give.html" style="color:#ff0033;">Give</a>
-        </div>
-    </nav>
-</header>
-
-
-
-
-<!-- ================= HERO VIDEO ================= -->
-<section class="hero">
-    <video src="spac2.mp4" autoplay muted loop></video>
-
-    <div class="hero-text">Welcome to SPAC Nation</div>
-</section>
-
-
-
-
-<!-- ================= SLIDER ================= -->
-<div class="slider-container">
-    <div class="slider">
-        
-        <div class="slide">
-            <a href="events.html">
-                <img src="https://i.imgur.com/Q1H4oXi.jpeg">
+    <header>
+        <div class="logo-container">
+            <a href="index.html">
+                <img src="spac1-logo.png" alt="SPAC Church Logo" class="logo">
             </a>
         </div>
+        <nav class="desktop-nav">
+            <a href="#">Home</a>
+            <a href="#">About</a>
+            <a href="#">Ministries</a>
+            <a href="#">Sermons</a>
+            <a href="#" class="cta-button gold">Give Online</a>
+        </nav>
+        <button class="hamburger" id="menu-toggle">
+            <span class="bar"></span>
+            <span class="bar"></span>
+            <span class="bar"></span>
+        </button>
+    </header>
 
-        <div class="slide">
-            <a href="youth.html">
-                <img src="https://i.imgur.com/KeXIM1i.jpeg">
-            </a>
-        </div>
-
-        <div class="slide">
-            <a href="proclaimers.html">
-                <img src="https://i.imgur.com/LJjIP0t.jpeg">
-            </a>
-        </div>
-
-        <div class="slide">
-            <a href="vanguard.html">
-                <img src="https://i.imgur.com/wZbvc8e.jpeg">
-            </a>
-        </div>
-
-        <div class="slide">
-            <a href="ministries.html">
-                <img src="https://i.imgur.com/JsqGQGX.jpeg">
-            </a>
-        </div>
-
-        <div class="slide">
-            <a href="sermons.html">
-                <img src="https://i.imgur.com/aNsXT8m.jpeg">
-            </a>
-        </div>
-
-        <div class="slide">
-            <a href="spac-us.html">
-                <img src="https://i.imgur.com/d0fDpzR.jpeg">
-            </a>
-        </div>
-
+    <div id="side-menu" class="side-menu">
+        <button class="close-btn" id="menu-close">&times;</button>
+        <nav class="side-nav-content">
+            <a href="#">Home</a>
+            <a href="#">About Us</a>
+            <a href="#">**Branches & HQs**</a>
+            <a href="#">**Departments**</a>
+            <a href="#">**Youth Ministry**</a>
+            <a href="#">**Radio**</a>
+            <a href="#">**Book Shelf**</a>
+            <a href="#">**Meet Our Ministers**</a>
+            <a href="#">SPAC Nation / US</a>
+            <a href="#" class="cta-button blue">Login / Pay</a>
+        </nav>
     </div>
-</div>
 
-
-
-
-<!-- ================= FOOTER ================= -->
-<footer>
-    <div class="footer-grid">
-
-        <div>
-            <h3>SPAC Nation</h3>
-            <p>Transforming Lives, Building Nations.</p>
-            <p>Email: info@spacnation.org</p>
-            <p>Phone: +234 810 000 0000</p>
+    <section class="hero-section">
+        <video autoplay muted loop id="hero-video">
+            <source src="spac2-hero-video.mp4" type="video/mp4">
+            Your browser does not support the video tag.
+        </video>
+        <div class="hero-content">
+            <h1>Welcome to SPAC Nation</h1>
+            <p>A place where faith meets action.</p>
+            <a href="#" class="cta-button gold-outline">Join Us This Sunday</a>
         </div>
+    </section>
 
-        <div>
-            <h3>Headquarters</h3>
-            <iframe 
-                src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3941.5!2d7.48!3d9.072!2m3!1f0!2f0!3f0"
-                width="100%" height="200" style="border:0;" allowfullscreen></iframe>
-        </div>
+    <main class="pure-white-background">
 
-        <div>
-            <h3>Quick Links</h3>
-            <p><a href="give.html" style="color:#ff0033;">Give</a></p>
-            <p><a href="radio.html">Radio</a></p>
-            <p><a href="books.html">Book Shelf</a></p>
-            <p><a href="ministries.html">Ministries</a></p>
-        </div>
+        <section class="sliding-gallery">
+            <h2>Explore Our Ministries & Events</h2>
+            <div class="gallery-container">
 
+                <a href="#" class="gallery-item slide-in">
+                    <img src="church-tone-prayer.jpg" alt="A group praying">
+                    <span class="item-title">Our Ministries</span>
+                </a>
+
+                <a href="#" class="gallery-item slide-in">
+                    <img src="church-tone-outreach.jpg" alt="Community outreach event">
+                    <span class="item-title">Latest Events</span>
+                </a>
+
+                <a href="#" class="gallery-item slide-in">
+                    <img src="church-tone-reading.jpg" alt="Person studying the Bible">
+                    <span class="item-title">Book Shelf</span>
+                </a>
+
+                <a href="#" class="gallery-item slide-in">
+                    <img src="church-tone-minister.jpg" alt="Minister speaking on stage">
+                    <span class="item-title">Meet Our Leaders</span>
+                </a>
+            </div>
+        </section>
+
+        <section class="featured-content">
+            <div class="card sermon-card">
+                <h3>Latest Message: Grace in Action</h3>
+                <p>Listen to the powerful word from Pastor [Name].</p>
+                <button id="sermon-play-btn" class="cta-button gold">Listen Now</button>
+            </div>
+            <div class="card giving-card">
+                <h3>Sow a Seed</h3>
+                <p>Support our mission and impact the community.</p>
+                <a href="#" class="cta-button blue">Secure Online Giving</a>
+            </div>
+        </section>
+
+    </main>
+
+    <div id="audio-player" class="audio-player hidden">
+        <audio id="sermon-audio" src="latest-sermon-track.mp3" preload="none"></audio>
+        <span>Now Playing: Latest Sermon</span>
+        <button id="player-close">&times;</button>
     </div>
-</footer>
 
+    <footer>
+        <div class="footer-content">
+            <div class="footer-map">
+                <h4>Find Our Headquarters</h4>
+                [attachment_0](attachment)
+            </div>
+            <div class="footer-links">
+                <h4>Quick Links</h4>
+                <a href="#">Contact Us</a>
+                <a href="#">Privacy Policy</a>
+                <a href="#">Forms & Registration</a>
+            </div>
+            <div class="footer-social">
+                <h4>Connect</h4>
+                <div class="social-icons">
+                    <a href="#" class="social-icon">F</a>
+                    <a href="#" class="social-icon">I</a>
+                    <a href="#" class="social-icon">Y</a>
+                </div>
+            </div>
+        </div>
+        <div class="copyright">
+            <p>&copy; 2024 SPAC Church. All Rights Reserved.</p>
+        </div>
+    </footer>
 
+    <div id="cookie-banner" class="cookie-banner">
+        <p>We use cookies to ensure that we give you the best experience on our website. If you continue to use this site we will assume that you are happy with it.</p>
+        <button id="accept-cookies" class="cta-button gold">I'm Happy</button>
+    </div>
 
-
-<!-- ================= CHAT BUBBLE ================= -->
-<div class="chat-btn" onclick="alert('SPAC Chat Coming Soon!')">
-    💬 Chat with SPAC
-</div>
-
-
-
-
-<!-- ================= COOKIE BANNER ================= -->
-<div class="cookie-box" id="cookieBanner">
-    We use cookies to ensure you get the best experience.
-    <button onclick="acceptCookies()">Continue</button>
-</div>
-
-
-
-
-<script>
-/* ---- COOKIE ---- */
-setTimeout(() => {
-    if (!localStorage.getItem("spac_cookie_accept")) {
-        document.getElementById("cookieBanner").style.display = "block";
-    }
-}, 800);
-
-function acceptCookies() {
-    localStorage.setItem("spac_cookie_accept", "yes");
-    document.getElementById("cookieBanner").style.display = "none";
-}
-</script>
-
+    <script src="script.js"></script>
 </body>
 </html>
