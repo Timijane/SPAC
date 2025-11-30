@@ -6,248 +6,649 @@
 <title>SPAC Church - Home</title>
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
 <style>
-/* Variables */
-:root {
+  :root {
     --primary: #1a4b8c;
     --secondary: #d4af37;
     --light: #f8f9fa;
     --dark: #343a40;
-}
-
-/* Global */
-* {margin:0; padding:0; box-sizing:border-box; font-family:'Segoe UI', sans-serif;}
-body {background:#f5f5f5; color:#333;}
-a {text-decoration:none; color:inherit;}
-.container {width:90%; max-width:1200px; margin:0 auto;}
-
-/* Buttons */
-.btn {display:inline-block; background:var(--primary); color:#fff; padding:10px 20px; border-radius:5px; transition:0.3s;}
-.btn:hover {background:var(--secondary); transform:translateY(-2px);}
-
-/* Header */
-header {background:#fff; box-shadow:0 2px 10px rgba(0,0,0,0.1); position:sticky; top:0; z-index:1000;}
-.header-container {display:flex; justify-content:space-between; align-items:center; padding:15px 0;}
-.logo img {height:60px; margin-right:10px;}
-.nav-menu {display:flex; list-style:none;}
-.nav-menu li {margin-left:20px; position:relative;}
-.nav-menu a {color:var(--dark); font-weight:500;}
-.nav-menu a:hover {color:var(--primary);}
-
-/* Hero Section */
-.hero {position:relative; background:#1a4b8c; color:#fff; text-align:center; padding:80px 20px;}
-.hero h1 {font-size:3rem; margin-bottom:15px;}
-.hero p {font-size:1.2rem; margin-bottom:20px;}
-.hero-buttons {display:flex; flex-wrap:wrap; justify-content:center; gap:10px;}
-
-/* Announcements Slider */
-.announcements {background:#fff; padding:60px 0;}
-.announcements h2 {text-align:center; margin-bottom:30px; color:var(--primary);}
-.slider-container {position:relative; overflow:hidden;}
-.slider-track {display:flex; transition:transform 0.5s ease;}
-.slider-card {min-width:300px; background:#f8f8f8; margin:0 10px; padding:20px; border-radius:10px; box-shadow:0 5px 15px rgba(0,0,0,0.1);}
-.slider-nav {text-align:center; margin-top:15px;}
-.slider-nav button {padding:5px 10px; margin:0 5px; border:none; background:var(--primary); color:#fff; cursor:pointer; border-radius:5px;}
-.slider-nav button:hover {background:var(--secondary);}
-
-/* Programs/Events Grid */
-.programs {background:#f0f0f0; padding:60px 0;}
-.programs h2 {text-align:center; margin-bottom:40px; color:var(--primary);}
-.program-grid {display:grid; grid-template-columns:repeat(auto-fit,minmax(250px,1fr)); gap:20px;}
-.program-card {background:#fff; border-radius:10px; overflow:hidden; box-shadow:0 5px 15px rgba(0,0,0,0.1); transition:transform 0.3s;}
-.program-card:hover {transform:translateY(-5px);}
-.program-card .play-card {background:#1a4b8c; color:#fff; height:180px; display:flex; align-items:center; justify-content:center; font-size:48px;}
-
-/* CSR Section */
-.csr {background:#fff; padding:60px 0;}
-.csr h2 {text-align:center; margin-bottom:30px; color:var(--primary);}
-.csr-content {display:grid; grid-template-columns:repeat(auto-fit,minmax(300px,1fr)); gap:20px;}
-
-/* Watch Live Section */
-.watch {background:#1a4b8c; color:#fff; padding:60px 20px; text-align:center;}
-.watch h2 {margin-bottom:20px;}
-.watch-buttons {display:flex; justify-content:center; flex-wrap:wrap; gap:10px;}
-
-/* Footer */
-footer {background:var(--dark); color:#fff; padding:60px 0 20px;}
-.footer-grid {display:grid; grid-template-columns:repeat(auto-fit,minmax(250px,1fr)); gap:40px; margin-bottom:40px;}
-.footer-grid h3 {margin-bottom:15px; color:var(--secondary);}
-.footer-grid a {color:#ddd;}
-.footer-grid a:hover {color:var(--secondary);}
-.footer-bottom {text-align:center; font-size:0.9rem; color:#aaa;}
-
-/* Cookie Consent */
-.cookie-consent {position:fixed; bottom:0; left:0; right:0; background:var(--dark); color:#fff; padding:15px; display:flex; justify-content:space-between; align-items:center; transform:translateY(100%); transition:0.5s; z-index:1000;}
-.cookie-consent.show {transform:translateY(0);}
-@media(max-width:768px){.hero h1{font-size:2rem;}.hero p{font-size:1rem;}}
+    --accent: #8b0000;
+  }
+  *{margin:0;padding:0;box-sizing:border-box;font-family:'Segoe UI',Tahoma,Geneva,Verdana,sans-serif;}
+  body{background:#f5f5f5;color:#333;line-height:1.6;scroll-behavior:smooth;}
+  a{text-decoration:none;color:inherit;}
+  .container{width:90%;max-width:1200px;margin:0 auto;}
+  .btn{display:inline-block;background:var(--primary);color:white;padding:10px 20px;border:none;border-radius:5px;cursor:pointer;transition:all 0.3s ease;}
+  .btn:hover{background:var(--accent);transform:translateY(-2px);}
+  header{background:white;box-shadow:0 2px 10px rgba(0,0,0,0.1);position:sticky;top:0;z-index:1000;}
+  .header-container{display:flex;justify-content:space-between;align-items:center;padding:15px 0;}
+  .logo img{height:60px;margin-right:10px;}
+  .logo-text{font-size:24px;font-weight:bold;color:var(--primary);}
+  .nav-container{width:50%;}
+  .nav-menu{display:flex;list-style:none;justify-content:flex-end;}
+  .nav-menu li{margin-left:25px;position:relative;}
+  .nav-menu a{color:var(--dark);font-weight:500;transition:0.3s;}
+  .nav-menu a:hover{color:var(--primary);}
+  .dropdown-content{display:none;position:absolute;background:white;min-width:200px;box-shadow:0 8px 16px rgba(0,0,0,0.1);z-index:1;border-radius:5px;overflow:hidden;}
+  .dropdown:hover .dropdown-content{display:block;}
+  .hamburger{display:none;cursor:pointer;width:30px;height:30px;position:relative;z-index:1001;}
+  .hamburger span{display:block;position:absolute;height:3px;width:100%;background:var(--primary);border-radius:3px;opacity:1;left:0;transform:rotate(0deg);transition:.25s;}
+  .hamburger span:nth-child(1){top:0;}
+  .hamburger span:nth-child(2){top:10px;}
+  .hamburger span:nth-child(3){top:20px;}
+  .hamburger.active span:nth-child(1){top:10px;transform:rotate(135deg);}
+  .hamburger.active span:nth-child(2){opacity:0;left:-30px;}
+  .hamburger.active span:nth-child(3){top:10px;transform:rotate(-135deg);}
+  .hero{position:relative;height:80vh;overflow:hidden;display:flex;align-items:center;justify-content:center;text-align:center;color:white;}
+  .hero-video{position:absolute;top:0;left:0;width:100%;height:100%;object-fit:cover;z-index:-1;}
+  .hero-overlay{position:absolute;top:0;left:0;width:100%;height:100%;background:rgba(0,0,0,0.5);z-index:-1;}
+  .hero-content{max-width:800px;padding:0 20px;}
+  .hero h1{font-size:3rem;margin-bottom:20px;text-shadow:2px 2px 4px rgba(0,0,0,0.5);}
+  .hero p{font-size:1.2rem;margin-bottom:30px;}
+  .hero-buttons{display:flex;flex-wrap:wrap;justify-content:center;gap:10px;margin-top:20px;}
+  
+  /* I Am New / Prayer / Testimony / Resources / A Winning World */
+  .new-prayer-resources {
+    padding: 80px 0;
+    background: var(--light);
+  }
+  .ipr-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+    gap: 30px;
+    text-align: center;
+  }
+  .ipr-card {
+    background: white;
+    padding: 25px 15px;
+    border-radius: 12px;
+    box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+    transition: transform 0.3s, box-shadow 0.3s;
+  }
+  .ipr-card:hover {
+    transform: translateY(-8px);
+    box-shadow: 0 10px 25px rgba(0,0,0,0.15);
+  }
+  .ipr-icon {
+    font-size: 40px;
+    color: var(--primary);
+    margin-bottom: 15px;
+    transition: color 0.3s, transform 0.3s;
+  }
+  .ipr-card:hover .ipr-icon {
+    color: var(--accent);
+    transform: scale(1.2);
+  }
+  .ipr-card h3 {
+    font-size: 1.2rem;
+    color: var(--primary);
+    margin-bottom: 10px;
+  }
+  .ipr-card p {
+    font-size: 0.95rem;
+    color: #555;
+    margin-bottom: 15px;
+  }
+  
+  /* Slider Sections */
+  .slider-section {
+    padding: 60px 0;
+    background: #fff;
+  }
+  .slider-section:nth-child(even) {
+    background: var(--light);
+  }
+  .slider-header {
+    text-align: center;
+    margin-bottom: 40px;
+  }
+  .slider-header h2 {
+    color: var(--primary);
+    font-size: 2rem;
+    margin-bottom: 10px;
+  }
+  .slider-header p {
+    color: #555;
+    font-size: 1rem;
+    max-width: 800px;
+    margin: 0 auto;
+  }
+  .slider-wrapper {
+    position: relative;
+    overflow: hidden;
+  }
+  .slider-track {
+    display: flex;
+    transition: transform 0.5s ease;
+  }
+  .slider-card {
+    min-width: 300px;
+    margin-right: 20px;
+    background: #eee;
+    border-radius: 10px;
+    overflow: hidden;
+    flex-shrink: 0;
+    text-align: center;
+    box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+    transition: transform 0.3s;
+  }
+  .slider-card:hover {
+    transform: translateY(-5px);
+  }
+  .slider-card img {
+    width: 100%;
+    height: 200px;
+    object-fit: cover;
+  }
+  .slider-card h3 {
+    color: var(--primary);
+    margin: 15px 0 10px;
+    padding: 0 10px;
+  }
+  .slider-card p {
+    padding: 0 10px 15px;
+    color: #555;
+  }
+  .slider-btn {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    background: var(--primary);
+    color: #fff;
+    border: none;
+    border-radius: 50%;
+    width: 40px;
+    height: 40px;
+    cursor: pointer;
+    z-index: 2;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: all 0.3s;
+  }
+  .slider-btn:hover {
+    background: var(--accent);
+  }
+  .prev {
+    left: 10px;
+  }
+  .next {
+    right: 10px;
+  }
+  
+  /* Footer */
+  footer {
+    background: var(--dark);
+    color: white;
+    padding: 60px 0 20px;
+  }
+  .footer-content {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 40px;
+    margin-bottom: 40px;
+  }
+  .footer-column h3 {
+    margin-bottom: 20px;
+    color: var(--secondary);
+  }
+  .footer-links {
+    list-style: none;
+  }
+  .footer-links li {
+    margin-bottom: 10px;
+  }
+  .footer-links a {
+    color: #ddd;
+    transition: 0.3s;
+  }
+  .footer-links a:hover {
+    color: var(--secondary);
+  }
+  .social-links {
+    display: flex;
+    gap: 15px;
+    margin-top: 20px;
+  }
+  .social-links a {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 40px;
+    height: 40px;
+    background: rgba(255,255,255,0.1);
+    border-radius: 50%;
+    transition: 0.3s;
+  }
+  .social-links a:hover {
+    background: var(--secondary);
+    transform: translateY(-3px);
+  }
+  .footer-bottom {
+    text-align: center;
+    padding-top: 20px;
+    border-top: 1px solid rgba(255,255,255,0.1);
+    font-size: 0.9rem;
+    color: #aaa;
+  }
+  
+  /* Cookie */
+  #cookieConsent {
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    background: var(--dark);
+    color: white;
+    padding: 15px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    z-index: 1001;
+    transform: translateY(100%);
+    transition: transform 0.5s;
+  }
+  #cookieConsent.show {
+    transform: translateY(0);
+  }
+  
+  /* Responsive */
+  @media (max-width: 768px) {
+    .hero h1 {
+      font-size: 2rem;
+    }
+    .hero p {
+      font-size: 1rem;
+    }
+    .hamburger {
+      display: block;
+    }
+    .nav-menu {
+      position: fixed;
+      top: 0;
+      right: -100%;
+      width: 70%;
+      height: 100vh;
+      background: white;
+      flex-direction: column;
+      justify-content: flex-start;
+      align-items: center;
+      padding-top: 80px;
+      transition: right 0.3s ease;
+      box-shadow: -5px 0 15px rgba(0,0,0,0.1);
+    }
+    .nav-menu.active {
+      right: 0;
+    }
+    .nav-menu li {
+      margin: 15px 0;
+    }
+    .dropdown-content {
+      position: static;
+      display: none;
+      box-shadow: none;
+      background: #f8f9fa;
+    }
+    .dropdown:hover .dropdown-content {
+      display: none;
+    }
+    .dropdown.active .dropdown-content {
+      display: block;
+    }
+    .slider-card {
+      min-width: 250px;
+    }
+  }
 </style>
 </head>
 <body>
 
-<!-- Header -->
 <header>
-    <div class="container header-container">
-        <div class="logo">
-            <a href="#"><img src="spac1.png" alt="SPAC Church"><span>SPAC CHURCH</span></a>
-        </div>
-        <ul class="nav-menu">
-            <li><a href="#" class="active">Home</a></li>
-            <li><a href="#">I am New</a></li>
-            <li><a href="#">Prayer</a></li>
-            <li><a href="#">Testimony</a></li>
-            <li><a href="#">Resources</a></li>
-            <li><a href="#">A Winning World</a></li>
-        </ul>
+  <div class="container header-container">
+    <div class="logo">
+      <a href="#home"><img src="spac1.png" alt="SPAC Logo"><span class="logo-text">SPAC CHURCH</span></a>
     </div>
+    <div class="nav-container">
+      <ul class="nav-menu">
+        <li><a href="#home" class="active">Home</a></li>
+        <li class="dropdown"><a href="#">About <i class="fas fa-chevron-down"></i></a>
+          <div class="dropdown-content">
+            <a href="#">Our Story</a>
+            <a href="#">Beliefs</a>
+            <a href="#">Leadership</a>
+          </div>
+        </li>
+        <li><a href="#locations">Branches</a></li>
+        <li><a href="#ministries">Ministries</a></li>
+        <li><a href="#contact">Contact</a></li>
+      </ul>
+      <div class="hamburger"><span></span><span></span><span></span></div>
+    </div>
+  </div>
 </header>
 
-<!-- Hero Section -->
-<section class="hero">
+<section class="hero" id="home">
+  <video class="hero-video" autoplay muted loop playsinline>
+    <source src="spac2.mp4" type="video/mp4">
+  </video>
+  <div class="hero-overlay"></div>
+  <div class="hero-content">
     <h1>Welcome to SPAC Church</h1>
-    <p>Liberating the world through the preaching of the Word of Faith</p>
+    <p>We are delighted that you have chosen to visit our website! We welcome you and pray the Word of God delivered from this ministry becomes a testimony. God bless you. Shiloh2025.</p>
     <div class="hero-buttons">
-        <a href="#" class="btn">I am New</a>
-        <a href="#" class="btn">Prayer</a>
-        <a href="#" class="btn">Testimony</a>
-        <a href="#" class="btn">Resources</a>
-        <a href="#" class="btn">A Winning World</a>
+      <a href="#new" class="btn">I am New</a>
+      <a href="#prayer" class="btn">Prayer</a>
+      <a href="#testimony" class="btn">Testimony</a>
+      <a href="#resources" class="btn">Resources</a>
+      <a href="#winning" class="btn">A Winning World</a>
     </div>
+  </div>
+</section>
+
+<!-- I Am New / Prayer / Testimony / Resources / A Winning World Section -->
+<section class="new-prayer-resources">
+  <div class="container">
+    <div class="ipr-grid">
+      <div class="ipr-card">
+        <div class="ipr-icon">
+          <i class="fas fa-user-plus"></i>
+        </div>
+        <h3>I am New</h3>
+        <p>We are delighted that you have chosen to visit our website! We welcome you and pray the Word of God delivered from this ministry becomes a testimony. God bless you.</p>
+        <a href="#" class="btn">Learn More</a>
+      </div>
+      <div class="ipr-card">
+        <div class="ipr-icon">
+          <i class="fas fa-praying-hands"></i>
+        </div>
+        <h3>Prayer</h3>
+        <p>Submit your prayer request and join us in prayer for God's intervention in your life.</p>
+        <a href="#" class="btn">Submit Prayer</a>
+      </div>
+      <div class="ipr-card">
+        <div class="ipr-icon">
+          <i class="fas fa-bullhorn"></i>
+        </div>
+        <h3>Testimony</h3>
+        <p>Share your testimony of God's goodness and inspire others through your story.</p>
+        <a href="#" class="btn">Share Testimony</a>
+      </div>
+      <div class="ipr-card">
+        <div class="ipr-icon">
+          <i class="fas fa-book"></i>
+        </div>
+        <h3>Resources</h3>
+        <p>Access our library of Christian resources, articles, books, and media to grow your faith.</p>
+        <a href="#" class="btn">Explore Resources</a>
+      </div>
+      <div class="ipr-card">
+        <div class="ipr-icon">
+          <i class="fas fa-globe"></i>
+        </div>
+        <h3>A Winning World</h3>
+        <p>Learn how we are impacting the world through the preaching of the Word of Faith globally.</p>
+        <a href="#" class="btn">Discover More</a>
+      </div>
+    </div>
+  </div>
 </section>
 
 <!-- Announcements Slider -->
-<section class="announcements">
-    <div class="container">
-        <h2>Announcements</h2>
-        <div class="slider-container">
-            <div class="slider-track">
-                <div class="slider-card">Shiloh2025</div>
-                <div class="slider-card">Pre-Shiloh-Encounter - 30.11.2025</div>
-                <div class="slider-card">Pastoral 1</div>
-                <div class="slider-card">Event 4</div>
-                <div class="slider-card">Event 5</div>
-                <div class="slider-card">Event 6</div>
-                <div class="slider-card">Event 7</div>
-            </div>
-        </div>
-        <div class="slider-nav">
-            <button id="prev">Previous</button>
-            <button id="next">Next</button>
-        </div>
+<section class="slider-section" id="announcements">
+  <div class="container">
+    <div class="slider-header">
+      <h2>Announcements</h2>
     </div>
+    <div class="slider-wrapper">
+      <button class="slider-btn prev" id="prev-announcements"><i class="fas fa-chevron-left"></i></button>
+      <div class="slider-track" id="track-announcements">
+        <div class="slider-card"><img src="placeholder1.jpg" alt="Pre-Shiloh Encounter"><h3>Pre-Shiloh Encounter</h3><p>30.11.2025</p></div>
+        <div class="slider-card"><img src="placeholder2.jpg" alt="Pastoral Meeting"><h3>Pastoral Meeting</h3><p>Details here</p></div>
+        <div class="slider-card"><img src="placeholder3.jpg" alt="Shiloh Preparation"><h3>Shiloh Preparation</h3><p>Details here</p></div>
+        <div class="slider-card"><img src="placeholder4.jpg" alt="Prayer Rally"><h3>Prayer Rally</h3><p>Details here</p></div>
+        <div class="slider-card"><img src="placeholder5.jpg" alt="Bible Study"><h3>Bible Study</h3><p>Details here</p></div>
+        <div class="slider-card"><img src="placeholder6.jpg" alt="Community Outreach"><h3>Community Outreach</h3><p>Details here</p></div>
+        <div class="slider-card"><img src="placeholder7.jpg" alt="Thanksgiving"><h3>Thanksgiving</h3><p>Details here</p></div>
+      </div>
+      <button class="slider-btn next" id="next-announcements"><i class="fas fa-chevron-right"></i></button>
+    </div>
+  </div>
 </section>
 
-<!-- Programs / Events -->
-<section class="programs">
-    <div class="container">
-        <h2>Programs & Events</h2>
-        <div class="program-grid">
-            <div class="program-card"><div class="play-card"><i class="fas fa-play"></i></div><div class="program-info"><h3>Program 1</h3><p>Description for Program 1</p></div></div>
-            <div class="program-card"><div class="play-card"><i class="fas fa-play"></i></div><div class="program-info"><h3>Program 2</h3><p>Description for Program 2</p></div></div>
-            <div class="program-card"><div class="play-card"><i class="fas fa-play"></i></div><div class="program-info"><h3>Program 3</h3><p>Description for Program 3</p></div></div>
-            <div class="program-card"><div class="play-card"><i class="fas fa-play"></i></div><div class="program-info"><h3>Program 4</h3><p>Description for Program 4</p></div></div>
-            <div class="program-card"><div class="play-card"><i class="fas fa-play"></i></div><div class="program-info"><h3>Program 5</h3><p>Description for Program 5</p></div></div>
-            <div class="program-card"><div class="play-card"><i class="fas fa-play"></i></div><div class="program-info"><h3>Program 6</h3><p>Description for Program 6</p></div></div>
-            <div class="program-card"><div class="play-card"><i class="fas fa-play"></i></div><div class="program-info"><h3>Program 7</h3><p>Description for Program 7</p></div></div>
-        </div>
+<!-- Church Location Information -->
+<section class="slider-section" id="locations">
+  <div class="container">
+    <div class="slider-header">
+      <h2>Church Location Information</h2>
+      <p>Fellowship with us anywhere you are. Find your location, join a satellite fellowship</p>
     </div>
+    <div class="slider-wrapper">
+      <button class="slider-btn prev" id="prev-locations"><i class="fas fa-chevron-left"></i></button>
+      <div class="slider-track" id="track-locations">
+        <div class="slider-card"><img src="placeholder-location1.jpg" alt="Dartford"><h3>Dartford</h3><p>Green Street Green Road, DA1 1QE</p></div>
+        <div class="slider-card"><img src="placeholder-location2.jpg" alt="London"><h3>London</h3><p>123 Church Street, London</p></div>
+        <div class="slider-card"><img src="placeholder-location3.jpg" alt="Manchester"><h3>Manchester</h3><p>45 Main Street, Manchester</p></div>
+        <div class="slider-card"><img src="placeholder-location4.jpg" alt="Birmingham"><h3>Birmingham</h3><p>78 Church Avenue, Birmingham</p></div>
+      </div>
+      <button class="slider-btn next" id="next-locations"><i class="fas fa-chevron-right"></i></button>
+    </div>
+  </div>
 </section>
 
-<!-- Watch Live Section -->
-<section class="watch">
-    <h2>Watch Live</h2>
-    <div class="watch-buttons">
-        <a href="#" class="btn">Watch Live</a>
-        <a href="#" class="btn">Watch on Demand</a>
+<!-- Corporate Social Responsibility -->
+<section class="slider-section" id="csr">
+  <div class="container">
+    <div class="slider-header">
+      <h2>Corporate Social Responsibility</h2>
+      <p>Making a positive difference in the society</p>
+      <p>The Corporate Social Responsibility (CSR) was formed over 10 years ago as a community development arm of SPAC Church, to impact our local community and give back to society. Our focus is on 5 core areas:</p>
     </div>
+    <div class="slider-wrapper">
+      <button class="slider-btn prev" id="prev-csr"><i class="fas fa-chevron-left"></i></button>
+      <div class="slider-track" id="track-csr">
+        <div class="slider-card"><img src="placeholder-csr1.jpg" alt="Skills Development"><h3>Skills Development</h3><p>Through education, enterprise and employability training</p></div>
+        <div class="slider-card"><img src="placeholder-csr2.jpg" alt="Food Bank"><h3>Food Bank & Poverty Alleviation</h3><p>Providing food support to those in need</p></div>
+        <div class="slider-card"><img src="placeholder-csr3.jpg" alt="Homelessness"><h3>Tackling Homelessness</h3><p>Assisting the homeless with shelter & resources</p></div>
+        <div class="slider-card"><img src="placeholder-csr4.jpg" alt="Health & Environment"><h3>Health & Environment</h3><p>Improving health, safety, and environmental standards</p></div>
+        <div class="slider-card"><img src="placeholder-csr5.jpg" alt="Collaboration"><h3>Collaboration & Partnership</h3><p>Working with communities and organizations for positive change</p></div>
+      </div>
+      <button class="slider-btn next" id="next-csr"><i class="fas fa-chevron-right"></i></button>
+    </div>
+  </div>
 </section>
 
-<!-- CSR Section -->
-<section class="csr">
-    <div class="container">
-        <h2>Corporate Social Responsibility</h2>
-        <div class="csr-content">
-            <div><h3>Skills Development</h3><p>Education, enterprise and employability training</p></div>
-            <div><h3>Food Bank</h3><p>Poverty alleviation support</p></div>
-            <div><h3>Homelessness</h3><p>Community support initiatives</p></div>
-            <div><h3>Health & Safety</h3><p>Improve health, safety & environment</p></div>
-            <div><h3>Collaboration & Partnership</h3><p>Promote partnerships for change</p></div>
-        </div>
+<!-- Quick Links -->
+<section class="slider-section" id="quick-links">
+  <div class="container">
+    <div class="slider-header">
+      <h2>Quick Links</h2>
     </div>
+    <div class="slider-wrapper">
+      <button class="slider-btn prev" id="prev-quicklinks"><i class="fas fa-chevron-left"></i></button>
+      <div class="slider-track" id="track-quicklinks">
+        <div class="slider-card"><h3>Announcements</h3><p>Check latest church news</p></div>
+        <div class="slider-card"><h3>Watch Live</h3><p>Join live services</p></div>
+        <div class="slider-card"><h3>Watch on Demand</h3><p>Missed a service? Watch here</p></div>
+        <div class="slider-card"><h3>Resources</h3><p>Bibles, Sermons, Downloads</p></div>
+        <div class="slider-card"><h3>House Fellowship</h3><p>Join a WSF group near you</p></div>
+      </div>
+      <button class="slider-btn next" id="next-quicklinks"><i class="fas fa-chevron-right"></i></button>
+    </div>
+  </div>
+</section>
+
+<!-- Ministries -->
+<section class="slider-section" id="ministries">
+  <div class="container">
+    <div class="slider-header">
+      <h2>Our Ministries</h2>
+    </div>
+    <div class="slider-wrapper">
+      <button class="slider-btn prev" id="prev-ministries"><i class="fas fa-chevron-left"></i></button>
+      <div class="slider-track" id="track-ministries">
+        <div class="slider-card"><img src="placeholder-ministry1.jpg" alt="Teens Church"><h3>Teens Church</h3></div>
+        <div class="slider-card"><img src="placeholder-ministry2.jpg" alt="Winners Kids"><h3>Winners Kids</h3></div>
+        <div class="slider-card"><img src="placeholder-ministry3.jpg" alt="Community Development"><h3>Community Development</h3></div>
+        <div class="slider-card"><img src="placeholder-ministry4.jpg" alt="WOFBI"><h3>WOFBI</h3></div>
+        <div class="slider-card"><img src="placeholder-ministry5.jpg" alt="David Oyedepo Ministries"><h3>David Oyedepo Ministries</h3></div>
+        <div class="slider-card"><img src="placeholder-ministry6.jpg" alt="Faith Oyedepo Ministries"><h3>Faith Oyedepo Ministries</h3></div>
+        <div class="slider-card"><img src="placeholder-ministry7.jpg" alt="Bishop Abioye Ministries"><h3>Bishop Abioye Ministries</h3></div>
+      </div>
+      <button class="slider-btn next" id="next-ministries"><i class="fas fa-chevron-right"></i></button>
+    </div>
+  </div>
+</section>
+
+<!-- Service Times -->
+<section class="slider-section" id="service-times">
+  <div class="container">
+    <div class="slider-header">
+      <h2>Service Times</h2>
+    </div>
+    <div class="slider-wrapper">
+      <button class="slider-btn prev" id="prev-servicetimes"><i class="fas fa-chevron-left"></i></button>
+      <div class="slider-track" id="track-servicetimes">
+        <div class="slider-card"><h3>Sunday</h3><p>7:00 am, 9:15 am & 11:30 am</p></div>
+        <div class="slider-card"><h3>Wednesday</h3><p>6:00 pm</p></div>
+        <div class="slider-card"><h3>Covenant Hour of Prayer</h3><p>Mon-Fri: 6:00 am | Sat: 9:00 am</p></div>
+        <div class="slider-card"><h3>Winners Satellite Fellowship</h3><p>Saturday: 5:00 pm – 6:00 pm</p></div>
+      </div>
+      <button class="slider-btn next" id="next-servicetimes"><i class="fas fa-chevron-right"></i></button>
+    </div>
+  </div>
 </section>
 
 <!-- Footer -->
-<footer>
-    <div class="container footer-grid">
-        <div>
-            <h3>Quick Links</h3>
-            <a href="#">Announcements</a><br>
-            <a href="#">Watch Live</a><br>
-            <a href="#">Watch on Demand</a><br>
-            <a href="#">Resources</a><br>
-            <a href="#">House Fellowship</a><br>
-            <a href="#">Prophetic Theme</a><br>
-            <a href="#">Vacancies</a><br>
-            <a href="#">Transport</a><br>
-            <a href="#">Service Units</a><br>
-            <a href="#">WebMail</a><br>
-            <a href="#">Water Baptism</a><br>
-            <a href="#">Monthly Thanksgiving Registration</a>
-        </div>
-        <div>
-            <h3>Ministries</h3>
-            <a href="#">Teens Church</a><br>
-            <a href="#">Winners Kids</a><br>
-            <a href="#">Community Development</a><br>
-            <a href="#">WOFBI</a><br>
-            <a href="#">David Oyedepo Ministries</a><br>
-            <a href="#">Faith Oyedepo Ministries</a><br>
-            <a href="#">Bishop Abioye Ministries</a><br>
-            <a href="#">DOMI Radio</a><br>
-            <a href="#">Covenant University</a><br>
-            <a href="#">Landmark University</a>
-        </div>
-        <div>
-            <h3>Service Times</h3>
-            <p>Sunday: 7:00 am, 9:15 am & 11:30 am</p>
-            <p>Wednesday: 6:00 pm</p>
-            <p>Covenant Hour of Prayer: Mon-Fri 6:00 am | Sat 9:00 am</p>
-            <p>Winners Satellite Fellowship: Sat 5:00 pm – 6:00 pm</p>
-        </div>
-        <div>
-            <h3>Contact Us</h3>
-            <p>SPAC Church, Green Street Green Road, DARTFORD, DA1 1QE</p>
-            <p>Telephone: 01322292097</p>
-            <p>Email: info@spacchurch.org</p>
-        </div>
+<footer id="contact">
+  <div class="container footer-content">
+    <div class="footer-column">
+      <h3>SPAC Church</h3>
+      <p>We are a community of believers committed to spreading the gospel and serving our community.</p>
+      <div class="social-links">
+        <a href="#"><i class="fab fa-facebook-f"></i></a>
+        <a href="#"><i class="fab fa-twitter"></i></a>
+        <a href="#"><i class="fab fa-instagram"></i></a>
+        <a href="#"><i class="fab fa-youtube"></i></a>
+      </div>
     </div>
-    <div class="footer-bottom">
-        &copy; 2025 SPAC Church. All rights reserved. | <a href="#">Privacy Policy</a> | <a href="#">Safeguarding Policy</a>
+    <div class="footer-column">
+      <h3>Quick Links</h3>
+      <ul class="footer-links">
+        <li><a href="#home">Home</a></li>
+        <li><a href="#announcements">Announcements</a></li>
+        <li><a href="#">Watch Live</a></li>
+        <li><a href="#resources">Resources</a></li>
+      </ul>
     </div>
+    <div class="footer-column">
+      <h3>Contact Us</h3>
+      <ul class="footer-links">
+        <li>123 Church Street, City</li>
+        <li>Phone: 123-456-7890</li>
+        <li>Email: info@spacchurch.org</li>
+      </ul>
+    </div>
+  </div>
+  <div class="footer-bottom">
+    &copy; 2025 SPAC Church. All Rights Reserved. | <a href="#">Privacy Policy</a>
+  </div>
 </footer>
 
-<!-- Cookie Consent -->
-<div class="cookie-consent" id="cookieConsent">
-    <p>We use cookies to ensure the best experience on our website. By continuing you agree.</p>
-    <button class="btn" id="acceptCookies">Accept</button>
+<div id="cookieConsent">
+  <p>We use cookies to ensure that we give you the best experience on our website. If you continue to use this site we will assume that you are happy with it.</p>
+  <button class="btn" id="acceptCookies">Accept</button>
 </div>
 
 <script>
-// Slider
-const track = document.querySelector('.slider-track');
-let index = 0;
-document.getElementById('next').onclick = () => {
-    if(index<track.children.length-1) index++;
-    track.style.transform = `translateX(-${index*320}px)`;
-}
-document.getElementById('prev').onclick = () => {
-    if(index>0) index--;
-    track.style.transform = `translateX(-${index*320}px)`;
+// Hamburger menu
+const hamburger = document.querySelector('.hamburger');
+const navMenu = document.querySelector('.nav-menu');
+const dropdowns = document.querySelectorAll('.dropdown');
+
+hamburger.addEventListener('click', () => {
+  hamburger.classList.toggle('active');
+  navMenu.classList.toggle('active');
+});
+
+// Close mobile menu when clicking on a link
+document.querySelectorAll('.nav-menu a').forEach(link => {
+  link.addEventListener('click', () => {
+    hamburger.classList.remove('active');
+    navMenu.classList.remove('active');
+    dropdowns.forEach(dropdown => {
+      dropdown.classList.remove('active');
+    });
+  });
+});
+
+// Dropdown menu on mobile
+dropdowns.forEach(dropdown => {
+  dropdown.addEventListener('click', (e) => {
+    if (window.innerWidth <= 768) {
+      e.preventDefault();
+      dropdown.classList.toggle('active');
+    }
+  });
+});
+
+// Initialize all sliders
+function initSlider(sliderId, prevBtnId, nextBtnId) {
+  const sliderTrack = document.getElementById(sliderId);
+  const slides = sliderTrack.querySelectorAll('.slider-card');
+  const prevBtn = document.getElementById(prevBtnId);
+  const nextBtn = document.getElementById(nextBtnId);
+  
+  let index = 0;
+  const slideWidth = slides[0].offsetWidth + 20; // 20px for margin-right
+  
+  // Function to update slider position
+  function updateSlider() {
+    sliderTrack.style.transform = `translateX(-${slideWidth * index}px)`;
+  }
+  
+  // Next button event
+  nextBtn.addEventListener('click', () => {
+    index = (index + 1) % slides.length;
+    updateSlider();
+  });
+  
+  // Previous button event
+  prevBtn.addEventListener('click', () => {
+    index = (index - 1 + slides.length) % slides.length;
+    updateSlider();
+  });
+  
+  // Auto slide every 5 seconds
+  setInterval(() => {
+    index = (index + 1) % slides.length;
+    updateSlider();
+  }, 5000);
+  
+  // Initialize slider position
+  updateSlider();
 }
 
-// Cookie
-const cookie = document.getElementById('cookieConsent');
-const acceptBtn = document.getElementById('acceptCookies');
-if(!localStorage.getItem('cookiesAccepted')) { cookie.classList.add('show'); }
-acceptBtn.onclick = ()=>{ cookie.classList.remove('show'); localStorage.setItem('cookiesAccepted','true'); }
+// Initialize all sliders
+initSlider('track-announcements', 'prev-announcements', 'next-announcements');
+initSlider('track-locations', 'prev-locations', 'next-locations');
+initSlider('track-csr', 'prev-csr', 'next-csr');
+initSlider('track-quicklinks', 'prev-quicklinks', 'next-quicklinks');
+initSlider('track-ministries', 'prev-ministries', 'next-ministries');
+initSlider('track-servicetimes', 'prev-servicetimes', 'next-servicetimes');
+
+// Cookie consent
+const cookieConsent = document.getElementById('cookieConsent');
+const acceptCookies = document.getElementById('acceptCookies');
+
+window.addEventListener('load', () => {
+  setTimeout(() => {
+    cookieConsent.classList.add('show');
+  }, 1000);
+});
+
+acceptCookies.addEventListener('click', () => {
+  cookieConsent.style.display = 'none';
+});
 </script>
+
 </body>
 </html>
