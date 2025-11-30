@@ -3,140 +3,858 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>SPAC Church - Official Website</title>
-    <link rel="stylesheet" href="style.css">
-    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet">
+    <title>SPAC Church - Home</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        /* Global Styles */
+        :root {
+            --primary: #1a4b8c;
+            --secondary: #d4af37;
+            --light: #f8f9fa;
+            --dark: #343a40;
+            --accent: #8b0000;
+        }
+        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+        
+        body {
+            background-color: #f5f5f5;
+            color: #333;
+            line-height: 1.6;
+        }
+        
+        a {
+            text-decoration: none;
+            color: inherit;
+        }
+        
+        .container {
+            width: 90%;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+        
+        .btn {
+            display: inline-block;
+            background: var(--primary);
+            color: white;
+            padding: 10px 20px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+        
+        .btn:hover {
+            background: var(--accent);
+            transform: translateY(-2px);
+        }
+        
+        .section {
+            padding: 60px 0;
+        }
+        
+        .section-title {
+            text-align: center;
+            margin-bottom: 40px;
+            color: var(--primary);
+            position: relative;
+        }
+        
+        .section-title:after {
+            content: '';
+            position: absolute;
+            bottom: -10px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 80px;
+            height: 3px;
+            background: var(--secondary);
+        }
+        
+        /* Header Styles */
+        header {
+            background: white;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+        }
+        
+        .header-container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 15px 0;
+        }
+        
+        .logo {
+            display: flex;
+            align-items: center;
+        }
+        
+        .logo img {
+            height: 60px;
+            margin-right: 10px;
+        }
+        
+        .logo-text {
+            font-size: 24px;
+            font-weight: bold;
+            color: var(--primary);
+        }
+        
+        .nav-menu {
+            display: flex;
+            list-style: none;
+        }
+        
+        .nav-menu li {
+            margin-left: 25px;
+            position: relative;
+        }
+        
+        .nav-menu a {
+            color: var(--dark);
+            font-weight: 500;
+            transition: color 0.3s;
+        }
+        
+        .nav-menu a:hover {
+            color: var(--primary);
+        }
+        
+        .dropdown {
+            position: relative;
+        }
+        
+        .dropdown-content {
+            display: none;
+            position: absolute;
+            background: white;
+            min-width: 200px;
+            box-shadow: 0 8px 16px rgba(0,0,0,0.1);
+            z-index: 1;
+            border-radius: 5px;
+            overflow: hidden;
+        }
+        
+        .dropdown-content a {
+            display: block;
+            padding: 12px 16px;
+            border-bottom: 1px solid #eee;
+        }
+        
+        .dropdown:hover .dropdown-content {
+            display: block;
+        }
+        
+        .hamburger {
+            display: none;
+            cursor: pointer;
+            font-size: 24px;
+        }
+        
+        /* Hero Section */
+        .hero {
+            position: relative;
+            height: 80vh;
+            overflow: hidden;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            text-align: center;
+        }
+        
+        .hero-video {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            z-index: -1;
+        }
+        
+        .hero-overlay {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0,0,0,0.5);
+            z-index: -1;
+        }
+        
+        .hero-content {
+            max-width: 800px;
+            padding: 0 20px;
+        }
+        
+        .hero h1 {
+            font-size: 3rem;
+            margin-bottom: 20px;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.5);
+        }
+        
+        .hero p {
+            font-size: 1.2rem;
+            margin-bottom: 30px;
+        }
+        
+        /* Dynamic Pictures Section */
+        .dynamic-pictures {
+            background: white;
+        }
+        
+        .picture-carousel {
+            display: flex;
+            overflow-x: auto;
+            scroll-snap-type: x mandatory;
+            gap: 20px;
+            padding: 20px 0;
+            scrollbar-width: none;
+        }
+        
+        .picture-carousel::-webkit-scrollbar {
+            display: none;
+        }
+        
+        .picture-card {
+            flex: 0 0 auto;
+            width: 300px;
+            border-radius: 10px;
+            overflow: hidden;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+            scroll-snap-align: start;
+            transition: transform 0.3s;
+        }
+        
+        .picture-card:hover {
+            transform: translateY(-5px);
+        }
+        
+        .picture-card img {
+            width: 100%;
+            height: 200px;
+            object-fit: cover;
+        }
+        
+        .picture-card-content {
+            padding: 15px;
+        }
+        
+        .picture-card h3 {
+            margin-bottom: 10px;
+            color: var(--primary);
+        }
+        
+        /* Features Section */
+        .features {
+            background: var(--light);
+        }
+        
+        .features-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 30px;
+        }
+        
+        .feature-card {
+            background: white;
+            border-radius: 10px;
+            overflow: hidden;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.05);
+            transition: transform 0.3s;
+        }
+        
+        .feature-card:hover {
+            transform: translateY(-5px);
+        }
+        
+        .feature-icon {
+            background: var(--primary);
+            color: white;
+            height: 80px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 2rem;
+        }
+        
+        .feature-content {
+            padding: 20px;
+        }
+        
+        .feature-content h3 {
+            margin-bottom: 15px;
+            color: var(--primary);
+        }
+        
+        /* Footer */
+        footer {
+            background: var(--dark);
+            color: white;
+            padding: 60px 0 20px;
+        }
+        
+        .footer-content {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 40px;
+            margin-bottom: 40px;
+        }
+        
+        .footer-column h3 {
+            margin-bottom: 20px;
+            color: var(--secondary);
+            position: relative;
+            padding-bottom: 10px;
+        }
+        
+        .footer-column h3:after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 50px;
+            height: 2px;
+            background: var(--secondary);
+        }
+        
+        .footer-links {
+            list-style: none;
+        }
+        
+        .footer-links li {
+            margin-bottom: 10px;
+        }
+        
+        .footer-links a {
+            color: #ddd;
+            transition: color 0.3s;
+        }
+        
+        .footer-links a:hover {
+            color: var(--secondary);
+        }
+        
+        .social-links {
+            display: flex;
+            gap: 15px;
+            margin-top: 20px;
+        }
+        
+        .social-links a {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            width: 40px;
+            height: 40px;
+            background: rgba(255,255,255,0.1);
+            border-radius: 50%;
+            transition: all 0.3s;
+        }
+        
+        .social-links a:hover {
+            background: var(--secondary);
+            transform: translateY(-3px);
+        }
+        
+        .map-container {
+            height: 200px;
+            border-radius: 10px;
+            overflow: hidden;
+        }
+        
+        .footer-bottom {
+            text-align: center;
+            padding-top: 20px;
+            border-top: 1px solid rgba(255,255,255,0.1);
+            font-size: 0.9rem;
+            color: #aaa;
+        }
+        
+        /* Cookie Consent */
+        .cookie-consent {
+            position: fixed;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            background: var(--dark);
+            color: white;
+            padding: 15px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            z-index: 1001;
+            transform: translateY(100%);
+            transition: transform 0.5s;
+        }
+        
+        .cookie-consent.show {
+            transform: translateY(0);
+        }
+        
+        .cookie-consent p {
+            margin-right: 20px;
+        }
+        
+        /* Chat Widget */
+        .chat-widget {
+            position: fixed;
+            bottom: 20px;
+            right: 20px;
+            z-index: 1000;
+        }
+        
+        .chat-button {
+            width: 60px;
+            height: 60px;
+            border-radius: 50%;
+            background: var(--primary);
+            color: white;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 24px;
+            box-shadow: 0 4px 10px rgba(0,0,0,0.2);
+            cursor: pointer;
+            transition: all 0.3s;
+        }
+        
+        .chat-button:hover {
+            background: var(--accent);
+            transform: scale(1.1);
+        }
+        
+        .chat-window {
+            position: absolute;
+            bottom: 70px;
+            right: 0;
+            width: 300px;
+            height: 400px;
+            background: white;
+            border-radius: 10px;
+            box-shadow: 0 5px 25px rgba(0,0,0,0.2);
+            display: none;
+            flex-direction: column;
+            overflow: hidden;
+        }
+        
+        .chat-header {
+            background: var(--primary);
+            color: white;
+            padding: 15px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        
+        .chat-close {
+            cursor: pointer;
+        }
+        
+        .chat-messages {
+            flex: 1;
+            padding: 15px;
+            overflow-y: auto;
+        }
+        
+        .chat-input {
+            display: flex;
+            padding: 10px;
+            border-top: 1px solid #eee;
+        }
+        
+        .chat-input input {
+            flex: 1;
+            padding: 10px;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+            margin-right: 10px;
+        }
+        
+        /* Responsive Styles */
+        @media (max-width: 992px) {
+            .hero h1 {
+                font-size: 2.5rem;
+            }
+            
+            .nav-menu {
+                position: fixed;
+                top: 80px;
+                left: -100%;
+                width: 100%;
+                height: calc(100vh - 80px);
+                background: white;
+                flex-direction: column;
+                align-items: center;
+                justify-content: flex-start;
+                padding-top: 40px;
+                transition: left 0.3s;
+            }
+            
+            .nav-menu.active {
+                left: 0;
+            }
+            
+            .nav-menu li {
+                margin: 15px 0;
+            }
+            
+            .hamburger {
+                display: block;
+            }
+            
+            .dropdown-content {
+                position: static;
+                box-shadow: none;
+                display: none;
+                background: #f8f9fa;
+                border-radius: 5px;
+                margin-top: 10px;
+            }
+            
+            .dropdown:hover .dropdown-content {
+                display: none;
+            }
+            
+            .dropdown.active .dropdown-content {
+                display: block;
+            }
+        }
+        
+        @media (max-width: 768px) {
+            .hero h1 {
+                font-size: 2rem;
+            }
+            
+            .hero p {
+                font-size: 1rem;
+            }
+            
+            .section {
+                padding: 40px 0;
+            }
+            
+            .cookie-consent {
+                flex-direction: column;
+                text-align: center;
+            }
+            
+            .cookie-consent p {
+                margin-right: 0;
+                margin-bottom: 15px;
+            }
+        }
+    </style>
 </head>
 <body>
-
+    <!-- Header -->
     <header>
-        <div class="logo-container">
-            <a href="index.html">
-                <img src="spac1-logo.png" alt="SPAC Church Logo" class="logo">
-            </a>
+        <div class="container header-container">
+            <div class="logo">
+                <a href="#">
+                    <div class="logo-placeholder">
+                        <i class="fas fa-church" style="font-size: 40px; color: var(--primary);"></i>
+                    </div>
+                    <div class="logo-text">SPAC CHURCH</div>
+                </a>
+            </div>
+            
+            <nav>
+                <ul class="nav-menu">
+                    <li><a href="#" class="active">Home</a></li>
+                    <li class="dropdown">
+                        <a href="#">About <i class="fas fa-chevron-down"></i></a>
+                        <div class="dropdown-content">
+                            <a href="#">Our Story</a>
+                            <a href="#">Beliefs</a>
+                            <a href="#">Leadership</a>
+                        </div>
+                    </li>
+                    <li><a href="#">Branches</a></li>
+                    <li><a href="#">Headquarters</a></li>
+                    <li class="dropdown">
+                        <a href="#">Ministries <i class="fas fa-chevron-down"></i></a>
+                        <div class="dropdown-content">
+                            <a href="#">Youth Ministry</a>
+                            <a href="#">Vanguard</a>
+                            <a href="#">Proclaimers</a>
+                            <a href="#">Children</a>
+                        </div>
+                    </li>
+                    <li><a href="#">Radio</a></li>
+                    <li><a href="#">Bookshelf</a></li>
+                    <li><a href="#">Give</a></li>
+                    <li><a href="#">Contact</a></li>
+                </ul>
+            </nav>
+            
+            <div class="hamburger">
+                <i class="fas fa-bars"></i>
+            </div>
         </div>
-        <nav class="desktop-nav">
-            <a href="#">Home</a>
-            <a href="#">About</a>
-            <a href="#">Ministries</a>
-            <a href="#">Sermons</a>
-            <a href="#" class="cta-button gold">Give Online</a>
-        </nav>
-        <button class="hamburger" id="menu-toggle">
-            <span class="bar"></span>
-            <span class="bar"></span>
-            <span class="bar"></span>
-        </button>
     </header>
 
-    <div id="side-menu" class="side-menu">
-        <button class="close-btn" id="menu-close">&times;</button>
-        <nav class="side-nav-content">
-            <a href="#">Home</a>
-            <a href="#">About Us</a>
-            <a href="#">**Branches & HQs**</a>
-            <a href="#">**Departments**</a>
-            <a href="#">**Youth Ministry**</a>
-            <a href="#">**Radio**</a>
-            <a href="#">**Book Shelf**</a>
-            <a href="#">**Meet Our Ministers**</a>
-            <a href="#">SPAC Nation / US</a>
-            <a href="#" class="cta-button blue">Login / Pay</a>
-        </nav>
-    </div>
-
-    <section class="hero-section">
-        <video autoplay muted loop id="hero-video">
-            <source src="spac2-hero-video.mp4" type="video/mp4">
+    <!-- Hero Section -->
+    <section class="hero">
+        <video class="hero-video" autoplay muted loop>
+            <source src="https://assets.mixkit.co/videos/preview/mixkit-clouds-and-blue-sky-2403-large.mp4" type="video/mp4">
             Your browser does not support the video tag.
         </video>
+        <div class="hero-overlay"></div>
         <div class="hero-content">
-            <h1>Welcome to SPAC Nation</h1>
-            <p>A place where faith meets action.</p>
-            <a href="#" class="cta-button gold-outline">Join Us This Sunday</a>
+            <h1>Welcome to SPAC Church</h1>
+            <p>Growing in faith, serving in love, sharing the hope of Christ</p>
+            <a href="#" class="btn">Join Us This Sunday</a>
         </div>
     </section>
 
-    <main class="pure-white-background">
-
-        <section class="sliding-gallery">
-            <h2>Explore Our Ministries & Events</h2>
-            <div class="gallery-container">
-
-                <a href="#" class="gallery-item slide-in">
-                    <img src="church-tone-prayer.jpg" alt="A group praying">
-                    <span class="item-title">Our Ministries</span>
-                </a>
-
-                <a href="#" class="gallery-item slide-in">
-                    <img src="church-tone-outreach.jpg" alt="Community outreach event">
-                    <span class="item-title">Latest Events</span>
-                </a>
-
-                <a href="#" class="gallery-item slide-in">
-                    <img src="church-tone-reading.jpg" alt="Person studying the Bible">
-                    <span class="item-title">Book Shelf</span>
-                </a>
-
-                <a href="#" class="gallery-item slide-in">
-                    <img src="church-tone-minister.jpg" alt="Minister speaking on stage">
-                    <span class="item-title">Meet Our Leaders</span>
-                </a>
-            </div>
-        </section>
-
-        <section class="featured-content">
-            <div class="card sermon-card">
-                <h3>Latest Message: Grace in Action</h3>
-                <p>Listen to the powerful word from Pastor [Name].</p>
-                <button id="sermon-play-btn" class="cta-button gold">Listen Now</button>
-            </div>
-            <div class="card giving-card">
-                <h3>Sow a Seed</h3>
-                <p>Support our mission and impact the community.</p>
-                <a href="#" class="cta-button blue">Secure Online Giving</a>
-            </div>
-        </section>
-
-    </main>
-
-    <div id="audio-player" class="audio-player hidden">
-        <audio id="sermon-audio" src="latest-sermon-track.mp3" preload="none"></audio>
-        <span>Now Playing: Latest Sermon</span>
-        <button id="player-close">&times;</button>
-    </div>
-
-    <footer>
-        <div class="footer-content">
-            <div class="footer-map">
-                <h4>Find Our Headquarters</h4>
-                [attachment_0](attachment)
-            </div>
-            <div class="footer-links">
-                <h4>Quick Links</h4>
-                <a href="#">Contact Us</a>
-                <a href="#">Privacy Policy</a>
-                <a href="#">Forms & Registration</a>
-            </div>
-            <div class="footer-social">
-                <h4>Connect</h4>
-                <div class="social-icons">
-                    <a href="#" class="social-icon">F</a>
-                    <a href="#" class="social-icon">I</a>
-                    <a href="#" class="social-icon">Y</a>
+    <!-- Dynamic Pictures Section -->
+    <section class="section dynamic-pictures">
+        <div class="container">
+            <h2 class="section-title">Upcoming Events & Ministries</h2>
+            <div class="picture-carousel">
+                <div class="picture-card">
+                    <div class="picture-placeholder" style="background: #1a4b8c; height: 200px; display: flex; align-items: center; justify-content: center; color: white;">
+                        <i class="fas fa-users" style="font-size: 48px;"></i>
+                    </div>
+                    <div class="picture-card-content">
+                        <h3>Youth Conference 2023</h3>
+                        <p>Join us for an empowering youth conference this November.</p>
+                        <a href="#" class="btn" style="margin-top: 10px; padding: 8px 15px;">Learn More</a>
+                    </div>
+                </div>
+                
+                <div class="picture-card">
+                    <div class="picture-placeholder" style="background: #8b0000; height: 200px; display: flex; align-items: center; justify-content: center; color: white;">
+                        <i class="fas fa-music" style="font-size: 48px;"></i>
+                    </div>
+                    <div class="picture-card-content">
+                        <h3>Praise & Worship Night</h3>
+                        <p>An evening of powerful worship and prayer. All are welcome.</p>
+                        <a href="#" class="btn" style="margin-top: 10px; padding: 8px 15px;">Learn More</a>
+                    </div>
+                </div>
+                
+                <div class="picture-card">
+                    <div class="picture-placeholder" style="background: #d4af37; height: 200px; display: flex; align-items: center; justify-content: center; color: white;">
+                        <i class="fas fa-hands-helping" style="font-size: 48px;"></i>
+                    </div>
+                    <div class="picture-card-content">
+                        <h3>Community Outreach</h3>
+                        <p>Join our mission to serve the local community this month.</p>
+                        <a href="#" class="btn" style="margin-top: 10px; padding: 8px 15px;">Learn More</a>
+                    </div>
+                </div>
+                
+                <div class="picture-card">
+                    <div class="picture-placeholder" style="background: #343a40; height: 200px; display: flex; align-items: center; justify-content: center; color: white;">
+                        <i class="fas fa-bible" style="font-size: 48px;"></i>
+                    </div>
+                    <div class="picture-card-content">
+                        <h3>Bible Study Series</h3>
+                        <p>Deep dive into the book of Romans every Wednesday evening.</p>
+                        <a href="#" class="btn" style="margin-top: 10px; padding: 8px 15px;">Learn More</a>
+                    </div>
                 </div>
             </div>
         </div>
-        <div class="copyright">
-            <p>&copy; 2024 SPAC Church. All Rights Reserved.</p>
+    </section>
+
+    <!-- Features Section -->
+    <section class="section features">
+        <div class="container">
+            <h2 class="section-title">Church Resources</h2>
+            <div class="features-grid">
+                <div class="feature-card">
+                    <div class="feature-icon">
+                        <i class="fas fa-podcast"></i>
+                    </div>
+                    <div class="feature-content">
+                        <h3>Listen to Sermons</h3>
+                        <p>Access our library of sermons and listen while doing other activities.</p>
+                        <a href="#" class="btn" style="margin-top: 15px;">Listen Now</a>
+                    </div>
+                </div>
+                
+                <div class="feature-card">
+                    <div class="feature-icon">
+                        <i class="fas fa-book-open"></i>
+                    </div>
+                    <div class="feature-content">
+                        <h3>Digital Bookshelf</h3>
+                        <p>Explore our collection of Christian books and resources.</p>
+                        <a href="#" class="btn" style="margin-top: 15px;">Browse Books</a>
+                    </div>
+                </div>
+                
+                <div class="feature-card">
+                    <div class="feature-icon">
+                        <i class="fas fa-hand-holding-usd"></i>
+                    </div>
+                    <div class="feature-content">
+                        <h3>Online Giving</h3>
+                        <p>Support the ministry through secure online donations.</p>
+                        <a href="#" class="btn" style="margin-top: 15px;">Give Now</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-column">
+                    <h3>SPAC Church</h3>
+                    <p>We are a community of believers committed to spreading the gospel and serving our community.</p>
+                    <div class="social-links">
+                        <a href="#"><i class="fab fa-facebook-f"></i></a>
+                        <a href="#"><i class="fab fa-twitter"></i></a>
+                        <a href="#"><i class="fab fa-instagram"></i></a>
+                        <a href="#"><i class="fab fa-youtube"></i></a>
+                    </div>
+                </div>
+                
+                <div class="footer-column">
+                    <h3>Quick Links</h3>
+                    <ul class="footer-links">
+                        <li><a href="#">Home</a></li>
+                        <li><a href="#">About Us</a></li>
+                        <li><a href="#">Sermons</a></li>
+                        <li><a href="#">Events</a></li>
+                        <li><a href="#">Ministries</a></li>
+                        <li><a href="#">Contact</a></li>
+                    </ul>
+                </div>
+                
+                <div class="footer-column">
+                    <h3>Contact Us</h3>
+                    <ul class="footer-links">
+                        <li><i class="fas fa-map-marker-alt"></i> 123 Church Street, City, State 12345</li>
+                        <li><i class="fas fa-phone"></i> (123) 456-7890</li>
+                        <li><i class="fas fa-envelope"></i> info@spacchurch.org</li>
+                        <li><i class="fas fa-clock"></i> Sunday Services: 8:00AM & 10:30AM</li>
+                    </ul>
+                </div>
+                
+                <div class="footer-column">
+                    <h3>Location</h3>
+                    <div class="map-container">
+                        <div style="background: #ddd; height: 100%; display: flex; align-items: center; justify-content: center; color: #666;">
+                            <i class="fas fa-map" style="font-size: 48px;"></i>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="footer-bottom">
+                <p>&copy; 2023 SPAC Church. All Rights Reserved. | <a href="#">Privacy Policy</a> | <a href="#">Terms of Use</a></p>
+            </div>
         </div>
     </footer>
 
-    <div id="cookie-banner" class="cookie-banner">
+    <!-- Cookie Consent -->
+    <div class="cookie-consent">
         <p>We use cookies to ensure that we give you the best experience on our website. If you continue to use this site we will assume that you are happy with it.</p>
-        <button id="accept-cookies" class="cta-button gold">I'm Happy</button>
+        <button class="btn" id="accept-cookies">Accept</button>
     </div>
 
-    <script src="script.js"></script>
+    <!-- Chat Widget -->
+    <div class="chat-widget">
+        <div class="chat-button">
+            <i class="fas fa-comments"></i>
+        </div>
+        <div class="chat-window">
+            <div class="chat-header">
+                <h3>SPAC Chat</h3>
+                <div class="chat-close">
+                    <i class="fas fa-times"></i>
+                </div>
+            </div>
+            <div class="chat-messages">
+                <div class="message received">
+                    <p>Hello! How can we help you today?</p>
+                </div>
+            </div>
+            <div class="chat-input">
+                <input type="text" placeholder="Type your message...">
+                <button class="btn" style="padding: 10px 15px;"><i class="fas fa-paper-plane"></i></button>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // Mobile Menu Toggle
+        const hamburger = document.querySelector('.hamburger');
+        const navMenu = document.querySelector('.nav-menu');
+        
+        hamburger.addEventListener('click', () => {
+            navMenu.classList.toggle('active');
+        });
+        
+        // Dropdown Menu for Mobile
+        const dropdowns = document.querySelectorAll('.dropdown');
+        
+        dropdowns.forEach(dropdown => {
+            dropdown.addEventListener('click', (e) => {
+                if (window.innerWidth <= 992) {
+                    e.preventDefault();
+                    dropdown.classList.toggle('active');
+                }
+            });
+        });
+        
+        // Cookie Consent
+        const cookieConsent = document.querySelector('.cookie-consent');
+        const acceptCookies = document.getElementById('accept-cookies');
+        
+        // Check if user has already accepted cookies
+        if (!localStorage.getItem('cookiesAccepted')) {
+            setTimeout(() => {
+                cookieConsent.classList.add('show');
+            }, 1000);
+        }
+        
+        acceptCookies.addEventListener('click', () => {
+            cookieConsent.classList.remove('show');
+            localStorage.setItem('cookiesAccepted', 'true');
+        });
+        
+        // Chat Widget
+        const chatButton = document.querySelector('.chat-button');
+        const chatWindow = document.querySelector('.chat-window');
+        const chatClose = document.querySelector('.chat-close');
+        
+        chatButton.addEventListener('click', () => {
+            chatWindow.style.display = 'flex';
+        });
+        
+        chatClose.addEventListener('click', () => {
+            chatWindow.style.display = 'none';
+        });
+        
+        // Auto Message
+        setTimeout(() => {
+            if (!chatWindow.style.display || chatWindow.style.display === 'none') {
+                // Show notification that a message is waiting
+                chatButton.style.animation = 'pulse 1s infinite';
+                
+                setTimeout(() => {
+                    chatButton.style.animation = '';
+                }, 5000);
+            }
+        }, 10000);
+    </script>
 </body>
-</html>
+                            </html>
