@@ -8,30 +8,36 @@
     <style>
         /* Global Styles */
         :root {
-            --primary: #1a4b8c;
-            --secondary: #d4af37;
+            --primary: #1a4b8c; /* Deep Blue */
+            --secondary: #d4af37; /* Gold/Accent */
             --light: #f8f9fa;
             --dark: #343a40;
             --accent: #8b0000;
+            --grey-light: #e9ecef;
         }
         
         * {
             margin: 0;
             padding: 0;
             box-sizing: border-box;
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            /* Professional Font Stack */
+            font-family: 'Roboto', 'Open Sans', 'Segoe UI', Tahoma, sans-serif;
         }
         
         body {
-            background-color: #f5f5f5;
+            background-color: var(--light);
             color: #333;
             line-height: 1.6;
-            overflow-x: hidden;
         }
         
         a {
             text-decoration: none;
             color: inherit;
+            transition: color 0.3s ease;
+        }
+
+        a:hover {
+            color: var(--primary);
         }
         
         .container {
@@ -44,29 +50,32 @@
             display: inline-block;
             background: var(--primary);
             color: white;
-            padding: 12px 25px;
+            padding: 12px 25px; /* Increased padding */
             border: none;
             border-radius: 5px;
             cursor: pointer;
             transition: all 0.3s ease;
             font-weight: 500;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
         }
         
         .btn:hover {
             background: var(--accent);
             transform: translateY(-2px);
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
         }
         
         .section {
-            padding: 80px 0;
+            padding: 80px 0; /* Increased padding for more white space */
         }
         
         .section-title {
             text-align: center;
             margin-bottom: 50px;
             color: var(--primary);
+            font-size: 2.2rem;
             position: relative;
-            font-size: 2.5rem;
         }
         
         .section-title:after {
@@ -76,50 +85,54 @@
             left: 50%;
             transform: translateX(-50%);
             width: 80px;
-            height: 4px;
+            height: 3px;
             background: var(--secondary);
         }
         
-        /* Header Styles - Compact and Professional */
+        /* Header Styles - Reduced Menu Bar Size & Professional Look */
         header {
             background: white;
-            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+            box-shadow: 0 2px 15px rgba(0,0,0,0.1);
             position: sticky;
             top: 0;
             z-index: 1000;
-            padding: 8px 0;
         }
         
         .header-container {
             display: flex;
             justify-content: space-between;
             align-items: center;
+            padding: 10px 0; /* REDUCED MENU BAR SIZE: Smaller vertical padding */
         }
         
         .logo {
             display: flex;
             align-items: center;
-            width: 70%;
+            /* Removed fixed width, let content define it */
         }
-        
+
         .logo a {
+            /* Ensure the entire logo area is clickable and aligned */
             display: flex;
             align-items: center;
+            transition: opacity 0.3s;
         }
         
         .logo img {
-            height: 70px;
+            height: 85px; /* BIGGER LOGO: Increased logo size */
             margin-right: 15px;
         }
         
         .logo-text {
-            font-size: 28px;
-            font-weight: bold;
+            font-size: 28px; /* BIGGER LOGO: Increased logo text size */
+            font-weight: 700; /* Bolder text */
             color: var(--primary);
+            text-transform: uppercase; /* More professional church style */
+            letter-spacing: 1px;
         }
         
         .nav-container {
-            width: 30%;
+            width: auto;
             display: flex;
             justify-content: flex-end;
         }
@@ -130,36 +143,24 @@
         }
         
         .nav-menu li {
-            margin-left: 20px;
+            margin-left: 30px; /* Increased spacing */
             position: relative;
+            height: 100%; /* Important for vertical alignment */
+            display: flex;
+            align-items: center;
         }
         
         .nav-menu a {
             color: var(--dark);
             font-weight: 500;
-            transition: color 0.3s;
-            font-size: 16px;
-            padding: 8px 0;
-            position: relative;
+            padding: 10px 0; /* Added padding for better click target */
+            display: block;
+            transition: color 0.3s, border-bottom 0.3s;
         }
         
-        .nav-menu a:hover {
+        .nav-menu a:hover, .nav-menu a.active {
             color: var(--primary);
-        }
-        
-        .nav-menu a:after {
-            content: '';
-            position: absolute;
-            width: 0;
-            height: 2px;
-            bottom: 0;
-            left: 0;
-            background-color: var(--primary);
-            transition: width 0.3s;
-        }
-        
-        .nav-menu a:hover:after {
-            width: 100%;
+            border-bottom: 2px solid var(--secondary); /* Professional hover/active effect */
         }
         
         .dropdown {
@@ -170,19 +171,26 @@
             display: none;
             position: absolute;
             background: white;
-            min-width: 200px;
-            box-shadow: 0 8px 16px rgba(0,0,0,0.1);
+            min-width: 220px; /* Slightly wider dropdown */
+            box-shadow: 0 8px 20px rgba(0,0,0,0.15); /* More subtle professional shadow */
             z-index: 1;
             border-radius: 5px;
             overflow: hidden;
-            top: 100%;
-            left: 0;
+            top: 100%; /* Positioning correctly below the link */
         }
         
         .dropdown-content a {
             display: block;
-            padding: 12px 16px;
-            border-bottom: 1px solid #eee;
+            padding: 12px 18px;
+            border-bottom: 1px solid var(--grey-light);
+            font-weight: 400;
+            color: #555;
+        }
+
+        .dropdown-content a:hover {
+            background: var(--light);
+            color: var(--primary);
+            border-bottom: none;
         }
         
         .dropdown:hover .dropdown-content {
@@ -241,7 +249,7 @@
         /* Hero Section */
         .hero {
             position: relative;
-            height: 85vh;
+            height: 90vh; /* Slightly taller hero */
             overflow: hidden;
             display: flex;
             align-items: center;
@@ -266,7 +274,7 @@
             left: 0;
             width: 100%;
             height: 100%;
-            background: rgba(0,0,0,0.6);
+            background: rgba(0,0,0,0.6); /* Slightly darker overlay */
             z-index: -1;
         }
         
@@ -276,256 +284,139 @@
         }
         
         .hero h1 {
-            font-size: 3.5rem;
+            font-size: 3.5rem; /* Larger font */
             margin-bottom: 20px;
             text-shadow: 2px 2px 4px rgba(0,0,0,0.5);
-            line-height: 1.2;
+            font-weight: 700;
         }
         
         .hero p {
             font-size: 1.3rem;
-            margin-bottom: 30px;
-            max-width: 600px;
-            margin-left: auto;
-            margin-right: auto;
-        }
-        
-        /* Events Section */
-        .events-section {
-            background: white;
-            padding: 80px 0;
-        }
-        
-        .events-container {
-            max-width: 1000px;
-            margin: 0 auto;
-        }
-        
-        .event-item {
-            display: flex;
             margin-bottom: 40px;
-            opacity: 0;
-            transform: translateY(30px);
-            transition: all 0.6s ease;
         }
         
-        .event-item.visible {
-            opacity: 1;
-            transform: translateY(0);
-        }
-        
-        .event-date {
-            background: var(--primary);
-            color: white;
-            padding: 20px;
-            border-radius: 8px;
-            text-align: center;
-            min-width: 120px;
-            margin-right: 30px;
-            flex-shrink: 0;
-        }
-        
-        .event-day {
-            font-size: 2.5rem;
-            font-weight: bold;
-            display: block;
-            line-height: 1;
-        }
-        
-        .event-month {
-            font-size: 1.2rem;
-            font-weight: 500;
-            display: block;
-            margin-top: 5px;
-        }
-        
-        .event-details {
-            background: var(--light);
-            padding: 25px;
-            border-radius: 8px;
-            flex-grow: 1;
-            box-shadow: 0 5px 15px rgba(0,0,0,0.05);
-            border-left: 4px solid var(--secondary);
-        }
-        
-        .event-title {
-            font-size: 1.5rem;
-            color: var(--primary);
-            margin-bottom: 10px;
-        }
-        
-        .event-time, .event-location {
-            color: #666;
-            margin-bottom: 8px;
-            display: flex;
-            align-items: center;
-        }
-        
-        .event-time i, .event-location i {
-            margin-right: 10px;
-            color: var(--secondary);
-        }
-        
-        .event-description {
-            margin-top: 15px;
-            color: #555;
-        }
-        
-        .view-all-btn {
-            display: block;
-            width: fit-content;
-            margin: 40px auto 0;
-            background: var(--primary);
-            color: white;
-            padding: 12px 30px;
-            border-radius: 5px;
-            text-align: center;
-            font-weight: 500;
-            transition: all 0.3s;
-            font-size: 1.1rem;
-        }
-        
-        .view-all-btn:hover {
-            background: var(--accent);
-            transform: translateY(-3px);
-            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
-        }
-        
-        /* Ministries Section */
-        .ministries-section {
-            background: var(--light);
-            padding: 80px 0;
-        }
-        
-        .ministries-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-            gap: 30px;
-            max-width: 1200px;
-            margin: 0 auto;
-        }
-        
-        .ministry-card {
+        /* Dynamic Pictures Section */
+        .dynamic-pictures {
             background: white;
-            border-radius: 10px;
-            padding: 30px 25px;
-            text-align: center;
-            box-shadow: 0 5px 15px rgba(0,0,0,0.05);
-            transition: all 0.4s ease;
-            opacity: 0;
-            transform: translateY(30px);
         }
         
-        .ministry-card.visible {
-            opacity: 1;
-            transform: translateY(0);
-        }
-        
-        .ministry-card:hover {
-            transform: translateY(-10px);
-            box-shadow: 0 15px 30px rgba(0,0,0,0.1);
-        }
-        
-        .ministry-icon {
-            width: 80px;
-            height: 80px;
-            background: var(--primary);
-            color: white;
-            border-radius: 50%;
+        .picture-carousel {
             display: flex;
-            align-items: center;
-            justify-content: center;
-            margin: 0 auto 20px;
-            font-size: 2rem;
-            transition: all 0.3s;
+            overflow-x: auto;
+            scroll-snap-type: x mandatory;
+            gap: 30px; /* More gap */
+            padding: 20px 0;
+            scrollbar-width: none;
         }
         
-        .ministry-card:hover .ministry-icon {
-            background: var(--secondary);
-            transform: scale(1.1);
+        .picture-carousel::-webkit-scrollbar {
+            display: none;
         }
         
-        .ministry-card h3 {
-            font-size: 1.5rem;
+        .picture-card {
+            flex: 0 0 auto;
+            width: 320px; /* Slightly wider cards */
+            border-radius: 10px;
+            overflow: hidden;
+            box-shadow: 0 5px 20px rgba(0,0,0,0.1);
+            scroll-snap-align: start;
+            transition: transform 0.3s;
+            border: 1px solid var(--grey-light); /* Subtle border */
+        }
+        
+        .picture-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 30px rgba(0,0,0,0.15);
+        }
+        
+        .picture-card img {
+            width: 100%;
+            height: 200px;
+            object-fit: cover;
+        }
+        
+        .picture-card-content {
+            padding: 20px;
+        }
+        
+        .picture-card h3 {
+            margin-bottom: 10px;
             color: var(--primary);
-            margin-bottom: 15px;
+            font-size: 1.4rem;
         }
-        
-        .ministry-card p {
+
+        .picture-card p {
+            font-size: 0.95rem;
             color: #666;
-            line-height: 1.6;
         }
         
         /* Features Section */
         .features {
-            background: white;
+            background: var(--light);
         }
         
         .features-grid {
             display: grid;
             grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-            gap: 30px;
+            gap: 40px; /* More gap */
         }
         
         .feature-card {
             background: white;
             border-radius: 10px;
             overflow: hidden;
-            box-shadow: 0 5px 15px rgba(0,0,0,0.05);
-            transition: transform 0.3s;
-            opacity: 0;
-            transform: translateY(30px);
-        }
-        
-        .feature-card.visible {
-            opacity: 1;
-            transform: translateY(0);
+            box-shadow: 0 5px 15px rgba(0,0,0,0.08);
+            transition: transform 0.3s, box-shadow 0.3s;
+            text-align: center;
         }
         
         .feature-card:hover {
             transform: translateY(-5px);
+            box-shadow: 0 10px 20px rgba(0,0,0,0.15);
         }
         
         .feature-icon {
             background: var(--primary);
             color: white;
-            height: 80px;
+            height: 90px;
             display: flex;
             align-items: center;
             justify-content: center;
-            font-size: 2rem;
+            font-size: 2.5rem;
+            border-radius: 10px 10px 0 0;
         }
         
         .feature-content {
-            padding: 25px;
+            padding: 30px 20px;
         }
         
         .feature-content h3 {
             margin-bottom: 15px;
             color: var(--primary);
-            font-size: 1.4rem;
+            font-size: 1.5rem;
         }
         
         /* Footer */
         footer {
             background: var(--dark);
             color: white;
-            padding: 70px 0 20px;
+            padding: 80px 0 30px; /* Increased padding */
         }
         
         .footer-content {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-            gap: 40px;
+            grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+            gap: 30px;
             margin-bottom: 40px;
         }
         
         .footer-column h3 {
             margin-bottom: 20px;
             color: var(--secondary);
+            font-weight: 600;
             position: relative;
             padding-bottom: 10px;
-            font-size: 1.4rem;
+            text-transform: uppercase;
         }
         
         .footer-column h3:after {
@@ -544,8 +435,14 @@
         
         .footer-links li {
             margin-bottom: 12px;
+            font-size: 0.95rem;
         }
         
+        .footer-links i {
+            margin-right: 10px;
+            color: var(--secondary);
+        }
+
         .footer-links a {
             color: #ddd;
             transition: color 0.3s;
@@ -565,27 +462,25 @@
             display: flex;
             align-items: center;
             justify-content: center;
-            width: 40px;
-            height: 40px;
-            background: rgba(255,255,255,0.1);
+            width: 45px;
+            height: 45px;
+            background: rgba(255,255,255,0.15);
             border-radius: 50%;
+            font-size: 1.1rem;
             transition: all 0.3s;
         }
         
         .social-links a:hover {
             background: var(--secondary);
             transform: translateY(-3px);
+            color: var(--dark);
         }
         
         .map-container {
             height: 200px;
             border-radius: 10px;
             overflow: hidden;
-            background: #ddd;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            color: #666;
+            border: 1px solid rgba(255,255,255,0.1);
         }
         
         .footer-bottom {
@@ -604,13 +499,14 @@
             right: 0;
             background: var(--dark);
             color: white;
-            padding: 20px;
+            padding: 15px 30px;
             display: flex;
             justify-content: space-between;
             align-items: center;
             z-index: 1001;
             transform: translateY(100%);
             transition: transform 0.5s;
+            border-top: 3px solid var(--secondary);
         }
         
         .cookie-consent.show {
@@ -619,82 +515,34 @@
         
         .cookie-consent p {
             margin-right: 20px;
-            flex: 1;
         }
         
         /* Chat Widget */
         .chat-widget {
             position: fixed;
-            bottom: 20px;
-            right: 20px;
+            bottom: 30px;
+            right: 30px;
             z-index: 1000;
         }
         
         .chat-button {
-            width: 60px;
-            height: 60px;
+            width: 55px;
+            height: 55px;
             border-radius: 50%;
             background: var(--primary);
             color: white;
             display: flex;
             align-items: center;
             justify-content: center;
-            font-size: 24px;
-            box-shadow: 0 4px 10px rgba(0,0,0,0.2);
+            font-size: 22px;
+            box-shadow: 0 4px 10px rgba(0,0,0,0.3);
             cursor: pointer;
             transition: all 0.3s;
         }
         
         .chat-button:hover {
             background: var(--accent);
-            transform: scale(1.1);
-        }
-        
-        .chat-window {
-            position: absolute;
-            bottom: 70px;
-            right: 0;
-            width: 300px;
-            height: 400px;
-            background: white;
-            border-radius: 10px;
-            box-shadow: 0 5px 25px rgba(0,0,0,0.2);
-            display: none;
-            flex-direction: column;
-            overflow: hidden;
-        }
-        
-        .chat-header {
-            background: var(--primary);
-            color: white;
-            padding: 15px;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-        }
-        
-        .chat-close {
-            cursor: pointer;
-        }
-        
-        .chat-messages {
-            flex: 1;
-            padding: 15px;
-            overflow-y: auto;
-        }
-        
-        .chat-input {
-            display: flex;
-            padding: 10px;
-            border-top: 1px solid #eee;
-        }
-        
-        .chat-input input {
-            flex: 1;
-            padding: 10px;
-            border: 1px solid #ddd;
-            border-radius: 5px;
-            margin-right: 10px;
+            transform: scale(1.05);
         }
         
         /* Responsive Styles */
@@ -711,13 +559,14 @@
                 position: fixed;
                 top: 0;
                 right: -100%;
-                width: 80%;
+                width: 70%;
                 height: 100vh;
                 background: white;
                 flex-direction: column;
-                align-items: center;
+                align-items: flex-start; /* Changed alignment for better menu look */
                 justify-content: flex-start;
                 padding-top: 100px;
+                padding-left: 20px;
                 transition: right 0.3s;
                 box-shadow: -5px 0 15px rgba(0,0,0,0.1);
             }
@@ -725,24 +574,17 @@
             .nav-menu.active {
                 right: 0;
             }
-            
+
             .nav-menu li {
-                margin: 20px 0;
+                margin: 15px 0;
+                width: 100%;
             }
-            
-            .hamburger {
-                display: block;
+
+            .nav-menu a {
+                padding: 10px 0;
+                border-bottom: none !important; /* Remove border line in mobile */
             }
-            
-            .dropdown-content {
-                position: static;
-                box-shadow: none;
-                display: none;
-                background: #f8f9fa;
-                border-radius: 5px;
-                margin-top: 10px;
-            }
-            
+
             .dropdown:hover .dropdown-content {
                 display: none;
             }
@@ -751,14 +593,15 @@
                 display: block;
             }
             
-            .event-item {
-                flex-direction: column;
+            .hamburger {
+                display: block;
             }
             
-            .event-date {
-                margin-right: 0;
-                margin-bottom: 15px;
-                align-self: flex-start;
+            .logo img {
+                height: 70px; /* Reduced logo size slightly on mobile */
+            }
+            .logo-text {
+                font-size: 24px;
             }
         }
         
@@ -772,11 +615,7 @@
             }
             
             .section {
-                padding: 60px 0;
-            }
-            
-            .section-title {
-                font-size: 2rem;
+                padding: 50px 0;
             }
             
             .cookie-consent {
@@ -788,27 +627,15 @@
                 margin-right: 0;
                 margin-bottom: 15px;
             }
-            
-            .logo {
-                width: 80%;
-            }
-            
-            .logo-text {
-                font-size: 22px;
-            }
         }
     </style>
 </head>
 <body>
-    <!-- Header -->
     <header>
         <div class="container header-container">
             <div class="logo">
                 <a href="#">
-                    <!-- Replace with your actual logo -->
-                    <div class="logo-placeholder" style="background: #1a4b8c; width: 70px; height: 70px; display: flex; align-items: center; justify-content: center; border-radius: 5px;">
-                        <span style="color: white; font-weight: bold; font-size: 24px;">SPAC</span>
-                    </div>
+                    <img src="spac1.png" alt="SPAC Church Logo">
                     <div class="logo-text">SPAC CHURCH</div>
                 </a>
             </div>
@@ -852,120 +679,70 @@
         </div>
     </header>
 
-    <!-- Hero Section -->
     <section class="hero">
-        <!-- Replace with your actual video -->
-        <div class="hero-video" style="background: linear-gradient(135deg, #1a4b8c 0%, #0d2b4e 100%);"></div>
+        <video class="hero-video" autoplay muted loop playsinline>
+            <source src="spac2.mp4" type="video/mp4">
+            Your browser does not support the video tag.
+        </video>
         <div class="hero-overlay"></div>
         <div class="hero-content">
             <h1>Welcome to SPAC Church</h1>
-            <p>Growing in faith, serving in love, sharing the hope of Christ with the world</p>
+            <p>Growing in faith, serving in love, sharing the hope of Christ</p>
             <a href="#" class="btn">Join Us This Sunday</a>
         </div>
     </section>
 
-    <!-- Events Section -->
-    <section class="events-section">
-        <div class="container events-container">
-            <h2 class="section-title">Upcoming Events</h2>
-            
-            <div class="event-item">
-                <div class="event-date">
-                    <span class="event-day">05</span>
-                    <span class="event-month">DEC</span>
-                </div>
-                <div class="event-details">
-                    <h3 class="event-title">Youth Prayer Conference</h3>
-                    <p class="event-time"><i class="far fa-clock"></i> 5:00 PM - 7:00 PM</p>
-                    <p class="event-location"><i class="fas fa-map-marker-alt"></i> Main Sanctuary</p>
-                    <p class="event-description">An empowering conference for youth to deepen their prayer life and spiritual growth. All young adults are welcome to join us for this transformative experience.</p>
-                </div>
-            </div>
-            
-            <div class="event-item">
-                <div class="event-date">
-                    <span class="event-day">07</span>
-                    <span class="event-month">DEC</span>
-                </div>
-                <div class="event-details">
-                    <h3 class="event-title">Bible Study Series - Romans</h3>
-                    <p class="event-time"><i class="far fa-clock"></i> 6:30 PM - 8:00 PM</p>
-                    <p class="event-location"><i class="fas fa-map-marker-alt"></i> Fellowship Hall</p>
-                    <p class="event-description">Join us for an in-depth study of the Book of Romans. This series will explore Paul's letter and its relevance to our lives today.</p>
-                </div>
-            </div>
-            
-            <div class="event-item">
-                <div class="event-date">
-                    <span class="event-day">10</span>
-                    <span class="event-month">DEC</span>
-                </div>
-                <div class="event-details">
-                    <h3 class="event-title">Community Outreach Program</h3>
-                    <p class="event-time"><i class="far fa-clock"></i> 9:00 AM - 12:00 PM</p>
-                    <p class="event-location"><i class="fas fa-map-marker-alt"></i> City Center</p>
-                    <p class="event-description">We're taking God's love to the streets! Join our outreach team as we serve the local community through practical assistance and sharing the gospel.</p>
-                </div>
-            </div>
-            
-            <div class="event-item">
-                <div class="event-date">
-                    <span class="event-day">15</span>
-                    <span class="event-month">DEC</span>
-                </div>
-                <div class="event-details">
-                    <h3 class="event-title">Christmas Carol Service</h3>
-                    <p class="event-time"><i class="far fa-clock"></i> 6:00 PM - 8:30 PM</p>
-                    <p class="event-location"><i class="fas fa-map-marker-alt"></i> Main Sanctuary</p>
-                    <p class="event-description">Celebrate the Christmas season with us through traditional carols, special performances, and a message of hope. Bring your family and friends!</p>
-                </div>
-            </div>
-            
-            <a href="#" class="view-all-btn">View All Events</a>
-        </div>
-    </section>
-
-    <!-- Ministries Section -->
-    <section class="ministries-section">
+    <section class="section dynamic-pictures">
         <div class="container">
-            <h2 class="section-title">Our Ministries</h2>
-            <div class="ministries-grid">
-                <div class="ministry-card">
-                    <div class="ministry-icon">
-                        <i class="fas fa-users"></i>
+            <h2 class="section-title">Upcoming Events & Ministries</h2>
+            <div class="picture-carousel">
+                <div class="picture-card">
+                    <div class="picture-placeholder" style="background: var(--primary); height: 200px; display: flex; align-items: center; justify-content: center; color: white;">
+                        <i class="fas fa-users" style="font-size: 48px;"></i>
                     </div>
-                    <h3>Youth Ministry</h3>
-                    <p>Engaging and empowering the next generation in faith and fellowship through dynamic programs and events.</p>
+                    <div class="picture-card-content">
+                        <h3>Youth Conference 2023</h3>
+                        <p>Join us for an empowering youth conference this November.</p>
+                        <a href="#" class="btn" style="margin-top: 15px; padding: 10px 20px;">Learn More</a>
+                    </div>
                 </div>
                 
-                <div class="ministry-card">
-                    <div class="ministry-icon">
-                        <i class="fas fa-pray"></i>
+                <div class="picture-card">
+                    <div class="picture-placeholder" style="background: var(--accent); height: 200px; display: flex; align-items: center; justify-content: center; color: white;">
+                        <i class="fas fa-music" style="font-size: 48px;"></i>
                     </div>
-                    <h3>Vanguard</h3>
-                    <p>Dedicated prayer and intercession group committed to spiritual breakthroughs and covering the church in prayer.</p>
+                    <div class="picture-card-content">
+                        <h3>Praise & Worship Night</h3>
+                        <p>An evening of powerful worship and prayer. All are welcome.</p>
+                        <a href="#" class="btn" style="margin-top: 15px; padding: 10px 20px;">Learn More</a>
+                    </div>
                 </div>
                 
-                <div class="ministry-card">
-                    <div class="ministry-icon">
-                        <i class="fas fa-microphone"></i>
+                <div class="picture-card">
+                    <div class="picture-placeholder" style="background: var(--secondary); height: 200px; display: flex; align-items: center; justify-content: center; color: white;">
+                        <i class="fas fa-hands-helping" style="font-size: 48px;"></i>
                     </div>
-                    <h3>Proclaimers</h3>
-                    <p>Media and communications team spreading the gospel message through various platforms and technologies.</p>
+                    <div class="picture-card-content">
+                        <h3>Community Outreach</h3>
+                        <p>Join our mission to serve the local community this month.</p>
+                        <a href="#" class="btn" style="margin-top: 15px; padding: 10px 20px;">Learn More</a>
+                    </div>
                 </div>
                 
-                <div class="ministry-card">
-                    <div class="ministry-icon">
-                        <i class="fas fa-hands-helping"></i>
+                <div class="picture-card">
+                    <div class="picture-placeholder" style="background: var(--dark); height: 200px; display: flex; align-items: center; justify-content: center; color: white;">
+                        <i class="fas fa-bible" style="font-size: 48px;"></i>
                     </div>
-                    <h3>Outreach</h3>
-                    <p>Serving and connecting with our local community through practical assistance and sharing God's love in action.</p>
+                    <div class="picture-card-content">
+                        <h3>Bible Study Series</h3>
+                        <p>Deep dive into the book of Romans every Wednesday evening.</p>
+                        <a href="#" class="btn" style="margin-top: 15px; padding: 10px 20px;">Learn More</a>
+                    </div>
                 </div>
             </div>
         </div>
     </section>
 
-    <!-- Features Section -->
     <section class="section features">
         <div class="container">
             <h2 class="section-title">Church Resources</h2>
@@ -976,7 +753,7 @@
                     </div>
                     <div class="feature-content">
                         <h3>Listen to Sermons</h3>
-                        <p>Access our library of sermons and listen while doing other activities. Available in audio and video formats.</p>
+                        <p>Access our library of sermons and listen while doing other activities.</p>
                         <a href="#" class="btn" style="margin-top: 15px;">Listen Now</a>
                     </div>
                 </div>
@@ -987,7 +764,7 @@
                     </div>
                     <div class="feature-content">
                         <h3>Digital Bookshelf</h3>
-                        <p>Explore our collection of Christian books, study guides, and resources for spiritual growth.</p>
+                        <p>Explore our collection of Christian books and resources.</p>
                         <a href="#" class="btn" style="margin-top: 15px;">Browse Books</a>
                     </div>
                 </div>
@@ -998,7 +775,7 @@
                     </div>
                     <div class="feature-content">
                         <h3>Online Giving</h3>
-                        <p>Support the ministry through secure online donations. Your generosity helps spread the gospel.</p>
+                        <p>Support the ministry through secure online donations.</p>
                         <a href="#" class="btn" style="margin-top: 15px;">Give Now</a>
                     </div>
                 </div>
@@ -1006,13 +783,12 @@
         </div>
     </section>
 
-    <!-- Footer -->
     <footer>
         <div class="container">
             <div class="footer-content">
                 <div class="footer-column">
                     <h3>SPAC Church</h3>
-                    <p>We are a community of believers committed to spreading the gospel and serving our community through faith, hope, and love.</p>
+                    <p style="font-size: 0.95rem;">We are a community of believers committed to spreading the gospel and serving our community.</p>
                     <div class="social-links">
                         <a href="#"><i class="fab fa-facebook-f"></i></a>
                         <a href="#"><i class="fab fa-twitter"></i></a>
@@ -1046,8 +822,9 @@
                 <div class="footer-column">
                     <h3>Location</h3>
                     <div class="map-container">
-                        <i class="fas fa-map-marker-alt" style="font-size: 48px;"></i>
-                        <span style="margin-left: 10px;">View on Map</span>
+                        <div style="background: #3a3a3a; height: 100%; display: flex; align-items: center; justify-content: center; color: #999;">
+                            <i class="fas fa-map-marked-alt" style="font-size: 48px;"></i>
+                        </div>
                     </div>
                 </div>
             </div>
@@ -1058,13 +835,11 @@
         </div>
     </footer>
 
-    <!-- Cookie Consent -->
     <div class="cookie-consent">
         <p>We use cookies to ensure that we give you the best experience on our website. If you continue to use this site we will assume that you are happy with it.</p>
         <button class="btn" id="accept-cookies">Accept</button>
     </div>
 
-    <!-- Chat Widget -->
     <div class="chat-widget">
         <div class="chat-button">
             <i class="fas fa-comments"></i>
@@ -1137,31 +912,6 @@
         
         chatClose.addEventListener('click', () => {
             chatWindow.style.display = 'none';
-        });
-        
-        // Scroll Animation
-        const observerOptions = {
-            threshold: 0.1,
-            rootMargin: '0px 0px -50px 0px'
-        };
-        
-        const observer = new IntersectionObserver((entries) => {
-            entries.forEach(entry => {
-                if (entry.isIntersecting) {
-                    entry.target.classList.add('visible');
-                }
-            });
-        }, observerOptions);
-        
-        // Observe elements for scroll animation
-        document.addEventListener('DOMContentLoaded', () => {
-            const eventItems = document.querySelectorAll('.event-item');
-            const ministryCards = document.querySelectorAll('.ministry-card');
-            const featureCards = document.querySelectorAll('.feature-card');
-            
-            eventItems.forEach(item => observer.observe(item));
-            ministryCards.forEach(card => observer.observe(card));
-            featureCards.forEach(card => observer.observe(card));
         });
         
         // Auto Message
