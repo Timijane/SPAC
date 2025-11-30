@@ -1,938 +1,559 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>SPAC Church - Home</title>
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-    <style>
-        /* Global Styles */
-        :root {
-            --primary: #1a4b8c; /* Deep Blue */
-            --secondary: #d4af37; /* Gold/Accent */
-            --light: #f8f9fa;
-            --dark: #343a40;
-            --accent: #8b0000;
-            --grey-light: #e9ecef;
-        }
-        
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-            /* Professional Font Stack */
-            font-family: 'Roboto', 'Open Sans', 'Segoe UI', Tahoma, sans-serif;
-        }
-        
-        body {
-            background-color: var(--light);
-            color: #333;
-            line-height: 1.6;
-        }
-        
-        a {
-            text-decoration: none;
-            color: inherit;
-            transition: color 0.3s ease;
-        }
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>SPAC Church - Home</title>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+<style>
+/* ----------------- GLOBAL STYLES ----------------- */
+:root {
+    --primary: #1a4b8c;
+    --secondary: #d4af37;
+    --light: #f8f9fa;
+    --dark: #343a40;
+    --accent: #8b0000;
+}
 
-        a:hover {
-            color: var(--primary);
-        }
-        
-        .container {
-            width: 90%;
-            max-width: 1200px;
-            margin: 0 auto;
-        }
-        
-        .btn {
-            display: inline-block;
-            background: var(--primary);
-            color: white;
-            padding: 12px 25px; /* Increased padding */
-            border: none;
-            border-radius: 5px;
-            cursor: pointer;
-            transition: all 0.3s ease;
-            font-weight: 500;
-            text-transform: uppercase;
-            letter-spacing: 0.5px;
-        }
-        
-        .btn:hover {
-            background: var(--accent);
-            transform: translateY(-2px);
-            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
-        }
-        
-        .section {
-            padding: 80px 0; /* Increased padding for more white space */
-        }
-        
-        .section-title {
-            text-align: center;
-            margin-bottom: 50px;
-            color: var(--primary);
-            font-size: 2.2rem;
-            position: relative;
-        }
-        
-        .section-title:after {
-            content: '';
-            position: absolute;
-            bottom: -15px;
-            left: 50%;
-            transform: translateX(-50%);
-            width: 80px;
-            height: 3px;
-            background: var(--secondary);
-        }
-        
-        /* Header Styles - Reduced Menu Bar Size & Professional Look */
-        header {
-            background: white;
-            box-shadow: 0 2px 15px rgba(0,0,0,0.1);
-            position: sticky;
-            top: 0;
-            z-index: 1000;
-        }
-        
-        .header-container {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            padding: 10px 0; /* REDUCED MENU BAR SIZE: Smaller vertical padding */
-        }
-        
-        .logo {
-            display: flex;
-            align-items: center;
-            /* Removed fixed width, let content define it */
-        }
+* {margin:0; padding:0; box-sizing:border-box; font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;}
+body {background:#f5f5f5; color:#333; line-height:1.6;}
+a {text-decoration:none; color:inherit;}
+.container {width:90%; max-width:1200px; margin:0 auto;}
+.btn {display:inline-block; background:var(--primary); color:white; padding:10px 20px; border:none; border-radius:5px; cursor:pointer; transition:all 0.3s; font-weight:600; letter-spacing:0.5px; box-shadow:0 5px 15px rgba(0,0,0,0.2);}
+.btn:hover {background:var(--accent); transform:translateY(-2px);}
+.section {padding:60px 0;}
+.section-title {text-align:center; margin-bottom:40px; color:var(--primary); position:relative;}
+.section-title:after {content:''; position:absolute; bottom:-10px; left:50%; transform:translateX(-50%); width:80px; height:3px; background:var(--secondary);}
 
-        .logo a {
-            /* Ensure the entire logo area is clickable and aligned */
-            display: flex;
-            align-items: center;
-            transition: opacity 0.3s;
-        }
-        
-        .logo img {
-            height: 85px; /* BIGGER LOGO: Increased logo size */
-            margin-right: 15px;
-        }
-        
-        .logo-text {
-            font-size: 28px; /* BIGGER LOGO: Increased logo text size */
-            font-weight: 700; /* Bolder text */
-            color: var(--primary);
-            text-transform: uppercase; /* More professional church style */
-            letter-spacing: 1px;
-        }
-        
-        .nav-container {
-            width: auto;
-            display: flex;
-            justify-content: flex-end;
-        }
-        
-        .nav-menu {
-            display: flex;
-            list-style: none;
-        }
-        
-        .nav-menu li {
-            margin-left: 30px; /* Increased spacing */
-            position: relative;
-            height: 100%; /* Important for vertical alignment */
-            display: flex;
-            align-items: center;
-        }
-        
-        .nav-menu a {
-            color: var(--dark);
-            font-weight: 500;
-            padding: 10px 0; /* Added padding for better click target */
-            display: block;
-            transition: color 0.3s, border-bottom 0.3s;
-        }
-        
-        .nav-menu a:hover, .nav-menu a.active {
-            color: var(--primary);
-            border-bottom: 2px solid var(--secondary); /* Professional hover/active effect */
-        }
-        
-        .dropdown {
-            position: relative;
-        }
-        
-        .dropdown-content {
-            display: none;
-            position: absolute;
-            background: white;
-            min-width: 220px; /* Slightly wider dropdown */
-            box-shadow: 0 8px 20px rgba(0,0,0,0.15); /* More subtle professional shadow */
-            z-index: 1;
-            border-radius: 5px;
-            overflow: hidden;
-            top: 100%; /* Positioning correctly below the link */
-        }
-        
-        .dropdown-content a {
-            display: block;
-            padding: 12px 18px;
-            border-bottom: 1px solid var(--grey-light);
-            font-weight: 400;
-            color: #555;
-        }
+/* ----------------- HEADER ----------------- */
+header {background:white; box-shadow:0 2px 10px rgba(0,0,0,0.05); position:sticky; top:0; z-index:1000; padding:10px 0; transition:all 0.3s ease;}
+.header-container {display:flex; justify-content:space-between; align-items:center; padding:10px 0;}
+.logo a {display:flex; align-items:center;}
+.logo img {height:80px; margin-right:10px; transition:transform 0.3s;}
+.logo img:hover {transform:scale(1.05);}
+.logo-text {font-size:28px; font-weight:700; color:var(--primary); letter-spacing:1px;}
+.nav-container {display:flex; align-items:center;}
+.nav-menu {display:flex; list-style:none;}
+.nav-menu li {margin-left:20px; position:relative;}
+.nav-menu a {color:var(--dark); font-weight:600; transition:color 0.3s; font-size:16px; padding:8px 12px; transition:all 0.3s ease;}
+.nav-menu a:hover, .nav-menu a.active {color:var(--primary); background:rgba(26,75,140,0.1); border-radius:5px;}
+.dropdown-content {display:none; position:absolute; background:white; min-width:200px; box-shadow:0 8px 16px rgba(0,0,0,0.1); z-index:1; border-radius:5px; overflow:hidden;}
+.dropdown-content a {display:block; padding:12px 16px; border-bottom:1px solid #eee; font-size:15px; transition:all 0.3s ease;}
+.dropdown-content a:hover {background:var(--primary); color:white;}
+.dropdown:hover .dropdown-content {display:block;}
+.hamburger {display:none; cursor:pointer; width:30px; height:30px; position:relative; z-index:1001;}
+.hamburger span {display:block; position:absolute; height:3px; width:100%; background:var(--primary); border-radius:3px; opacity:1; left:0; transform:rotate(0deg); transition:.25s ease-in-out;}
+.hamburger span:nth-child(1){top:0;} .hamburger span:nth-child(2){top:10px;} .hamburger span:nth-child(3){top:20px;}
+.hamburger.active span:nth-child(1){top:10px; transform:rotate(135deg);} 
+.hamburger.active span:nth-child(2){opacity:0; left:-30px;} 
+.hamburger.active span:nth-child(3){top:10px; transform:rotate(-135deg);}
 
-        .dropdown-content a:hover {
-            background: var(--light);
-            color: var(--primary);
-            border-bottom: none;
-        }
-        
-        .dropdown:hover .dropdown-content {
-            display: block;
-        }
-        
-        .hamburger {
-            display: none;
-            cursor: pointer;
-            width: 30px;
-            height: 30px;
-            position: relative;
-            z-index: 1001;
-        }
-        
-        .hamburger span {
-            display: block;
-            position: absolute;
-            height: 3px;
-            width: 100%;
-            background: var(--primary);
-            border-radius: 3px;
-            opacity: 1;
-            left: 0;
-            transform: rotate(0deg);
-            transition: .25s ease-in-out;
-        }
-        
-        .hamburger span:nth-child(1) {
-            top: 0px;
-        }
-        
-        .hamburger span:nth-child(2) {
-            top: 10px;
-        }
-        
-        .hamburger span:nth-child(3) {
-            top: 20px;
-        }
-        
-        .hamburger.active span:nth-child(1) {
-            top: 10px;
-            transform: rotate(135deg);
-        }
-        
-        .hamburger.active span:nth-child(2) {
-            opacity: 0;
-            left: -30px;
-        }
-        
-        .hamburger.active span:nth-child(3) {
-            top: 10px;
-            transform: rotate(-135deg);
-        }
-        
-        /* Hero Section */
-        .hero {
-            position: relative;
-            height: 90vh; /* Slightly taller hero */
-            overflow: hidden;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            color: white;
-            text-align: center;
-        }
-        
-        .hero-video {
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            object-fit: cover;
-            z-index: -1;
-        }
-        
-        .hero-overlay {
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background: rgba(0,0,0,0.6); /* Slightly darker overlay */
-            z-index: -1;
-        }
-        
-        .hero-content {
-            max-width: 800px;
-            padding: 0 20px;
-        }
-        
-        .hero h1 {
-            font-size: 3.5rem; /* Larger font */
-            margin-bottom: 20px;
-            text-shadow: 2px 2px 4px rgba(0,0,0,0.5);
-            font-weight: 700;
-        }
-        
-        .hero p {
-            font-size: 1.3rem;
-            margin-bottom: 40px;
-        }
-        
-        /* Dynamic Pictures Section */
-        .dynamic-pictures {
-            background: white;
-        }
-        
-        .picture-carousel {
-            display: flex;
-            overflow-x: auto;
-            scroll-snap-type: x mandatory;
-            gap: 30px; /* More gap */
-            padding: 20px 0;
-            scrollbar-width: none;
-        }
-        
-        .picture-carousel::-webkit-scrollbar {
-            display: none;
-        }
-        
-        .picture-card {
-            flex: 0 0 auto;
-            width: 320px; /* Slightly wider cards */
-            border-radius: 10px;
-            overflow: hidden;
-            box-shadow: 0 5px 20px rgba(0,0,0,0.1);
-            scroll-snap-align: start;
-            transition: transform 0.3s;
-            border: 1px solid var(--grey-light); /* Subtle border */
-        }
-        
-        .picture-card:hover {
-            transform: translateY(-5px);
-            box-shadow: 0 10px 30px rgba(0,0,0,0.15);
-        }
-        
-        .picture-card img {
-            width: 100%;
-            height: 200px;
-            object-fit: cover;
-        }
-        
-        .picture-card-content {
-            padding: 20px;
-        }
-        
-        .picture-card h3 {
-            margin-bottom: 10px;
-            color: var(--primary);
-            font-size: 1.4rem;
-        }
+/* ----------------- HERO & SLIDERS ----------------- */
+.hero {position:relative; height:80vh; overflow:hidden; display:flex; align-items:center; justify-content:center; color:white; text-align:center;}
+.hero-video {position:absolute; top:0; left:0; width:100%; height:100%; object-fit:cover; z-index:-1;}
+.hero-overlay {position:absolute; top:0; left:0; width:100%; height:100%; background:rgba(0,0,0,0.5); z-index:-1;}
+.hero-content {max-width:800px; padding:0 20px;}
+.hero h1 {font-size:3.5rem; margin-bottom:20px; text-shadow:2px 2px 6px rgba(0,0,0,0.4); font-weight:800; letter-spacing:1px;}
+.hero p {font-size:1.3rem; margin-bottom:30px; letter-spacing:0.5px;}
+.slider-container {position:relative; overflow:hidden; margin-top:30px;}
+.slides {display:flex; transition:transform 0.8s ease-in-out;}
+.slide {min-width:100%; height:400px; position:relative; background-size:cover; background-position:center;}
+.slide-overlay {position:absolute; top:0; left:0; width:100%; height:100%; background:rgba(0,0,0,0.4);}
+.slide-content {position:absolute; bottom:40px; left:40px; color:white;}
+.slide-content h2 {font-size:2rem; margin-bottom:10px;}
+.slide-content p {font-size:1rem; margin-bottom:10px;}
+.slider-nav {position:absolute; bottom:10px; left:50%; transform:translateX(-50%); display:flex; gap:10px;}
+.slider-nav span {width:12px; height:12px; border-radius:50%; background:rgba(255,255,255,0.5); cursor:pointer;}
+.slider-nav span.active {background:var(--secondary);}
 
-        .picture-card p {
-            font-size: 0.95rem;
-            color: #666;
-        }
-        
-        /* Features Section */
-        .features {
-            background: var(--light);
-        }
-        
-        .features-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-            gap: 40px; /* More gap */
-        }
-        
-        .feature-card {
-            background: white;
-            border-radius: 10px;
-            overflow: hidden;
-            box-shadow: 0 5px 15px rgba(0,0,0,0.08);
-            transition: transform 0.3s, box-shadow 0.3s;
-            text-align: center;
-        }
-        
-        .feature-card:hover {
-            transform: translateY(-5px);
-            box-shadow: 0 10px 20px rgba(0,0,0,0.15);
-        }
-        
-        .feature-icon {
-            background: var(--primary);
-            color: white;
-            height: 90px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-size: 2.5rem;
-            border-radius: 10px 10px 0 0;
-        }
-        
-        .feature-content {
-            padding: 30px 20px;
-        }
-        
-        .feature-content h3 {
-            margin-bottom: 15px;
-            color: var(--primary);
-            font-size: 1.5rem;
-        }
-        
-        /* Footer */
-        footer {
-            background: var(--dark);
-            color: white;
-            padding: 80px 0 30px; /* Increased padding */
-        }
-        
-        .footer-content {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
-            gap: 30px;
-            margin-bottom: 40px;
-        }
-        
-        .footer-column h3 {
-            margin-bottom: 20px;
-            color: var(--secondary);
-            font-weight: 600;
-            position: relative;
-            padding-bottom: 10px;
-            text-transform: uppercase;
-        }
-        
-        .footer-column h3:after {
-            content: '';
-            position: absolute;
-            bottom: 0;
-            left: 0;
-            width: 50px;
-            height: 2px;
-            background: var(--secondary);
-        }
-        
-        .footer-links {
-            list-style: none;
-        }
-        
-        .footer-links li {
-            margin-bottom: 12px;
-            font-size: 0.95rem;
-        }
-        
-        .footer-links i {
-            margin-right: 10px;
-            color: var(--secondary);
-        }
+/* ----------------- SERVICES ----------------- */
+.services {background:var(--light);}
+.services-grid {display:grid; grid-template-columns:repeat(auto-fit, minmax(280px,1fr)); gap:30px;}
+.service-card {background:white; border-radius:12px; padding:25px 20px; text-align:center; box-shadow:0 5px 20px rgba(0,0,0,0.1); transition:all 0.3s ease; opacity:0; transform:translateY(20px);}
+.service-card:hover {transform:translateY(-10px); box-shadow:0 10px 25px rgba(0,0,0,0.15);}
+.service-icon {font-size:50px; color:var(--primary); background:rgba(26,75,140,0.1); width:100px; height:100px; display:flex; align-items:center; justify-content:center; margin:0 auto 20px; border-radius:50%;}
+.service-card.show {animation:fadeUp 0.8s forwards;}
 
-        .footer-links a {
-            color: #ddd;
-            transition: color 0.3s;
-        }
-        
-        .footer-links a:hover {
-            color: var(--secondary);
-        }
-        
-        .social-links {
-            display: flex;
-            gap: 15px;
-            margin-top: 20px;
-        }
-        
-        .social-links a {
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            width: 45px;
-            height: 45px;
-            background: rgba(255,255,255,0.15);
-            border-radius: 50%;
-            font-size: 1.1rem;
-            transition: all 0.3s;
-        }
-        
-        .social-links a:hover {
-            background: var(--secondary);
-            transform: translateY(-3px);
-            color: var(--dark);
-        }
-        
-        .map-container {
-            height: 200px;
-            border-radius: 10px;
-            overflow: hidden;
-            border: 1px solid rgba(255,255,255,0.1);
-        }
-        
-        .footer-bottom {
-            text-align: center;
-            padding-top: 30px;
-            border-top: 1px solid rgba(255,255,255,0.1);
-            font-size: 0.9rem;
-            color: #aaa;
-        }
-        
-        /* Cookie Consent */
-        .cookie-consent {
-            position: fixed;
-            bottom: 0;
-            left: 0;
-            right: 0;
-            background: var(--dark);
-            color: white;
-            padding: 15px 30px;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            z-index: 1001;
-            transform: translateY(100%);
-            transition: transform 0.5s;
-            border-top: 3px solid var(--secondary);
-        }
-        
-        .cookie-consent.show {
-            transform: translateY(0);
-        }
-        
-        .cookie-consent p {
-            margin-right: 20px;
-        }
-        
-        /* Chat Widget */
-        .chat-widget {
-            position: fixed;
-            bottom: 30px;
-            right: 30px;
-            z-index: 1000;
-        }
-        
-        .chat-button {
-            width: 55px;
-            height: 55px;
-            border-radius: 50%;
-            background: var(--primary);
-            color: white;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-size: 22px;
-            box-shadow: 0 4px 10px rgba(0,0,0,0.3);
-            cursor: pointer;
-            transition: all 0.3s;
-        }
-        
-        .chat-button:hover {
-            background: var(--accent);
-            transform: scale(1.05);
-        }
-        
-        /* Responsive Styles */
-        @media (max-width: 992px) {
-            .hero h1 {
-                font-size: 2.8rem;
-            }
-            
-            .nav-container {
-                width: auto;
-            }
-            
-            .nav-menu {
-                position: fixed;
-                top: 0;
-                right: -100%;
-                width: 70%;
-                height: 100vh;
-                background: white;
-                flex-direction: column;
-                align-items: flex-start; /* Changed alignment for better menu look */
-                justify-content: flex-start;
-                padding-top: 100px;
-                padding-left: 20px;
-                transition: right 0.3s;
-                box-shadow: -5px 0 15px rgba(0,0,0,0.1);
-            }
-            
-            .nav-menu.active {
-                right: 0;
-            }
+/* ----------------- PROGRAMS & EVENTS ----------------- */
+.programs-events {background:#fff;}
+.events-grid {display:grid; grid-template-columns:repeat(auto-fit, minmax(280px,1fr)); gap:30px;}
+.event-card {display:flex; background:white; border-radius:12px; box-shadow:0 5px 20px rgba(0,0,0,0.1); transition:all 0.3s ease; overflow:hidden; opacity:0; transform:translateY(20px);}
+.event-card:hover {transform:translateY(-10px); box-shadow:0 10px 25px rgba(0,0,0,0.15);}
+.event-date {background:var(--primary); color:white; padding:20px; display:flex; flex-direction:column; align-items:center; justify-content:center; min-width:100px; text-align:center;}
+.event-date .day {font-size:2.5rem; font-weight:bold;}
+.event-date .month {font-size:1.2rem; text-transform:uppercase;}
+.event-content {padding:20px;}
+.event-content h3 {margin-bottom:10px; color:var(--primary);}
+.event-content p {margin-bottom:5px; color:#555;}
+.event-card.show {animation:fadeUp 0.8s forwards;}
 
-            .nav-menu li {
-                margin: 15px 0;
-                width: 100%;
-            }
+/* ----------------- PICTURE CAROUSEL ----------------- */
+.picture-carousel-container {position:relative; margin:40px 0;}
+.picture-carousel {display:flex; overflow:hidden; gap:20px; position:relative;}
+.picture-card {flex:0 0 300px; border-radius:10px; overflow:hidden; box-shadow:0 5px 15px rgba(0,0,0,0.1); scroll-snap-align:start; transition:transform 0.5s, opacity 0.5s; opacity:0.6; animation:fadeIn 0.8s ease forwards;}
+.picture-card.active {transform:scale(1.05); opacity:1;}
+.picture-card img, .picture-placeholder {width:100%; height:200px; object-fit:cover;}
+.picture-card-content {padding:15px;}
+.carousel-arrow {position:absolute; top:50%; transform:translateY(-50%); background:rgba(0,0,0,0.5); color:white; width:40px; height:40px; border-radius:50%; display:flex; align-items:center; justify-content:center; cursor:pointer; z-index:10; transition:background 0.3s;}
+.carousel-arrow:hover {background:var(--primary);}
+.arrow-left {left:10px;} .arrow-right {right:10px;}
 
-            .nav-menu a {
-                padding: 10px 0;
-                border-bottom: none !important; /* Remove border line in mobile */
-            }
+/* ----------------- LIVESTREAM ----------------- */
+.livestream {background:var(--primary); color:white; text-align:center; padding:60px 0;}
+.livestream iframe {width:80%; height:450px; max-width:900px; border:none; border-radius:10px; margin-top:30px;}
 
-            .dropdown:hover .dropdown-content {
-                display: none;
-            }
-            
-            .dropdown.active .dropdown-content {
-                display: block;
-            }
-            
-            .hamburger {
-                display: block;
-            }
-            
-            .logo img {
-                height: 70px; /* Reduced logo size slightly on mobile */
-            }
-            .logo-text {
-                font-size: 24px;
-            }
-        }
-        
-        @media (max-width: 768px) {
-            .hero h1 {
-                font-size: 2.2rem;
-            }
-            
-            .hero p {
-                font-size: 1.1rem;
-            }
-            
-            .section {
-                padding: 50px 0;
-            }
-            
-            .cookie-consent {
-                flex-direction: column;
-                text-align: center;
-            }
-            
-            .cookie-consent p {
-                margin-right: 0;
-                margin-bottom: 15px;
-            }
-        }
-    </style>
+/* ----------------- FOOTER ----------------- */
+footer {background:var(--dark); color:white; padding:60px 0 20px;}
+.footer-content {display:grid; grid-template-columns:repeat(auto-fit, minmax(250px,1fr)); gap:40px; margin-bottom:40px;}
+.footer-column h3 {margin-bottom:20px; color:var(--secondary); position:relative; padding-bottom:10px;}
+.footer-column h3:after {content:''; position:absolute; bottom:0; left:0; width:50px; height:2px; background:var(--secondary);}
+.footer-links {list-style:none;}
+.footer-links li {margin-bottom:10px;}
+.footer-links a {color:#ddd; transition:color 0.3s;}
+.footer-links a:hover {color:var(--secondary);}
+.social-links a {display:inline-block; margin-right:15px; font-size:1.2rem;}
+.footer-bottom {text-align:center; padding-top:20px; border-top:1px solid rgba(255,255,255,0.1); font-size:0.9rem; color:#aaa;}
+
+/* ----------------- ANIMATIONS ----------------- */
+@keyframes fadeUp {to {opacity:1; transform:translateY(0);}}
+@keyframes fadeIn {0% {opacity:0; transform:translateY(20px);} 100% {opacity:1; transform:translateY(0);}}
+
+/* ----------------- RESPONSIVE ----------------- */
+@media(max-width:992px){
+    .hamburger{display:block;}
+    .nav-menu{position:fixed; top:0; right:-100%; width:80%; height:100vh; flex-direction:column; align-items:center; justify-content:flex-start; padding-top:80px; transition:right 0.3s; box-shadow:-5px 0 15px rgba(0,0,0,0.1);}
+    .nav-menu.active{right:0;}
+    .nav-menu li{margin:15px 0;}
+    .nav-menu li a {font-size:18px; padding:12px 20px;}
+    .dropdown-content{position:static; box-shadow:none; display:none; background:#f8f9fa; border-radius:5px; margin-top:10px;}
+    .dropdown.active .dropdown-content{display:block;}
+    .logo img {height:70px;}
+    .logo-text {font-size:24px;}
+}
+@media(max-width:768px){
+    .hero h1{font-size:2rem;}
+    .hero p{font-size:1rem;}
+    .section{padding:40px 0;}
+    .picture-card {flex:0 0 250px;}
+}
+</style>
 </head>
 <body>
-    <header>
-        <div class="container header-container">
-            <div class="logo">
-                <a href="#">
-                    <img src="spac1.png" alt="SPAC Church Logo">
-                    <div class="logo-text">SPAC CHURCH</div>
-                </a>
+
+<!-- HEADER -->
+<header>
+    <div class="container header-container">
+        <div class="logo">
+            <a href="index.html">
+                <img src="spac1.png" alt="SPAC Church Logo">
+                <div class="logo-text">SPAC CHURCH</div>
+            </a>
+        </div>
+        <div class="nav-container">
+            <nav>
+                <ul class="nav-menu">
+                    <li><a href="#" class="active">Home</a></li>
+                    <li class="dropdown"><a href="#">About <i class="fas fa-chevron-down"></i></a>
+                        <div class="dropdown-content">
+                            <a href="#">Our Story</a>
+                            <a href="#">Beliefs</a>
+                            <a href="#">Leadership</a>
+                        </div>
+                    </li>
+                    <li><a href="#">Branches</a></li>
+                    <li><a href="#">Headquarters</a></li>
+                    <li class="dropdown"><a href="#">Ministries <i class="fas fa-chevron-down"></i></a>
+                        <div class="dropdown-content">
+                            <a href="#">Youth Ministry</a>
+                            <a href="#">Vanguard</a>
+                            <a href="#">Proclaimers</a>
+                            <a href="#">Children</a>
+                        </div>
+                    </li>
+                    <li><a href="#">Radio</a></li>
+                    <li><a href="#">Bookshelf</a></li>
+                    <li><a href="#">Give</a></li>
+                    <li><a href="#">Contact</a></li>
+                </ul>
+            </nav>
+            <div class="hamburger"><span></span><span></span><span></span></div>
+        </div>
+    </div>
+</header>
+
+<!-- HERO SLIDER -->
+<section class="hero">
+    <video class="hero-video" autoplay muted loop playsinline>
+        <source src="spac2.mp4" type="video/mp4">
+    </video>
+    <div class="hero-overlay"></div>
+    <div class="hero-content">
+        <h1>Welcome to SPAC Church</h1>
+        <p>Growing in faith, serving in love, sharing the hope of Christ</p>
+        <a href="#" class="btn">Join Us This Sunday</a>
+    </div>
+    <!-- 7 Slider Images -->
+    <div class="slider-container">
+        <div class="slides">
+            <div class="slide" style="background:url('slider1.jpg')"></div>
+            <div class="slide" style="background:url('slider2.jpg')"></div>
+            <div class="slide" style="background:url('slider3.jpg')"></div>
+            <div class="slide" style="background:url('slider4.jpg')"></div>
+            <div class="slide" style="background:url('slider5.jpg')"></div>
+            <div class="slide" style="background:url('slider6.jpg')"></div>
+            <div class="slide" style="background:url('slider7.jpg')"></div>
+        </div>
+        <div class="slider-nav"></div>
+    </div>
+</section>
+
+<!-- SERVICES -->
+<section class="section services">
+    <div class="container">
+        <h2 class="section-title">Our Ministries & Services</h2>
+        <div class="services-grid">
+            <div class="service-card">
+                <div class="service-icon">
+                    <i class="fas fa-church"></i>
+                </div>
+                <h3>Sunday Service</h3>
+                <p>Join us every Sunday morning for uplifting worship and preaching of the Word.</p>
             </div>
-            
-            <div class="nav-container">
-                <nav>
-                    <ul class="nav-menu">
-                        <li><a href="#" class="active">Home</a></li>
-                        <li class="dropdown">
-                            <a href="#">About <i class="fas fa-chevron-down"></i></a>
-                            <div class="dropdown-content">
-                                <a href="#">Our Story</a>
-                                <a href="#">Beliefs</a>
-                                <a href="#">Leadership</a>
-                            </div>
-                        </li>
-                        <li><a href="#">Branches</a></li>
-                        <li><a href="#">Headquarters</a></li>
-                        <li class="dropdown">
-                            <a href="#">Ministries <i class="fas fa-chevron-down"></i></a>
-                            <div class="dropdown-content">
-                                <a href="#">Youth Ministry</a>
-                                <a href="#">Vanguard</a>
-                                <a href="#">Proclaimers</a>
-                                <a href="#">Children</a>
-                            </div>
-                        </li>
-                        <li><a href="#">Radio</a></li>
-                        <li><a href="#">Bookshelf</a></li>
-                        <li><a href="#">Give</a></li>
-                        <li><a href="#">Contact</a></li>
-                    </ul>
-                </nav>
-                
-                <div class="hamburger">
-                    <span></span>
-                    <span></span>
-                    <span></span>
+            <div class="service-card">
+                <div class="service-icon">
+                    <i class="fas fa-users"></i>
+                </div>
+                <h3>Youth Ministry</h3>
+                <p>Empowering young people through faith, fellowship, and fun activities.</p>
+            </div>
+            <div class="service-card">
+                <div class="service-icon">
+                    <i class="fas fa-hands-helping"></i>
+                </div>
+                <h3>Community Outreach</h3>
+                <p>Making a positive impact in our local community through service and support.</p>
+            </div>
+            <div class="service-card">
+                <div class="service-icon">
+                    <i class="fas fa-book"></i>
+                </div>
+                <h3>Bible Study</h3>
+                <p>Deep dive into God's Word every week with insightful Bible study sessions.</p>
+            </div>
+            <div class="service-card">
+                <div class="service-icon">
+                    <i class="fas fa-music"></i>
+                </div>
+                <h3>Praise & Worship</h3>
+                <p>Experience a powerful evening of worship, music, and prayer every month.</p>
+            </div>
+            <div class="service-card">
+                <div class="service-icon">
+                    <i class="fas fa-hand-holding-usd"></i>
+                </div>
+                <h3>Online Giving</h3>
+                <p>Support the ministry through secure and convenient online donations.</p>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- PROGRAMS & EVENTS -->
+<section class="section programs-events">
+    <div class="container">
+        <h2 class="section-title">Upcoming Programs & Events</h2>
+        <div class="events-grid">
+            <div class="event-card">
+                <div class="event-date">
+                    <span class="day">05</span>
+                    <span class="month">Dec</span>
+                </div>
+                <div class="event-content">
+                    <h3>Youth Conference</h3>
+                    <p>Time: 10:00 AM - 4:00 PM</p>
+                    <p>Join our youth for a day of spiritual empowerment, workshops, and fun activities.</p>
+                </div>
+            </div>
+
+            <div class="event-card">
+                <div class="event-date">
+                    <span class="day">12</span>
+                    <span class="month">Dec</span>
+                </div>
+                <div class="event-content">
+                    <h3>Praise & Worship Night</h3>
+                    <p>Time: 6:00 PM - 9:00 PM</p>
+                    <p>An evening of powerful worship and praise led by our music ministry team.</p>
+                </div>
+            </div>
+
+            <div class="event-card">
+                <div class="event-date">
+                    <span class="day">18</span>
+                    <span class="month">Dec</span>
+                </div>
+                <div class="event-content">
+                    <h3>Community Outreach</h3>
+                    <p>Time: 9:00 AM - 2:00 PM</p>
+                    <p>Join us in serving the community through food drives, charity support, and prayers.</p>
+                </div>
+            </div>
+
+            <div class="event-card">
+                <div class="event-date">
+                    <span class="day">24</span>
+                    <span class="month">Dec</span>
+                </div>
+                <div class="event-content">
+                    <h3>Christmas Eve Service</h3>
+                    <p>Time: 5:00 PM - 8:00 PM</p>
+                    <p>Celebrate the birth of Christ with a special candlelight service and carols.</p>
                 </div>
             </div>
         </div>
-    </header>
+    </div>
+</section>
 
-    <section class="hero">
-        <video class="hero-video" autoplay muted loop playsinline>
-            <source src="spac2.mp4" type="video/mp4">
-            Your browser does not support the video tag.
-        </video>
-        <div class="hero-overlay"></div>
-        <div class="hero-content">
-            <h1>Welcome to SPAC Church</h1>
-            <p>Growing in faith, serving in love, sharing the hope of Christ</p>
-            <a href="#" class="btn">Join Us This Sunday</a>
-        </div>
-    </section>
-
-    <section class="section dynamic-pictures">
-        <div class="container">
-            <h2 class="section-title">Upcoming Events & Ministries</h2>
+<!-- PICTURE CAROUSEL -->
+<section class="section">
+    <div class="container">
+        <h2 class="section-title">Church Activities</h2>
+        <div class="picture-carousel-container">
+            <div class="carousel-arrow arrow-left"><i class="fas fa-chevron-left"></i></div>
             <div class="picture-carousel">
-                <div class="picture-card">
-                    <div class="picture-placeholder" style="background: var(--primary); height: 200px; display: flex; align-items: center; justify-content: center; color: white;">
-                        <i class="fas fa-users" style="font-size: 48px;"></i>
+                <!-- 7 picture cards -->
+                <div class="picture-card active">
+                    <div class="picture-placeholder" style="background:#1a4b8c; display:flex; align-items:center; justify-content:center; color:white;">
+                        <i class="fas fa-users" style="font-size:48px;"></i>
                     </div>
                     <div class="picture-card-content">
-                        <h3>Youth Conference 2023</h3>
-                        <p>Join us for an empowering youth conference this November.</p>
-                        <a href="#" class="btn" style="margin-top: 15px; padding: 10px 20px;">Learn More</a>
+                        <h3>Youth Conference</h3>
+                        <p>Empowering our youth every year.</p>
                     </div>
                 </div>
-                
                 <div class="picture-card">
-                    <div class="picture-placeholder" style="background: var(--accent); height: 200px; display: flex; align-items: center; justify-content: center; color: white;">
-                        <i class="fas fa-music" style="font-size: 48px;"></i>
+                    <div class="picture-placeholder" style="background:#8b0000; display:flex; align-items:center; justify-content:center; color:white;">
+                        <i class="fas fa-music" style="font-size:48px;"></i>
                     </div>
                     <div class="picture-card-content">
                         <h3>Praise & Worship Night</h3>
-                        <p>An evening of powerful worship and prayer. All are welcome.</p>
-                        <a href="#" class="btn" style="margin-top: 15px; padding: 10px 20px;">Learn More</a>
+                        <p>Join us for powerful worship.</p>
                     </div>
                 </div>
-                
                 <div class="picture-card">
-                    <div class="picture-placeholder" style="background: var(--secondary); height: 200px; display: flex; align-items: center; justify-content: center; color: white;">
-                        <i class="fas fa-hands-helping" style="font-size: 48px;"></i>
+                    <div class="picture-placeholder" style="background:#d4af37; display:flex; align-items:center; justify-content:center; color:white;">
+                        <i class="fas fa-hands-helping" style="font-size:48px;"></i>
                     </div>
                     <div class="picture-card-content">
                         <h3>Community Outreach</h3>
-                        <p>Join our mission to serve the local community this month.</p>
-                        <a href="#" class="btn" style="margin-top: 15px; padding: 10px 20px;">Learn More</a>
+                        <p>Serve your community with love.</p>
                     </div>
                 </div>
-                
                 <div class="picture-card">
-                    <div class="picture-placeholder" style="background: var(--dark); height: 200px; display: flex; align-items: center; justify-content: center; color: white;">
-                        <i class="fas fa-bible" style="font-size: 48px;"></i>
+                    <div class="picture-placeholder" style="background:#343a40; display:flex; align-items:center; justify-content:center; color:white;">
+                        <i class="fas fa-bible" style="font-size:48px;"></i>
                     </div>
                     <div class="picture-card-content">
                         <h3>Bible Study Series</h3>
-                        <p>Deep dive into the book of Romans every Wednesday evening.</p>
-                        <a href="#" class="btn" style="margin-top: 15px; padding: 10px 20px;">Learn More</a>
+                        <p>Deep dive into God's Word weekly.</p>
+                    </div>
+                </div>
+                <div class="picture-card">
+                    <div class="picture-placeholder" style="background:#1a4b8c; display:flex; align-items:center; justify-content:center; color:white;">
+                        <i class="fas fa-church" style="font-size:48px;"></i>
+                    </div>
+                    <div class="picture-card-content">
+                        <h3>Sunday Service</h3>
+                        <p>Join us every Sunday morning.</p>
+                    </div>
+                </div>
+                <div class="picture-card">
+                    <div class="picture-placeholder" style="background:#8b0000; display:flex; align-items:center; justify-content:center; color:white;">
+                        <i class="fas fa-chalkboard-teacher" style="font-size:48px;"></i>
+                    </div>
+                    <div class="picture-card-content">
+                        <h3>Bible Study Class</h3>
+                        <p>Learn and grow in the Word.</p>
+                    </div>
+                </div>
+                <div class="picture-card">
+                    <div class="picture-placeholder" style="background:#d4af37; display:flex; align-items:center; justify-content:center; color:white;">
+                        <i class="fas fa-hand-holding-heart" style="font-size:48px;"></i>
+                    </div>
+                    <div class="picture-card-content">
+                        <h3>Special Events</h3>
+                        <p>Join our annual church celebrations.</p>
                     </div>
                 </div>
             </div>
-        </div>
-    </section>
-
-    <section class="section features">
-        <div class="container">
-            <h2 class="section-title">Church Resources</h2>
-            <div class="features-grid">
-                <div class="feature-card">
-                    <div class="feature-icon">
-                        <i class="fas fa-podcast"></i>
-                    </div>
-                    <div class="feature-content">
-                        <h3>Listen to Sermons</h3>
-                        <p>Access our library of sermons and listen while doing other activities.</p>
-                        <a href="#" class="btn" style="margin-top: 15px;">Listen Now</a>
-                    </div>
-                </div>
-                
-                <div class="feature-card">
-                    <div class="feature-icon">
-                        <i class="fas fa-book-open"></i>
-                    </div>
-                    <div class="feature-content">
-                        <h3>Digital Bookshelf</h3>
-                        <p>Explore our collection of Christian books and resources.</p>
-                        <a href="#" class="btn" style="margin-top: 15px;">Browse Books</a>
-                    </div>
-                </div>
-                
-                <div class="feature-card">
-                    <div class="feature-icon">
-                        <i class="fas fa-hand-holding-usd"></i>
-                    </div>
-                    <div class="feature-content">
-                        <h3>Online Giving</h3>
-                        <p>Support the ministry through secure online donations.</p>
-                        <a href="#" class="btn" style="margin-top: 15px;">Give Now</a>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <footer>
-        <div class="container">
-            <div class="footer-content">
-                <div class="footer-column">
-                    <h3>SPAC Church</h3>
-                    <p style="font-size: 0.95rem;">We are a community of believers committed to spreading the gospel and serving our community.</p>
-                    <div class="social-links">
-                        <a href="#"><i class="fab fa-facebook-f"></i></a>
-                        <a href="#"><i class="fab fa-twitter"></i></a>
-                        <a href="#"><i class="fab fa-instagram"></i></a>
-                        <a href="#"><i class="fab fa-youtube"></i></a>
-                    </div>
-                </div>
-                
-                <div class="footer-column">
-                    <h3>Quick Links</h3>
-                    <ul class="footer-links">
-                        <li><a href="#">Home</a></li>
-                        <li><a href="#">About Us</a></li>
-                        <li><a href="#">Sermons</a></li>
-                        <li><a href="#">Events</a></li>
-                        <li><a href="#">Ministries</a></li>
-                        <li><a href="#">Contact</a></li>
-                    </ul>
-                </div>
-                
-                <div class="footer-column">
-                    <h3>Contact Us</h3>
-                    <ul class="footer-links">
-                        <li><i class="fas fa-map-marker-alt"></i> 123 Church Street, City, State 12345</li>
-                        <li><i class="fas fa-phone"></i> (123) 456-7890</li>
-                        <li><i class="fas fa-envelope"></i> info@spacchurch.org</li>
-                        <li><i class="fas fa-clock"></i> Sunday Services: 8:00AM & 10:30AM</li>
-                    </ul>
-                </div>
-                
-                <div class="footer-column">
-                    <h3>Location</h3>
-                    <div class="map-container">
-                        <div style="background: #3a3a3a; height: 100%; display: flex; align-items: center; justify-content: center; color: #999;">
-                            <i class="fas fa-map-marked-alt" style="font-size: 48px;"></i>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            
-            <div class="footer-bottom">
-                <p>&copy; 2023 SPAC Church. All Rights Reserved. | <a href="#">Privacy Policy</a> | <a href="#">Terms of Use</a></p>
-            </div>
-        </div>
-    </footer>
-
-    <div class="cookie-consent">
-        <p>We use cookies to ensure that we give you the best experience on our website. If you continue to use this site we will assume that you are happy with it.</p>
-        <button class="btn" id="accept-cookies">Accept</button>
-    </div>
-
-    <div class="chat-widget">
-        <div class="chat-button">
-            <i class="fas fa-comments"></i>
-        </div>
-        <div class="chat-window">
-            <div class="chat-header">
-                <h3>SPAC Chat</h3>
-                <div class="chat-close">
-                    <i class="fas fa-times"></i>
-                </div>
-            </div>
-            <div class="chat-messages">
-                <div class="message received">
-                    <p>Hello! How can we help you today?</p>
-                </div>
-            </div>
-            <div class="chat-input">
-                <input type="text" placeholder="Type your message...">
-                <button class="btn" style="padding: 10px 15px;"><i class="fas fa-paper-plane"></i></button>
-            </div>
+            <div class="carousel-arrow arrow-right"><i class="fas fa-chevron-right"></i></div>
         </div>
     </div>
+</section>
 
-    <script>
-        // Mobile Menu Toggle
-        const hamburger = document.querySelector('.hamburger');
-        const navMenu = document.querySelector('.nav-menu');
-        
-        hamburger.addEventListener('click', () => {
-            hamburger.classList.toggle('active');
-            navMenu.classList.toggle('active');
-        });
-        
-        // Dropdown Menu for Mobile
-        const dropdowns = document.querySelectorAll('.dropdown');
-        
-        dropdowns.forEach(dropdown => {
-            dropdown.addEventListener('click', (e) => {
-                if (window.innerWidth <= 992) {
-                    e.preventDefault();
-                    dropdown.classList.toggle('active');
-                }
-            });
-        });
-        
-        // Cookie Consent
-        const cookieConsent = document.querySelector('.cookie-consent');
-        const acceptCookies = document.getElementById('accept-cookies');
-        
-        // Check if user has already accepted cookies
-        if (!localStorage.getItem('cookiesAccepted')) {
-            setTimeout(() => {
-                cookieConsent.classList.add('show');
-            }, 1000);
+<!-- LIVESTREAM -->
+<section class="livestream">
+    <h2 class="section-title" style="color:white;">Live Stream</h2>
+    <p>Watch our live Sunday service from anywhere in the world.</p>
+    <iframe src="https://www.youtube.com/embed/live_stream?channel=CHANNEL_ID" allowfullscreen></iframe>
+</section>
+
+<!-- FOOTER -->
+<footer>
+    <div class="container">
+        <div class="footer-content">
+            <div class="footer-column">
+                <h3>SPAC Church</h3>
+                <p>We are a community committed to spreading the gospel and serving our community.</p>
+                <div class="social-links">
+                    <a href="#"><i class="fab fa-facebook-f"></i></a>
+                    <a href="#"><i class="fab fa-twitter"></i></a>
+                    <a href="#"><i class="fab fa-instagram"></i></a>
+                    <a href="#"><i class="fab fa-youtube"></i></a>
+                </div>
+            </div>
+            <div class="footer-column">
+                <h3>Quick Links</h3>
+                <ul class="footer-links">
+                    <li><a href="#">Home</a></li><li><a href="#">About Us</a></li><li><a href="#">Sermons</a></li><li><a href="#">Events</a></li><li><a href="#">Ministries</a></li><li><a href="#">Contact</a></li>
+                </ul>
+            </div>
+            <div class="footer-column">
+                <h3>Contact Us</h3>
+                <ul class="footer-links">
+                    <li><i class="fas fa-map-marker-alt"></i> 123 Church Street, City</li>
+                    <li><i class="fas fa-phone"></i> (123) 456-7890</li>
+                    <li><i class="fas fa-envelope"></i> info@spacchurch.org</li>
+                    <li><i class="fas fa-clock"></i> Sunday Services: 8AM & 10:30AM</li>
+                </ul>
+            </div>
+            <div class="footer-column">
+                <h3>Location</h3>
+                <div class="map-container"><div style="background:#ddd;height:100%;display:flex;align-items:center;justify-content:center;color:#666;"><i class="fas fa-map" style="font-size:48px;"></i></div></div>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <p>&copy; 2023 SPAC Church. All Rights Reserved. | <a href="#">Privacy Policy</a> | <a href="#">Terms of Use</a></p>
+        </div>
+    </div>
+</footer>
+
+<script>
+// Hamburger Menu
+const hamburger = document.querySelector('.hamburger');
+const navMenu = document.querySelector('.nav-menu');
+hamburger.addEventListener('click', () => {
+    hamburger.classList.toggle('active');
+    navMenu.classList.toggle('active');
+});
+
+// Dropdown mobile
+document.querySelectorAll('.dropdown').forEach(dropdown => {
+    dropdown.addEventListener('click', (e) => {
+        if(window.innerWidth <= 992) {
+            e.preventDefault();
+            dropdown.classList.toggle('active');
         }
-        
-        acceptCookies.addEventListener('click', () => {
-            cookieConsent.classList.remove('show');
-            localStorage.setItem('cookiesAccepted', 'true');
-        });
-        
-        // Chat Widget
-        const chatButton = document.querySelector('.chat-button');
-        const chatWindow = document.querySelector('.chat-window');
-        const chatClose = document.querySelector('.chat-close');
-        
-        chatButton.addEventListener('click', () => {
-            chatWindow.style.display = 'flex';
-        });
-        
-        chatClose.addEventListener('click', () => {
-            chatWindow.style.display = 'none';
-        });
-        
-        // Auto Message
-        setTimeout(() => {
-            if (!chatWindow.style.display || chatWindow.style.display === 'none') {
-                // Show notification that a message is waiting
-                chatButton.style.animation = 'pulse 1s infinite';
-                
-                setTimeout(() => {
-                    chatButton.style.animation = '';
-                }, 5000);
-            }
-        }, 10000);
-        
-        // Close menu when clicking outside
-        document.addEventListener('click', (e) => {
-            if (!e.target.closest('.nav-container') && navMenu.classList.contains('active')) {
-                hamburger.classList.remove('active');
-                navMenu.classList.remove('active');
-            }
-        });
-    </script>
+    });
+});
+
+// Close menu when clicking outside
+document.addEventListener('click', (e) => {
+    if(!hamburger.contains(e.target) && !navMenu.contains(e.target)) {
+        hamburger.classList.remove('active');
+        navMenu.classList.remove('active');
+    }
+});
+
+// HERO SLIDER LOGIC
+const slides = document.querySelector('.slides');
+const slideCount = document.querySelectorAll('.slide').length;
+let currentIndex = 0;
+const nav = document.querySelector('.slider-nav');
+
+for(let i = 0; i < slideCount; i++) {
+    const dot = document.createElement('span');
+    if(i === 0) dot.classList.add('active');
+    nav.appendChild(dot);
+    dot.addEventListener('click', () => {
+        currentIndex = i;
+        updateSlider();
+    });
+}
+
+function updateSlider() {
+    slides.style.transform = `translateX(-${currentIndex * 100}%)`;
+    nav.querySelectorAll('span').forEach((s, i) => {
+        s.classList.toggle('active', i === currentIndex);
+    });
+}
+
+setInterval(() => {
+    currentIndex = (currentIndex + 1) % slideCount;
+    updateSlider();
+}, 5000);
+
+// PICTURE CAROUSEL
+const carousel = document.querySelector('.picture-carousel');
+const cards = document.querySelectorAll('.picture-card');
+const arrowLeft = document.querySelector('.arrow-left');
+const arrowRight = document.querySelector('.arrow-right');
+let index = 0;
+
+function showSlide(i) {
+    cards.forEach((card, idx) => {
+        card.classList.remove('active');
+        if(idx === i) card.classList.add('active');
+    });
+    carousel.scrollTo({ left: cards[i].offsetLeft - 20, behavior: 'smooth' });
+}
+
+arrowLeft.addEventListener('click', () => {
+    index = index > 0 ? index - 1 : cards.length - 1;
+    showSlide(index);
+});
+
+arrowRight.addEventListener('click', () => {
+    index = index < cards.length - 1 ? index + 1 : 0;
+    showSlide(index);
+});
+
+// Auto-slide every 4 seconds
+setInterval(() => {
+    index = index < cards.length - 1 ? index + 1 : 0;
+    showSlide(index);
+}, 4000);
+
+// Scroll Animations for Services and Events
+const serviceCards = document.querySelectorAll('.service-card');
+const eventCards = document.querySelectorAll('.event-card');
+
+function showCards() {
+    const triggerBottom = window.innerHeight * 0.85;
+    
+    serviceCards.forEach(card => {
+        const cardTop = card.getBoundingClientRect().top;
+        if(cardTop < triggerBottom) {
+            card.classList.add('show');
+        }
+    });
+    
+    eventCards.forEach(card => {
+        const cardTop = card.getBoundingClientRect().top;
+        if(cardTop < triggerBottom) {
+            card.classList.add('show');
+        }
+    });
+}
+
+window.addEventListener('scroll', showCards);
+window.addEventListener('load', showCards);
+
+// Logo click back to homepage
+document.querySelector('.logo a').addEventListener('click', (e) => {
+    e.preventDefault();
+    window.location.href = "index.html";
+});
+</script>
 </body>
 </html>
