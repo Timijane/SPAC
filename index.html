@@ -44,135 +44,230 @@
   .hero-content{max-width:800px;padding:0 20px;}
   .hero h1{font-size:3rem;margin-bottom:20px;text-shadow:2px 2px 4px rgba(0,0,0,0.5);}
   .hero p{font-size:1.2rem;margin-bottom:30px;}
-  .hero-buttons{display:flex;flex-wrap:wrap;justify-content:center;gap:10px;margin-top:20px;}
   
-  /* I Am New / Prayer / Testimony / Resources / A Winning World */
-  .new-prayer-resources {
+  /* Circle Buttons Section */
+  .circle-buttons-section {
     padding: 80px 0;
-    background: var(--light);
-  }
-  .ipr-grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
-    gap: 30px;
-    text-align: center;
-  }
-  .ipr-card {
     background: white;
-    padding: 25px 15px;
-    border-radius: 12px;
-    box-shadow: 0 5px 15px rgba(0,0,0,0.1);
-    transition: transform 0.3s, box-shadow 0.3s;
   }
-  .ipr-card:hover {
-    transform: translateY(-8px);
-    box-shadow: 0 10px 25px rgba(0,0,0,0.15);
-  }
-  .ipr-icon {
-    font-size: 40px;
-    color: var(--primary);
-    margin-bottom: 15px;
-    transition: color 0.3s, transform 0.3s;
-  }
-  .ipr-card:hover .ipr-icon {
-    color: var(--accent);
-    transform: scale(1.2);
-  }
-  .ipr-card h3 {
-    font-size: 1.2rem;
-    color: var(--primary);
-    margin-bottom: 10px;
-  }
-  .ipr-card p {
-    font-size: 0.95rem;
-    color: #555;
-    margin-bottom: 15px;
-  }
-  
-  /* Slider Sections */
-  .slider-section {
-    padding: 60px 0;
-    background: #fff;
-  }
-  .slider-section:nth-child(even) {
-    background: var(--light);
-  }
-  .slider-header {
-    text-align: center;
-    margin-bottom: 40px;
-  }
-  .slider-header h2 {
-    color: var(--primary);
-    font-size: 2rem;
-    margin-bottom: 10px;
-  }
-  .slider-header p {
-    color: #555;
-    font-size: 1rem;
-    max-width: 800px;
-    margin: 0 auto;
-  }
-  .slider-wrapper {
-    position: relative;
-    overflow: hidden;
-  }
-  .slider-track {
+  .circle-buttons-container {
     display: flex;
-    transition: transform 0.5s ease;
+    flex-direction: column;
+    align-items: center;
+    gap: 50px;
   }
-  .slider-card {
-    min-width: 300px;
-    margin-right: 20px;
-    background: #eee;
-    border-radius: 10px;
-    overflow: hidden;
-    flex-shrink: 0;
-    text-align: center;
-    box-shadow: 0 5px 15px rgba(0,0,0,0.1);
-    transition: transform 0.3s;
-  }
-  .slider-card:hover {
-    transform: translateY(-5px);
-  }
-  .slider-card img {
-    width: 100%;
-    height: 200px;
-    object-fit: cover;
-  }
-  .slider-card h3 {
-    color: var(--primary);
-    margin: 15px 0 10px;
-    padding: 0 10px;
-  }
-  .slider-card p {
-    padding: 0 10px 15px;
-    color: #555;
-  }
-  .slider-btn {
-    position: absolute;
-    top: 50%;
-    transform: translateY(-50%);
-    background: var(--primary);
-    color: #fff;
-    border: none;
+  .circle-button {
+    width: 180px;
+    height: 180px;
     border-radius: 50%;
-    width: 40px;
-    height: 40px;
-    cursor: pointer;
-    z-index: 2;
+    background: var(--primary);
+    color: white;
     display: flex;
     align-items: center;
     justify-content: center;
-    transition: all 0.3s;
+    flex-direction: column;
+    cursor: pointer;
+    transition: all 0.5s ease;
+    box-shadow: 0 10px 20px rgba(0,0,0,0.1);
+    text-align: center;
+    padding: 20px;
   }
-  .slider-btn:hover {
+  .circle-button:hover {
+    background: var(--accent);
+    transform: scale(1.05);
+  }
+  .circle-button.square {
+    border-radius: 20px;
+    width: 200px;
+    height: 200px;
     background: var(--accent);
   }
-  .prev {
-    left: 10px;
+  .circle-button i {
+    font-size: 50px;
+    margin-bottom: 15px;
   }
-  .next {
-    right: 10px;
+  .circle-button h3 {
+    font-size: 1.2rem;
+    font-weight: 600;
+  }
+  
+  /* Logo Section */
+  .logo-section {
+    padding: 100px 0;
+    background: var(--light);
+    text-align: center;
+  }
+  .big-logo {
+    max-width: 400px;
+    margin: 0 auto 40px;
+    animation: float 3s ease-in-out infinite;
+  }
+  .big-logo img {
+    width: 100%;
+    height: auto;
+  }
+  @keyframes float {
+    0% { transform: translateY(0px); }
+    50% { transform: translateY(-20px); }
+    100% { transform: translateY(0px); }
+  }
+  .we-are-spac {
+    font-size: 4rem;
+    color: var(--primary);
+    margin-bottom: 30px;
+    font-weight: bold;
+    letter-spacing: 2px;
+  }
+  
+  /* About Card */
+  .about-card-section {
+    padding: 60px 0 100px;
+    background: white;
+  }
+  .floating-card {
+    background: white;
+    max-width: 800px;
+    margin: 0 auto;
+    padding: 40px;
+    border-radius: 20px;
+    box-shadow: 0 20px 40px rgba(0,0,0,0.1);
+    position: relative;
+    overflow: hidden;
+  }
+  .floating-card:before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 10px;
+    background: linear-gradient(90deg, var(--primary), var(--secondary));
+  }
+  .floating-card h2 {
+    color: var(--primary);
+    font-size: 2.2rem;
+    margin-bottom: 20px;
+    text-align: center;
+  }
+  .floating-card p {
+    font-size: 1.1rem;
+    color: #555;
+    line-height: 1.8;
+    margin-bottom: 30px;
+    text-align: center;
+  }
+  .card-btn-container {
+    text-align: center;
+  }
+  
+  /* Dynamic Pictures Section */
+  .dynamic-pictures {
+    padding: 100px 0;
+    background: var(--light);
+  }
+  .section-title {
+    text-align: center;
+    font-size: 2.5rem;
+    color: var(--primary);
+    margin-bottom: 60px;
+  }
+  .picture-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+    gap: 30px;
+  }
+  .picture-card {
+    background: white;
+    border-radius: 15px;
+    overflow: hidden;
+    box-shadow: 0 10px 20px rgba(0,0,0,0.1);
+    transition: all 0.5s ease;
+    opacity: 0;
+    cursor: pointer;
+  }
+  .picture-card:hover {
+    transform: translateY(-10px);
+    box-shadow: 0 20px 30px rgba(0,0,0,0.15);
+  }
+  .picture-card.left {
+    transform: translateX(-100px);
+  }
+  .picture-card.right {
+    transform: translateX(100px);
+  }
+  .picture-card.visible {
+    opacity: 1;
+    transform: translateX(0) !important;
+  }
+  .picture-card img {
+    width: 100%;
+    height: 250px;
+    object-fit: cover;
+  }
+  .picture-card h3 {
+    padding: 20px;
+    color: var(--primary);
+    text-align: center;
+    font-size: 1.5rem;
+  }
+  .picture-card.large {
+    grid-column: span 2;
+  }
+  .picture-card.large img {
+    height: 350px;
+  }
+  
+  /* Instagram-like Slider */
+  .insta-slider {
+    margin: 40px 0;
+    padding: 30px;
+    background: white;
+    border-radius: 15px;
+  }
+  .insta-title {
+    text-align: center;
+    color: var(--primary);
+    margin-bottom: 20px;
+    font-size: 1.8rem;
+  }
+  .insta-track {
+    display: flex;
+    gap: 20px;
+    overflow-x: auto;
+    padding: 20px 0;
+    scroll-behavior: smooth;
+  }
+  .insta-track::-webkit-scrollbar {
+    height: 8px;
+  }
+  .insta-track::-webkit-scrollbar-thumb {
+    background: var(--primary);
+    border-radius: 4px;
+  }
+  .insta-slide {
+    flex: 0 0 auto;
+    width: 200px;
+    height: 200px;
+    border-radius: 10px;
+    overflow: hidden;
+    box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+  }
+  .insta-slide img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+  }
+  
+  /* Location Section */
+  .location-section {
+    padding: 100px 0;
+    background: white;
+  }
+  .location-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+    gap: 30px;
+    margin-top: 50px;
   }
   
   /* Footer */
@@ -231,37 +326,11 @@
     color: #aaa;
   }
   
-  /* Cookie */
-  #cookieConsent {
-    position: fixed;
-    bottom: 0;
-    left: 0;
-    width: 100%;
-    background: var(--dark);
-    color: white;
-    padding: 15px;
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    z-index: 1001;
-    transform: translateY(100%);
-    transition: transform 0.5s;
-  }
-  #cookieConsent.show {
-    transform: translateY(0);
-  }
-  
   /* Responsive */
   @media (max-width: 768px) {
-    .hero h1 {
-      font-size: 2rem;
-    }
-    .hero p {
-      font-size: 1rem;
-    }
-    .hamburger {
-      display: block;
-    }
+    .hero h1 {font-size: 2rem;}
+    .hero p {font-size: 1rem;}
+    .hamburger {display: block;}
     .nav-menu {
       position: fixed;
       top: 0;
@@ -276,27 +345,19 @@
       transition: right 0.3s ease;
       box-shadow: -5px 0 15px rgba(0,0,0,0.1);
     }
-    .nav-menu.active {
-      right: 0;
+    .nav-menu.active {right: 0;}
+    .nav-menu li {margin: 15px 0;}
+    .circle-button {
+      width: 150px;
+      height: 150px;
     }
-    .nav-menu li {
-      margin: 15px 0;
+    .circle-button.square {
+      width: 170px;
+      height: 170px;
     }
-    .dropdown-content {
-      position: static;
-      display: none;
-      box-shadow: none;
-      background: #f8f9fa;
-    }
-    .dropdown:hover .dropdown-content {
-      display: none;
-    }
-    .dropdown.active .dropdown-content {
-      display: block;
-    }
-    .slider-card {
-      min-width: 250px;
-    }
+    .we-are-spac {font-size: 2.5rem;}
+    .picture-card.large {grid-column: span 1;}
+    .picture-card.large img {height: 250px;}
   }
 </style>
 </head>
@@ -329,190 +390,150 @@
 <section class="hero" id="home">
   <video class="hero-video" autoplay muted loop playsinline>
     <source src="spac2.mp4" type="video/mp4">
+    Your browser does not support the video tag.
   </video>
   <div class="hero-overlay"></div>
   <div class="hero-content">
     <h1>Welcome to SPAC Church</h1>
     <p>We are delighted that you have chosen to visit our website! We welcome you and pray the Word of God delivered from this ministry becomes a testimony. God bless you. Shiloh2025.</p>
-    <div class="hero-buttons">
-      <a href="#new" class="btn">I am New</a>
-      <a href="#prayer" class="btn">Prayer</a>
-      <a href="#testimony" class="btn">Testimony</a>
-      <a href="#resources" class="btn">Resources</a>
-      <a href="#winning" class="btn">A Winning World</a>
-    </div>
   </div>
 </section>
 
-<!-- I Am New / Prayer / Testimony / Resources / A Winning World Section -->
-<section class="new-prayer-resources">
+<!-- Circle Buttons Section -->
+<section class="circle-buttons-section" id="quick-links">
   <div class="container">
-    <div class="ipr-grid">
-      <div class="ipr-card">
-        <div class="ipr-icon">
-          <i class="fas fa-user-plus"></i>
-        </div>
-        <h3>I am New</h3>
-        <p>We are delighted that you have chosen to visit our website! We welcome you and pray the Word of God delivered from this ministry becomes a testimony. God bless you.</p>
-        <a href="#" class="btn">Learn More</a>
+    <div class="circle-buttons-container">
+      <div class="circle-button" id="new-button" onclick="navigateToPage('new.html', this)">
+        <i class="fas fa-user-plus"></i>
+        <h3>I'm New Member/Visitor</h3>
       </div>
-      <div class="ipr-card">
-        <div class="ipr-icon">
-          <i class="fas fa-praying-hands"></i>
-        </div>
+      <div class="circle-button" id="prayer-button" onclick="navigateToPage('prayer.html', this)">
+        <i class="fas fa-praying-hands"></i>
         <h3>Prayer</h3>
-        <p>Submit your prayer request and join us in prayer for God's intervention in your life.</p>
-        <a href="#" class="btn">Submit Prayer</a>
       </div>
-      <div class="ipr-card">
-        <div class="ipr-icon">
-          <i class="fas fa-bullhorn"></i>
-        </div>
+      <div class="circle-button" id="testimony-button" onclick="navigateToPage('testimony.html', this)">
+        <i class="fas fa-bullhorn"></i>
         <h3>Testimony</h3>
-        <p>Share your testimony of God's goodness and inspire others through your story.</p>
-        <a href="#" class="btn">Share Testimony</a>
       </div>
-      <div class="ipr-card">
-        <div class="ipr-icon">
-          <i class="fas fa-book"></i>
-        </div>
+      <div class="circle-button" id="resources-button" onclick="navigateToPage('resources.html', this)">
+        <i class="fas fa-book"></i>
         <h3>Resources</h3>
-        <p>Access our library of Christian resources, articles, books, and media to grow your faith.</p>
-        <a href="#" class="btn">Explore Resources</a>
       </div>
-      <div class="ipr-card">
-        <div class="ipr-icon">
-          <i class="fas fa-globe"></i>
+    </div>
+  </div>
+</section>
+
+<!-- Logo and About Section -->
+<section class="logo-section">
+  <div class="container">
+    <div class="big-logo">
+      <img src="spac1.png" alt="SPAC Church Logo">
+    </div>
+    <div class="we-are-spac">We are SPAC</div>
+  </div>
+</section>
+
+<section class="about-card-section">
+  <div class="container">
+    <div class="floating-card">
+      <h2>Welcome to SPAC Church</h2>
+      <p>SPAC Church is a vibrant community of believers committed to spreading the gospel of Jesus Christ and making disciples of all nations. We are dedicated to worship, fellowship, and service, creating an environment where everyone can experience God's love and grow in their faith journey.</p>
+      <p>Our mission is to raise champions and nurture leaders who will transform their world through the power of the Holy Spirit. Join us as we worship, learn, and serve together in unity and love.</p>
+      <div class="card-btn-container">
+        <a href="about.html" class="btn">Read More</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Dynamic Pictures Section -->
+<section class="dynamic-pictures">
+  <div class="container">
+    <h2 class="section-title">Our Ministries & Programs</h2>
+    <div class="picture-grid">
+      <div class="picture-card left" onclick="openPage('vanguard.html')">
+        <img src="vanguard.jpg" alt="Vanguard">
+        <h3>Vanguard</h3>
+      </div>
+      <div class="picture-card right" onclick="openPage('proclaimers.html')">
+        <img src="proclaimers.jpg" alt="Proclaimers">
+        <h3>Proclaimers</h3>
+      </div>
+      <div class="picture-card left" onclick="openPage('announcements.html')">
+        <img src="announcements.jpg" alt="Announcements">
+        <h3>Announcements</h3>
+      </div>
+      <div class="picture-card right large" onclick="openPage('teen-church.html')">
+        <img src="teen-church.jpg" alt="Teen Church">
+        <h3>Teen Church</h3>
+      </div>
+      <div class="picture-card left" onclick="openPage('arise-conference.html')">
+        <img src="arise-conference.jpg" alt="Arise Conference">
+        <h3>Arise Conference</h3>
+      </div>
+      <div class="picture-card right" onclick="openPage('kids-church.html')">
+        <img src="kids-church.jpg" alt="Kids Church">
+        <h3>Kids Church</h3>
+      </div>
+      <div class="picture-card left" onclick="openPage('sermons.html')">
+        <img src="sermons.jpg" alt="Listen to Sermon">
+        <h3>Listen to Sermon</h3>
+      </div>
+      <div class="picture-card right" onclick="openPage('marriage-counselling.html')">
+        <img src="marriage-counselling.jpg" alt="Marriage & Counselling">
+        <h3>Marriage & Counselling</h3>
+      </div>
+    </div>
+    
+    <!-- Instagram-like Program Slider -->
+    <div class="insta-slider">
+      <h3 class="insta-title">Our Programs</h3>
+      <div class="insta-track">
+        <div class="insta-slide" onclick="openPage('program1.html')">
+          <img src="program1.jpg" alt="Program 1">
         </div>
-        <h3>A Winning World</h3>
-        <p>Learn how we are impacting the world through the preaching of the Word of Faith globally.</p>
-        <a href="#" class="btn">Discover More</a>
+        <div class="insta-slide" onclick="openPage('program2.html')">
+          <img src="program2.jpg" alt="Program 2">
+        </div>
+        <div class="insta-slide" onclick="openPage('program3.html')">
+          <img src="program3.jpg" alt="Program 3">
+        </div>
+        <div class="insta-slide" onclick="openPage('program4.html')">
+          <img src="program4.jpg" alt="Program 4">
+        </div>
+        <div class="insta-slide" onclick="openPage('program5.html')">
+          <img src="program5.jpg" alt="Program 5">
+        </div>
       </div>
     </div>
   </div>
 </section>
 
-<!-- Announcements Slider -->
-<section class="slider-section" id="announcements">
+<!-- Location Section -->
+<section class="location-section" id="locations">
   <div class="container">
-    <div class="slider-header">
-      <h2>Announcements</h2>
-    </div>
-    <div class="slider-wrapper">
-      <button class="slider-btn prev" id="prev-announcements"><i class="fas fa-chevron-left"></i></button>
-      <div class="slider-track" id="track-announcements">
-        <div class="slider-card"><img src="placeholder1.jpg" alt="Pre-Shiloh Encounter"><h3>Pre-Shiloh Encounter</h3><p>30.11.2025</p></div>
-        <div class="slider-card"><img src="placeholder2.jpg" alt="Pastoral Meeting"><h3>Pastoral Meeting</h3><p>Details here</p></div>
-        <div class="slider-card"><img src="placeholder3.jpg" alt="Shiloh Preparation"><h3>Shiloh Preparation</h3><p>Details here</p></div>
-        <div class="slider-card"><img src="placeholder4.jpg" alt="Prayer Rally"><h3>Prayer Rally</h3><p>Details here</p></div>
-        <div class="slider-card"><img src="placeholder5.jpg" alt="Bible Study"><h3>Bible Study</h3><p>Details here</p></div>
-        <div class="slider-card"><img src="placeholder6.jpg" alt="Community Outreach"><h3>Community Outreach</h3><p>Details here</p></div>
-        <div class="slider-card"><img src="placeholder7.jpg" alt="Thanksgiving"><h3>Thanksgiving</h3><p>Details here</p></div>
+    <h2 class="section-title">SPAC LOCATION AND INFORMATION</h2>
+    <div class="location-grid">
+      <div class="picture-card left" onclick="openPage('locations-branches.html')">
+        <img src="locations.jpg" alt="Our Locations and Branches">
+        <h3>Our Locations and Branches</h3>
       </div>
-      <button class="slider-btn next" id="next-announcements"><i class="fas fa-chevron-right"></i></button>
-    </div>
-  </div>
-</section>
-
-<!-- Church Location Information -->
-<section class="slider-section" id="locations">
-  <div class="container">
-    <div class="slider-header">
-      <h2>Church Location Information</h2>
-      <p>Fellowship with us anywhere you are. Find your location, join a satellite fellowship</p>
-    </div>
-    <div class="slider-wrapper">
-      <button class="slider-btn prev" id="prev-locations"><i class="fas fa-chevron-left"></i></button>
-      <div class="slider-track" id="track-locations">
-        <div class="slider-card"><img src="placeholder-location1.jpg" alt="Dartford"><h3>Dartford</h3><p>Green Street Green Road, DA1 1QE</p></div>
-        <div class="slider-card"><img src="placeholder-location2.jpg" alt="London"><h3>London</h3><p>123 Church Street, London</p></div>
-        <div class="slider-card"><img src="placeholder-location3.jpg" alt="Manchester"><h3>Manchester</h3><p>45 Main Street, Manchester</p></div>
-        <div class="slider-card"><img src="placeholder-location4.jpg" alt="Birmingham"><h3>Birmingham</h3><p>78 Church Avenue, Birmingham</p></div>
+      <div class="picture-card right" onclick="openPage('join-us.html')">
+        <img src="join-us.jpg" alt="Join Us">
+        <h3>Join Us</h3>
       </div>
-      <button class="slider-btn next" id="next-locations"><i class="fas fa-chevron-right"></i></button>
-    </div>
-  </div>
-</section>
-
-<!-- Corporate Social Responsibility -->
-<section class="slider-section" id="csr">
-  <div class="container">
-    <div class="slider-header">
-      <h2>Corporate Social Responsibility</h2>
-      <p>Making a positive difference in the society</p>
-      <p>The Corporate Social Responsibility (CSR) was formed over 10 years ago as a community development arm of SPAC Church, to impact our local community and give back to society. Our focus is on 5 core areas:</p>
-    </div>
-    <div class="slider-wrapper">
-      <button class="slider-btn prev" id="prev-csr"><i class="fas fa-chevron-left"></i></button>
-      <div class="slider-track" id="track-csr">
-        <div class="slider-card"><img src="placeholder-csr1.jpg" alt="Skills Development"><h3>Skills Development</h3><p>Through education, enterprise and employability training</p></div>
-        <div class="slider-card"><img src="placeholder-csr2.jpg" alt="Food Bank"><h3>Food Bank & Poverty Alleviation</h3><p>Providing food support to those in need</p></div>
-        <div class="slider-card"><img src="placeholder-csr3.jpg" alt="Homelessness"><h3>Tackling Homelessness</h3><p>Assisting the homeless with shelter & resources</p></div>
-        <div class="slider-card"><img src="placeholder-csr4.jpg" alt="Health & Environment"><h3>Health & Environment</h3><p>Improving health, safety, and environmental standards</p></div>
-        <div class="slider-card"><img src="placeholder-csr5.jpg" alt="Collaboration"><h3>Collaboration & Partnership</h3><p>Working with communities and organizations for positive change</p></div>
+      <div class="picture-card left" onclick="openPage('transport.html')">
+        <img src="transport.jpg" alt="Transport Information">
+        <h3>Transport Information</h3>
       </div>
-      <button class="slider-btn next" id="next-csr"><i class="fas fa-chevron-right"></i></button>
-    </div>
-  </div>
-</section>
-
-<!-- Quick Links -->
-<section class="slider-section" id="quick-links">
-  <div class="container">
-    <div class="slider-header">
-      <h2>Quick Links</h2>
-    </div>
-    <div class="slider-wrapper">
-      <button class="slider-btn prev" id="prev-quicklinks"><i class="fas fa-chevron-left"></i></button>
-      <div class="slider-track" id="track-quicklinks">
-        <div class="slider-card"><h3>Announcements</h3><p>Check latest church news</p></div>
-        <div class="slider-card"><h3>Watch Live</h3><p>Join live services</p></div>
-        <div class="slider-card"><h3>Watch on Demand</h3><p>Missed a service? Watch here</p></div>
-        <div class="slider-card"><h3>Resources</h3><p>Bibles, Sermons, Downloads</p></div>
-        <div class="slider-card"><h3>House Fellowship</h3><p>Join a WSF group near you</p></div>
+      <div class="picture-card right" onclick="openPage('bible-study.html')">
+        <img src="bible-study.jpg" alt="Join Bible Study Group">
+        <h3>Join Bible Study Group</h3>
       </div>
-      <button class="slider-btn next" id="next-quicklinks"><i class="fas fa-chevron-right"></i></button>
-    </div>
-  </div>
-</section>
-
-<!-- Ministries -->
-<section class="slider-section" id="ministries">
-  <div class="container">
-    <div class="slider-header">
-      <h2>Our Ministries</h2>
-    </div>
-    <div class="slider-wrapper">
-      <button class="slider-btn prev" id="prev-ministries"><i class="fas fa-chevron-left"></i></button>
-      <div class="slider-track" id="track-ministries">
-        <div class="slider-card"><img src="placeholder-ministry1.jpg" alt="Teens Church"><h3>Teens Church</h3></div>
-        <div class="slider-card"><img src="placeholder-ministry2.jpg" alt="Winners Kids"><h3>Winners Kids</h3></div>
-        <div class="slider-card"><img src="placeholder-ministry3.jpg" alt="Community Development"><h3>Community Development</h3></div>
-        <div class="slider-card"><img src="placeholder-ministry4.jpg" alt="WOFBI"><h3>WOFBI</h3></div>
-        <div class="slider-card"><img src="placeholder-ministry5.jpg" alt="David Oyedepo Ministries"><h3>David Oyedepo Ministries</h3></div>
-        <div class="slider-card"><img src="placeholder-ministry6.jpg" alt="Faith Oyedepo Ministries"><h3>Faith Oyedepo Ministries</h3></div>
-        <div class="slider-card"><img src="placeholder-ministry7.jpg" alt="Bishop Abioye Ministries"><h3>Bishop Abioye Ministries</h3></div>
+      <div class="picture-card left" onclick="openPage('contact-info.html')">
+        <img src="contact-info.jpg" alt="Contact Information">
+        <h3>Contact Information</h3>
       </div>
-      <button class="slider-btn next" id="next-ministries"><i class="fas fa-chevron-right"></i></button>
-    </div>
-  </div>
-</section>
-
-<!-- Service Times -->
-<section class="slider-section" id="service-times">
-  <div class="container">
-    <div class="slider-header">
-      <h2>Service Times</h2>
-    </div>
-    <div class="slider-wrapper">
-      <button class="slider-btn prev" id="prev-servicetimes"><i class="fas fa-chevron-left"></i></button>
-      <div class="slider-track" id="track-servicetimes">
-        <div class="slider-card"><h3>Sunday</h3><p>7:00 am, 9:15 am & 11:30 am</p></div>
-        <div class="slider-card"><h3>Wednesday</h3><p>6:00 pm</p></div>
-        <div class="slider-card"><h3>Covenant Hour of Prayer</h3><p>Mon-Fri: 6:00 am | Sat: 9:00 am</p></div>
-        <div class="slider-card"><h3>Winners Satellite Fellowship</h3><p>Saturday: 5:00 pm – 6:00 pm</p></div>
-      </div>
-      <button class="slider-btn next" id="next-servicetimes"><i class="fas fa-chevron-right"></i></button>
     </div>
   </div>
 </section>
@@ -534,9 +555,9 @@
       <h3>Quick Links</h3>
       <ul class="footer-links">
         <li><a href="#home">Home</a></li>
-        <li><a href="#announcements">Announcements</a></li>
+        <li><a href="#quick-links">Quick Access</a></li>
+        <li><a href="#locations">Locations</a></li>
         <li><a href="#">Watch Live</a></li>
-        <li><a href="#resources">Resources</a></li>
       </ul>
     </div>
     <div class="footer-column">
@@ -553,16 +574,10 @@
   </div>
 </footer>
 
-<div id="cookieConsent">
-  <p>We use cookies to ensure that we give you the best experience on our website. If you continue to use this site we will assume that you are happy with it.</p>
-  <button class="btn" id="acceptCookies">Accept</button>
-</div>
-
 <script>
 // Hamburger menu
 const hamburger = document.querySelector('.hamburger');
 const navMenu = document.querySelector('.nav-menu');
-const dropdowns = document.querySelectorAll('.dropdown');
 
 hamburger.addEventListener('click', () => {
   hamburger.classList.toggle('active');
@@ -574,79 +589,109 @@ document.querySelectorAll('.nav-menu a').forEach(link => {
   link.addEventListener('click', () => {
     hamburger.classList.remove('active');
     navMenu.classList.remove('active');
-    dropdowns.forEach(dropdown => {
-      dropdown.classList.remove('active');
-    });
   });
 });
 
-// Dropdown menu on mobile
-dropdowns.forEach(dropdown => {
-  dropdown.addEventListener('click', (e) => {
-    if (window.innerWidth <= 768) {
-      e.preventDefault();
-      dropdown.classList.toggle('active');
-    }
-  });
-});
-
-// Initialize all sliders
-function initSlider(sliderId, prevBtnId, nextBtnId) {
-  const sliderTrack = document.getElementById(sliderId);
-  const slides = sliderTrack.querySelectorAll('.slider-card');
-  const prevBtn = document.getElementById(prevBtnId);
-  const nextBtn = document.getElementById(nextBtnId);
+// Circle button navigation with shape change
+function navigateToPage(page, element) {
+  // Change to square
+  element.classList.add('square');
   
-  let index = 0;
-  const slideWidth = slides[0].offsetWidth + 20; // 20px for margin-right
-  
-  // Function to update slider position
-  function updateSlider() {
-    sliderTrack.style.transform = `translateX(-${slideWidth * index}px)`;
-  }
-  
-  // Next button event
-  nextBtn.addEventListener('click', () => {
-    index = (index + 1) % slides.length;
-    updateSlider();
-  });
-  
-  // Previous button event
-  prevBtn.addEventListener('click', () => {
-    index = (index - 1 + slides.length) % slides.length;
-    updateSlider();
-  });
-  
-  // Auto slide every 5 seconds
-  setInterval(() => {
-    index = (index + 1) % slides.length;
-    updateSlider();
-  }, 5000);
-  
-  // Initialize slider position
-  updateSlider();
+  // Navigate after animation
+  setTimeout(() => {
+    window.location.href = page;
+  }, 500);
 }
 
-// Initialize all sliders
-initSlider('track-announcements', 'prev-announcements', 'next-announcements');
-initSlider('track-locations', 'prev-locations', 'next-locations');
-initSlider('track-csr', 'prev-csr', 'next-csr');
-initSlider('track-quicklinks', 'prev-quicklinks', 'next-quicklinks');
-initSlider('track-ministries', 'prev-ministries', 'next-ministries');
-initSlider('track-servicetimes', 'prev-servicetimes', 'next-servicetimes');
+// Open page for picture cards
+function openPage(page) {
+  window.location.href = page;
+}
 
-// Cookie consent
-const cookieConsent = document.getElementById('cookieConsent');
-const acceptCookies = document.getElementById('acceptCookies');
+// Scroll animation for picture cards
+function checkScroll() {
+  const pictureCards = document.querySelectorAll('.picture-card');
+  
+  pictureCards.forEach(card => {
+    const cardTop = card.getBoundingClientRect().top;
+    const windowHeight = window.innerHeight;
+    
+    if (cardTop < windowHeight - 100) {
+      card.classList.add('visible');
+    }
+  });
+}
 
-window.addEventListener('load', () => {
-  setTimeout(() => {
-    cookieConsent.classList.add('show');
-  }, 1000);
+// Initial check
+window.addEventListener('load', checkScroll);
+
+// Check on scroll
+window.addEventListener('scroll', checkScroll);
+
+// Auto scroll for Instagram-like slider
+const instaTrack = document.querySelector('.insta-track');
+let scrollAmount = 0;
+const slideWidth = 220; // width + gap
+
+function autoScrollInsta() {
+  scrollAmount += slideWidth;
+  
+  // If scrolled to the end, reset
+  if (scrollAmount >= instaTrack.scrollWidth - instaTrack.clientWidth) {
+    scrollAmount = 0;
+    instaTrack.scrollTo({ left: 0, behavior: 'smooth' });
+  } else {
+    instaTrack.scrollTo({ left: scrollAmount, behavior: 'smooth' });
+  }
+}
+
+// Start auto-scroll for Instagram slider
+setInterval(autoScrollInsta, 3000);
+
+// Make Instagram slider draggable
+let isDown = false;
+let startX;
+let scrollLeft;
+
+instaTrack.addEventListener('mousedown', (e) => {
+  isDown = true;
+  startX = e.pageX - instaTrack.offsetLeft;
+  scrollLeft = instaTrack.scrollLeft;
 });
 
-acceptCookies.addEventListener('click', () => {
-  cookieConsent.style.display = 'none';
+instaTrack.addEventListener('mouseleave', () => {
+  isDown = false;
+});
+
+instaTrack.addEventListener('mouseup', () => {
+  isDown = false;
+});
+
+instaTrack.addEventListener('mousemove', (e) => {
+  if (!isDown) return;
+  e.preventDefault();
+  const x = e.pageX - instaTrack.offsetLeft;
+  const walk = (x - startX) * 2;
+  instaTrack.scrollLeft = scrollLeft - walk;
+});
+
+// Touch events for mobile
+instaTrack.addEventListener('touchstart', (e) => {
+  isDown = true;
+  startX = e.touches[0].pageX - instaTrack.offsetLeft;
+  scrollLeft = instaTrack.scrollLeft;
+});
+
+instaTrack.addEventListener('touchend', () => {
+  isDown = false;
+});
+
+instaTrack.addEventListener('touchmove', (e) => {
+  if (!isDown) return;
+  e.preventDefault();
+  const x = e.touches[0].pageX - instaTrack.offsetLeft;
+  const walk = (x - startX) * 2;
+  instaTrack.scrollLeft = scrollLeft - walk;
 });
 </script>
 
