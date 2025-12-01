@@ -5,253 +5,671 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>SPAC Church - Home</title>
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+<link href="https://fonts.googleapis.com/css2?family=Lobster&family=Poppins:wght@300;400;500;600;700&family=Playfair+Display:wght@400;500;600&display=swap" rel="stylesheet">
 <style>
   :root {
     --primary: #1a4b8c;
     --secondary: #d4af37;
     --light: #f8f9fa;
-    --dark: #343a40;
+    --dark: #2c3e50;
     --accent: #8b0000;
+    --gradient: linear-gradient(135deg, #1a4b8c 0%, #2c3e50 100%);
   }
-  *{margin:0;padding:0;box-sizing:border-box;font-family:'Segoe UI',Tahoma,Geneva,Verdana,sans-serif;}
-  body{background:#f5f5f5;color:#333;line-height:1.6;scroll-behavior:smooth;}
-  a{text-decoration:none;color:inherit;}
-  .container{width:90%;max-width:1200px;margin:0 auto;}
-  .btn{display:inline-block;background:var(--primary);color:white;padding:10px 20px;border:none;border-radius:5px;cursor:pointer;transition:all 0.3s ease;}
-  .btn:hover{background:var(--accent);transform:translateY(-2px);}
-  header{background:white;box-shadow:0 2px 10px rgba(0,0,0,0.1);position:sticky;top:0;z-index:1000;}
-  .header-container{display:flex;justify-content:space-between;align-items:center;padding:15px 0;}
-  .logo img{height:60px;margin-right:10px;}
-  .logo-text{font-size:24px;font-weight:bold;color:var(--primary);}
-  .nav-container{width:50%;}
-  .nav-menu{display:flex;list-style:none;justify-content:flex-end;}
-  .nav-menu li{margin-left:25px;position:relative;}
-  .nav-menu a{color:var(--dark);font-weight:500;transition:0.3s;}
-  .nav-menu a:hover{color:var(--primary);}
-  .dropdown-content{display:none;position:absolute;background:white;min-width:200px;box-shadow:0 8px 16px rgba(0,0,0,0.1);z-index:1;border-radius:5px;overflow:hidden;}
-  .dropdown:hover .dropdown-content{display:block;}
-  .hamburger{display:none;cursor:pointer;width:30px;height:30px;position:relative;z-index:1001;}
-  .hamburger span{display:block;position:absolute;height:3px;width:100%;background:var(--primary);border-radius:3px;opacity:1;left:0;transform:rotate(0deg);transition:.25s;}
-  .hamburger span:nth-child(1){top:0;}
-  .hamburger span:nth-child(2){top:10px;}
-  .hamburger span:nth-child(3){top:20px;}
-  .hamburger.active span:nth-child(1){top:10px;transform:rotate(135deg);}
-  .hamburger.active span:nth-child(2){opacity:0;left:-30px;}
-  .hamburger.active span:nth-child(3){top:10px;transform:rotate(-135deg);}
-  .hero{position:relative;height:80vh;overflow:hidden;display:flex;align-items:center;justify-content:center;text-align:center;color:white;}
-  .hero-video{position:absolute;top:0;left:0;width:100%;height:100%;object-fit:cover;z-index:-1;}
-  .hero-overlay{position:absolute;top:0;left:0;width:100%;height:100%;background:rgba(0,0,0,0.5);z-index:-1;}
-  .hero-content{max-width:800px;padding:0 20px;}
-  .hero h1{font-size:3rem;margin-bottom:20px;text-shadow:2px 2px 4px rgba(0,0,0,0.5);}
-  .hero p{font-size:1.2rem;margin-bottom:30px;}
+  
+  * {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+  }
+  
+  body {
+    font-family: 'Poppins', sans-serif;
+    background: linear-gradient(180deg, #f8f9fa 0%, #ffffff 100%);
+    color: #333;
+    line-height: 1.6;
+    scroll-behavior: smooth;
+    overflow-x: hidden;
+  }
+  
+  a {
+    text-decoration: none;
+    color: inherit;
+  }
+  
+  .container {
+    width: 90%;
+    max-width: 1200px;
+    margin: 0 auto;
+  }
+  
+  .btn {
+    display: inline-block;
+    background: var(--primary);
+    color: white;
+    padding: 12px 28px;
+    border: none;
+    border-radius: 30px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    font-weight: 500;
+    letter-spacing: 0.5px;
+    box-shadow: 0 4px 15px rgba(26, 75, 140, 0.2);
+  }
+  
+  .btn:hover {
+    background: var(--accent);
+    transform: translateY(-3px);
+    box-shadow: 0 6px 20px rgba(139, 0, 0, 0.25);
+  }
+  
+  /* Header - Reduced Size */
+  header {
+    background: white;
+    box-shadow: 0 3px 20px rgba(0, 0, 0, 0.08);
+    position: sticky;
+    top: 0;
+    z-index: 1000;
+    padding: 5px 0;
+    transition: all 0.3s ease;
+  }
+  
+  .header-scrolled {
+    padding: 0;
+    box-shadow: 0 5px 25px rgba(0, 0, 0, 0.1);
+  }
+  
+  .header-container {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 5px 0;
+  }
+  
+  .logo {
+    display: flex;
+    align-items: center;
+  }
+  
+  .logo img {
+    height: 45px;
+    margin-right: 12px;
+    transition: all 0.3s ease;
+  }
+  
+  .header-scrolled .logo img {
+    height: 40px;
+  }
+  
+  .logo-text {
+    font-family: 'Lobster', cursive;
+    font-size: 28px;
+    font-weight: 400;
+    color: var(--primary);
+    letter-spacing: 1px;
+    line-height: 1;
+  }
+  
+  /* Navigation */
+  .nav-container {
+    display: flex;
+    align-items: center;
+    justify-content: flex-end;
+    width: 60%;
+  }
+  
+  .nav-menu {
+    display: flex;
+    list-style: none;
+  }
+  
+  .nav-menu li {
+    margin-left: 30px;
+    position: relative;
+  }
+  
+  .nav-menu a {
+    color: var(--dark);
+    font-weight: 500;
+    font-size: 15px;
+    transition: all 0.3s ease;
+    padding: 8px 0;
+    position: relative;
+  }
+  
+  .nav-menu a::after {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 0;
+    height: 2px;
+    background: var(--secondary);
+    transition: width 0.3s ease;
+  }
+  
+  .nav-menu a:hover {
+    color: var(--primary);
+  }
+  
+  .nav-menu a:hover::after {
+    width: 100%;
+  }
+  
+  .nav-menu a.active {
+    color: var(--primary);
+    font-weight: 600;
+  }
+  
+  .nav-menu a.active::after {
+    width: 100%;
+  }
+  
+  .dropdown-content {
+    display: none;
+    position: absolute;
+    background: white;
+    min-width: 200px;
+    box-shadow: 0 15px 30px rgba(0, 0, 0, 0.1);
+    z-index: 1;
+    border-radius: 10px;
+    overflow: hidden;
+    top: 100%;
+    left: 0;
+    padding: 10px 0;
+  }
+  
+  .dropdown:hover .dropdown-content {
+    display: block;
+  }
+  
+  .dropdown-content a {
+    display: block;
+    padding: 12px 20px;
+    font-size: 14px;
+  }
+  
+  .dropdown-content a:hover {
+    background: rgba(26, 75, 140, 0.05);
+  }
+  
+  /* Hamburger Menu - Moved to end of screen */
+  .hamburger {
+    display: none;
+    cursor: pointer;
+    width: 30px;
+    height: 30px;
+    position: relative;
+    z-index: 1001;
+    margin-left: auto;
+  }
+  
+  .hamburger span {
+    display: block;
+    position: absolute;
+    height: 3px;
+    width: 100%;
+    background: var(--primary);
+    border-radius: 3px;
+    opacity: 1;
+    left: 0;
+    transform: rotate(0deg);
+    transition: .25s ease-in-out;
+  }
+  
+  .hamburger span:nth-child(1) { top: 0; }
+  .hamburger span:nth-child(2) { top: 10px; }
+  .hamburger span:nth-child(3) { top: 20px; }
+  
+  .hamburger.active span:nth-child(1) {
+    top: 10px;
+    transform: rotate(135deg);
+  }
+  
+  .hamburger.active span:nth-child(2) {
+    opacity: 0;
+    left: -30px;
+  }
+  
+  .hamburger.active span:nth-child(3) {
+    top: 10px;
+    transform: rotate(-135deg);
+  }
+  
+  /* Scroll to top button */
+  .scroll-top {
+    position: fixed;
+    bottom: 30px;
+    right: 30px;
+    width: 50px;
+    height: 50px;
+    background: var(--primary);
+    color: white;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    z-index: 999;
+    opacity: 0;
+    visibility: hidden;
+    transition: all 0.3s ease;
+    box-shadow: 0 5px 15px rgba(26, 75, 140, 0.3);
+  }
+  
+  .scroll-top.visible {
+    opacity: 1;
+    visibility: visible;
+  }
+  
+  .scroll-top:hover {
+    background: var(--accent);
+    transform: translateY(-5px);
+    box-shadow: 0 8px 20px rgba(139, 0, 0, 0.3);
+  }
+  
+  /* Hero Section */
+  .hero {
+    position: relative;
+    height: 85vh;
+    overflow: hidden;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    color: white;
+    margin-top: -10px;
+  }
+  
+  .hero-video {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    z-index: -1;
+  }
+  
+  .hero-overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(135deg, rgba(26, 75, 140, 0.85) 0%, rgba(44, 62, 80, 0.8) 100%);
+    z-index: -1;
+  }
+  
+  .hero-content {
+    max-width: 800px;
+    padding: 0 20px;
+    z-index: 2;
+  }
+  
+  .hero h1 {
+    font-family: 'Playfair Display', serif;
+    font-size: 3.8rem;
+    margin-bottom: 25px;
+    text-shadow: 2px 2px 8px rgba(0, 0, 0, 0.3);
+    letter-spacing: 1px;
+  }
+  
+  .hero p {
+    font-size: 1.3rem;
+    margin-bottom: 40px;
+    max-width: 700px;
+    margin-left: auto;
+    margin-right: auto;
+    opacity: 0.95;
+  }
   
   /* Circle Buttons Section */
   .circle-buttons-section {
-    padding: 80px 0;
+    padding: 100px 0;
     background: white;
+    position: relative;
   }
+  
   .circle-buttons-container {
     display: flex;
     flex-direction: column;
     align-items: center;
-    gap: 50px;
+    gap: 60px;
   }
+  
   .circle-button {
-    width: 180px;
-    height: 180px;
+    width: 200px;
+    height: 200px;
     border-radius: 50%;
-    background: var(--primary);
+    background: linear-gradient(135deg, var(--primary) 0%, #2c3e80 100%);
     color: white;
     display: flex;
     align-items: center;
     justify-content: center;
     flex-direction: column;
     cursor: pointer;
-    transition: all 0.5s ease;
-    box-shadow: 0 10px 20px rgba(0,0,0,0.1);
+    transition: all 0.5s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+    box-shadow: 0 15px 35px rgba(26, 75, 140, 0.2);
     text-align: center;
-    padding: 20px;
+    padding: 25px;
+    position: relative;
+    overflow: hidden;
   }
+  
+  .circle-button:before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(135deg, var(--accent) 0%, #a30000 100%);
+    opacity: 0;
+    transition: opacity 0.3s ease;
+    z-index: 1;
+  }
+  
   .circle-button:hover {
-    background: var(--accent);
-    transform: scale(1.05);
+    transform: scale(1.08);
+    box-shadow: 0 20px 40px rgba(26, 75, 140, 0.3);
   }
+  
+  .circle-button:hover:before {
+    opacity: 1;
+  }
+  
   .circle-button.square {
     border-radius: 20px;
-    width: 200px;
-    height: 200px;
-    background: var(--accent);
+    width: 220px;
+    height: 220px;
+    background: linear-gradient(135deg, var(--accent) 0%, #a30000 100%);
   }
+  
   .circle-button i {
-    font-size: 50px;
-    margin-bottom: 15px;
+    font-size: 55px;
+    margin-bottom: 20px;
+    position: relative;
+    z-index: 2;
   }
+  
   .circle-button h3 {
-    font-size: 1.2rem;
+    font-size: 1.3rem;
     font-weight: 600;
+    position: relative;
+    z-index: 2;
   }
   
   /* Logo Section */
   .logo-section {
-    padding: 100px 0;
-    background: var(--light);
+    padding: 120px 0;
+    background: linear-gradient(135deg, #f8f9fa 0%, #e9ecef 100%);
     text-align: center;
+    position: relative;
+    overflow: hidden;
   }
+  
+  .logo-section:before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 5px;
+    background: linear-gradient(90deg, var(--primary), var(--secondary), var(--accent));
+  }
+  
   .big-logo {
-    max-width: 400px;
-    margin: 0 auto 40px;
-    animation: float 3s ease-in-out infinite;
+    max-width: 450px;
+    margin: 0 auto 50px;
+    animation: float 4s ease-in-out infinite;
+    position: relative;
   }
+  
   .big-logo img {
     width: 100%;
     height: auto;
+    filter: drop-shadow(0 10px 20px rgba(0,0,0,0.1));
   }
+  
   @keyframes float {
     0% { transform: translateY(0px); }
     50% { transform: translateY(-20px); }
     100% { transform: translateY(0px); }
   }
+  
   .we-are-spac {
-    font-size: 4rem;
+    font-family: 'Lobster', cursive;
+    font-size: 4.5rem;
     color: var(--primary);
     margin-bottom: 30px;
-    font-weight: bold;
-    letter-spacing: 2px;
+    font-weight: 400;
+    letter-spacing: 1.5px;
+    text-shadow: 2px 2px 4px rgba(0,0,0,0.1);
+    position: relative;
+    display: inline-block;
+  }
+  
+  .we-are-spac:after {
+    content: '';
+    position: absolute;
+    bottom: -10px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 150px;
+    height: 3px;
+    background: var(--secondary);
   }
   
   /* About Card */
   .about-card-section {
-    padding: 60px 0 100px;
+    padding: 80px 0 140px;
     background: white;
+    position: relative;
   }
+  
   .floating-card {
     background: white;
-    max-width: 800px;
+    max-width: 900px;
     margin: 0 auto;
-    padding: 40px;
-    border-radius: 20px;
-    box-shadow: 0 20px 40px rgba(0,0,0,0.1);
+    padding: 60px 50px;
+    border-radius: 25px;
+    box-shadow: 0 25px 60px rgba(0,0,0,0.08);
     position: relative;
     overflow: hidden;
+    border: 1px solid rgba(0,0,0,0.05);
   }
+  
   .floating-card:before {
     content: '';
     position: absolute;
     top: 0;
     left: 0;
     width: 100%;
-    height: 10px;
-    background: linear-gradient(90deg, var(--primary), var(--secondary));
+    height: 8px;
+    background: linear-gradient(90deg, var(--primary), var(--secondary), var(--accent));
   }
+  
   .floating-card h2 {
     color: var(--primary);
-    font-size: 2.2rem;
-    margin-bottom: 20px;
+    font-family: 'Playfair Display', serif;
+    font-size: 2.8rem;
+    margin-bottom: 30px;
     text-align: center;
+    font-weight: 600;
   }
+  
   .floating-card p {
-    font-size: 1.1rem;
+    font-size: 1.15rem;
     color: #555;
-    line-height: 1.8;
+    line-height: 1.9;
     margin-bottom: 30px;
     text-align: center;
   }
+  
   .card-btn-container {
     text-align: center;
   }
   
   /* Dynamic Pictures Section */
   .dynamic-pictures {
-    padding: 100px 0;
-    background: var(--light);
+    padding: 120px 0;
+    background: linear-gradient(135deg, #f8f9fa 0%, #ffffff 100%);
   }
+  
   .section-title {
     text-align: center;
-    font-size: 2.5rem;
+    font-family: 'Playfair Display', serif;
+    font-size: 3rem;
     color: var(--primary);
-    margin-bottom: 60px;
+    margin-bottom: 80px;
+    position: relative;
+    padding-bottom: 20px;
   }
+  
+  .section-title:after {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 100px;
+    height: 4px;
+    background: var(--secondary);
+  }
+  
   .picture-grid {
     display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
-    gap: 30px;
+    grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+    gap: 35px;
   }
+  
   .picture-card {
     background: white;
-    border-radius: 15px;
+    border-radius: 18px;
     overflow: hidden;
-    box-shadow: 0 10px 20px rgba(0,0,0,0.1);
-    transition: all 0.5s ease;
+    box-shadow: 0 15px 35px rgba(0,0,0,0.08);
+    transition: all 0.5s cubic-bezier(0.175, 0.885, 0.32, 1.275);
     opacity: 0;
     cursor: pointer;
+    position: relative;
   }
+  
+  .picture-card:before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(to bottom, transparent 60%, rgba(0,0,0,0.7) 100%);
+    z-index: 1;
+    opacity: 0;
+    transition: opacity 0.3s ease;
+  }
+  
+  .picture-card:hover:before {
+    opacity: 1;
+  }
+  
   .picture-card:hover {
-    transform: translateY(-10px);
-    box-shadow: 0 20px 30px rgba(0,0,0,0.15);
+    transform: translateY(-15px);
+    box-shadow: 0 25px 50px rgba(0,0,0,0.15);
   }
+  
   .picture-card.left {
-    transform: translateX(-100px);
+    transform: translateX(-150px);
   }
+  
   .picture-card.right {
-    transform: translateX(100px);
+    transform: translateX(150px);
   }
+  
   .picture-card.visible {
     opacity: 1;
     transform: translateX(0) !important;
   }
+  
   .picture-card img {
     width: 100%;
-    height: 250px;
+    height: 280px;
     object-fit: cover;
+    transition: transform 0.5s ease;
   }
+  
+  .picture-card:hover img {
+    transform: scale(1.05);
+  }
+  
   .picture-card h3 {
-    padding: 20px;
+    padding: 25px;
     color: var(--primary);
     text-align: center;
-    font-size: 1.5rem;
+    font-size: 1.6rem;
+    font-weight: 600;
+    position: relative;
+    z-index: 2;
   }
+  
   .picture-card.large {
     grid-column: span 2;
   }
+  
   .picture-card.large img {
-    height: 350px;
+    height: 380px;
   }
   
   /* Instagram-like Slider */
   .insta-slider {
-    margin: 40px 0;
-    padding: 30px;
+    margin: 60px 0 40px;
+    padding: 40px;
     background: white;
-    border-radius: 15px;
+    border-radius: 20px;
+    box-shadow: 0 15px 40px rgba(0,0,0,0.05);
+    position: relative;
   }
+  
   .insta-title {
     text-align: center;
     color: var(--primary);
-    margin-bottom: 20px;
-    font-size: 1.8rem;
+    margin-bottom: 30px;
+    font-size: 2.2rem;
+    font-family: 'Playfair Display', serif;
   }
+  
   .insta-track {
     display: flex;
-    gap: 20px;
+    gap: 25px;
     overflow-x: auto;
-    padding: 20px 0;
+    padding: 25px 0;
     scroll-behavior: smooth;
+    scrollbar-width: thin;
   }
+  
   .insta-track::-webkit-scrollbar {
     height: 8px;
   }
+  
   .insta-track::-webkit-scrollbar-thumb {
     background: var(--primary);
     border-radius: 4px;
   }
+  
   .insta-slide {
     flex: 0 0 auto;
-    width: 200px;
-    height: 200px;
-    border-radius: 10px;
+    width: 220px;
+    height: 220px;
+    border-radius: 15px;
     overflow: hidden;
-    box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+    box-shadow: 0 10px 25px rgba(0,0,0,0.1);
+    cursor: pointer;
+    transition: all 0.3s ease;
   }
+  
+  .insta-slide:hover {
+    transform: scale(1.05);
+    box-shadow: 0 15px 35px rgba(0,0,0,0.15);
+  }
+  
   .insta-slide img {
     width: 100%;
     height: 100%;
@@ -260,126 +678,292 @@
   
   /* Location Section */
   .location-section {
-    padding: 100px 0;
+    padding: 120px 0;
     background: white;
+    position: relative;
   }
+  
+  .location-section:before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 5px;
+    background: linear-gradient(90deg, var(--primary), var(--secondary), var(--accent));
+  }
+  
   .location-grid {
     display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
-    gap: 30px;
-    margin-top: 50px;
+    grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+    gap: 35px;
+    margin-top: 60px;
   }
   
   /* Footer */
   footer {
     background: var(--dark);
     color: white;
-    padding: 60px 0 20px;
+    padding: 80px 0 30px;
+    position: relative;
   }
+  
+  footer:before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 5px;
+    background: linear-gradient(90deg, var(--primary), var(--secondary), var(--accent));
+  }
+  
   .footer-content {
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-    gap: 40px;
-    margin-bottom: 40px;
+    gap: 50px;
+    margin-bottom: 50px;
   }
+  
   .footer-column h3 {
-    margin-bottom: 20px;
+    margin-bottom: 25px;
     color: var(--secondary);
+    font-size: 1.5rem;
+    font-weight: 600;
+    position: relative;
+    padding-bottom: 10px;
   }
+  
+  .footer-column h3:after {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 50px;
+    height: 3px;
+    background: var(--primary);
+  }
+  
   .footer-links {
     list-style: none;
   }
+  
   .footer-links li {
-    margin-bottom: 10px;
+    margin-bottom: 12px;
   }
+  
   .footer-links a {
     color: #ddd;
     transition: 0.3s;
+    display: inline-block;
   }
+  
   .footer-links a:hover {
     color: var(--secondary);
+    transform: translateX(5px);
   }
+  
   .social-links {
     display: flex;
     gap: 15px;
-    margin-top: 20px;
+    margin-top: 25px;
   }
+  
   .social-links a {
     display: flex;
     align-items: center;
     justify-content: center;
-    width: 40px;
-    height: 40px;
+    width: 45px;
+    height: 45px;
     background: rgba(255,255,255,0.1);
     border-radius: 50%;
     transition: 0.3s;
   }
+  
   .social-links a:hover {
     background: var(--secondary);
-    transform: translateY(-3px);
+    transform: translateY(-5px);
   }
+  
   .footer-bottom {
     text-align: center;
-    padding-top: 20px;
+    padding-top: 30px;
     border-top: 1px solid rgba(255,255,255,0.1);
     font-size: 0.9rem;
     color: #aaa;
   }
   
-  /* Responsive */
+  /* Responsive Design */
+  @media (max-width: 1100px) {
+    .picture-card.large {
+      grid-column: span 1;
+    }
+    
+    .picture-card.large img {
+      height: 280px;
+    }
+  }
+  
+  @media (max-width: 992px) {
+    .hero h1 {
+      font-size: 3rem;
+    }
+    
+    .we-are-spac {
+      font-size: 3.5rem;
+    }
+    
+    .section-title {
+      font-size: 2.5rem;
+    }
+  }
+  
   @media (max-width: 768px) {
-    .hero h1 {font-size: 2rem;}
-    .hero p {font-size: 1rem;}
-    .hamburger {display: block;}
+    .hamburger {
+      display: block;
+    }
+    
     .nav-menu {
       position: fixed;
       top: 0;
       right: -100%;
-      width: 70%;
+      width: 280px;
       height: 100vh;
       background: white;
       flex-direction: column;
       justify-content: flex-start;
-      align-items: center;
-      padding-top: 80px;
-      transition: right 0.3s ease;
-      box-shadow: -5px 0 15px rgba(0,0,0,0.1);
+      align-items: flex-start;
+      padding: 100px 30px 30px;
+      transition: right 0.4s ease;
+      box-shadow: -10px 0 30px rgba(0,0,0,0.1);
     }
-    .nav-menu.active {right: 0;}
-    .nav-menu li {margin: 15px 0;}
+    
+    .nav-menu.active {
+      right: 0;
+    }
+    
+    .nav-menu li {
+      margin: 0 0 25px 0;
+      width: 100%;
+    }
+    
+    .nav-menu a {
+      font-size: 16px;
+      display: block;
+      padding: 10px 0;
+      width: 100%;
+    }
+    
+    .dropdown-content {
+      position: static;
+      display: none;
+      box-shadow: none;
+      background: rgba(26, 75, 140, 0.05);
+      margin-top: 10px;
+      border-radius: 8px;
+    }
+    
+    .dropdown.active .dropdown-content {
+      display: block;
+    }
+    
     .circle-button {
-      width: 150px;
-      height: 150px;
-    }
-    .circle-button.square {
       width: 170px;
       height: 170px;
     }
-    .we-are-spac {font-size: 2.5rem;}
-    .picture-card.large {grid-column: span 1;}
-    .picture-card.large img {height: 250px;}
+    
+    .circle-button.square {
+      width: 180px;
+      height: 180px;
+    }
+    
+    .we-are-spac {
+      font-size: 2.8rem;
+    }
+    
+    .hero h1 {
+      font-size: 2.5rem;
+    }
+    
+    .hero p {
+      font-size: 1.1rem;
+    }
+    
+    .floating-card {
+      padding: 40px 25px;
+    }
+    
+    .floating-card h2 {
+      font-size: 2.2rem;
+    }
+  }
+  
+  @media (max-width: 576px) {
+    .logo-text {
+      font-size: 24px;
+    }
+    
+    .logo img {
+      height: 40px;
+    }
+    
+    .hero h1 {
+      font-size: 2.2rem;
+    }
+    
+    .we-are-spac {
+      font-size: 2.3rem;
+    }
+    
+    .section-title {
+      font-size: 2rem;
+    }
+    
+    .picture-grid {
+      grid-template-columns: 1fr;
+    }
+    
+    .insta-slider {
+      padding: 30px 20px;
+    }
   }
 </style>
 </head>
 <body>
 
-<header>
+<!-- Scroll to Top Button -->
+<div class="scroll-top" id="scrollTop">
+  <i class="fas fa-chevron-up"></i>
+</div>
+
+<header id="mainHeader">
   <div class="container header-container">
     <div class="logo">
-      <a href="#home"><img src="spac1.png" alt="SPAC Logo"><span class="logo-text">SPAC CHURCH</span></a>
+      <a href="#home"><img src="spac-logo.jpg" alt="SPAC Logo"><span class="logo-text">SPAC CHURCH</span></a>
     </div>
     <div class="nav-container">
       <ul class="nav-menu">
         <li><a href="#home" class="active">Home</a></li>
-        <li class="dropdown"><a href="#">About <i class="fas fa-chevron-down"></i></a>
+        <li class="dropdown"><a href="#about">About <i class="fas fa-chevron-down"></i></a>
           <div class="dropdown-content">
-            <a href="#">Our Story</a>
-            <a href="#">Beliefs</a>
-            <a href="#">Leadership</a>
+            <a href="about.html">Our Story</a>
+            <a href="beliefs.html">Beliefs</a>
+            <a href="leadership.html">Leadership</a>
+            <a href="vision.html">Vision & Mission</a>
           </div>
         </li>
         <li><a href="#locations">Branches</a></li>
-        <li><a href="#ministries">Ministries</a></li>
+        <li class="dropdown"><a href="#ministries">Ministries <i class="fas fa-chevron-down"></i></a>
+          <div class="dropdown-content">
+            <a href="vanguard.html">Vanguard (Youth)</a>
+            <a href="teen-church.html">Teen Church</a>
+            <a href="kids-church.html">Kids Church</a>
+            <a href="marriage-counselling.html">Marriage & Counselling</a>
+            <a href="spac-uk.html">SPAC UK</a>
+            <a href="spac-nxtion.html">SPAC Nxtion</a>
+            <a href="spac-us.html">SPAC US</a>
+          </div>
+        </li>
         <li><a href="#contact">Contact</a></li>
       </ul>
       <div class="hamburger"><span></span><span></span><span></span></div>
@@ -389,7 +973,7 @@
 
 <section class="hero" id="home">
   <video class="hero-video" autoplay muted loop playsinline>
-    <source src="spac2.mp4" type="video/mp4">
+    <source src="spac-video.mp4" type="video/mp4">
     Your browser does not support the video tag.
   </video>
   <div class="hero-overlay"></div>
@@ -403,7 +987,7 @@
 <section class="circle-buttons-section" id="quick-links">
   <div class="container">
     <div class="circle-buttons-container">
-      <div class="circle-button" id="new-button" onclick="navigateToPage('new.html', this)">
+      <div class="circle-button" id="new-button" onclick="navigateToPage('new-member.html', this)">
         <i class="fas fa-user-plus"></i>
         <h3>I'm New Member/Visitor</h3>
       </div>
@@ -427,18 +1011,19 @@
 <section class="logo-section">
   <div class="container">
     <div class="big-logo">
-      <img src="spac1.png" alt="SPAC Church Logo">
+      <img src="spac-logo-large.jpg" alt="SPAC Church Logo">
     </div>
     <div class="we-are-spac">We are SPAC</div>
   </div>
 </section>
 
-<section class="about-card-section">
+<section class="about-card-section" id="about">
   <div class="container">
     <div class="floating-card">
       <h2>Welcome to SPAC Church</h2>
-      <p>SPAC Church is a vibrant community of believers committed to spreading the gospel of Jesus Christ and making disciples of all nations. We are dedicated to worship, fellowship, and service, creating an environment where everyone can experience God's love and grow in their faith journey.</p>
-      <p>Our mission is to raise champions and nurture leaders who will transform their world through the power of the Holy Spirit. Join us as we worship, learn, and serve together in unity and love.</p>
+      <p>SPAC Church is a vibrant, multicultural community of believers committed to spreading the gospel of Jesus Christ and making disciples of all nations. Founded on the principles of faith, love, and hope, we are dedicated to worship, fellowship, and service.</p>
+      <p>Our mission is to raise champions and nurture leaders who will transform their world through the power of the Holy Spirit. Through dynamic worship, sound biblical teaching, and compassionate outreach, we strive to impact our community and beyond.</p>
+      <p>Join us as we worship, learn, and serve together in unity and love, building a church that reflects God's kingdom here on earth.</p>
       <div class="card-btn-container">
         <a href="about.html" class="btn">Read More</a>
       </div>
@@ -452,15 +1037,15 @@
     <h2 class="section-title">Our Ministries & Programs</h2>
     <div class="picture-grid">
       <div class="picture-card left" onclick="openPage('vanguard.html')">
-        <img src="vanguard.jpg" alt="Vanguard">
-        <h3>Vanguard</h3>
+        <img src="vanguard.jpg" alt="Vanguard Youth Ministry">
+        <h3>Vanguard Youth</h3>
       </div>
       <div class="picture-card right" onclick="openPage('proclaimers.html')">
-        <img src="proclaimers.jpg" alt="Proclaimers">
+        <img src="proclaimers.jpg" alt="Proclaimers Ministry">
         <h3>Proclaimers</h3>
       </div>
       <div class="picture-card left" onclick="openPage('announcements.html')">
-        <img src="announcements.jpg" alt="Announcements">
+        <img src="announcements.jpg" alt="Church Announcements">
         <h3>Announcements</h3>
       </div>
       <div class="picture-card right large" onclick="openPage('teen-church.html')">
@@ -483,11 +1068,24 @@
         <img src="marriage-counselling.jpg" alt="Marriage & Counselling">
         <h3>Marriage & Counselling</h3>
       </div>
+      <!-- New Ministry Pictures Added -->
+      <div class="picture-card left" onclick="openPage('spac-uk.html')">
+        <img src="spac-uk.jpg" alt="SPAC UK">
+        <h3>SPAC UK</h3>
+      </div>
+      <div class="picture-card right" onclick="openPage('spac-nxtion.html')">
+        <img src="spac-nxtion.jpg" alt="SPAC Nxtion">
+        <h3>SPAC Nxtion</h3>
+      </div>
+      <div class="picture-card left" onclick="openPage('spac-us.html')">
+        <img src="spac-us.jpg" alt="SPAC US">
+        <h3>SPAC US</h3>
+      </div>
     </div>
     
     <!-- Instagram-like Program Slider -->
     <div class="insta-slider">
-      <h3 class="insta-title">Our Programs</h3>
+      <h3 class="insta-title">Our Programs Gallery</h3>
       <div class="insta-track">
         <div class="insta-slide" onclick="openPage('program1.html')">
           <img src="program1.jpg" alt="Program 1">
@@ -516,7 +1114,7 @@
     <div class="location-grid">
       <div class="picture-card left" onclick="openPage('locations-branches.html')">
         <img src="locations.jpg" alt="Our Locations and Branches">
-        <h3>Our Locations and Branches</h3>
+        <h3>Our Locations & Branches</h3>
       </div>
       <div class="picture-card right" onclick="openPage('join-us.html')">
         <img src="join-us.jpg" alt="Join Us">
@@ -543,12 +1141,13 @@
   <div class="container footer-content">
     <div class="footer-column">
       <h3>SPAC Church</h3>
-      <p>We are a community of believers committed to spreading the gospel and serving our community.</p>
+      <p>A vibrant community of believers committed to spreading the gospel and serving our community through faith, hope, and love.</p>
       <div class="social-links">
         <a href="#"><i class="fab fa-facebook-f"></i></a>
         <a href="#"><i class="fab fa-twitter"></i></a>
         <a href="#"><i class="fab fa-instagram"></i></a>
         <a href="#"><i class="fab fa-youtube"></i></a>
+        <a href="#"><i class="fab fa-tiktok"></i></a>
       </div>
     </div>
     <div class="footer-column">
@@ -557,27 +1156,41 @@
         <li><a href="#home">Home</a></li>
         <li><a href="#quick-links">Quick Access</a></li>
         <li><a href="#locations">Locations</a></li>
-        <li><a href="#">Watch Live</a></li>
+        <li><a href="#ministries">Ministries</a></li>
+        <li><a href="watch-live.html">Watch Live</a></li>
+        <li><a href="give.html">Give Online</a></li>
       </ul>
     </div>
     <div class="footer-column">
       <h3>Contact Us</h3>
       <ul class="footer-links">
-        <li>123 Church Street, City</li>
-        <li>Phone: 123-456-7890</li>
-        <li>Email: info@spacchurch.org</li>
+        <li><i class="fas fa-map-marker-alt"></i> 123 Church Street, City, State 12345</li>
+        <li><i class="fas fa-phone"></i> Phone: (123) 456-7890</li>
+        <li><i class="fas fa-envelope"></i> Email: info@spacchurch.org</li>
+        <li><i class="fas fa-clock"></i> Service Times: Sun 7am, 9:15am, 11:30am</li>
       </ul>
     </div>
   </div>
   <div class="footer-bottom">
-    &copy; 2025 SPAC Church. All Rights Reserved. | <a href="#">Privacy Policy</a>
+    &copy; 2025 SPAC Church. All Rights Reserved. | <a href="privacy.html">Privacy Policy</a> | <a href="terms.html">Terms of Use</a>
   </div>
 </footer>
 
 <script>
+// Header scroll effect
+const header = document.getElementById('mainHeader');
+window.addEventListener('scroll', () => {
+  if (window.scrollY > 50) {
+    header.classList.add('header-scrolled');
+  } else {
+    header.classList.remove('header-scrolled');
+  }
+});
+
 // Hamburger menu
 const hamburger = document.querySelector('.hamburger');
 const navMenu = document.querySelector('.nav-menu');
+const dropdowns = document.querySelectorAll('.dropdown');
 
 hamburger.addEventListener('click', () => {
   hamburger.classList.toggle('active');
@@ -589,6 +1202,38 @@ document.querySelectorAll('.nav-menu a').forEach(link => {
   link.addEventListener('click', () => {
     hamburger.classList.remove('active');
     navMenu.classList.remove('active');
+    dropdowns.forEach(dropdown => {
+      dropdown.classList.remove('active');
+    });
+  });
+});
+
+// Dropdown menu on mobile
+dropdowns.forEach(dropdown => {
+  const trigger = dropdown.querySelector('a');
+  trigger.addEventListener('click', (e) => {
+    if (window.innerWidth <= 768) {
+      e.preventDefault();
+      dropdown.classList.toggle('active');
+    }
+  });
+});
+
+// Scroll to top button
+const scrollTopBtn = document.getElementById('scrollTop');
+
+window.addEventListener('scroll', () => {
+  if (window.scrollY > 300) {
+    scrollTopBtn.classList.add('visible');
+  } else {
+    scrollTopBtn.classList.remove('visible');
+  }
+});
+
+scrollTopBtn.addEventListener('click', () => {
+  window.scrollTo({
+    top: 0,
+    behavior: 'smooth'
   });
 });
 
@@ -631,22 +1276,34 @@ window.addEventListener('scroll', checkScroll);
 // Auto scroll for Instagram-like slider
 const instaTrack = document.querySelector('.insta-track');
 let scrollAmount = 0;
-const slideWidth = 220; // width + gap
+const slideWidth = 245; // width + gap
+let autoScrollInterval;
 
-function autoScrollInsta() {
-  scrollAmount += slideWidth;
-  
-  // If scrolled to the end, reset
-  if (scrollAmount >= instaTrack.scrollWidth - instaTrack.clientWidth) {
-    scrollAmount = 0;
-    instaTrack.scrollTo({ left: 0, behavior: 'smooth' });
-  } else {
-    instaTrack.scrollTo({ left: scrollAmount, behavior: 'smooth' });
-  }
+function startAutoScroll() {
+  autoScrollInterval = setInterval(() => {
+    scrollAmount += slideWidth;
+    
+    // If scrolled to the end, reset
+    if (scrollAmount >= instaTrack.scrollWidth - instaTrack.clientWidth) {
+      scrollAmount = 0;
+      instaTrack.scrollTo({ left: 0, behavior: 'smooth' });
+    } else {
+      instaTrack.scrollTo({ left: scrollAmount, behavior: 'smooth' });
+    }
+  }, 3500);
 }
 
 // Start auto-scroll for Instagram slider
-setInterval(autoScrollInsta, 3000);
+startAutoScroll();
+
+// Pause auto-scroll on hover
+instaTrack.addEventListener('mouseenter', () => {
+  clearInterval(autoScrollInterval);
+});
+
+instaTrack.addEventListener('mouseleave', () => {
+  startAutoScroll();
+});
 
 // Make Instagram slider draggable
 let isDown = false;
@@ -692,6 +1349,30 @@ instaTrack.addEventListener('touchmove', (e) => {
   const x = e.touches[0].pageX - instaTrack.offsetLeft;
   const walk = (x - startX) * 2;
   instaTrack.scrollLeft = scrollLeft - walk;
+});
+
+// Add smooth scrolling for anchor links
+document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+  anchor.addEventListener('click', function(e) {
+    if (this.getAttribute('href') === '#') return;
+    
+    e.preventDefault();
+    const targetId = this.getAttribute('href');
+    if (targetId === '#home') {
+      window.scrollTo({
+        top: 0,
+        behavior: 'smooth'
+      });
+    } else {
+      const targetElement = document.querySelector(targetId);
+      if (targetElement) {
+        window.scrollTo({
+          top: targetElement.offsetTop - 80,
+          behavior: 'smooth'
+        });
+      }
+    }
+  });
 });
 </script>
 
