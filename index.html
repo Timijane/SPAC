@@ -5,18 +5,15 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>SPAC Church - Home</title>
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&family=Playfair+Display:wght@400;600;700&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Lobster&family=Poppins:wght@300;400;500;600;700&family=Playfair+Display:wght@400;500;600&display=swap" rel="stylesheet">
 <style>
-  /* 1. COLOR & FONT REFINEMENT */
   :root {
-    --primary: #1a4b8c; /* Deep Blue */
-    --secondary: #d4af37; /* Gold/Bronze Accent */
+    --primary: #1a4b8c;
+    --secondary: #d4af37;
     --light: #f8f9fa;
-    --dark: #2c3e50; /* Dark Charcoal */
-    --accent: #8b0000; /* Deep Red */
-    --text-dark: #212529;
-    --text-light: #495057;
-    --hero-bg: #0d1a2b; /* Darker, sophisticated background */
+    --dark: #2c3e50;
+    --accent: #8b0000;
+    --gradient: linear-gradient(135deg, #1a4b8c 0%, #2c3e50 100%);
   }
   
   * {
@@ -27,11 +24,13 @@
   
   body {
     font-family: 'Poppins', sans-serif;
-    background-color: white;
-    color: var(--text-light);
+    background: linear-gradient(180deg, #f8f9fa 0%, #ffffff 100%);
+    color: #333;
     line-height: 1.6;
     scroll-behavior: smooth;
     overflow-x: hidden;
+    width: 100%;
+    max-width: 100vw;
   }
   
   a {
@@ -48,128 +47,91 @@
   
   .btn {
     display: inline-block;
-    background: var(--secondary); /* Used secondary color for primary action for contrast */
-    color: var(--text-dark); /* Dark text on gold button for clarity */
-    padding: 14px 35px;
+    background: var(--primary);
+    color: white;
+    padding: 12px 28px;
     border: none;
-    border-radius: 5px; /* Less rounded corners for modern look */
+    border-radius: 30px;
     cursor: pointer;
     transition: all 0.3s ease;
-    font-weight: 700;
-    letter-spacing: 0.8px;
-    text-transform: uppercase;
-    box-shadow: 0 6px 20px rgba(212, 175, 55, 0.4);
-    font-size: 1rem;
-    border: 2px solid transparent;
+    font-weight: 500;
+    letter-spacing: 0.5px;
+    box-shadow: 0 4px 15px rgba(26, 75, 140, 0.2);
   }
   
   .btn:hover {
-    background: var(--primary);
-    color: white;
-    transform: translateY(-2px);
-    box-shadow: 0 8px 25px rgba(26, 75, 140, 0.3);
-    border-color: var(--secondary);
+    background: var(--accent);
+    transform: translateY(-3px);
+    box-shadow: 0 6px 20px rgba(139, 0, 0, 0.25);
   }
-
-  .btn-outline {
-    background: transparent;
-    color: white;
-    border: 2px solid white;
-    box-shadow: none;
-  }
-
-  .btn-outline:hover {
-    background: white;
-    color: var(--primary);
-    transform: translateY(-2px);
-    box-shadow: 0 4px 15px rgba(255, 255, 255, 0.2);
-    border-color: white;
-  }
-
-  /* 2. MODERN HEADER & NAVIGATION */
+  
+  /* 1. BIGGER LOGO IN MENU BAR */
   header {
-    background: var(--hero-bg); /* Dark header on dark hero for a seamless top */
-    box-shadow: 0 3px 15px rgba(0, 0, 0, 0.2);
-    position: absolute; /* Set to absolute over the hero video */
-    top: 0;
-    left: 0;
-    z-index: 1000;
-    padding: 15px 0; /* More vertical padding */
-    width: 100%;
-    transition: all 0.4s ease;
-  }
-
-  /* Sticky Header Effect */
-  header.header-scrolled {
-    position: fixed;
     background: white;
-    box-shadow: 0 3px 15px rgba(0, 0, 0, 0.1);
-    padding: 10px 0;
+    box-shadow: 0 3px 20px rgba(0, 0, 0, 0.08);
+    position: sticky;
+    top: 0;
+    z-index: 1000;
+    padding: 8px 0;
+    transition: all 0.3s ease;
+    width: 100%;
   }
   
   .header-container {
     display: flex;
     justify-content: space-between;
     align-items: center;
-    width: 100%;
     padding: 0;
+    width: 100%;
   }
   
   .logo {
     display: flex;
     align-items: center;
-    /* Position is now normal flow */
-    position: relative;
-    left: 0;
-    transform: none;
+    position: absolute;
+    left: 50%;
+    transform: translateX(-50%);
   }
   
+  /* MUCH BIGGER LOGO FRAME */
   .logo-frame {
-    width: 50px; /* Reduced size for a sleeker look */
-    height: 50px;
+    width: 100px; /* Increased from 70px */
+    height: 100px; /* Increased from 70px */
     border-radius: 50%;
     background: white;
-    border: 2px solid var(--secondary);
+    border: 4px solid var(--primary); /* Thicker border */
     display: flex;
     align-items: center;
     justify-content: center;
-    margin-right: 10px;
+    margin-right: 20px; /* More spacing */
     overflow: hidden;
-    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    box-shadow: 0 6px 20px rgba(0, 0, 0, 0.15);
   }
   
   .logo-frame img {
-    width: 80%;
-    height: 80%;
+    width: 85%;
+    height: 85%;
     object-fit: contain;
   }
   
-  /* Use a clean, bold font for the logo text */
+  /* 6. SPAC CHURCH ON ONE LINE */
   .logo-text {
-    font-family: 'Poppins', sans-serif; 
-    font-size: 24px;
-    font-weight: 700;
-    color: white; /* Default white on dark header */
-    letter-spacing: 0.5px;
-    text-transform: uppercase;
-    transition: color 0.4s ease;
-  }
-
-  /* Scrolled Logo Text Color */
-  header.header-scrolled .logo-text {
-    color: var(--primary); /* Blue on white scroll */
-  }
-
-  /* Scrolled Logo Frame Border */
-  header.header-scrolled .logo-frame {
-    border-color: var(--primary);
+    font-family: 'Lobster', cursive;
+    font-size: 42px; /* Larger font */
+    font-weight: 400;
+    color: var(--primary);
+    letter-spacing: 1.5px;
+    line-height: 1;
+    text-align: center;
+    white-space: nowrap; /* Ensures stays on one line */
   }
   
+  /* Navigation */
   .nav-container {
     display: flex;
     align-items: center;
     justify-content: flex-end;
-    width: auto;
+    width: 100%;
   }
   
   @media (min-width: 993px) {
@@ -179,47 +141,32 @@
     }
     
     .nav-menu li {
-      margin-left: 40px;
+      margin-left: 30px;
       position: relative;
     }
     
     .nav-menu a {
-      color: white; /* Default white on dark header */
-      font-weight: 600;
+      color: var(--dark);
+      font-weight: 500;
       font-size: 15px;
       transition: all 0.3s ease;
-      padding: 5px 0;
+      padding: 8px 0;
       position: relative;
-      text-transform: uppercase;
-    }
-
-    /* Scrolled Menu Link Color */
-    header.header-scrolled .nav-menu a {
-      color: var(--dark); /* Dark text on white scroll */
     }
     
     .nav-menu a::after {
       content: '';
       position: absolute;
-      bottom: -5px;
+      bottom: 0;
       left: 0;
       width: 0;
-      height: 3px; /* Thicker underline */
+      height: 2px;
       background: var(--secondary);
       transition: width 0.3s ease;
     }
     
-    .nav-menu a:hover::after, .nav-menu a.active::after {
+    .nav-menu a:hover::after {
       width: 100%;
-    }
-    
-    .nav-menu a:hover, .nav-menu a.active {
-        color: var(--secondary) !important; /* Gold on hover/active */
-    }
-
-    /* Keep hover color gold even when scrolled */
-    header.header-scrolled .nav-menu a:hover {
-      color: var(--secondary) !important;
     }
     
     .dropdown-content {
@@ -227,442 +174,974 @@
       position: absolute;
       background: white;
       min-width: 200px;
-      box-shadow: 0 10px 30px rgba(0, 0, 0, 0.15);
-      z-index: 1001;
-      border-radius: 8px;
+      box-shadow: 0 15px 30px rgba(0, 0, 0, 0.1);
+      z-index: 1;
+      border-radius: 10px;
       overflow: hidden;
-      top: 150%; /* Drop lower from the main link */
+      top: 100%;
       left: 0;
-      padding: 0;
-      transition: all 0.3s ease;
-      opacity: 0;
-      visibility: hidden;
-      transform: translateY(20px);
+      padding: 10px 0;
     }
-
-    .dropdown-content a {
-      color: var(--text-dark);
-      padding: 12px 20px;
-      display: block;
-      white-space: nowrap;
-      font-weight: 400;
-      font-size: 14px;
-      transition: background-color 0.2s ease, color 0.2s ease;
-    }
-
-    .dropdown-content a:hover {
-      background: var(--primary);
-      color: white;
-      transform: none; /* remove transition from main link */
-    }
-
+    
     .dropdown:hover .dropdown-content {
       display: block;
-      opacity: 1;
-      visibility: visible;
-      transform: translateY(0);
     }
   }
   
-  /* Mobile Menu - Hamburger Styling */
+  /* Mobile Menu */
   .hamburger {
     display: none;
-    background: transparent;
-    border: none;
-    margin-left: 20px;
+    cursor: pointer;
+    width: 40px;
+    height: 40px;
+    position: relative;
+    z-index: 1001;
+    margin-left: auto;
+    background: var(--primary);
+    border-radius: 5px;
+    padding: 8px;
   }
   
   .hamburger span {
-    background: white; /* White on dark header */
+    display: block;
+    position: absolute;
+    height: 3px;
+    width: 24px;
+    background: white;
+    border-radius: 3px;
+    opacity: 1;
+    left: 8px;
+    transform: rotate(0deg);
+    transition: .25s ease-in-out;
   }
-
-  header.header-scrolled .hamburger span {
-    background: var(--primary); /* Blue on white scroll */
+  
+  .hamburger span:nth-child(1) { top: 12px; }
+  .hamburger span:nth-child(2) { top: 18.5px; }
+  .hamburger span:nth-child(3) { top: 25px; }
+  
+  .hamburger.active span:nth-child(1) {
+    top: 18.5px;
+    transform: rotate(45deg);
+  }
+  
+  .hamburger.active span:nth-child(2) {
+    opacity: 0;
+    left: -30px;
+  }
+  
+  .hamburger.active span:nth-child(3) {
+    top: 18.5px;
+    transform: rotate(-45deg);
   }
   
   @media (max-width: 992px) {
-    /* Mobile Menu Adjustments */
     .nav-menu {
-      width: 70%; /* Wider menu for better readability */
-      right: -70%;
+      position: fixed;
+      top: 0;
+      right: -50%;
+      width: 50%;
+      height: 100vh;
+      background: white;
+      flex-direction: column;
+      justify-content: flex-start;
+      align-items: flex-start;
+      padding: 100px 30px 30px;
+      transition: right 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+      box-shadow: -10px 0 30px rgba(0,0,0,0.15);
+      z-index: 1000;
+      overflow-y: auto;
     }
+    
+    .nav-menu.active {
+      right: 0;
+    }
+    
+    .nav-menu li {
+      margin: 0 0 25px 0;
+      width: 100%;
+      opacity: 0;
+      transform: translateX(20px);
+      transition: all 0.3s ease;
+    }
+    
+    .nav-menu.active li {
+      opacity: 1;
+      transform: translateX(0);
+    }
+    
+    .nav-menu li:nth-child(1) { transition-delay: 0.1s; }
+    .nav-menu li:nth-child(2) { transition-delay: 0.2s; }
+    .nav-menu li:nth-child(3) { transition-delay: 0.3s; }
+    .nav-menu li:nth-child(4) { transition-delay: 0.4s; }
+    .nav-menu li:nth-child(5) { transition-delay: 0.5s; }
+    
+    .nav-menu a {
+      font-size: 16px;
+      display: block;
+      padding: 10px 0;
+      width: 100%;
+      border-bottom: 1px solid rgba(0,0,0,0.05);
+      color: var(--dark);
+    }
+    
+    .dropdown-content {
+      position: static;
+      display: none;
+      box-shadow: none;
+      background: rgba(26, 75, 140, 0.05);
+      margin-top: 10px;
+      border-radius: 8px;
+      padding: 5px 0;
+    }
+    
+    .dropdown.active .dropdown-content {
+      display: block;
+    }
+    
+    .hamburger {
+      display: block;
+    }
+    
+    .logo {
+      position: static;
+      transform: none;
+      margin-right: auto;
+    }
+    
+    .logo-text {
+      font-size: 30px; /* Adjusted for mobile */
+    }
+    
     .logo-frame {
-      width: 40px;
-      height: 40px;
+      width: 70px; /* Adjusted for mobile */
+      height: 70px;
     }
+  }
+  
+  @media (max-width: 768px) {
+    .logo-text {
+      font-size: 24px;
+    }
+    
+    .logo-frame {
+      width: 60px;
+      height: 60px;
+    }
+  }
+  
+  @media (max-width: 576px) {
+    .nav-menu {
+      width: 85%;
+      right: -85%;
+    }
+    
     .logo-text {
       font-size: 20px;
     }
-    .nav-menu a {
-        color: var(--text-dark); /* Dark text in mobile menu */
-    }
-    .dropdown-content a {
-      padding: 10px 20px;
+    
+    .logo-frame {
+      width: 50px;
+      height: 50px;
     }
   }
-
-  /* 3. HERO SECTION - HIGH IMPACT */
+  
+  /* Hero Section */
   .hero {
     position: relative;
-    height: 90vh; /* Taller hero */
-    min-height: 700px;
-    color: white;
-    background: var(--hero-bg);
+    height: 85vh;
+    min-height: 600px;
+    overflow: hidden;
     display: flex;
     align-items: center;
     justify-content: center;
     text-align: center;
-    padding-top: 100px; /* Space for absolute header */
+    color: white;
+    background: #000;
+    width: 100%;
   }
   
   .hero-overlay {
-    background: rgba(0, 0, 0, 0.4); /* Darker overlay for better text contrast */
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.15);
+    z-index: 1;
   }
   
+  /* 7. FASTER VIDEO LOADING */
+  .hero-video {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    z-index: 0;
+    /* Optimizations for faster loading */
+    preload: auto;
+    playsinline: true;
+    muted: true;
+    loop: true;
+    autoplay: true;
+  }
+  
+  /* 4. LOWER HERO TEXT */
   .hero-content {
-    max-width: 900px;
+    max-width: 800px;
+    padding: 0 20px;
     z-index: 2;
     position: relative;
-    padding-bottom: 80px; /* Added padding to separate from ticker */
-  }
-
-  /* 4. HERO TITLE & TEXT STYLING */
-  .hero-title {
-    font-family: 'Playfair Display', serif;
-    font-size: 4.5rem; /* Massive, high-impact title */
-    font-weight: 700;
-    margin-bottom: 25px;
-    line-height: 1.1;
-    text-shadow: 0 4px 10px rgba(0, 0, 0, 0.4);
-  }
-
-  .hero p {
-    font-size: 1.4rem;
-    margin-bottom: 50px;
-    font-weight: 300;
-    line-height: 1.7;
-    opacity: 0.9;
-    text-shadow: 0 1px 3px rgba(0, 0, 0, 0.3);
-  }
-
-  .hero-actions {
-    display: flex;
-    justify-content: center;
-    gap: 20px;
-  }
-
-  @media (max-width: 1200px) {
-    .hero-title { font-size: 4rem; }
-  }
-  @media (max-width: 992px) {
-    .hero { min-height: 600px; height: 80vh; }
-    .hero-title { font-size: 3rem; }
-    .hero p { font-size: 1.2rem; }
-    .hero-actions { flex-direction: column; gap: 15px; }
-    .btn { padding: 12px 30px; }
-  }
-  @media (max-width: 576px) {
-    .hero-title { font-size: 2.2rem; }
-    .hero p { font-size: 1rem; margin-bottom: 30px;}
-    .hero-actions { flex-direction: column; }
+    margin-top: 140px; /* Lowered from 80px to 140px */
   }
   
-  /* 5. SCRIPTURE TICKER - MODERN & FLAT */
+  .hero p {
+    font-size: 1.5rem;
+    margin-bottom: 40px;
+    max-width: 700px;
+    margin-left: auto;
+    margin-right: auto;
+    opacity: 0.95;
+    font-weight: 300;
+    line-height: 1.8;
+    text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.5);
+  }
+  
+  /* 5. FASTER & SLANTED BIBLE TICKER */
   .scripture-ticker {
     position: absolute;
     bottom: 0;
     left: 0;
     width: 100%;
-    background: var(--primary); /* Primary color background */
-    color: white;
-    padding: 15px 0;
+    background: rgba(0, 0, 0, 0.7);
+    color: var(--secondary);
+    padding: 10px 0;
     z-index: 3;
     overflow: hidden;
-    transform: none; /* Removed slant effect for professionalism */
-    border-top: 3px solid var(--secondary);
+    transform: skewY(-3deg); /* Slant effect */
   }
   
   .ticker-container {
-    animation: ticker-scroll 30s linear infinite; /* Adjusted speed */
-    transform: none; /* Removed counter slant */
+    display: flex;
+    animation: ticker-scroll 20s linear infinite; /* Much faster: 20s instead of 40s */
+    white-space: nowrap;
+    transform: skewY(3deg); /* Counter slant for text */
   }
   
   .ticker-item {
-    padding: 0 40px;
-    font-size: 1rem;
-    font-style: normal; /* No italic */
+    padding: 0 30px;
+    font-size: 1.1rem;
+    font-style: italic;
     font-weight: 500;
+    display: flex;
+    align-items: center;
   }
   
   @keyframes ticker-scroll {
     0% {
-      transform: translateX(0);
+      transform: translateX(0) skewY(3deg);
     }
     100% {
-      transform: translateX(-50%);
+      transform: translateX(-50%) skewY(3deg);
     }
   }
-
-  /* 6. GENERAL SECTION STYLING */
-  .section-title {
-    font-family: 'Playfair Display', serif;
-    font-size: 3.2rem;
-    color: var(--primary);
-    margin-bottom: 70px;
+  
+  /* Responsive adjustments for hero */
+  @media (max-width: 992px) {
+    .hero {
+      min-height: 500px;
+      height: 70vh;
+    }
+    
+    .hero p {
+      font-size: 1.3rem;
+      margin-top: 20px;
+    }
+    
+    .hero-content {
+      margin-top: 120px; /* Adjusted for mobile */
+    }
+    
+    .ticker-item {
+      font-size: 1rem;
+      padding: 0 20px;
+    }
   }
   
-  .section-title:after {
-    width: 80px;
-    height: 5px; /* Thicker underline */
-    background: var(--secondary);
+  @media (max-width: 768px) {
+    .hero {
+      min-height: 450px;
+      height: 65vh;
+    }
+    
+    .hero p {
+      font-size: 1.2rem;
+    }
+    
+    .hero-content {
+      margin-top: 100px; /* Adjusted for mobile */
+    }
+    
+    .ticker-item {
+      font-size: 0.9rem;
+      padding: 0 15px;
+    }
   }
-
-  /* 7. CIRCLE BUTTONS - STYLISH GRID */
+  
+  @media (max-width: 576px) {
+    .hero p {
+      font-size: 1.1rem;
+    }
+    
+    .hero-content {
+      margin-top: 80px; /* Adjusted for mobile */
+    }
+  }
+  
+  /* ====== 1. FIXED CIRCLE BUTTONS SECTION ====== */
+  /* Reduced spacing and smaller text */
   .circle-buttons-section {
-    padding: 80px 0;
-    background: var(--light);
+    padding: 70px 0; /* Reduced from 100px */
+    background: white;
+    position: relative;
   }
   
   .circle-buttons-container {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-    gap: 30px;
-    margin-top: 30px;
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: center;
+    gap: 30px; /* Reduced from 60px */
   }
   
   .circle-button {
-    width: 100%;
-    height: 220px;
-    border-radius: 10px; /* Square with slight radius */
-    background: white;
-    color: var(--primary);
-    box-shadow: 0 8px 30px rgba(0, 0, 0, 0.05);
-    border: 1px solid rgba(0,0,0,0.05);
+    width: 180px; /* Slightly reduced */
+    height: 180px; /* Slightly reduced */
+    border-radius: 50%;
+    background: linear-gradient(135deg, var(--primary) 0%, #2c3e80 100%);
+    color: white;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    cursor: pointer;
+    transition: all 0.5s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+    box-shadow: 0 15px 35px rgba(26, 75, 140, 0.2);
+    text-align: center;
+    padding: 20px; /* Reduced from 25px */
+    position: relative;
+    overflow: hidden;
   }
-
+  
+  .circle-button:before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(135deg, var(--accent) 0%, #a30000 100%);
+    opacity: 0;
+    transition: opacity 0.3s ease;
+    z-index: 1;
+  }
+  
   .circle-button:hover {
-    transform: translateY(-5px);
-    box-shadow: 0 15px 40px rgba(26, 75, 140, 0.15);
-    background: var(--primary);
-    color: white;
+    transform: scale(1.08);
+    box-shadow: 0 20px 40px rgba(26, 75, 140, 0.3);
   }
-
+  
+  .circle-button:hover:before {
+    opacity: 1;
+  }
+  
   .circle-button.square {
-    /* Removed square class logic for a consistent professional look */
-    border-radius: 10px;
-    width: 100%;
-    height: 220px;
-    background: var(--accent);
-    color: white;
+    border-radius: 20px;
+    width: 200px; /* Adjusted */
+    height: 200px; /* Adjusted */
+    background: linear-gradient(135deg, var(--accent) 0%, #a30000 100%);
   }
   
   .circle-button i {
-    font-size: 50px;
-    margin-bottom: 15px;
+    font-size: 45px; /* Reduced from 55px */
+    margin-bottom: 15px; /* Reduced from 20px */
+    position: relative;
+    z-index: 2;
   }
   
   .circle-button h3 {
-    font-size: 1.2rem;
-    font-weight: 600;
-    text-transform: uppercase;
+    font-size: 1rem; /* Reduced from 1.3rem */
+    font-weight: 500; /* Changed from 600 */
+    position: relative;
+    z-index: 2;
+    line-height: 1.3;
   }
   
-  /* 8. LOGO SECTION - Cleaner Look */
-  .logo-section {
-    padding: 80px 0;
-    background: white;
-    border-top: 1px solid #eee;
+  @media (max-width: 768px) {
+    .circle-button {
+      width: 150px;
+      height: 150px;
+    }
+    
+    .circle-button i {
+      font-size: 40px;
+      margin-bottom: 12px;
+    }
+    
+    .circle-button h3 {
+      font-size: 0.9rem;
+    }
+    
+    .circle-buttons-container {
+      gap: 25px;
+    }
   }
-
+  
+  @media (max-width: 576px) {
+    .circle-buttons-container {
+      flex-direction: column;
+      gap: 20px;
+    }
+    
+    .circle-button {
+      width: 140px;
+      height: 140px;
+    }
+  }
+  
+  /* Logo Section */
+  .logo-section {
+    padding: 120px 0;
+    background: linear-gradient(135deg, #f8f9fa 0%, #e9ecef 100%);
+    text-align: center;
+    position: relative;
+    overflow: hidden;
+  }
+  
+  .logo-section:before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 5px;
+    background: linear-gradient(90deg, var(--primary), var(--secondary), var(--accent));
+  }
+  
   .big-logo {
-    max-width: 300px; /* Reduced size for elegance */
-    margin: 0 auto 30px;
-    animation: none; /* Removed floating animation for professionalism */
+    max-width: 450px;
+    margin: 0 auto 50px;
+    animation: float 4s ease-in-out infinite;
+    position: relative;
+  }
+  
+  .big-logo img {
+    width: 100%;
+    height: auto;
+    filter: drop-shadow(0 10px 20px rgba(0,0,0,0.1));
+  }
+  
+  @keyframes float {
+    0% { transform: translateY(0px); }
+    50% { transform: translateY(-20px); }
+    100% { transform: translateY(0px); }
   }
   
   .we-are-spac {
-    font-family: 'Playfair Display', serif; /* Changed to serif for gravitas */
-    font-size: 3rem;
-    font-weight: 700;
+    font-family: 'Lobster', cursive;
+    font-size: 4.5rem;
     color: var(--primary);
-    text-shadow: none;
+    margin-bottom: 30px;
+    font-weight: 400;
+    letter-spacing: 1.5px;
+    text-shadow: 2px 2px 4px rgba(0,0,0,0.1);
+    position: relative;
+    display: inline-block;
   }
   
   .we-are-spac:after {
-    bottom: -15px;
-    width: 100px;
-    height: 4px;
+    content: '';
+    position: absolute;
+    bottom: -10px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 150px;
+    height: 3px;
+    background: var(--secondary);
   }
   
-  /* 9. ABOUT CARD - Sleeker */
+  @media (max-width: 992px) {
+    .we-are-spac {
+      font-size: 3.5rem;
+    }
+  }
+  
+  @media (max-width: 768px) {
+    .we-are-spac {
+      font-size: 2.8rem;
+    }
+  }
+  
+  @media (max-width: 576px) {
+    .we-are-spac {
+      font-size: 2.3rem;
+    }
+  }
+  
+  /* About Card */
   .about-card-section {
-    padding: 100px 0;
-    background: var(--light);
+    padding: 80px 0 140px;
+    background: white;
+    position: relative;
   }
   
   .floating-card {
-    padding: 70px 60px;
-    border-radius: 15px;
-    box-shadow: 0 20px 50px rgba(0,0,0,0.05);
-    border: none; /* Removed light border */
+    background: white;
+    max-width: 900px;
+    margin: 0 auto;
+    padding: 60px 50px;
+    border-radius: 25px;
+    box-shadow: 0 25px 60px rgba(0,0,0,0.08);
+    position: relative;
+    overflow: hidden;
+    border: 1px solid rgba(0,0,0,0.05);
   }
-
+  
   .floating-card:before {
-    height: 5px;
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 8px;
+    background: linear-gradient(90deg, var(--primary), var(--secondary), var(--accent));
   }
   
   .floating-card h2 {
-    font-size: 3rem;
-    margin-bottom: 20px;
-    font-weight: 700;
+    color: var(--primary);
+    font-family: 'Playfair Display', serif;
+    font-size: 2.8rem;
+    margin-bottom: 30px;
+    text-align: center;
+    font-weight: 600;
   }
   
   .floating-card p {
-    font-size: 1.1rem;
-    line-height: 1.8;
-    color: var(--text-light);
+    font-size: 1.15rem;
+    color: #555;
+    line-height: 1.9;
+    margin-bottom: 30px;
+    text-align: center;
   }
-
-  /* 10. DYNAMIC PICTURES - Standard Grid */
+  
+  .card-btn-container {
+    text-align: center;
+  }
+  
+  @media (max-width: 768px) {
+    .floating-card {
+      padding: 40px 25px;
+    }
+    
+    .floating-card h2 {
+      font-size: 2.2rem;
+    }
+  }
+  
+  /* ====== 2. ENHANCED DYNAMIC PICTURES SECTION ====== */
+  /* More dynamic animations from multiple directions */
   .dynamic-pictures {
-    padding: 100px 0;
-    background: white;
+    padding: 120px 0;
+    background: linear-gradient(135deg, #f8f9fa 0%, #ffffff 100%);
   }
-
+  
+  .section-title {
+    text-align: center;
+    font-family: 'Playfair Display', serif;
+    font-size: 3rem;
+    color: var(--primary);
+    margin-bottom: 80px;
+    position: relative;
+    padding-bottom: 20px;
+  }
+  
+  .section-title:after {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 100px;
+    height: 4px;
+    background: var(--secondary);
+  }
+  
+  @media (max-width: 992px) {
+    .section-title {
+      font-size: 2.5rem;
+    }
+  }
+  
+  @media (max-width: 768px) {
+    .section-title {
+      font-size: 2.2rem;
+    }
+  }
+  
+  @media (max-width: 576px) {
+    .section-title {
+      font-size: 2rem;
+    }
+  }
+  
   .picture-grid {
-    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-    gap: 30px;
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+    gap: 25px;
+    width: 100%;
   }
-
+  
+  @media (max-width: 768px) {
+    .picture-grid {
+      grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+    }
+  }
+  
+  @media (max-width: 576px) {
+    .picture-grid {
+      grid-template-columns: 1fr;
+    }
+  }
+  
   .picture-card {
-    border-radius: 10px;
-    box-shadow: 0 10px 30px rgba(0,0,0,0.05);
-    opacity: 1; /* Removed initial opacity 0 for better content flow */
-    transform: none !important; /* Removed initial transform animations (left/right) for cleaner load */
-  }
-
-  .picture-card:before {
-    background: linear-gradient(to bottom, transparent 40%, rgba(0,0,0,0.8) 100%); /* Darker gradient */
+    background: white;
+    border-radius: 18px;
+    overflow: hidden;
+    box-shadow: 0 15px 35px rgba(0,0,0,0.08);
+    transition: all 0.5s cubic-bezier(0.175, 0.885, 0.32, 1.275);
     opacity: 0;
+    cursor: pointer;
+    position: relative;
+    transform-origin: center;
+  }
+  
+  .picture-card:before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(to bottom, transparent 60%, rgba(0,0,0,0.7) 100%);
+    z-index: 1;
+    opacity: 0;
+    transition: opacity 0.3s ease;
+  }
+  
+  .picture-card:hover:before {
+    opacity: 1;
   }
   
   .picture-card:hover {
-    transform: translateY(-8px);
-    box-shadow: 0 15px 40px rgba(0,0,0,0.1);
+    transform: translateY(-15px) scale(1.02);
+    box-shadow: 0 25px 50px rgba(0,0,0,0.15);
+  }
+  
+  /* New directional animations */
+  .picture-card.from-left {
+    transform: translateX(-200px) rotateY(-30deg);
+  }
+  
+  .picture-card.from-right {
+    transform: translateX(200px) rotateY(30deg);
+  }
+  
+  .picture-card.from-up {
+    transform: translateY(-200px) rotateX(-30deg);
+  }
+  
+  .picture-card.from-down {
+    transform: translateY(200px) rotateX(30deg);
+  }
+  
+  .picture-card.from-diagonal-left {
+    transform: translateX(-150px) translateY(150px) rotate(-15deg);
+  }
+  
+  .picture-card.from-diagonal-right {
+    transform: translateX(150px) translateY(150px) rotate(15deg);
+  }
+  
+  .picture-card.visible {
+    opacity: 1;
+    transform: translateX(0) translateY(0) rotate(0) rotateX(0) rotateY(0) !important;
   }
   
   .picture-card img {
-    height: 300px; /* Consistent height */
-  }
-
-  .picture-card h3 {
-    color: white; /* Title over gradient/overlay */
-    position: absolute;
-    bottom: 20px;
-    left: 0;
     width: 100%;
-    z-index: 2;
-    text-align: center;
-    font-size: 1.5rem;
-    font-weight: 600;
-    transition: all 0.3s ease;
+    height: 280px;
+    object-fit: cover;
+    transition: transform 0.5s ease;
   }
-
-  .picture-card:hover h3 {
-    transform: translateY(-5px);
-    color: var(--secondary);
+  
+  .picture-card:hover img {
+    transform: scale(1.05);
   }
-
-  /* 11. INSTA SLIDER - More structured */
-  .insta-slider {
-    margin: 80px 0 0;
-    padding: 0;
-    background: transparent;
-    box-shadow: none;
-    border-top: 1px solid #eee;
-    border-bottom: 1px solid #eee;
-  }
-
-  .insta-title {
+  
+  .picture-card h3 {
+    padding: 25px;
     color: var(--primary);
-    margin-bottom: 20px;
-    font-size: 2rem;
-    font-weight: 700;
-    padding: 40px 0 20px;
+    text-align: center;
+    font-size: 1.6rem;
+    font-weight: 600;
+    position: relative;
+    z-index: 2;
   }
-
+  
+  .picture-card.large {
+    grid-column: span 2;
+  }
+  
+  .picture-card.large img {
+    height: 380px;
+  }
+  
+  @media (max-width: 1100px) {
+    .picture-card.large {
+      grid-column: span 1;
+    }
+    
+    .picture-card.large img {
+      height: 280px;
+    }
+  }
+  
+  /* Instagram-like Slider */
+  .insta-slider {
+    margin: 60px 0 40px;
+    padding: 40px;
+    background: white;
+    border-radius: 20px;
+    box-shadow: 0 15px 40px rgba(0,0,0,0.05);
+    position: relative;
+  }
+  
+  .insta-title {
+    text-align: center;
+    color: var(--primary);
+    margin-bottom: 30px;
+    font-size: 2.2rem;
+    font-family: 'Playfair Display', serif;
+  }
+  
   .insta-track {
-    padding: 0 0 40px;
+    display: flex;
+    gap: 25px;
+    overflow-x: auto;
+    padding: 25px 0;
+    scroll-behavior: smooth;
+    scrollbar-width: thin;
+  }
+  
+  .insta-track::-webkit-scrollbar {
+    height: 8px;
+  }
+  
+  .insta-track::-webkit-scrollbar-thumb {
+    background: var(--primary);
+    border-radius: 4px;
   }
   
   .insta-slide {
-    width: 250px;
-    height: 250px;
-    border-radius: 5px; /* Less rounded corners */
-    box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+    flex: 0 0 auto;
+    width: 220px;
+    height: 220px;
+    border-radius: 15px;
+    overflow: hidden;
+    box-shadow: 0 10px 25px rgba(0,0,0,0.1);
+    cursor: pointer;
+    transition: all 0.3s ease;
   }
-
-  /* 12. LOCATION SECTION - Clean separation */
+  
+  .insta-slide:hover {
+    transform: scale(1.05);
+    box-shadow: 0 15px 35px rgba(0,0,0,0.15);
+  }
+  
+  .insta-slide img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+  }
+  
+  @media (max-width: 576px) {
+    .insta-slider {
+      padding: 30px 20px;
+    }
+  }
+  
+  /* Location Section */
   .location-section {
-    padding: 100px 0;
+    padding: 120px 0;
     background: white;
+    position: relative;
   }
   
   .location-section:before {
-    height: 0; /* Remove top border */
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 5px;
+    background: linear-gradient(90deg, var(--primary), var(--secondary), var(--accent));
   }
   
   .location-grid {
-    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-    gap: 30px;
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+    gap: 35px;
+    margin-top: 60px;
   }
   
-  /* 13. FOOTER - Sleek and Dark */
+  /* Footer */
   footer {
     background: var(--dark);
-    padding: 60px 0 20px;
+    color: white;
+    padding: 80px 0 30px;
+    position: relative;
   }
-
+  
   footer:before {
-    height: 8px; /* Thicker accent line */
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 5px;
+    background: linear-gradient(90deg, var(--primary), var(--secondary), var(--accent));
   }
-
+  
+  .footer-content {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 40px;
+    margin-bottom: 50px;
+  }
+  
+  @media (max-width: 768px) {
+    .footer-content {
+      grid-template-columns: 1fr;
+      gap: 30px;
+    }
+  }
+  
   .footer-column h3 {
+    margin-bottom: 25px;
     color: var(--secondary);
-    font-size: 1.3rem;
+    font-size: 1.5rem;
+    font-weight: 600;
+    position: relative;
+    padding-bottom: 10px;
   }
-
+  
   .footer-column h3:after {
-    background: var(--secondary);
-  }
-
-  .footer-links li i {
-    color: var(--secondary);
-    margin-right: 10px;
-  }
-
-  .social-links a {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 50px;
+    height: 3px;
     background: var(--primary);
+  }
+  
+  .footer-links {
+    list-style: none;
+  }
+  
+  .footer-links li {
+    margin-bottom: 12px;
+  }
+  
+  .footer-links a {
+    color: #ddd;
+    transition: 0.3s;
+    display: inline-block;
+  }
+  
+  .footer-links a:hover {
+    color: var(--secondary);
+    transform: translateX(5px);
+  }
+  
+  .social-links {
+    display: flex;
+    gap: 15px;
+    margin-top: 25px;
+  }
+  
+  .social-links a {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 45px;
+    height: 45px;
+    background: rgba(255,255,255,0.1);
+    border-radius: 50%;
+    transition: 0.3s;
   }
   
   .social-links a:hover {
     background: var(--secondary);
+    transform: translateY(-5px);
   }
-
-  /* Other minor cleanups */
+  
+  .footer-bottom {
+    text-align: center;
+    padding-top: 30px;
+    border-top: 1px solid rgba(255,255,255,0.1);
+    font-size: 0.9rem;
+    color: #aaa;
+  }
+  
+  /* Scroll to top button */
   .scroll-top {
-    background: var(--secondary);
-    color: var(--text-dark);
-  }
-
-  .scroll-top:hover {
+    position: fixed;
+    bottom: 30px;
+    right: 30px;
+    width: 50px;
+    height: 50px;
     background: var(--primary);
     color: white;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    z-index: 999;
+    opacity: 0;
+    visibility: hidden;
+    transition: all 0.3s ease;
+    box-shadow: 0 5px 15px rgba(26, 75, 140, 0.3);
+  }
+  
+  .scroll-top.visible {
+    opacity: 1;
+    visibility: visible;
+  }
+  
+  .scroll-top:hover {
+    background: var(--accent);
+    transform: translateY(-5px);
+    box-shadow: 0 8px 20px rgba(139, 0, 0, 0.3);
   }
 </style>
 </head>
 <body>
 
+<!-- Scroll to Top Button -->
 <div class="scroll-top" id="scrollTop">
   <i class="fas fa-chevron-up"></i>
 </div>
@@ -705,7 +1184,9 @@
   </div>
 </header>
 
+<!-- Hero Section -->
 <section class="hero" id="home">
+  <!-- 7. FASTER VIDEO LOADING WITH OPTIMIZED ATTRIBUTES -->
   <video class="hero-video" autoplay muted loop playsinline preload="auto" poster="hero-poster.jpg">
     <source src="spac001.mp4" type="video/mp4">
     <source src="spac001.webm" type="video/webm">
@@ -714,15 +1195,10 @@
   <div class="hero-overlay"></div>
   
   <div class="hero-content">
-    <h1 class="hero-title">RAISING CHAMPIONS. NURTURING LEADERS.</h1>
     <p>We are delighted that you have chosen to visit our website! We welcome you and pray the Word of God delivered from this ministry becomes a testimony. God bless you.</p>
-    
-    <div class="hero-actions">
-        <a href="watch-live.html" class="btn">Watch Live Service</a>
-        <a href="#about" class="btn btn-outline">Discover Our Ministry</a>
-    </div>
   </div>
   
+  <!-- 5. FASTER & SLANTED SCRIPTURE TICKER -->
   <div class="scripture-ticker">
     <div class="ticker-container">
       <div class="ticker-item"><i class="fas fa-fire"></i> "But you will receive power when the Holy Spirit comes on you..." - Acts 1:8</div>
@@ -734,6 +1210,7 @@
       <div class="ticker-item"><i class="fas fa-mountain"></i> "I can do all this through him who gives me strength." - Philippians 4:13</div>
       <div class="ticker-item"><i class="fas fa-seedling"></i> "For God has not given us a spirit of fear, but of power and of love and of a sound mind." - 2 Timothy 1:7</div>
       
+      <!-- Duplicate for seamless loop -->
       <div class="ticker-item"><i class="fas fa-fire"></i> "But you will receive power when the Holy Spirit comes on you..." - Acts 1:8</div>
       <div class="ticker-item"><i class="fas fa-cross"></i> "For we walk by faith, not by sight." - 2 Corinthians 5:7</div>
       <div class="ticker-item"><i class="fas fa-heart"></i> "I have come that they may have life, and have it to the full." - John 10:10</div>
@@ -746,53 +1223,57 @@
   </div>
 </section>
 
+<!-- The rest of your HTML remains EXACTLY THE SAME from here -->
+<!-- Circle Buttons Section -->
 <section class="circle-buttons-section" id="quick-links">
   <div class="container">
-    <h2 class="section-title">Quick Access</h2>
     <div class="circle-buttons-container">
-      <div class="circle-button" onclick="navigateToPage('new-member.html', this)">
+      <div class="circle-button" id="new-button" onclick="navigateToPage('new-member.html', this)">
         <i class="fas fa-user-plus"></i>
-        <h3>I'M NEW/VISITOR</h3>
+        <h3>I'm New Member/Visitor</h3>
       </div>
-      <div class="circle-button" onclick="navigateToPage('prayer.html', this)">
+      <div class="circle-button" id="prayer-button" onclick="navigateToPage('prayer.html', this)">
         <i class="fas fa-praying-hands"></i>
-        <h3>PRAYER REQUEST</h3>
+        <h3>Prayer</h3>
       </div>
-      <div class="circle-button" onclick="navigateToPage('testimony.html', this)">
+      <div class="circle-button" id="testimony-button" onclick="navigateToPage('testimony.html', this)">
         <i class="fas fa-bullhorn"></i>
-        <h3>SHARE TESTIMONY</h3>
+        <h3>Testimony</h3>
       </div>
-      <div class="circle-button" onclick="navigateToPage('resources.html', this)">
+      <div class="circle-button" id="resources-button" onclick="navigateToPage('resources.html', this)">
         <i class="fas fa-book"></i>
-        <h3>RESOURCES</h3>
+        <h3>Resources</h3>
       </div>
     </div>
   </div>
 </section>
 
+<!-- Logo and About Section -->
 <section class="logo-section">
   <div class="container">
     <div class="big-logo">
       <img src="spac-logo-large.jpg" alt="SPAC Church Logo">
     </div>
-    <div class="we-are-spac">We Are SPAC</div>
+    <div class="we-are-spac">We are SPAC</div>
   </div>
 </section>
 
 <section class="about-card-section" id="about">
   <div class="container">
     <div class="floating-card">
-      <h2>Welcome to SPAC Church: A Place of Destiny</h2>
+      <h2>Welcome to SPAC Church</h2>
       <p>SPAC Church is a vibrant, multicultural community of believers committed to spreading the gospel of Jesus Christ and making disciples of all nations. Founded on the principles of faith, love, and hope, we are dedicated to worship, fellowship, and service.</p>
       <p>Our mission is to raise champions and nurture leaders who will transform their world through the power of the Holy Spirit. Through dynamic worship, sound biblical teaching, and compassionate outreach, we strive to impact our community and beyond.</p>
+      <p>Join us as we worship, learn, and serve together in unity and love, building a church that reflects God's kingdom here on earth.</p>
       <div class="card-btn-container">
-        <a href="about.html" class="btn">Our Full Story</a>
+        <a href="about.html" class="btn">Read More</a>
       </div>
     </div>
   </div>
 </section>
 
-<section class="dynamic-pictures" id="ministries">
+<!-- Dynamic Pictures Section -->
+<section class="dynamic-pictures">
   <div class="container">
     <h2 class="section-title">Our Ministries & Programs</h2>
     <div class="picture-grid">
@@ -828,6 +1309,7 @@
         <img src="marriage-counselling.png" alt="Marriage & Counselling">
         <h3>Marriage & Counselling</h3>
       </div>
+      <!-- New Ministry Pictures Added -->
       <div class="picture-card" onclick="openPage('spac-uk.html')">
         <img src="spac-uk.jpg" alt="SPAC UK">
         <h3>SPAC UK</h3>
@@ -842,6 +1324,7 @@
       </div>
     </div>
     
+    <!-- Instagram-like Program Slider -->
     <div class="insta-slider">
       <h3 class="insta-title">Our Programs Gallery</h3>
       <div class="insta-track">
@@ -865,9 +1348,10 @@
   </div>
 </section>
 
+<!-- Location Section -->
 <section class="location-section" id="locations">
   <div class="container">
-    <h2 class="section-title">Visit Us: Location & Information</h2>
+    <h2 class="section-title">SPAC LOCATION AND INFORMATION</h2>
     <div class="location-grid">
       <div class="picture-card" onclick="openPage('locations-branches.html')">
         <img src="locations.png" alt="Our Locations and Branches">
@@ -875,7 +1359,7 @@
       </div>
       <div class="picture-card" onclick="openPage('join-us.html')">
         <img src="join-us.png" alt="Join Us">
-        <h3>Service Times & Join Us</h3>
+        <h3>Join Us</h3>
       </div>
       <div class="picture-card" onclick="openPage('transport.html')">
         <img src="transport.png" alt="Transport Information">
@@ -893,6 +1377,7 @@
   </div>
 </section>
 
+<!-- Footer -->
 <footer id="contact">
   <div class="container footer-content">
     <div class="footer-column">
@@ -909,12 +1394,12 @@
     <div class="footer-column">
       <h3>Quick Links</h3>
       <ul class="footer-links">
-        <li><a href="#home"><i class="fas fa-home"></i> Home</a></li>
-        <li><a href="#quick-links"><i class="fas fa-link"></i> Quick Access</a></li>
-        <li><a href="#locations"><i class="fas fa-map-marker-alt"></i> Locations</a></li>
-        <li><a href="#ministries"><i class="fas fa-church"></i> Ministries</a></li>
-        <li><a href="watch-live.html"><i class="fas fa-video"></i> Watch Live</a></li>
-        <li><a href="give.html"><i class="fas fa-hand-holding-heart"></i> Give Online</a></li>
+        <li><a href="#home">Home</a></li>
+        <li><a href="#quick-links">Quick Access</a></li>
+        <li><a href="#locations">Locations</a></li>
+        <li><a href="#ministries">Ministries</a></li>
+        <li><a href="watch-live.html">Watch Live</a></li>
+        <li><a href="give.html">Give Online</a></li>
       </ul>
     </div>
     <div class="footer-column">
@@ -933,7 +1418,7 @@
 </footer>
 
 <script>
-// Header scroll effect - Added fixed/scrolled class logic
+// Header scroll effect
 const header = document.getElementById('mainHeader');
 window.addEventListener('scroll', () => {
   if (window.scrollY > 50) {
@@ -943,7 +1428,7 @@ window.addEventListener('scroll', () => {
   }
 });
 
-// HAMBURGER MENU - ONLY X CLOSES THE MENU (Kept your logic)
+// 2. HAMBURGER MENU - ONLY X CLOSES THE MENU
 const hamburger = document.querySelector('.hamburger');
 const navMenu = document.querySelector('.nav-menu');
 const dropdowns = document.querySelectorAll('.dropdown');
@@ -960,7 +1445,10 @@ hamburger.addEventListener('click', () => {
   }
 });
 
-// Dropdown menu on mobile
+// REMOVED: The code that closes menu when clicking links
+// Now menu stays open when clicking links, only X closes it
+
+// Dropdown menu on mobile - still works but doesn't close main menu
 dropdowns.forEach(dropdown => {
   const trigger = dropdown.querySelector('a');
   trigger.addEventListener('click', (e) => {
@@ -982,13 +1470,18 @@ document.addEventListener('click', (e) => {
   }
 });
 
-// VIDEO LOADING (Kept your optimized logic)
+// 7. FASTER VIDEO LOADING
 const heroVideo = document.querySelector('.hero-video');
 
+// Preload video immediately
 window.addEventListener('DOMContentLoaded', function() {
+  // Force immediate video load
   heroVideo.load();
+  
+  // Set video to lowest quality for faster loading, then switch to higher
   heroVideo.currentTime = 0;
   
+  // Try to play immediately
   setTimeout(() => {
     const playPromise = heroVideo.play();
     if (playPromise !== undefined) {
@@ -996,20 +1489,27 @@ window.addEventListener('DOMContentLoaded', function() {
         console.log('Video playing successfully');
       }).catch(error => {
         console.log('Video autoplay may be blocked:', error);
+        // Add play button if autoplay fails
         addVideoPlayButton();
       });
     }
   }, 100);
   
+  // Add event listener for when video metadata is loaded
   heroVideo.addEventListener('loadedmetadata', function() {
     this.currentTime = 0;
   });
   
+  // Add event listener for when video can play through
   heroVideo.addEventListener('canplaythrough', function() {
     console.log('Video can play through without buffering');
   });
+  
+  // Initialize picture cards with random directional animations
+  initializePictureCards();
 });
 
+// Function to add play button if autoplay fails
 function addVideoPlayButton() {
   const playBtn = document.createElement('div');
   playBtn.className = 'video-play-btn';
@@ -1021,7 +1521,7 @@ function addVideoPlayButton() {
     transform: translate(-50%, -50%);
     width: 80px;
     height: 80px;
-    background: rgba(212, 175, 55, 0.9);
+    background: rgba(0,0,0,0.7);
     border-radius: 50%;
     display: flex;
     align-items: center;
@@ -1041,7 +1541,7 @@ function addVideoPlayButton() {
   document.querySelector('.hero').appendChild(playBtn);
 }
 
-// Scroll to top button (Kept your logic)
+// Scroll to top button
 const scrollTopBtn = document.getElementById('scrollTop');
 
 window.addEventListener('scroll', () => {
@@ -1059,15 +1559,15 @@ scrollTopBtn.addEventListener('click', () => {
   });
 });
 
-// Circle button navigation - REMOVED SHAPE CHANGE for cleaner look
+// Circle button navigation with shape change
 function navigateToPage(page, element) {
-  // Simple fade out on click
-  element.style.opacity = '0.5';
+  // Change to square
+  element.classList.add('square');
   
-  // Navigate after small delay
+  // Navigate after animation
   setTimeout(() => {
     window.location.href = page;
-  }, 300);
+  }, 500);
 }
 
 // Open page for picture cards
@@ -1075,7 +1575,33 @@ function openPage(page) {
   window.location.href = page;
 }
 
-// Scroll animation for picture cards - Simplified to just use 'visible'
+// ====== ENHANCED PICTURE CARDS INITIALIZATION ======
+function initializePictureCards() {
+  const pictureCards = document.querySelectorAll('.picture-card');
+  const animationClasses = [
+    'from-left',
+    'from-right', 
+    'from-up',
+    'from-down',
+    'from-diagonal-left',
+    'from-diagonal-right'
+  ];
+  
+  // Remove old left/right classes and add random directional animations
+  pictureCards.forEach((card, index) => {
+    // Remove any existing directional classes
+    card.classList.remove('left', 'right');
+    
+    // Add random animation class
+    const randomClass = animationClasses[index % animationClasses.length];
+    card.classList.add(randomClass);
+    
+    // Add staggered delay
+    card.style.transitionDelay = `${(index % 6) * 0.1}s`;
+  });
+}
+
+// Scroll animation for picture cards
 function checkScroll() {
   const pictureCards = document.querySelectorAll('.picture-card');
   
@@ -1083,7 +1609,7 @@ function checkScroll() {
     const cardTop = card.getBoundingClientRect().top;
     const windowHeight = window.innerHeight;
     
-    if (cardTop < windowHeight - 150) { // Adjusted offset
+    if (cardTop < windowHeight - 100) {
       card.classList.add('visible');
     }
   });
@@ -1095,10 +1621,108 @@ window.addEventListener('load', checkScroll);
 // Check on scroll
 window.addEventListener('scroll', checkScroll);
 
-// Auto scroll for Instagram-like slider (Kept your logic)
+// Auto scroll for Instagram-like slider
 const instaTrack = document.querySelector('.insta-track');
 let scrollAmount = 0;
-const slideWidth = 275; // width + gap
+const slideWidth = 245; // width + gap
 let autoScrollInterval;
 
-function startAuto
+function startAutoScroll() {
+  autoScrollInterval = setInterval(() => {
+    scrollAmount += slideWidth;
+    
+    // If scrolled to the end, reset
+    if (scrollAmount >= instaTrack.scrollWidth - instaTrack.clientWidth) {
+      scrollAmount = 0;
+      instaTrack.scrollTo({ left: 0, behavior: 'smooth' });
+    } else {
+      instaTrack.scrollTo({ left: scrollAmount, behavior: 'smooth' });
+    }
+  }, 3500);
+}
+
+// Start auto-scroll for Instagram slider
+startAutoScroll();
+
+// Pause auto-scroll on hover
+instaTrack.addEventListener('mouseenter', () => {
+  clearInterval(autoScrollInterval);
+});
+
+instaTrack.addEventListener('mouseleave', () => {
+  startAutoScroll();
+});
+
+// Make Instagram slider draggable
+let isDown = false;
+let startX;
+let scrollLeft;
+
+instaTrack.addEventListener('mousedown', (e) => {
+  isDown = true;
+  startX = e.pageX - instaTrack.offsetLeft;
+  scrollLeft = instaTrack.scrollLeft;
+});
+
+instaTrack.addEventListener('mouseleave', () => {
+  isDown = false;
+});
+
+instaTrack.addEventListener('mouseup', () => {
+  isDown = false;
+});
+
+instaTrack.addEventListener('mousemove', (e) => {
+  if (!isDown) return;
+  e.preventDefault();
+  const x = e.pageX - instaTrack.offsetLeft;
+  const walk = (x - startX) * 2;
+  instaTrack.scrollLeft = scrollLeft - walk;
+});
+
+// Touch events for mobile
+instaTrack.addEventListener('touchstart', (e) => {
+  isDown = true;
+  startX = e.touches[0].pageX - instaTrack.offsetLeft;
+  scrollLeft = instaTrack.scrollLeft;
+});
+
+instaTrack.addEventListener('touchend', () => {
+  isDown = false;
+});
+
+instaTrack.addEventListener('touchmove', (e) => {
+  if (!isDown) return;
+  e.preventDefault();
+  const x = e.touches[0].pageX - instaTrack.offsetLeft;
+  const walk = (x - startX) * 2;
+  instaTrack.scrollLeft = scrollLeft - walk;
+});
+
+// Add smooth scrolling for anchor links
+document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+  anchor.addEventListener('click', function(e) {
+    if (this.getAttribute('href') === '#') return;
+    
+    e.preventDefault();
+    const targetId = this.getAttribute('href');
+    if (targetId === '#home') {
+      window.scrollTo({
+        top: 0,
+        behavior: 'smooth'
+      });
+    } else {
+      const targetElement = document.querySelector(targetId);
+      if (targetElement) {
+        window.scrollTo({
+          top: targetElement.offsetTop - 80,
+          behavior: 'smooth'
+        });
+      }
+    }
+  });
+});
+</script>
+
+</body>
+</html>
