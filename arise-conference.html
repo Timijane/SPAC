@@ -1,0 +1,1085 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ARISE Conference - SPAC Church</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&family=Montserrat:wght@700;800&family=Playfair+Display:wght@400;500;600&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --primary: #1a4b8c;
+            --secondary: #d4af37;
+            --accent: #8b0000;
+            --dark: #2c3e50;
+            --light: #f8f9fa;
+            --fire: #FF4500;
+            --purple: #6a0dad;
+        }
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body { 
+            font-family: 'Poppins', sans-serif; 
+            line-height: 1.7; 
+            color: #333; 
+            background: #0a0f2b; 
+            overflow-x: hidden;
+        }
+        .container { width: 100%; max-width: 1200px; margin: 0 auto; padding: 0 20px; }
+
+        /* ====== SPIRITUAL HERO SECTION ====== */
+        .arise-hero {
+            position: relative;
+            height: 100vh;
+            min-height: 800px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            overflow: hidden;
+            background: radial-gradient(ellipse at center, #1a1a3a 0%, #0a0f2b 70%);
+        }
+        .hero-glows {
+            position: absolute;
+            top: 0; left: 0;
+            width: 100%; height: 100%;
+            z-index: 1;
+            overflow: hidden;
+        }
+        .glow {
+            position: absolute;
+            border-radius: 50%;
+            filter: blur(60px);
+            opacity: 0.4;
+        }
+        .glow-1 { background: var(--fire); width: 400px; height: 400px; top: 10%; left: 10%; animation: float 15s infinite ease-in-out; }
+        .glow-2 { background: var(--purple); width: 300px; height: 300px; bottom: 20%; right: 15%; animation: float 18s infinite ease-in-out reverse; }
+        .glow-3 { background: var(--secondary); width: 200px; height: 200px; top: 60%; left: 70%; animation: float 12s infinite ease-in-out; }
+        @keyframes float {
+            0%, 100% { transform: translateY(0) scale(1); }
+            50% { transform: translateY(-30px) scale(1.05); }
+        }
+        .hero-content {
+            position: relative;
+            z-index: 3;
+            text-align: center;
+            max-width: 1000px;
+            padding: 40px;
+            animation: fadeInUp 1s ease-out;
+        }
+        .hero-logo {
+            font-family: 'Montserrat', sans-serif;
+            font-size: 8.5rem;
+            font-weight: 800;
+            background: linear-gradient(to right, #FF4500, #FF8C00, #d4af37);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            line-height: 1;
+            margin-bottom: 20px;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            text-shadow: 0 10px 30px rgba(255, 69, 0, 0.3);
+        }
+        .hero-subtitle {
+            font-size: 2.2rem;
+            font-weight: 300;
+            margin-bottom: 20px;
+            color: rgba(255,255,255,0.9);
+            font-family: 'Playfair Display', serif;
+            font-style: italic;
+        }
+        .hero-verse {
+            font-size: 1.4rem;
+            color: var(--secondary);
+            margin-bottom: 40px;
+            font-weight: 500;
+            padding: 15px 30px;
+            background: rgba(212, 175, 55, 0.1);
+            border-radius: 10px;
+            display: inline-block;
+            border-left: 4px solid var(--secondary);
+        }
+        .hero-details {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 30px;
+            margin-top: 60px;
+        }
+        .detail-card {
+            background: rgba(255,255,255,0.05);
+            backdrop-filter: blur(10px);
+            border-radius: 15px;
+            padding: 30px;
+            border: 1px solid rgba(255,255,255,0.1);
+            transition: all 0.3s ease;
+        }
+        .detail-card:hover {
+            transform: translateY(-10px);
+            background: rgba(255,255,255,0.1);
+            border-color: rgba(212, 175, 55, 0.3);
+        }
+        .detail-icon {
+            font-size: 2.5rem;
+            color: var(--secondary);
+            margin-bottom: 20px;
+        }
+        .detail-title {
+            font-size: 1.3rem;
+            font-weight: 600;
+            margin-bottom: 10px;
+            color: white;
+        }
+        .detail-text {
+            color: rgba(255,255,255,0.7);
+            font-size: 1rem;
+        }
+        .floating-arrow {
+            position: absolute;
+            bottom: 40px;
+            left: 50%;
+            transform: translateX(-50%);
+            z-index: 4;
+            color: white;
+            font-size: 2rem;
+            animation: bounce 2s infinite;
+            cursor: pointer;
+        }
+        @keyframes bounce {
+            0%, 20%, 50%, 80%, 100% { transform: translateY(0) translateX(-50%); }
+            40% { transform: translateY(-20px) translateX(-50%); }
+            60% { transform: translateY(-10px) translateX(-50%); }
+        }
+
+        /* ====== HEADER ====== */
+        header {
+            position: fixed;
+            top: 0;
+            width: 100%;
+            background: rgba(10, 15, 43, 0.95);
+            backdrop-filter: blur(10px);
+            z-index: 1000;
+            border-bottom: 1px solid rgba(255,255,255,0.05);
+            transition: all 0.3s ease;
+        }
+        .header-container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 20px 0;
+        }
+        .logo a {
+            display: flex;
+            align-items: center;
+            text-decoration: none;
+            color: white;
+            font-weight: 700;
+            font-size: 1.8rem;
+            font-family: 'Montserrat', sans-serif;
+        }
+        .logo i { color: var(--fire); margin-right: 10px; }
+        .nav-links { display: flex; gap: 35px; }
+        .nav-links a {
+            text-decoration: none;
+            color: rgba(255,255,255,0.8);
+            font-weight: 500;
+            position: relative;
+            padding: 5px 0;
+            transition: all 0.3s ease;
+        }
+        .nav-links a:hover {
+            color: var(--secondary);
+        }
+        .nav-links a:after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 0;
+            height: 2px;
+            background: var(--fire);
+            transition: width 0.3s ease;
+        }
+        .nav-links a:hover:after { width: 100%; }
+        .nav-cta {
+            background: linear-gradient(to right, var(--fire), #FF8C00);
+            color: white;
+            padding: 12px 30px;
+            border-radius: 30px;
+            text-decoration: none;
+            font-weight: 600;
+            transition: all 0.3s ease;
+            box-shadow: 0 5px 20px rgba(255, 69, 0, 0.3);
+        }
+        .nav-cta:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 8px 25px rgba(255, 69, 0, 0.4);
+        }
+        .mobile-menu-btn { display: none; }
+
+        /* ====== CONTENT SECTIONS ====== */
+        .section {
+            padding: 120px 0;
+            position: relative;
+        }
+        .section-light { background: white; }
+        .section-dark { background: #0a0f2b; color: white; }
+        .section-gradient { 
+            background: linear-gradient(135deg, #1a1a3a 0%, #0a0f2b 100%);
+            color: white;
+        }
+        .section-title {
+            text-align: center;
+            font-size: 3.2rem;
+            font-family: 'Montserrat', sans-serif;
+            font-weight: 700;
+            margin-bottom: 20px;
+        }
+        .section-light .section-title { color: var(--dark); }
+        .section-dark .section-title, 
+        .section-gradient .section-title { color: white; }
+        .section-subtitle {
+            text-align: center;
+            font-size: 1.3rem;
+            max-width: 800px;
+            margin: 0 auto 70px;
+            font-weight: 300;
+            opacity: 0.9;
+        }
+
+        /* About Section */
+        .about-content {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 70px;
+            align-items: center;
+            margin-top: 60px;
+        }
+        .about-text h3 {
+            font-size: 2.5rem;
+            color: var(--secondary);
+            margin-bottom: 25px;
+            line-height: 1.3;
+        }
+        .about-text p {
+            font-size: 1.1rem;
+            margin-bottom: 25px;
+            color: rgba(255,255,255,0.9);
+        }
+        .about-highlights {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 25px;
+            margin-top: 40px;
+        }
+        .highlight-box {
+            background: rgba(255,255,255,0.05);
+            padding: 25px;
+            border-radius: 15px;
+            border-left: 4px solid var(--fire);
+        }
+        .highlight-box h4 {
+            color: white;
+            margin-bottom: 10px;
+            font-size: 1.2rem;
+        }
+        .about-image {
+            position: relative;
+            border-radius: 20px;
+            overflow: hidden;
+            box-shadow: 0 30px 70px rgba(0,0,0,0.4);
+            height: 500px;
+        }
+        .about-image img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.7s ease;
+        }
+        .about-image:hover img { transform: scale(1.05); }
+        .image-overlay {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 100%;
+            padding: 30px;
+            background: linear-gradient(transparent, rgba(0,0,0,0.8));
+            color: white;
+        }
+
+        /* Pastor Section */
+        .pastor-section {
+            background: linear-gradient(135deg, rgba(26, 75, 140, 0.1) 0%, rgba(106, 13, 173, 0.1) 100%);
+            border-radius: 30px;
+            padding: 80px;
+            margin-top: 80px;
+            position: relative;
+            overflow: hidden;
+        }
+        .pastor-content {
+            display: grid;
+            grid-template-columns: 300px 1fr;
+            gap: 60px;
+            align-items: center;
+        }
+        .pastor-image {
+            position: relative;
+            border-radius: 20px;
+            overflow: hidden;
+            box-shadow: 0 20px 50px rgba(0,0,0,0.3);
+        }
+        .pastor-image img {
+            width: 100%;
+            height: 400px;
+            object-fit: cover;
+        }
+        .pastor-title {
+            color: var(--secondary);
+            font-size: 1rem;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            margin-bottom: 10px;
+        }
+        .pastor-name {
+            font-size: 2.8rem;
+            font-weight: 700;
+            color: white;
+            margin-bottom: 20px;
+            font-family: 'Montserrat', sans-serif;
+        }
+        .pastor-bio {
+            font-size: 1.1rem;
+            line-height: 1.8;
+            color: rgba(255,255,255,0.9);
+            margin-bottom: 30px;
+        }
+        .pastor-quote {
+            font-style: italic;
+            font-size: 1.3rem;
+            color: var(--secondary);
+            padding-left: 30px;
+            border-left: 4px solid var(--fire);
+            margin-top: 40px;
+        }
+
+        /* Schedule Section */
+        .schedule-container {
+            max-width: 900px;
+            margin: 60px auto 0;
+            position: relative;
+        }
+        .timeline {
+            position: relative;
+            padding-left: 50px;
+        }
+        .timeline:before {
+            content: '';
+            position: absolute;
+            left: 20px;
+            top: 0;
+            bottom: 0;
+            width: 3px;
+            background: linear-gradient(to bottom, var(--fire), var(--purple));
+        }
+        .timeline-item {
+            position: relative;
+            margin-bottom: 50px;
+            background: white;
+            border-radius: 15px;
+            padding: 30px;
+            box-shadow: 0 15px 40px rgba(0,0,0,0.08);
+            border-left: 5px solid var(--fire);
+        }
+        .timeline-item:before {
+            content: '';
+            position: absolute;
+            left: -40px;
+            top: 30px;
+            width: 25px;
+            height: 25px;
+            border-radius: 50%;
+            background: var(--fire);
+            border: 5px solid white;
+            box-shadow: 0 0 0 3px var(--fire);
+        }
+        .timeline-time {
+            font-size: 1.1rem;
+            font-weight: 600;
+            color: var(--fire);
+            margin-bottom: 10px;
+        }
+        .timeline-title {
+            font-size: 1.5rem;
+            color: var(--dark);
+            margin-bottom: 15px;
+        }
+        .timeline-desc {
+            color: #666;
+            font-size: 1rem;
+        }
+        .section-dark .timeline-item {
+            background: rgba(255,255,255,0.05);
+            border-color: var(--secondary);
+        }
+        .section-dark .timeline-title { color: white; }
+        .section-dark .timeline-desc { color: rgba(255,255,255,0.7); }
+
+        /* Testimonials */
+        .testimonials-container {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            gap: 40px;
+            margin-top: 60px;
+        }
+        .testimonial-card {
+            background: rgba(255,255,255,0.05);
+            backdrop-filter: blur(10px);
+            border-radius: 20px;
+            padding: 40px;
+            border: 1px solid rgba(255,255,255,0.1);
+            position: relative;
+            transition: all 0.3s ease;
+        }
+        .testimonial-card:hover {
+            transform: translateY(-10px);
+            border-color: rgba(212, 175, 55, 0.3);
+            box-shadow: 0 20px 50px rgba(0,0,0,0.2);
+        }
+        .testimonial-text {
+            font-size: 1.1rem;
+            font-style: italic;
+            margin-bottom: 30px;
+            color: rgba(255,255,255,0.9);
+            line-height: 1.8;
+        }
+        .testimonial-author {
+            display: flex;
+            align-items: center;
+        }
+        .author-img {
+            width: 60px;
+            height: 60px;
+            border-radius: 50%;
+            overflow: hidden;
+            margin-right: 20px;
+            border: 3px solid var(--secondary);
+        }
+        .author-img img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+        .author-info h4 {
+            color: white;
+            margin-bottom: 5px;
+        }
+        .author-info p {
+            color: rgba(255,255,255,0.6);
+            font-size: 0.9rem;
+        }
+        .quote-icon {
+            position: absolute;
+            top: 30px;
+            right: 30px;
+            color: rgba(212, 175, 55, 0.3);
+            font-size: 3rem;
+        }
+
+        /* Registration */
+        .registration-container {
+            max-width: 900px;
+            margin: 60px auto 0;
+            background: white;
+            border-radius: 25px;
+            overflow: hidden;
+            box-shadow: 0 30px 70px rgba(0,0,0,0.15);
+        }
+        .reg-header {
+            background: linear-gradient(to right, var(--fire), #FF8C00);
+            color: white;
+            padding: 40px;
+            text-align: center;
+        }
+        .reg-header h3 {
+            font-size: 2.5rem;
+            margin-bottom: 10px;
+        }
+        .reg-form {
+            padding: 50px;
+        }
+        .form-row {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 30px;
+            margin-bottom: 30px;
+        }
+        .form-group {
+            margin-bottom: 25px;
+        }
+        .form-group label {
+            display: block;
+            margin-bottom: 10px;
+            font-weight: 500;
+            color: var(--dark);
+        }
+        .form-group input, .form-group select, .form-group textarea {
+            width: 100%;
+            padding: 15px;
+            border: 2px solid #eaeaea;
+            border-radius: 10px;
+            font-family: 'Poppins', sans-serif;
+            font-size: 1rem;
+            transition: all 0.3s ease;
+        }
+        .form-group input:focus, .form-group select:focus, .form-group textarea:focus {
+            outline: none;
+            border-color: var(--fire);
+            box-shadow: 0 0 0 3px rgba(255, 69, 0, 0.1);
+        }
+        .submit-btn {
+            display: block;
+            width: 100%;
+            background: linear-gradient(to right, var(--fire), #FF8C00);
+            color: white;
+            border: none;
+            padding: 20px;
+            font-size: 1.2rem;
+            font-weight: 600;
+            border-radius: 15px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            margin-top: 40px;
+            box-shadow: 0 10px 30px rgba(255, 69, 0, 0.3);
+        }
+        .submit-btn:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 15px 40px rgba(255, 69, 0, 0.4);
+        }
+
+        /* Footer */
+        footer {
+            background: #050920;
+            color: white;
+            padding: 80px 0 40px;
+        }
+        .footer-content {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 50px;
+            margin-bottom: 60px;
+        }
+        .footer-column h3 {
+            color: var(--secondary);
+            margin-bottom: 25px;
+            font-size: 1.5rem;
+        }
+        .footer-links { list-style: none; }
+        .footer-links li { margin-bottom: 12px; }
+        .footer-links a {
+            color: rgba(255,255,255,0.7);
+            text-decoration: none;
+            transition: all 0.3s ease;
+        }
+        .footer-links a:hover { 
+            color: var(--secondary);
+            padding-left: 5px;
+        }
+        .social-links {
+            display: flex;
+            gap: 15px;
+            margin-top: 25px;
+        }
+        .social-links a {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            width: 45px;
+            height: 45px;
+            background: rgba(255,255,255,0.1);
+            border-radius: 50%;
+            color: white;
+            font-size: 1.2rem;
+            transition: all 0.3s ease;
+        }
+        .social-links a:hover {
+            background: var(--fire);
+            transform: translateY(-5px);
+        }
+        .footer-bottom {
+            text-align: center;
+            padding-top: 40px;
+            border-top: 1px solid rgba(255,255,255,0.1);
+            color: rgba(255,255,255,0.5);
+            font-size: 0.9rem;
+        }
+
+        /* Responsive */
+        @media (max-width: 992px) {
+            .hero-logo { font-size: 5.5rem; }
+            .hero-subtitle { font-size: 1.8rem; }
+            .about-content, .pastor-content { grid-template-columns: 1fr; }
+            .form-row { grid-template-columns: 1fr; }
+            .nav-links { display: none; }
+            .mobile-menu-btn {
+                display: block;
+                background: none;
+                border: none;
+                font-size: 1.8rem;
+                color: white;
+                cursor: pointer;
+            }
+            .pastor-section { padding: 50px 30px; }
+            .section { padding: 80px 0; }
+            .section-title { font-size: 2.5rem; }
+        }
+        @media (max-width: 768px) {
+            .hero-logo { font-size: 4rem; }
+            .hero-subtitle { font-size: 1.5rem; }
+            .hero-details { grid-template-columns: 1fr; }
+            .about-highlights { grid-template-columns: 1fr; }
+            .testimonials-container { grid-template-columns: 1fr; }
+            .reg-form { padding: 30px; }
+        }
+        @keyframes fadeInUp {
+            from { opacity: 0; transform: translateY(40px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+    </style>
+</head>
+<body>
+    <!-- Header -->
+    <header>
+        <div class="container header-container">
+            <div class="logo">
+                <a href="index.html"><i class="fas fa-fire"></i> ARISE CONFERENCE</a>
+            </div>
+            <nav>
+                <div class="nav-links">
+                    <a href="#about">About</a>
+                    <a href="#schedule">Schedule</a>
+                    <a href="#pastor">Pastor Yomi</a>
+                    <a href="#testimonials">Testimonials</a>
+                    <a href="#register">Register</a>
+                </div>
+                <a href="#register" class="nav-cta">Register Now</a>
+                <button class="mobile-menu-btn"><i class="fas fa-bars"></i></button>
+            </nav>
+        </div>
+    </header>
+
+    <!-- Hero Section -->
+    <section class="arise-hero" id="home">
+        <div class="hero-glows">
+            <div class="glow glow-1"></div>
+            <div class="glow glow-2"></div>
+            <div class="glow glow-3"></div>
+        </div>
+        
+        <div class="hero-content">
+            <h1 class="hero-logo">ARISE</h1>
+            <p class="hero-subtitle">A Monthly Gathering of Fire & Impartation</p>
+            <div class="hero-verse">"Arise, shine, for your light has come, and the glory of the LORD rises upon you." - Isaiah 60:1</div>
+            
+            <div class="hero-details">
+                <div class="detail-card">
+                    <div class="detail-icon"><i class="fas fa-calendar-alt"></i></div>
+                    <h3 class="detail-title">First Saturday Monthly</h3>
+                    <p class="detail-text">Every first Saturday of the month. Join us for a powerful time of prayer, worship, and impartation.</p>
+                </div>
+                <div class="detail-card">
+                    <div class="detail-icon"><i class="fas fa-users"></i></div>
+                    <h3 class="detail-title">Youth & Young Adults</h3>
+                    <p class="detail-text">A gathering specifically designed for young people ages 16-35 seeking spiritual awakening.</p>
+                </div>
+                <div class="detail-card">
+                    <div class="detail-icon"><i class="fas fa-praying-hands"></i></div>
+                    <h3 class="detail-title">Prayer & Impartation</h3>
+                    <p class="detail-text">Experience deep prayer, prophetic ministry, and tangible impartation of spiritual gifts.</p>
+                </div>
+            </div>
+        </div>
+        
+        <div class="floating-arrow" onclick="scrollToSection('about')">
+            <i class="fas fa-chevron-down"></i>
+        </div>
+    </section>
+
+    <!-- About Section -->
+    <section class="section section-gradient" id="about">
+        <div class="container">
+            <h2 class="section-title">THE ARISE MOVEMENT</h2>
+            <p class="section-subtitle">More than an event—it's a monthly encounter designed to awaken a generation.</p>
+            
+            <div class="about-content">
+                <div class="about-text">
+                    <h3>Awakening a Generation to Purpose</h3>
+                    <p>The ARISE Conference was birthed from a burden to see young people awakened to their divine purpose and equipped with spiritual fire for the end-time harvest.</p>
+                    <p>Each first Saturday of the month, we gather not just for another church program, but for a divine appointment—a time where heaven meets earth in the lives of young people.</p>
+                    <p>This is where destinies are clarified, spiritual gifts are activated, and a generation arises to take its place in God's kingdom agenda.</p>
+                    
+                    <div class="about-highlights">
+                        <div class="highlight-box">
+                            <h4>Prophetic Atmosphere</h4>
+                            <p>Encounter God's voice through prophetic ministry and words of knowledge.</p>
+                        </div>
+                        <div class="highlight-box">
+                            <h4>Fire Impartation</h4>
+                            <p>Receive tangible spiritual impartation for ministry and marketplace impact.</p>
+                        </div>
+                        <div class="highlight-box">
+                            <h4>Strategic Prayer</h4>
+                            <p>Engage in targeted prayer sessions that break barriers and release destiny.</p>
+                        </div>
+                        <div class="highlight-box">
+                            <h4>Kingdom Networking</h4>
+                            <p>Connect with like-minded young people pursuing God's purpose.</p>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="about-image">
+                    <img src="https://images.unsplash.com/photo-1511988617509-a57c8a288659?ixlib=rb-4.0.3&auto=format&fit=crop&w=2071&q=80" alt="Youth worship gathering">
+                    <div class="image-overlay">
+                        <h4>Next Gathering: February 3</h4>
+                        <p>7:00 PM • SPAC Main Sanctuary</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Schedule Section -->
+    <section class="section section-light" id="schedule">
+        <div class="container">
+            <h2 class="section-title">MONTHLY GATHERING SCHEDULE</h2>
+            <p class="section-subtitle">A typical ARISE Conference flow. Times may vary as we follow the Spirit's leading.</p>
+            
+            <div class="schedule-container">
+                <div class="timeline">
+                    <div class="timeline-item">
+                        <div class="timeline-time">6:30 PM - Arrival & Fellowship</div>
+                        <h3 class="timeline-title">Welcome & Connection</h3>
+                        <p class="timeline-desc">Arrive early for pre-service fellowship, prayer, and connecting with other young believers.</p>
+                    </div>
+                    <div class="timeline-item">
+                        <div class="timeline-time">7:00 PM - Opening Session</div>
+                        <h3 class="timeline-title">Worship & Praise</h3>
+                        <p class="timeline-desc">High-energy worship led by the ARISE worship team. Creating an atmosphere for encounter.</p>
+                    </div>
+                    <div class="timeline-item">
+                        <div class="timeline-time">7:45 PM - Word & Impartation</div>
+                        <h3 class="timeline-title">Teaching Session</h3>
+                        <p class="timeline-desc">Powerful, relevant teaching from Pastor Yomi or special guests. Focused on activation and application.</p>
+                    </div>
+                    <div class="timeline-item">
+                        <div class="timeline-time">8:30 PM - Fire Tunnel</div>
+                        <h3 class="timeline-title">Ministry & Impartation Time</h3>
+                        <p class="timeline-desc">The highlight of the night. Personal prayer, prophetic ministry, and impartation of spiritual gifts.</p>
+                    </div>
+                    <div class="timeline-item">
+                        <div class="timeline-time">9:15 PM - Altar Response</div>
+                        <h3 class="timeline-title">Commitment & Commissioning</h3>
+                        <p class="timeline-desc">Response time for salvation, healing, and dedication. Commissioning for the month ahead.</p>
+                    </div>
+                </div>
+            </div>
+            
+            <div style="text-align: center; margin-top: 60px;">
+                <a href="#register" class="nav-cta">Save Your Spot for Next Month</a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Pastor Section -->
+    <section class="section section-dark" id="pastor">
+        <div class="container">
+            <h2 class="section-title">MEET OUR HOST</h2>
+            <p class="section-subtitle">The visionary behind the ARISE Conference movement.</p>
+            
+            <div class="pastor-section">
+                <div class="pastor-content">
+                    <div class="pastor-image">
+                        <img src="https://images.unsplash.com/photo-1548217395-6c6095abb49c?ixlib=rb-4.0.3&auto=format&fit=crop&w=2064&q=80" alt="Pastor Yomi Okewunmi">
+                    </div>
+                    <div class="pastor-info">
+                        <div class="pastor-title">Visionary & Host</div>
+                        <h2 class="pastor-name">Pastor Yomi Okewunmi</h2>
+                        <p class="pastor-bio">A dynamic minister with over 15 years of experience in youth and young adult ministry, Pastor Yomi carries a unique apostolic and prophetic mantle for awakening a generation. His passion is to see young people encounter God in transformative ways and step into their divine assignments.</p>
+                        <p class="pastor-bio">With a background in theology and practical ministry, Pastor Yomi combines deep biblical insight with relatable application for today's youth. He serves as the Youth and Young Adult Pastor at SPAC Church and travels nationally speaking at youth conferences and leadership summits.</p>
+                        
+                        <div class="pastor-quote">
+                            "My assignment is to sound the alarm for this generation to ARISE from slumber and take their place in God's end-time agenda."
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Testimonials -->
+    <section class="section section-gradient" id="testimonials">
+        <div class="container">
+            <h2 class="section-title">LIVES TRANSFORMED</h2>
+            <p class="section-subtitle">Hear from those who have experienced the ARISE Conference.</p>
+            
+            <div class="testimonials-container">
+                <div class="testimonial-card">
+                    <div class="quote-icon"><i class="fas fa-quote-right"></i></div>
+                    <p class="testimonial-text">"At ARISE, I received a clear word about my calling. That night changed everything. I left with clarity and fire that I'm still carrying today."</p>
+                    <div class="testimonial-author">
+                        <div class="author-img">
+                            <img src="https://images.unsplash.com/photo-1494790108755-2616b786d4d9?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" alt="Sarah">
+                        </div>
+                        <div class="author-info">
+                            <h4>Sarah M.</h4>
+                            <p>University Student</p>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="testimonial-card">
+                    <div class="quote-icon"><i class="fas fa-quote-right"></i></div>
+                    <p class="testimonial-text">"The prayer impartation was tangible. For the first time, I prayed in tongues and felt a new level of spiritual authority. ARISE is not just another meeting."</p>
+                    <div class="testimonial-author">
+                        <div class="author-img">
+                            <img src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" alt="David">
+                        </div>
+                        <div class="author-info">
+                            <h4>David T.</h4>
+                            <p>Young Professional</p>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="testimonial-card">
+                    <div class="quote-icon"><i class="fas fa-quote-right"></i></div>
+                    <p class="testimonial-text">"I was struggling with direction in my life. At ARISE, during the ministry time, I had a vision that clarified my next steps. This conference is supernatural."</p>
+                    <div class="testimonial-author">
+                        <div class="author-img">
+                            <img src="https://images.unsplash.com/photo-1517841905240-472988babdf9?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" alt="Jennifer">
+                        </div>
+                        <div class="author-info">
+                            <h4>Jennifer L.</h4>
+                            <p>Ministry Leader</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Registration -->
+    <section class="section section-light" id="register">
+        <div class="container">
+            <h2 class="section-title">REGISTER FOR NEXT ARISE</h2>
+            <p class="section-subtitle">Join us for the next gathering. Registration is free but required for planning.</p>
+            
+            <div class="registration-container">
+                <div class="reg-header">
+                    <h3>Next ARISE Conference</h3>
+                    <p>Saturday, March 2 • 7:00 PM • SPAC Main Sanctuary</p>
+                </div>
+                
+                <form class="reg-form">
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label for="firstName">First Name *</label>
+                            <input type="text" id="firstName" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="lastName">Last Name *</label>
+                            <input type="text" id="lastName" required>
+                        </div>
+                    </div>
+                    
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label for="email">Email Address *</label>
+                            <input type="email" id="email" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="phone">Phone Number</label>
+                            <input type="tel" id="phone">
+                        </div>
+                    </div>
+                    
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label for="age">Age Group *</label>
+                            <select id="age" required>
+                                <option value="">Select Age Group</option>
+                                <option value="16-19">16-19 years</option>
+                                <option value="20-25">20-25 years</option>
+                                <option value="26-30">26-30 years</option>
+                                <option value="31-35">31-35 years</option>
+                                <option value="35+">35+ years</option>
+                            </select>
+                        </div>
+                        <div class="form-group">
+                            <label for="attendance">First Time Attending? *</label>
+                            <select id="attendance" required>
+                                <option value="">Select</option>
+                                <option value="yes">Yes, first time</option>
+                                <option value="no">No, I've attended before</option>
+                            </select>
+                        </div>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="prayer">Specific Prayer Request (Optional)</label>
+                        <textarea id="prayer" rows="4" placeholder="What would you like prayer for?"></textarea>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="guests">Number of Guests (Including yourself)</label>
+                        <select id="guests">
+                            <option value="1">1 person (just me)</option>
+                            <option value="2">2 people</option>
+                            <option value="3">3 people</option>
+                            <option value="4">4 people</option>
+                            <option value="5">5+ people</option>
+                        </select>
+                    </div>
+                    
+                    <button type="submit" class="submit-btn">Register for March ARISE Conference</button>
+                </form>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-column">
+                    <h3>ARISE CONFERENCE</h3>
+                    <p>A monthly gathering for youth and young adults seeking spiritual awakening, prayer, and impartation. Hosted at SPAC Church.</p>
+                    <div class="social-links">
+                        <a href="#"><i class="fab fa-instagram"></i></a>
+                        <a href="#"><i class="fab fa-tiktok"></i></a>
+                        <a href="#"><i class="fab fa-youtube"></i></a>
+                        <a href="#"><i class="fab fa-twitter"></i></a>
+                    </div>
+                </div>
+                
+                <div class="footer-column">
+                    <h3>Quick Links</h3>
+                    <ul class="footer-links">
+                        <li><a href="#about">About ARISE</a></li>
+                        <li><a href="#schedule">Monthly Schedule</a></li>
+                        <li><a href="#pastor">Pastor Yomi</a></li>
+                        <li><a href="#testimonials">Testimonials</a></li>
+                        <li><a href="#register">Register Now</a></li>
+                    </ul>
+                </div>
+                
+                <div class="footer-column">
+                    <h3>Contact & Location</h3>
+                    <ul class="footer-links">
+                        <li><i class="fas fa-calendar-alt"></i> First Saturday Monthly</li>
+                        <li><i class="fas fa-clock"></i> 7:00 PM - 9:30 PM</li>
+                        <li><i class="fas fa-map-marker-alt"></i> SPAC Main Sanctuary</li>
+                        <li><i class="fas fa-envelope"></i> arise@spacchurch.org</li>
+                        <li><i class="fas fa-phone"></i> (123) 456-7890 ext. 456</li>
+                    </ul>
+                </div>
+            </div>
+            
+            <div class="footer-bottom">
+                &copy; 2024 ARISE Conference. A ministry of SPAC Church. | 
+                <a href="#" style="color: rgba(255,255,255,0.7);">Watch Previous Sessions</a> | 
+                <a href="#" style="color: rgba(255,255,255,0.7);">Prayer Request</a>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // Mobile Menu Toggle
+        const mobileMenuBtn = document.querySelector('.mobile-menu-btn');
+        const navLinks = document.querySelector('.nav-links');
+        
+        mobileMenuBtn.addEventListener('click', () => {
+            navLinks.classList.toggle('active');
+            mobileMenuBtn.innerHTML = navLinks.classList.contains('active') 
+                ? '<i class="fas fa-times"></i>' 
+                : '<i class="fas fa-bars"></i>';
+        });
+
+        // Header Scroll Effect
+        window.addEventListener('scroll', () => {
+            const header = document.querySelector('header');
+            if (window.scrollY > 100) {
+                header.style.background = 'rgba(10, 15, 43, 0.98)';
+                header.style.boxShadow = '0 5px 30px rgba(0,0,0,0.2)';
+            } else {
+                header.style.background = 'rgba(10, 15, 43, 0.95)';
+            }
+        });
+
+        // Smooth Scrolling
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function(e) {
+                if(this.getAttribute('href') === '#') return;
+                
+                e.preventDefault();
+                const targetId = this.getAttribute('href');
+                if(targetId === '#') return;
+                
+                const targetElement = document.querySelector(targetId);
+                if(targetElement) {
+                    window.scrollTo({
+                        top: targetElement.offsetTop - 80,
+                        behavior: 'smooth'
+                    });
+                    
+                    // Close mobile menu if open
+                    if(navLinks.classList.contains('active')) {
+                        navLinks.classList.remove('active');
+                        mobileMenuBtn.innerHTML = '<i class="fas fa-bars"></i>';
+                    }
+                }
+            });
+        });
+
+        // Scroll function for arrow
+        function scrollToSection(sectionId) {
+            const section = document.getElementById(sectionId);
+            if(section) {
+                window.scrollTo({
+                    top: section.offsetTop - 80,
+                    behavior: 'smooth'
+                });
+            }
+        }
+
+        // Form Submission
+        document.querySelector('.reg-form').addEventListener('submit', function(e) {
+            e.preventDefault();
+            alert('Thank you for registering for the ARISE Conference! You will receive a confirmation email shortly.');
+            this.reset();
+        });
+
+        // Animate elements on scroll
+        const observerOptions = {
+            threshold: 0.1,
+            rootMargin: '0px 0px -100px 0px'
+        };
+
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if(entry.isIntersecting) {
+                    entry.target.style.opacity = '1';
+                    entry.target.style.transform = 'translateY(0)';
+                }
+            });
+        }, observerOptions);
+
+        // Observe elements to animate
+        document.querySelectorAll('.detail-card, .timeline-item, .testimonial-card').forEach(el => {
+            el.style.opacity = '0';
+            el.style.transform = 'translateY(30px)';
+            el.style.transition = 'opacity 0.5s ease, transform 0.5s ease';
+            observer.observe(el);
+        });
+    </script>
+</body>
+</html>
