@@ -1,0 +1,1227 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SPAC Counseling & Marriage Ministry</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&family=Playfair+Display:wght@400;500;600&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --primary: #1a4b8c;
+            --secondary: #d4af37;
+            --accent: #8b0000;
+            --teal: #2a9d8f;
+            --purple: #9b5de5;
+            --light: #f8f9fa;
+            --dark: #2c3e50;
+            --gray: #6c757d;
+        }
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body { 
+            font-family: 'Poppins', sans-serif; 
+            line-height: 1.7; 
+            color: #333; 
+            background: #fff;
+        }
+        .container { width: 100%; max-width: 1200px; margin: 0 auto; padding: 0 20px; }
+
+        /* ====== CALMING HERO SECTION ====== */
+        .counseling-hero {
+            position: relative;
+            height: 80vh;
+            min-height: 600px;
+            display: flex;
+            align-items: center;
+            color: white;
+            overflow: hidden;
+            background: linear-gradient(135deg, rgba(26, 75, 140, 0.9) 0%, rgba(42, 157, 143, 0.85) 100%);
+        }
+        .hero-background {
+            position: absolute;
+            top: 0; left: 0;
+            width: 100%; height: 100%;
+            background-image: url('https://images.unsplash.com/photo-1519208255734-6c1cbfa9e80d?ixlib=rb-4.0.3&auto=format&fit=crop&w=2070&q=80');
+            background-size: cover;
+            background-position: center;
+            z-index: -1;
+        }
+        .hero-overlay {
+            position: absolute;
+            top: 0; left: 0;
+            width: 100%; height: 100%;
+            background: linear-gradient(135deg, rgba(26, 75, 140, 0.85) 0%, rgba(42, 157, 143, 0.8) 100%);
+            z-index: 1;
+        }
+        .hero-content {
+            position: relative;
+            z-index: 2;
+            max-width: 800px;
+            padding: 40px;
+        }
+        .hero-subtitle {
+            font-size: 1.2rem;
+            font-weight: 500;
+            color: var(--secondary);
+            margin-bottom: 15px;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+        }
+        .hero-title {
+            font-family: 'Playfair Display', serif;
+            font-size: 4rem;
+            font-weight: 600;
+            line-height: 1.1;
+            margin-bottom: 25px;
+            color: white;
+        }
+        .hero-text {
+            font-size: 1.3rem;
+            font-weight: 300;
+            margin-bottom: 40px;
+            opacity: 0.95;
+            max-width: 600px;
+        }
+        .hero-buttons {
+            display: flex;
+            gap: 20px;
+            flex-wrap: wrap;
+        }
+        .btn-primary, .btn-secondary {
+            display: inline-flex;
+            align-items: center;
+            gap: 10px;
+            padding: 18px 35px;
+            border-radius: 50px;
+            font-weight: 600;
+            font-size: 1.1rem;
+            text-decoration: none;
+            transition: all 0.3s ease;
+            cursor: pointer;
+            border: none;
+        }
+        .btn-primary {
+            background: var(--secondary);
+            color: var(--dark);
+            box-shadow: 0 10px 30px rgba(212, 175, 55, 0.3);
+        }
+        .btn-primary:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 15px 40px rgba(212, 175, 55, 0.4);
+        }
+        .btn-secondary {
+            background: transparent;
+            color: white;
+            border: 2px solid rgba(255,255,255,0.3);
+        }
+        .btn-secondary:hover {
+            background: rgba(255,255,255,0.1);
+            border-color: white;
+            transform: translateY(-3px);
+        }
+        .confidentiality-badge {
+            display: inline-flex;
+            align-items: center;
+            gap: 10px;
+            background: rgba(255,255,255,0.1);
+            backdrop-filter: blur(10px);
+            padding: 12px 25px;
+            border-radius: 30px;
+            margin-top: 40px;
+            color: white;
+            font-size: 0.9rem;
+        }
+
+        /* ====== HEADER ====== */
+        header {
+            position: fixed;
+            top: 0;
+            width: 100%;
+            background: rgba(255, 255, 255, 0.98);
+            box-shadow: 0 5px 30px rgba(0,0,0,0.08);
+            z-index: 1000;
+            transition: all 0.3s ease;
+            backdrop-filter: blur(10px);
+        }
+        .header-container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 15px 0;
+        }
+        .logo a {
+            display: flex;
+            align-items: center;
+            text-decoration: none;
+            color: var(--primary);
+            font-weight: 700;
+            font-size: 1.8rem;
+        }
+        .logo i { color: var(--teal); margin-right: 10px; }
+        .nav-links { display: flex; gap: 30px; }
+        .nav-links a {
+            text-decoration: none;
+            color: var(--dark);
+            font-weight: 500;
+            position: relative;
+            padding: 5px 0;
+        }
+        .nav-links a:after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 0;
+            height: 2px;
+            background: var(--teal);
+            transition: width 0.3s ease;
+        }
+        .nav-links a:hover:after { width: 100%; }
+        .nav-cta {
+            background: var(--teal);
+            color: white;
+            padding: 10px 25px;
+            border-radius: 30px;
+            text-decoration: none;
+            font-weight: 600;
+            transition: all 0.3s ease;
+        }
+        .nav-cta:hover {
+            background: var(--primary);
+            transform: translateY(-3px);
+        }
+        .mobile-menu-btn { display: none; }
+
+        /* ====== CONTENT SECTIONS ====== */
+        .section {
+            padding: 100px 0;
+        }
+        .section-title {
+            font-family: 'Playfair Display', serif;
+            font-size: 3rem;
+            font-weight: 600;
+            color: var(--primary);
+            margin-bottom: 20px;
+            text-align: center;
+        }
+        .section-subtitle {
+            text-align: center;
+            font-size: 1.2rem;
+            color: var(--gray);
+            max-width: 800px;
+            margin: 0 auto 60px;
+            font-weight: 300;
+        }
+        .section-light { background: #f8f9fa; }
+        .section-accent { background: linear-gradient(135deg, #f8f9fa 0%, #e8f4f8 100%); }
+
+        /* Services Overview */
+        .services-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 40px;
+            margin-top: 60px;
+        }
+        .service-card {
+            background: white;
+            border-radius: 20px;
+            padding: 40px 30px;
+            box-shadow: 0 15px 40px rgba(0,0,0,0.08);
+            transition: all 0.3s ease;
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+        }
+        .service-card:hover {
+            transform: translateY(-15px);
+            box-shadow: 0 25px 60px rgba(0,0,0,0.12);
+        }
+        .service-card:before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 5px;
+            background: linear-gradient(90deg, var(--teal), var(--secondary));
+        }
+        .service-icon {
+            width: 80px;
+            height: 80px;
+            background: rgba(42, 157, 143, 0.1);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 0 auto 25px;
+            color: var(--teal);
+            font-size: 2rem;
+        }
+        .service-title {
+            font-size: 1.5rem;
+            color: var(--dark);
+            margin-bottom: 15px;
+        }
+        .service-desc {
+            color: #666;
+            margin-bottom: 25px;
+            font-size: 1rem;
+            line-height: 1.7;
+        }
+
+        /* Marriage Counseling Special Section */
+        .marriage-section {
+            background: linear-gradient(135deg, rgba(155, 93, 229, 0.05) 0%, rgba(212, 175, 55, 0.05) 100%);
+            border-radius: 30px;
+            padding: 80px;
+            margin: 80px 0;
+            position: relative;
+            overflow: hidden;
+        }
+        .marriage-content {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 60px;
+            align-items: center;
+        }
+        .marriage-text h3 {
+            font-size: 2.5rem;
+            color: var(--dark);
+            margin-bottom: 25px;
+            line-height: 1.3;
+        }
+        .marriage-features {
+            list-style: none;
+            margin-top: 30px;
+        }
+        .marriage-features li {
+            margin-bottom: 15px;
+            display: flex;
+            align-items: center;
+        }
+        .marriage-features i {
+            color: var(--secondary);
+            margin-right: 15px;
+            font-size: 1.2rem;
+        }
+        .marriage-image {
+            border-radius: 20px;
+            overflow: hidden;
+            box-shadow: 0 25px 60px rgba(0,0,0,0.15);
+            height: 400px;
+        }
+        .marriage-image img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.5s ease;
+        }
+        .marriage-image:hover img { transform: scale(1.05); }
+
+        /* Counseling Process */
+        .process-container {
+            max-width: 1000px;
+            margin: 60px auto 0;
+        }
+        .process-steps {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 30px;
+            position: relative;
+        }
+        .process-step {
+            background: white;
+            border-radius: 20px;
+            padding: 40px 30px;
+            text-align: center;
+            box-shadow: 0 15px 40px rgba(0,0,0,0.08);
+            position: relative;
+            transition: all 0.3s ease;
+        }
+        .process-step:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 25px 50px rgba(0,0,0,0.12);
+        }
+        .step-number {
+            width: 60px;
+            height: 60px;
+            background: var(--teal);
+            color: white;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.5rem;
+            font-weight: 600;
+            margin: 0 auto 25px;
+        }
+        .step-title {
+            font-size: 1.3rem;
+            color: var(--dark);
+            margin-bottom: 15px;
+        }
+
+        /* Counselors Team */
+        .counselors-container {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 40px;
+            margin-top: 60px;
+        }
+        .counselor-card {
+            background: white;
+            border-radius: 20px;
+            overflow: hidden;
+            box-shadow: 0 15px 40px rgba(0,0,0,0.08);
+            transition: all 0.3s ease;
+        }
+        .counselor-card:hover {
+            transform: translateY(-15px);
+            box-shadow: 0 25px 60px rgba(0,0,0,0.12);
+        }
+        .counselor-header {
+            padding: 40px 30px 20px;
+            background: linear-gradient(135deg, #f8f9fa 0%, #e9ecef 100%);
+            text-align: center;
+        }
+        .counselor-img {
+            width: 150px;
+            height: 150px;
+            border-radius: 50%;
+            overflow: hidden;
+            margin: 0 auto 25px;
+            border: 5px solid white;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+        }
+        .counselor-img img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+        .counselor-name {
+            font-size: 1.5rem;
+            color: var(--dark);
+            margin-bottom: 10px;
+        }
+        .counselor-role {
+            color: var(--teal);
+            font-weight: 600;
+            margin-bottom: 10px;
+        }
+        .counselor-content {
+            padding: 30px;
+        }
+        .counselor-specialties {
+            list-style: none;
+        }
+        .counselor-specialties li {
+            margin-bottom: 10px;
+            display: flex;
+            align-items: center;
+        }
+        .counselor-specialties i {
+            color: var(--secondary);
+            margin-right: 10px;
+            font-size: 0.9rem;
+        }
+
+        /* FAQ Section */
+        .faq-container {
+            max-width: 900px;
+            margin: 60px auto 0;
+        }
+        .faq-item {
+            background: white;
+            border-radius: 15px;
+            margin-bottom: 20px;
+            overflow: hidden;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.05);
+            transition: all 0.3s ease;
+        }
+        .faq-item.active {
+            box-shadow: 0 15px 40px rgba(0,0,0,0.1);
+        }
+        .faq-question {
+            padding: 25px 30px;
+            cursor: pointer;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            font-weight: 600;
+            color: var(--dark);
+            font-size: 1.1rem;
+        }
+        .faq-question i {
+            color: var(--teal);
+            transition: transform 0.3s ease;
+        }
+        .faq-item.active .faq-question i {
+            transform: rotate(180deg);
+        }
+        .faq-answer {
+            padding: 0 30px;
+            max-height: 0;
+            overflow: hidden;
+            transition: all 0.3s ease;
+            color: #666;
+            line-height: 1.7;
+        }
+        .faq-item.active .faq-answer {
+            padding: 0 30px 25px;
+            max-height: 500px;
+        }
+
+        /* Appointment Form */
+        .appointment-container {
+            max-width: 900px;
+            margin: 60px auto 0;
+            background: white;
+            border-radius: 25px;
+            overflow: hidden;
+            box-shadow: 0 25px 60px rgba(0,0,0,0.1);
+        }
+        .appointment-header {
+            background: linear-gradient(135deg, var(--primary) 0%, #2c3e80 100%);
+            color: white;
+            padding: 40px;
+            text-align: center;
+        }
+        .appointment-form {
+            padding: 50px;
+        }
+        .form-row {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 30px;
+            margin-bottom: 30px;
+        }
+        .form-group {
+            margin-bottom: 25px;
+        }
+        .form-group label {
+            display: block;
+            margin-bottom: 10px;
+            font-weight: 500;
+            color: var(--dark);
+        }
+        .form-group input, .form-group select, .form-group textarea {
+            width: 100%;
+            padding: 15px;
+            border: 2px solid #eaeaea;
+            border-radius: 10px;
+            font-family: 'Poppins', sans-serif;
+            font-size: 1rem;
+            transition: all 0.3s ease;
+        }
+        .form-group input:focus, .form-group select:focus, .form-group textarea:focus {
+            outline: none;
+            border-color: var(--teal);
+            box-shadow: 0 0 0 3px rgba(42, 157, 143, 0.1);
+        }
+        .privacy-notice {
+            background: #f8f9fa;
+            padding: 20px;
+            border-radius: 10px;
+            margin: 30px 0;
+            font-size: 0.9rem;
+            color: #666;
+            border-left: 4px solid var(--teal);
+        }
+        .submit-btn {
+            display: block;
+            width: 100%;
+            background: linear-gradient(135deg, var(--teal) 0%, #2a9d8f 100%);
+            color: white;
+            border: none;
+            padding: 20px;
+            font-size: 1.2rem;
+            font-weight: 600;
+            border-radius: 15px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            margin-top: 40px;
+        }
+        .submit-btn:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 15px 40px rgba(42, 157, 143, 0.3);
+        }
+
+        /* Emergency Resources */
+        .emergency-container {
+            background: linear-gradient(135deg, #fff5f5 0%, #ffecec 100%);
+            border-radius: 20px;
+            padding: 50px;
+            margin-top: 80px;
+            border: 2px solid #ffcccc;
+            text-align: center;
+        }
+        .emergency-title {
+            color: var(--accent);
+            font-size: 2rem;
+            margin-bottom: 20px;
+        }
+        .emergency-links {
+            display: flex;
+            justify-content: center;
+            gap: 30px;
+            flex-wrap: wrap;
+            margin-top: 30px;
+        }
+        .emergency-link {
+            display: inline-flex;
+            align-items: center;
+            gap: 10px;
+            background: white;
+            padding: 15px 25px;
+            border-radius: 10px;
+            text-decoration: none;
+            color: var(--dark);
+            font-weight: 600;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.08);
+            transition: all 0.3s ease;
+        }
+        .emergency-link:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 15px 40px rgba(0,0,0,0.12);
+        }
+
+        /* Footer */
+        footer {
+            background: var(--dark);
+            color: white;
+            padding: 80px 0 40px;
+        }
+        .footer-content {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 50px;
+            margin-bottom: 60px;
+        }
+        .footer-column h3 {
+            color: var(--secondary);
+            margin-bottom: 25px;
+            font-size: 1.5rem;
+        }
+        .footer-links { list-style: none; }
+        .footer-links li { margin-bottom: 12px; }
+        .footer-links a {
+            color: rgba(255,255,255,0.7);
+            text-decoration: none;
+            transition: all 0.3s ease;
+        }
+        .footer-links a:hover { 
+            color: var(--teal);
+            padding-left: 5px;
+        }
+        .social-links {
+            display: flex;
+            gap: 15px;
+            margin-top: 25px;
+        }
+        .social-links a {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            width: 45px;
+            height: 45px;
+            background: rgba(255,255,255,0.1);
+            border-radius: 50%;
+            color: white;
+            font-size: 1.2rem;
+            transition: all 0.3s ease;
+        }
+        .social-links a:hover {
+            background: var(--teal);
+            transform: translateY(-5px);
+        }
+        .footer-bottom {
+            text-align: center;
+            padding-top: 40px;
+            border-top: 1px solid rgba(255,255,255,0.1);
+            color: rgba(255,255,255,0.5);
+            font-size: 0.9rem;
+        }
+
+        /* Responsive */
+        @media (max-width: 992px) {
+            .hero-title { font-size: 3rem; }
+            .hero-text { font-size: 1.1rem; }
+            .marriage-content { grid-template-columns: 1fr; }
+            .nav-links { display: none; }
+            .mobile-menu-btn {
+                display: block;
+                background: none;
+                border: none;
+                font-size: 1.8rem;
+                color: var(--primary);
+                cursor: pointer;
+            }
+            .section { padding: 80px 0; }
+            .section-title { font-size: 2.5rem; }
+            .form-row { grid-template-columns: 1fr; }
+            .marriage-section { padding: 50px 30px; }
+        }
+        @media (max-width: 768px) {
+            .hero-title { font-size: 2.5rem; }
+            .hero-buttons { flex-direction: column; align-items: flex-start; }
+            .btn-primary, .btn-secondary { width: 100%; text-align: center; justify-content: center; }
+            .section-title { font-size: 2.2rem; }
+            .services-grid { grid-template-columns: 1fr; }
+            .emergency-links { flex-direction: column; }
+        }
+    </style>
+</head>
+<body>
+    <!-- Header -->
+    <header>
+        <div class="container header-container">
+            <div class="logo">
+                <a href="index.html"><i class="fas fa-hands-helping"></i> SPAC COUNSELING</a>
+            </div>
+            <nav>
+                <div class="nav-links">
+                    <a href="#services">Services</a>
+                    <a href="#marriage">Marriage</a>
+                    <a href="#process">Process</a>
+                    <a href="#counselors">Counselors</a>
+                    <a href="#faq">FAQ</a>
+                    <a href="#appointment">Appointment</a>
+                </div>
+                <a href="#appointment" class="nav-cta">Schedule Session</a>
+                <button class="mobile-menu-btn"><i class="fas fa-bars"></i></button>
+            </nav>
+        </div>
+    </header>
+
+    <!-- Hero Section -->
+    <section class="counseling-hero" id="home">
+        <div class="hero-background"></div>
+        <div class="hero-overlay"></div>
+        
+        <div class="hero-content">
+            <div class="hero-subtitle">Professional & Confidential</div>
+            <h1 class="hero-title">Healing Hearts, Restoring Relationships</h1>
+            <p class="hero-text">At SPAC Counseling, we provide biblically-based counseling in a safe, confidential environment. Our trained counselors walk alongside you through life's challenges with compassion and wisdom.</p>
+            
+            <div class="hero-buttons">
+                <a href="#appointment" class="btn-primary">
+                    <i class="fas fa-calendar-check"></i> Schedule Counseling
+                </a>
+                <a href="#counselors" class="btn-secondary">
+                    <i class="fas fa-user-friends"></i> Meet Our Counselors
+                </a>
+            </div>
+            
+            <div class="confidentiality-badge">
+                <i class="fas fa-lock"></i>
+                <span>100% Confidential • Licensed & Trained Counselors • Biblical Foundation</span>
+            </div>
+        </div>
+    </section>
+
+    <!-- Services Overview -->
+    <section class="section" id="services">
+        <div class="container">
+            <h2 class="section-title">Our Counseling Services</h2>
+            <p class="section-subtitle">We offer comprehensive counseling services for individuals, couples, and families from a Christian perspective.</p>
+            
+            <div class="services-grid">
+                <div class="service-card">
+                    <div class="service-icon">
+                        <i class="fas fa-heart"></i>
+                    </div>
+                    <h3 class="service-title">Marriage & Couples Counseling</h3>
+                    <p class="service-desc">Strengthen your marriage, improve communication, resolve conflicts, and rebuild trust with biblical principles for lasting relationships.</p>
+                    <a href="#marriage" class="btn-secondary" style="padding: 12px 25px;">Learn More</a>
+                </div>
+                
+                <div class="service-card">
+                    <div class="service-icon">
+                        <i class="fas fa-user"></i>
+                    </div>
+                    <h3 class="service-title">Individual Counseling</h3>
+                    <p class="service-desc">Address anxiety, depression, grief, trauma, life transitions, and spiritual questions in a safe, supportive environment.</p>
+                    <a href="#appointment" class="btn-secondary" style="padding: 12px 25px;">Schedule Session</a>
+                </div>
+                
+                <div class="service-card">
+                    <div class="service-icon">
+                        <i class="fas fa-home"></i>
+                    </div>
+                    <h3 class="service-title">Family Counseling</h3>
+                    <p class="service-desc">Navigate family conflicts, parenting challenges, blended family dynamics, and generational issues with biblical wisdom.</p>
+                    <a href="#appointment" class="btn-secondary" style="padding: 12px 25px;">Schedule Session</a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Marriage Counseling Special Section -->
+    <section class="marriage-section" id="marriage">
+        <div class="container">
+            <div class="marriage-content">
+                <div class="marriage-text">
+                    <h3>Strengthening Marriages God's Way</h3>
+                    <p>Marriage is a sacred covenant designed by God, yet even the strongest marriages face challenges. Our marriage counseling combines biblical principles with proven therapeutic techniques to help couples build lasting, fulfilling relationships.</p>
+                    <p>Whether you're preparing for marriage, facing communication breakdowns, recovering from infidelity, or simply wanting to strengthen your bond, our trained counselors provide practical tools grounded in Scripture.</p>
+                    
+                    <ul class="marriage-features">
+                        <li><i class="fas fa-check-circle"></i> <strong>Pre-Marital Counseling</strong>: Build a strong foundation before saying "I do"</li>
+                        <li><i class="fas fa-check-circle"></i> <strong>Conflict Resolution</strong>: Learn healthy ways to navigate disagreements</li>
+                        <li><i class="fas fa-check-circle"></i> <strong>Intimacy Restoration</strong>: Rebuild emotional and physical connection</li>
+                        <li><i class="fas fa-check-circle"></i> <strong>Financial Harmony</strong>: Align on financial goals and stewardship</li>
+                        <li><i class="fas fa-check-circle"></i> <strong>Parenting Alignment</strong>: Develop unified parenting approaches</li>
+                    </ul>
+                    
+                    <a href="#appointment" class="btn-primary" style="margin-top: 30px;">
+                        <i class="fas fa-heart"></i> Schedule Marriage Counseling
+                    </a>
+                </div>
+                
+                <div class="marriage-image">
+                    <img src="https://images.unsplash.com/photo-1519208255734-6c1cbfa9e80d?ixlib=rb-4.0.3&auto=format&fit=crop&w=2070&q=80" alt="Married couple counseling">
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Counseling Process -->
+    <section class="section section-light" id="process">
+        <div class="container">
+            <h2 class="section-title">Our Counseling Process</h2>
+            <p class="section-subtitle">We follow a structured yet flexible approach to ensure you receive the care and support you need.</p>
+            
+            <div class="process-container">
+                <div class="process-steps">
+                    <div class="process-step">
+                        <div class="step-number">1</div>
+                        <h4 class="step-title">Initial Assessment</h4>
+                        <p>We begin with a confidential assessment to understand your unique situation, concerns, and goals for counseling.</p>
+                    </div>
+                    
+                    <div class="process-step">
+                        <div class="step-number">2</div>
+                        <h4 class="step-title">Personalized Plan</h4>
+                        <p>Your counselor develops a customized plan integrating biblical wisdom and therapeutic approaches.</p>
+                    </div>
+                    
+                    <div class="process-step">
+                        <div class="step-number">3</div>
+                        <h4 class="step-title">Regular Sessions</h4>
+                        <p>Weekly or bi-weekly sessions provide consistent support and tools for growth and healing.</p>
+                    </div>
+                    
+                    <div class="process-step">
+                        <div class="step-number">4</div>
+                        <h4 class="step-title">Progress & Growth</h4>
+                        <p>Regular check-ins ensure progress toward your goals and adjustment of strategies as needed.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Counselors Team -->
+    <section class="section" id="counselors">
+        <div class="container">
+            <h2 class="section-title">Meet Our Counselors</h2>
+            <p class="section-subtitle">Our team includes licensed professionals and trained pastoral counselors who integrate faith with therapeutic expertise.</p>
+            
+            <div class="counselors-container">
+                <div class="counselor-card">
+                    <div class="counselor-header">
+                        <div class="counselor-img">
+                            <img src="https://images.unsplash.com/photo-1560250097-0b93528c311a?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" alt="Dr. Michael Thompson">
+                        </div>
+                        <h3 class="counselor-name">Dr. Michael Thompson</h3>
+                        <div class="counselor-role">Licensed Marriage & Family Therapist</div>
+                        <div class="counselor-credentials">PhD, LMFT | 15+ years experience</div>
+                    </div>
+                    <div class="counselor-content">
+                        <p>Specializes in marriage counseling, infidelity recovery, and pre-marital preparation. Combines biblical principles with evidence-based approaches.</p>
+                        <ul class="counselor-specialties">
+                            <li><i class="fas fa-check"></i> Marriage & Couples Counseling</li>
+                            <li><i class="fas fa-check"></i> Infidelity Recovery</li>
+                            <li><i class="fas fa-check"></i> Pre-Marital Preparation</li>
+                            <li><i class="fas fa-check"></i> Communication Skills</li>
+                        </ul>
+                    </div>
+                </div>
+                
+                <div class="counselor-card">
+                    <div class="counselor-header">
+                        <div class="counselor-img">
+                            <img src="https://images.unsplash.com/photo-1580489944761-15a19d654956?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" alt="Sarah Johnson">
+                        </div>
+                        <h3 class="counselor-name">Sarah Johnson, LCSW</h3>
+                        <div class="counselor-role">Clinical Social Worker</div>
+                        <div class="counselor-credentials">LCSW, MDiv | 12+ years experience</div>
+                    </div>
+                    <div class="counselor-content">
+                        <p>Focuses on anxiety, depression, trauma, and women's issues. Integrates cognitive-behavioral therapy with spiritual formation.</p>
+                        <ul class="counselor-specialties">
+                            <li><i class="fas fa-check"></i> Anxiety & Depression</li>
+                            <li><i class="fas fa-check"></i> Trauma Recovery</li>
+                            <li><i class="fas fa-check"></i> Women's Issues</li>
+                            <li><i class="fas fa-check"></i> Grief & Loss</li>
+                        </ul>
+                    </div>
+                </div>
+                
+                <div class="counselor-card">
+                    <div class="counselor-header">
+                        <div class="counselor-img">
+                            <img src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" alt="Pastor David Chen">
+                        </div>
+                        <h3 class="counselor-name">Pastor David Chen</h3>
+                        <div class="counselor-role">Pastoral Counselor</div>
+                        <div class="counselor-credentials">MA Biblical Counseling | 8+ years experience</div>
+                    </div>
+                    <div class="counselor-content">
+                        <p>Provides biblically-based counseling for spiritual direction, men's issues, addiction recovery, and family dynamics.</p>
+                        <ul class="counselor-specialties">
+                            <li><i class="fas fa-check"></i> Spiritual Direction</li>
+                            <li><i class="fas fa-check"></i> Men's Issues</li>
+                            <li><i class="fas fa-check"></i> Addiction Recovery</li>
+                            <li><i class="fas fa-check"></i> Family Counseling</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- FAQ Section -->
+    <section class="section section-light" id="faq">
+        <div class="container">
+            <h2 class="section-title">Frequently Asked Questions</h2>
+            <p class="section-subtitle">Common questions about our counseling services and process.</p>
+            
+            <div class="faq-container">
+                <div class="faq-item">
+                    <div class="faq-question">
+                        Is counseling really confidential?
+                        <i class="fas fa-chevron-down"></i>
+                    </div>
+                    <div class="faq-answer">
+                        Yes, absolutely. All counseling sessions are completely confidential, with exceptions only as required by law (risk of harm to self or others, child/elder abuse). We take your privacy seriously and adhere to strict ethical guidelines.
+                    </div>
+                </div>
+                
+                <div class="faq-item">
+                    <div class="faq-question">
+                        How does Christian counseling differ from secular counseling?
+                        <i class="fas fa-chevron-down"></i>
+                    </div>
+                    <div class="faq-answer">
+                        Christian counseling integrates psychological principles with biblical truth. We address the whole person—spiritual, emotional, mental, and relational—recognizing that true healing comes through both therapeutic techniques and spiritual growth in Christ.
+                    </div>
+                </div>
+                
+                <div class="faq-item">
+                    <div class="faq-question">
+                        How long does counseling typically last?
+                        <i class="fas fa-chevron-down"></i>
+                    </div>
+                    <div class="faq-answer">
+                        This varies based on individual needs. Some issues may be addressed in 6-8 sessions, while deeper concerns or marriage counseling may take several months. We work at your pace and regularly assess progress toward your goals.
+                    </div>
+                </div>
+                
+                <div class="faq-item">
+                    <div class="faq-question">
+                        What if my spouse won't come to marriage counseling?
+                        <i class="fas fa-chevron-down"></i>
+                    </div>
+                    <div class="faq-answer">
+                        You can still benefit from individual counseling to work on your part of the relationship dynamics. Often, when one partner begins to make positive changes, it can encourage the other to join. We also offer resources you can use at home.
+                    </div>
+                </div>
+                
+                <div class="faq-item">
+                    <div class="faq-question">
+                        Do you accept insurance?
+                        <i class="fas fa-chevron-down"></i>
+                    </div>
+                    <div class="faq-answer">
+                        Our licensed counselors can provide receipts for insurance reimbursement. Our pastoral counselors offer services on a sliding scale based on income. We believe finances should not be a barrier to receiving help.
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Appointment Form -->
+    <section class="section" id="appointment">
+        <div class="container">
+            <h2 class="section-title">Schedule a Counseling Session</h2>
+            <p class="section-subtitle">Take the first step toward healing and restoration. We'll contact you within 24 hours to confirm your appointment.</p>
+            
+            <div class="appointment-container">
+                <div class="appointment-header">
+                    <h3>Request an Appointment</h3>
+                    <p>Complete this form and our counseling coordinator will contact you to schedule your first session.</p>
+                </div>
+                
+                <form class="appointment-form">
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label for="firstName">First Name *</label>
+                            <input type="text" id="firstName" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="lastName">Last Name *</label>
+                            <input type="text" id="lastName" required>
+                        </div>
+                    </div>
+                    
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label for="email">Email Address *</label>
+                            <input type="email" id="email" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="phone">Phone Number *</label>
+                            <input type="tel" id="phone" required>
+                        </div>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="counselingType">Type of Counseling Needed *</label>
+                        <select id="counselingType" required>
+                            <option value="">Select One</option>
+                            <option value="marriage">Marriage/Couples Counseling</option>
+                            <option value="individual">Individual Counseling</option>
+                            <option value="family">Family Counseling</option>
+                            <option value="premarital">Pre-Marital Counseling</option>
+                            <option value="addiction">Addiction Recovery</option>
+                            <option value="grief">Grief & Loss</option>
+                            <option value="trauma">Trauma Recovery</option>
+                            <option value="other">Other</option>
+                        </select>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="preferredCounselor">Preferred Counselor (Optional)</label>
+                        <select id="preferredCounselor">
+                            <option value="">No Preference</option>
+                            <option value="michael">Dr. Michael Thompson (Marriage/Family)</option>
+                            <option value="sarah">Sarah Johnson, LCSW (Individual/Women)</option>
+                            <option value="david">Pastor David Chen (Spiritual/Men)</option>
+                        </select>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="availability">Preferred Days/Times *</label>
+                        <select id="availability" required>
+                            <option value="">Select Availability</option>
+                            <option value="weekday-morning">Weekday Mornings (9am-12pm)</option>
+                            <option value="weekday-afternoon">Weekday Afternoons (1pm-4pm)</option>
+                            <option value="weekday-evening">Weekday Evenings (5pm-8pm)</option>
+                            <option value="saturday">Saturday Morning (9am-12pm)</option>
+                        </select>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="concern">Brief Description of Concern *</label>
+                        <textarea id="concern" rows="4" required placeholder="Please briefly describe what you'd like to address in counseling (all information is confidential)"></textarea>
+                    </div>
+                    
+                    <div class="privacy-notice">
+                        <i class="fas fa-lock"></i> <strong>Your privacy is protected.</strong> All information submitted is confidential and will only be used to schedule your counseling appointment and match you with the appropriate counselor.
+                    </div>
+                    
+                    <button type="submit" class="submit-btn">
+                        <i class="fas fa-paper-plane"></i> Submit Appointment Request
+                    </button>
+                </form>
+            </div>
+        </div>
+    </section>
+
+    <!-- Emergency Resources -->
+    <section class="section">
+        <div class="container">
+            <div class="emergency-container">
+                <h3 class="emergency-title">Need Immediate Help?</h3>
+                <p>If you or someone you know is in crisis, please contact these emergency resources immediately:</p>
+                
+                <div class="emergency-links">
+                    <a href="tel:988" class="emergency-link">
+                        <i class="fas fa-phone-alt" style="color: var(--accent);"></i>
+                        National Suicide Prevention Lifeline: 988
+                    </a>
+                    <a href="tel:8007997233" class="emergency-link">
+                        <i class="fas fa-shield-alt" style="color: var(--accent);"></i>
+                        Domestic Violence Hotline: 800-799-7233
+                    </a>
+                    <a href="tel:911" class="emergency-link">
+                        <i class="fas fa-ambulance" style="color: var(--accent);"></i>
+                        Emergency Services: 911
+                    </a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-column">
+                    <h3>SPAC COUNSELING</h3>
+                    <p>A ministry of SPAC Church providing biblically-based counseling for individuals, couples, and families in a safe, confidential environment.</p>
+                    <div class="social-links">
+                        <a href="#"><i class="fab fa-facebook-f"></i></a>
+                        <a href="#"><i class="fab fa-instagram"></i></a>
+                        <a href="#"><i class="fab fa-youtube"></i></a>
+                        <a href="#"><i class="fab fa-linkedin-in"></i></a>
+                    </div>
+                </div>
+                
+                <div class="footer-column">
+                    <h3>Quick Links</h3>
+                    <ul class="footer-links">
+                        <li><a href="#services">Counseling Services</a></li>
+                        <li><a href="#marriage">Marriage Counseling</a></li>
+                        <li><a href="#process">Counseling Process</a></li>
+                        <li><a href="#counselors">Meet Our Counselors</a></li>
+                        <li><a href="#faq">FAQ</a></li>
+                        <li><a href="#appointment">Schedule Appointment</a></li>
+                    </ul>
+                </div>
+                
+                <div class="footer-column">
+                    <h3>Contact Information</h3>
+                    <ul class="footer-links">
+                        <li><i class="fas fa-map-marker-alt"></i> SPAC Counseling Center</li>
+                        <li><i class="fas fa-phone"></i> (123) 456-7890 ext. 789</li>
+                        <li><i class="fas fa-envelope"></i> counseling@spacchurch.org</li>
+                        <li><i class="fas fa-clock"></i> Mon-Thu: 9am-8pm, Sat: 9am-12pm</li>
+                        <li><i class="fas fa-user-shield"></i> All sessions confidential</li>
+                    </ul>
+                </div>
+            </div>
+            
+            <div class="footer-bottom">
+                &copy; 2024 SPAC Counseling Ministry. A ministry of SPAC Church. | 
+                <a href="#" style="color: rgba(255,255,255,0.7);">Privacy Policy</a> | 
+                <a href="#" style="color: rgba(255,255,255,0.7);">Counselor Ethics</a>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // Mobile Menu Toggle
+        const mobileMenuBtn = document.querySelector('.mobile-menu-btn');
+        const navLinks = document.querySelector('.nav-links');
+        
+        mobileMenuBtn.addEventListener('click', function() {
+            navLinks.style.display = navLinks.style.display === 'flex' ? 'none' : 'flex';
+            mobileMenuBtn.innerHTML = navLinks.style.display === 'flex' 
+                ? '<i class="fas fa-times"></i>' 
+                : '<i class="fas fa-bars"></i>';
+        });
+
+        // FAQ Accordion
+        document.querySelectorAll('.faq-question').forEach(question => {
+            question.addEventListener('click', function() {
+                const item = this.parentElement;
+                item.classList.toggle('active');
+            });
+        });
+
+        // Form Submission
+        document.querySelector('.appointment-form').addEventListener('submit', function(e) {
+            e.preventDefault();
+            
+            // Basic validation
+            const requiredFields = this.querySelectorAll('[required]');
+            let valid = true;
+            
+            requiredFields.forEach(field => {
+                if (!field.value.trim()) {
+                    valid = false;
+                    field.style.borderColor = 'var(--accent)';
+                } else {
+                    field.style.borderColor = '#eaeaea';
+                }
+            });
+            
+            if (valid) {
+                // Show success message
+                alert('Thank you for your appointment request! Our counseling coordinator will contact you within 24 hours to schedule your session. All information is confidential.');
+                this.reset();
+                
+                // Scroll to top
+                window.scrollTo({
+                    top: 0,
+                    behavior: 'smooth'
+                });
+            } else {
+                alert('Please fill in all required fields marked with *.');
+            }
+        });
+
+        // Smooth Scrolling for Navigation
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function(e) {
+                if(this.getAttribute('href') === '#') return;
+                
+                e.preventDefault();
+                const targetId = this.getAttribute('href');
+                if(targetId === '#') return;
+                
+                const targetElement = document.querySelector(targetId);
+                if(targetElement) {
+                    window.scrollTo({
+                        top: targetElement.offsetTop - 80,
+                        behavior: 'smooth'
+                    });
+                    
+                    // Close mobile menu if open
+                    if(window.innerWidth <= 992 && navLinks.style.display === 'flex') {
+                        navLinks.style.display = 'none';
+                        mobileMenuBtn.innerHTML = '<i class="fas fa-bars"></i>';
+                    }
+                }
+            });
+        });
+
+        // Header Scroll Effect
+        window.addEventListener('scroll', function() {
+            const header = document.querySelector('header');
+            if (window.scrollY > 100) {
+                header.style.background = 'rgba(255, 255, 255, 0.98)';
+                header.style.boxShadow = '0 5px 30px rgba(0,0,0,0.1)';
+            } else {
+                header.style.background = 'rgba(255, 255, 255, 0.98)';
+                header.style.boxShadow = '0 5px 30px rgba(0,0,0,0.08)';
+            }
+        });
+
+        // Animate elements on scroll
+        const observerOptions = {
+            threshold: 0.1,
+            rootMargin: '0px 0px -100px 0px'
+        };
+
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if(entry.isIntersecting) {
+                    entry.target.style.opacity = '1';
+                    entry.target.style.transform = 'translateY(0)';
+                }
+            });
+        }, observerOptions);
+
+        // Observe elements to animate
+        document.querySelectorAll('.service-card, .process-step, .counselor-card').forEach(el => {
+            el.style.opacity = '0';
+            el.style.transform = 'translateY(30px)';
+            el.style.transition = 'opacity 0.5s ease, transform 0.5s ease';
+            observer.observe(el);
+        });
+    </script>
+</body>
+</html>
