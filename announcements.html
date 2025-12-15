@@ -1,0 +1,1715 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Proclaimers Drama Ministry - SPAC Church</title>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+<link href="https://fonts.googleapis.com/css2?family=Lobster&family=Poppins:wght@300;400;500;600;700;800&family=Playfair+Display:wght@400;500;600;700&family=Montserrat:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --primary: #1a4b8c;
+    --secondary: #d4af37;
+    --light: #f8f9fa;
+    --dark: #2c3e50;
+    --accent: #8b0000;
+    --drama: #9c27b0;
+    --film: #2196f3;
+    --creative: #ff9800;
+    --stage: #4caf50;
+    --gradient: linear-gradient(135deg, #1a4b8c 0%, #2c3e50 100%);
+    --drama-gradient: linear-gradient(135deg, #9c27b0 0%, #673ab7 100%);
+    --film-gradient: linear-gradient(135deg, #2196f3 0%, #0d47a1 100%);
+  }
+  
+  * {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+  }
+  
+  body {
+    font-family: 'Montserrat', sans-serif;
+    background: linear-gradient(180deg, #0a0a0a 0%, #1a1a1a 100%);
+    color: #fff;
+    line-height: 1.6;
+    scroll-behavior: smooth;
+    overflow-x: hidden;
+    width: 100%;
+    max-width: 100vw;
+  }
+  
+  a {
+    text-decoration: none;
+    color: inherit;
+  }
+  
+  .container {
+    width: 95%;
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 15px;
+  }
+  
+  .btn {
+    display: inline-block;
+    background: var(--drama);
+    color: white;
+    padding: 14px 32px;
+    border: none;
+    border-radius: 30px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    font-weight: 600;
+    letter-spacing: 0.5px;
+    box-shadow: 0 4px 15px rgba(156, 39, 176, 0.4);
+    text-transform: uppercase;
+    font-size: 1rem;
+    font-family: 'Montserrat', sans-serif;
+  }
+  
+  .btn:hover {
+    background: var(--accent);
+    transform: translateY(-3px);
+    box-shadow: 0 6px 20px rgba(139, 0, 0, 0.5);
+  }
+  
+  .btn-secondary {
+    background: var(--film);
+    box-shadow: 0 4px 15px rgba(33, 150, 243, 0.4);
+  }
+  
+  .btn-secondary:hover {
+    background: var(--creative);
+  }
+  
+  /* Header with Bigger Logo */
+  header {
+    background: rgba(10, 10, 10, 0.95);
+    box-shadow: 0 3px 20px rgba(0, 0, 0, 0.3);
+    position: sticky;
+    top: 0;
+    z-index: 1000;
+    padding: 8px 0;
+    transition: all 0.3s ease;
+    width: 100%;
+    backdrop-filter: blur(10px);
+  }
+  
+  .header-container {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 0;
+    width: 100%;
+  }
+  
+  .logo {
+    display: flex;
+    align-items: center;
+    position: absolute;
+    left: 50%;
+    transform: translateX(-50%);
+  }
+  
+  .logo-frame {
+    width: 100px;
+    height: 100px;
+    border-radius: 50%;
+    background: rgba(255, 255, 255, 0.1);
+    border: 4px solid var(--drama);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-right: 20px;
+    overflow: hidden;
+    box-shadow: 0 6px 20px rgba(156, 39, 176, 0.3);
+  }
+  
+  .logo-frame img {
+    width: 85%;
+    height: 85%;
+    object-fit: contain;
+  }
+  
+  .logo-text {
+    font-family: 'Lobster', cursive;
+    font-size: 42px;
+    font-weight: 400;
+    color: white;
+    letter-spacing: 1.5px;
+    line-height: 1;
+    text-align: center;
+    white-space: nowrap;
+    text-shadow: 0 2px 5px rgba(0, 0, 0, 0.5);
+  }
+  
+  /* Navigation */
+  .nav-container {
+    display: flex;
+    align-items: center;
+    justify-content: flex-end;
+    width: 100%;
+  }
+  
+  @media (min-width: 993px) {
+    .nav-menu {
+      display: flex;
+      list-style: none;
+    }
+    
+    .nav-menu li {
+      margin-left: 30px;
+      position: relative;
+    }
+    
+    .nav-menu a {
+      color: white;
+      font-weight: 500;
+      font-size: 15px;
+      transition: all 0.3s ease;
+      padding: 8px 0;
+      position: relative;
+    }
+    
+    .nav-menu a::after {
+      content: '';
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      width: 0;
+      height: 2px;
+      background: var(--drama);
+      transition: width 0.3s ease;
+    }
+    
+    .nav-menu a:hover::after {
+      width: 100%;
+    }
+    
+    .dropdown-content {
+      display: none;
+      position: absolute;
+      background: rgba(20, 20, 20, 0.95);
+      min-width: 200px;
+      box-shadow: 0 15px 30px rgba(0, 0, 0, 0.3);
+      z-index: 1;
+      border-radius: 10px;
+      overflow: hidden;
+      top: 100%;
+      left: 0;
+      padding: 10px 0;
+      backdrop-filter: blur(10px);
+      border: 1px solid rgba(255, 255, 255, 0.1);
+    }
+    
+    .dropdown:hover .dropdown-content {
+      display: block;
+    }
+  }
+  
+  /* Mobile Menu */
+  .hamburger {
+    display: none;
+    cursor: pointer;
+    width: 40px;
+    height: 40px;
+    position: relative;
+    z-index: 1001;
+    margin-left: auto;
+    background: var(--drama);
+    border-radius: 5px;
+    padding: 8px;
+  }
+  
+  .hamburger span {
+    display: block;
+    position: absolute;
+    height: 3px;
+    width: 24px;
+    background: white;
+    border-radius: 3px;
+    opacity: 1;
+    left: 8px;
+    transform: rotate(0deg);
+    transition: .25s ease-in-out;
+  }
+  
+  .hamburger span:nth-child(1) { top: 12px; }
+  .hamburger span:nth-child(2) { top: 18.5px; }
+  .hamburger span:nth-child(3) { top: 25px; }
+  
+  .hamburger.active span:nth-child(1) {
+    top: 18.5px;
+    transform: rotate(45deg);
+  }
+  
+  .hamburger.active span:nth-child(2) {
+    opacity: 0;
+    left: -30px;
+  }
+  
+  .hamburger.active span:nth-child(3) {
+    top: 18.5px;
+    transform: rotate(-45deg);
+  }
+  
+  @media (max-width: 992px) {
+    .nav-menu {
+      position: fixed;
+      top: 0;
+      right: -50%;
+      width: 50%;
+      height: 100vh;
+      background: rgba(20, 20, 20, 0.98);
+      flex-direction: column;
+      justify-content: flex-start;
+      align-items: flex-start;
+      padding: 100px 30px 30px;
+      transition: right 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+      box-shadow: -10px 0 30px rgba(0,0,0,0.5);
+      z-index: 1000;
+      overflow-y: auto;
+      backdrop-filter: blur(10px);
+    }
+    
+    .nav-menu.active {
+      right: 0;
+    }
+    
+    .nav-menu li {
+      margin: 0 0 25px 0;
+      width: 100%;
+      opacity: 0;
+      transform: translateX(20px);
+      transition: all 0.3s ease;
+    }
+    
+    .nav-menu.active li {
+      opacity: 1;
+      transform: translateX(0);
+    }
+    
+    .nav-menu li:nth-child(1) { transition-delay: 0.1s; }
+    .nav-menu li:nth-child(2) { transition-delay: 0.2s; }
+    .nav-menu li:nth-child(3) { transition-delay: 0.3s; }
+    .nav-menu li:nth-child(4) { transition-delay: 0.4s; }
+    .nav-menu li:nth-child(5) { transition-delay: 0.5s; }
+    
+    .nav-menu a {
+      font-size: 16px;
+      display: block;
+      padding: 10px 0;
+      width: 100%;
+      border-bottom: 1px solid rgba(255,255,255,0.1);
+      color: white;
+    }
+    
+    .dropdown-content {
+      position: static;
+      display: none;
+      box-shadow: none;
+      background: rgba(156, 39, 176, 0.1);
+      margin-top: 10px;
+      border-radius: 8px;
+      padding: 5px 0;
+      border: 1px solid rgba(255, 255, 255, 0.05);
+    }
+    
+    .dropdown.active .dropdown-content {
+      display: block;
+    }
+    
+    .hamburger {
+      display: block;
+    }
+    
+    .logo {
+      position: static;
+      transform: none;
+      margin-right: auto;
+    }
+    
+    .logo-text {
+      font-size: 30px;
+    }
+    
+    .logo-frame {
+      width: 70px;
+      height: 70px;
+    }
+  }
+  
+  @media (max-width: 768px) {
+    .logo-text {
+      font-size: 24px;
+    }
+    
+    .logo-frame {
+      width: 60px;
+      height: 60px;
+    }
+  }
+  
+  @media (max-width: 576px) {
+    .nav-menu {
+      width: 85%;
+      right: -85%;
+    }
+    
+    .logo-text {
+      font-size: 20px;
+    }
+    
+    .logo-frame {
+      width: 50px;
+      height: 50px;
+    }
+  }
+  
+  /* Proclaimers Hero Section - Cinematic */
+  .proclaimers-hero {
+    position: relative;
+    height: 85vh;
+    min-height: 700px;
+    overflow: hidden;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    color: white;
+    background: #000;
+    width: 100%;
+  }
+  
+  .hero-video-bg {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    z-index: 0;
+    opacity: 0.5;
+  }
+  
+  .hero-overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(135deg, rgba(156, 39, 176, 0.7) 0%, rgba(33, 150, 243, 0.8) 100%);
+    z-index: 1;
+  }
+  
+  .hero-content {
+    max-width: 900px;
+    padding: 0 20px;
+    z-index: 2;
+    position: relative;
+  }
+  
+  .proclaimers-title {
+    font-family: 'Montserrat', sans-serif;
+    font-size: 5.5rem;
+    margin-bottom: 20px;
+    font-weight: 800;
+    text-shadow: 3px 3px 15px rgba(0, 0, 0, 0.7);
+    text-transform: uppercase;
+    letter-spacing: 3px;
+    background: linear-gradient(to right, #fff, var(--drama), var(--film));
+    -webkit-background-clip: text;
+    background-clip: text;
+    color: transparent;
+  }
+  
+  .proclaimers-subtitle {
+    font-size: 2.2rem;
+    margin-bottom: 30px;
+    font-weight: 300;
+    opacity: 0.95;
+    text-shadow: 1px 1px 5px rgba(0, 0, 0, 0.5);
+    font-family: 'Playfair Display', serif;
+    font-style: italic;
+  }
+  
+  .proclaimers-tagline {
+    font-size: 1.5rem;
+    max-width: 800px;
+    margin: 0 auto 40px;
+    font-weight: 400;
+    line-height: 1.8;
+    text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.5);
+    background: rgba(0, 0, 0, 0.6);
+    padding: 25px;
+    border-radius: 15px;
+    border-left: 5px solid var(--creative);
+  }
+  
+  @media (max-width: 992px) {
+    .proclaimers-title {
+      font-size: 4rem;
+    }
+    
+    .proclaimers-subtitle {
+      font-size: 1.8rem;
+    }
+    
+    .proclaimers-tagline {
+      font-size: 1.3rem;
+    }
+  }
+  
+  @media (max-width: 768px) {
+    .proclaimers-hero {
+      height: 75vh;
+      min-height: 600px;
+    }
+    
+    .proclaimers-title {
+      font-size: 3rem;
+    }
+    
+    .proclaimers-subtitle {
+      font-size: 1.5rem;
+    }
+    
+    .proclaimers-tagline {
+      font-size: 1.2rem;
+    }
+  }
+  
+  @media (max-width: 576px) {
+    .proclaimers-title {
+      font-size: 2.5rem;
+    }
+    
+    .proclaimers-subtitle {
+      font-size: 1.3rem;
+    }
+    
+    .proclaimers-tagline {
+      font-size: 1.1rem;
+    }
+  }
+  
+  /* Spotlight Effect */
+  .spotlight {
+    position: absolute;
+    width: 300px;
+    height: 300px;
+    border-radius: 50%;
+    background: radial-gradient(circle, rgba(255,255,255,0.2) 0%, rgba(255,255,255,0) 70%);
+    z-index: 1;
+    pointer-events: none;
+    animation: moveSpotlight 15s infinite alternate ease-in-out;
+  }
+  
+  @keyframes moveSpotlight {
+    0% {
+      top: 20%;
+      left: 10%;
+    }
+    25% {
+      top: 60%;
+      left: 70%;
+    }
+    50% {
+      top: 30%;
+      left: 80%;
+    }
+    75% {
+      top: 70%;
+      left: 20%;
+    }
+    100% {
+      top: 40%;
+      left: 50%;
+    }
+  }
+  
+  /* Introduction Section */
+  .intro-section {
+    padding: 100px 0;
+    background: linear-gradient(135deg, #111 0%, #222 100%);
+    position: relative;
+    overflow: hidden;
+  }
+  
+  .intro-section:before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 5px;
+    background: linear-gradient(90deg, var(--drama), var(--film), var(--creative));
+  }
+  
+  .section-title {
+    text-align: center;
+    font-family: 'Playfair Display', serif;
+    font-size: 3.5rem;
+    color: white;
+    margin-bottom: 50px;
+    position: relative;
+    padding-bottom: 20px;
+  }
+  
+  .section-title:after {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 150px;
+    height: 4px;
+    background: var(--drama);
+  }
+  
+  .drama-title {
+    color: var(--drama);
+  }
+  
+  .drama-title:after {
+    background: var(--drama);
+  }
+  
+  .intro-content {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 60px;
+    align-items: center;
+  }
+  
+  .intro-text h3 {
+    font-size: 2.5rem;
+    color: var(--film);
+    margin-bottom: 25px;
+    font-family: 'Montserrat', sans-serif;
+    font-weight: 700;
+  }
+  
+  .intro-text p {
+    font-size: 1.2rem;
+    color: #ddd;
+    line-height: 1.9;
+    margin-bottom: 25px;
+  }
+  
+  .intro-image {
+    border-radius: 15px;
+    overflow: hidden;
+    box-shadow: 0 25px 50px rgba(0,0,0,0.5);
+    height: 450px;
+    position: relative;
+    border: 3px solid var(--drama);
+  }
+  
+  .intro-image img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: transform 0.8s ease;
+  }
+  
+  .intro-image:hover img {
+    transform: scale(1.05);
+  }
+  
+  .intro-image:after {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(to bottom, transparent 50%, rgba(156, 39, 176, 0.2) 100%);
+    z-index: 1;
+  }
+  
+  /* Film Productions Section */
+  .films-section {
+    padding: 100px 0;
+    background: #0a0a0a;
+    position: relative;
+  }
+  
+  .films-section:before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 5px;
+    background: linear-gradient(90deg, var(--film), var(--stage), var(--creative));
+  }
+  
+  .film-slider {
+    position: relative;
+    margin-top: 60px;
+  }
+  
+  .film-track {
+    display: flex;
+    gap: 30px;
+    overflow-x: auto;
+    padding: 30px 10px;
+    scroll-behavior: smooth;
+    scrollbar-width: none;
+  }
+  
+  .film-track::-webkit-scrollbar {
+    display: none;
+  }
+  
+  .film-card {
+    flex: 0 0 auto;
+    width: 320px;
+    background: #1a1a1a;
+    border-radius: 15px;
+    overflow: hidden;
+    box-shadow: 0 20px 40px rgba(0,0,0,0.5);
+    transition: all 0.4s ease;
+    cursor: pointer;
+    border: 2px solid transparent;
+  }
+  
+  .film-card:hover {
+    transform: translateY(-20px) scale(1.03);
+    box-shadow: 0 30px 60px rgba(33, 150, 243, 0.3);
+    border-color: var(--film);
+  }
+  
+  .film-poster {
+    height: 400px;
+    overflow: hidden;
+    position: relative;
+  }
+  
+  .film-poster img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: transform 0.5s ease;
+  }
+  
+  .film-card:hover .film-poster img {
+    transform: scale(1.1);
+  }
+  
+  .film-overlay {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    background: linear-gradient(to top, rgba(0,0,0,0.9) 0%, transparent 100%);
+    padding: 30px 20px 20px;
+  }
+  
+  .film-year {
+    position: absolute;
+    top: 20px;
+    right: 20px;
+    background: var(--drama);
+    color: white;
+    padding: 5px 15px;
+    border-radius: 20px;
+    font-weight: 600;
+    font-size: 0.9rem;
+  }
+  
+  .film-content {
+    padding: 25px;
+  }
+  
+  .film-content h3 {
+    font-size: 1.6rem;
+    color: white;
+    margin-bottom: 15px;
+    font-family: 'Montserrat', sans-serif;
+    font-weight: 700;
+  }
+  
+  .film-content p {
+    font-size: 1rem;
+    color: #ccc;
+    line-height: 1.7;
+    margin-bottom: 20px;
+  }
+  
+  .film-meta {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    font-size: 0.9rem;
+    color: #aaa;
+    padding-top: 15px;
+    border-top: 1px solid rgba(255,255,255,0.1);
+  }
+  
+  .film-rating {
+    color: var(--creative);
+    font-weight: 600;
+  }
+  
+  /* Drama Teams Section */
+  .teams-section {
+    padding: 100px 0;
+    background: linear-gradient(135deg, #151515 0%, #252525 100%);
+    position: relative;
+  }
+  
+  .teams-section:before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 5px;
+    background: linear-gradient(90deg, var(--creative), var(--stage), var(--drama));
+  }
+  
+  .teams-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 40px;
+    margin-top: 60px;
+  }
+  
+  .team-card {
+    background: rgba(30, 30, 30, 0.8);
+    border-radius: 15px;
+    overflow: hidden;
+    box-shadow: 0 15px 35px rgba(0,0,0,0.3);
+    transition: all 0.4s ease;
+    padding: 40px 30px;
+    text-align: center;
+    border-top: 5px solid var(--stage);
+    backdrop-filter: blur(10px);
+  }
+  
+  .team-card:hover {
+    transform: translateY(-15px);
+    box-shadow: 0 25px 50px rgba(76, 175, 80, 0.2);
+  }
+  
+  .team-card:nth-child(2) {
+    border-top-color: var(--film);
+  }
+  
+  .team-card:nth-child(3) {
+    border-top-color: var(--creative);
+  }
+  
+  .team-icon {
+    width: 90px;
+    height: 90px;
+    background: var(--drama-gradient);
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin: 0 auto 25px;
+    color: white;
+    font-size: 40px;
+    box-shadow: 0 10px 20px rgba(156, 39, 176, 0.4);
+  }
+  
+  .team-card:nth-child(2) .team-icon {
+    background: var(--film-gradient);
+    box-shadow: 0 10px 20px rgba(33, 150, 243, 0.4);
+  }
+  
+  .team-card:nth-child(3) .team-icon {
+    background: linear-gradient(135deg, var(--creative) 0%, #ff5722 100%);
+    box-shadow: 0 10px 20px rgba(255, 152, 0, 0.4);
+  }
+  
+  .team-card h3 {
+    font-size: 1.8rem;
+    color: white;
+    margin-bottom: 20px;
+    font-family: 'Montserrat', sans-serif;
+    font-weight: 700;
+  }
+  
+  .team-card p {
+    font-size: 1.1rem;
+    color: #ddd;
+    line-height: 1.8;
+    margin-bottom: 25px;
+  }
+  
+  .team-list {
+    text-align: left;
+    list-style: none;
+  }
+  
+  .team-list li {
+    margin-bottom: 12px;
+    padding-left: 30px;
+    position: relative;
+    color: #ccc;
+    font-size: 1rem;
+  }
+  
+  .team-list li:before {
+    content: '\f06d';
+    font-family: 'Font Awesome 6 Free';
+    font-weight: 900;
+    position: absolute;
+    left: 0;
+    color: var(--creative);
+  }
+  
+  /* Upcoming Events Section */
+  .events-section {
+    padding: 100px 0;
+    background: #0a0a0a;
+    position: relative;
+  }
+  
+  .events-section:before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 5px;
+    background: linear-gradient(90deg, var(--stage), var(--drama), var(--film));
+  }
+  
+  .events-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 35px;
+    margin-top: 60px;
+  }
+  
+  .event-card {
+    background: #1a1a1a;
+    border-radius: 15px;
+    overflow: hidden;
+    box-shadow: 0 15px 35px rgba(0,0,0,0.5);
+    transition: all 0.4s ease;
+    cursor: pointer;
+    border: 2px solid transparent;
+  }
+  
+  .event-card:hover {
+    transform: translateY(-15px);
+    box-shadow: 0 25px 50px rgba(156, 39, 176, 0.3);
+    border-color: var(--drama);
+  }
+  
+  .event-date {
+    background: var(--drama);
+    color: white;
+    padding: 20px;
+    text-align: center;
+    font-family: 'Montserrat', sans-serif;
+  }
+  
+  .event-day {
+    font-size: 2.5rem;
+    font-weight: 800;
+    line-height: 1;
+  }
+  
+  .event-month {
+    font-size: 1.2rem;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+  }
+  
+  .event-content {
+    padding: 30px;
+  }
+  
+  .event-content h3 {
+    font-size: 1.6rem;
+    color: white;
+    margin-bottom: 15px;
+    font-family: 'Montserrat', sans-serif;
+    font-weight: 700;
+  }
+  
+  .event-content p {
+    font-size: 1rem;
+    color: #ccc;
+    line-height: 1.7;
+    margin-bottom: 20px;
+  }
+  
+  .event-meta {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    font-size: 0.9rem;
+    color: #aaa;
+    padding-top: 15px;
+    border-top: 1px solid rgba(255,255,255,0.1);
+  }
+  
+  /* Join CTA Section */
+  .join-section {
+    padding: 120px 0;
+    background: var(--drama-gradient);
+    color: white;
+    text-align: center;
+    position: relative;
+    overflow: hidden;
+  }
+  
+  .join-section:before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 5px;
+    background: linear-gradient(90deg, white, var(--creative), var(--stage));
+  }
+  
+  .join-content {
+    max-width: 800px;
+    margin: 0 auto;
+    position: relative;
+    z-index: 2;
+  }
+  
+  .join-content h2 {
+    font-family: 'Montserrat', sans-serif;
+    font-size: 4rem;
+    margin-bottom: 30px;
+    font-weight: 800;
+    text-shadow: 2px 2px 10px rgba(0, 0, 0, 0.5);
+    text-transform: uppercase;
+  }
+  
+  .join-content p {
+    font-size: 1.4rem;
+    margin-bottom: 40px;
+    opacity: 0.95;
+    max-width: 600px;
+    margin-left: auto;
+    margin-right: auto;
+    line-height: 1.8;
+  }
+  
+  .join-btn {
+    background: white;
+    color: var(--drama);
+    font-weight: 700;
+    font-size: 1.1rem;
+    padding: 16px 45px;
+    box-shadow: 0 8px 25px rgba(0,0,0,0.3);
+  }
+  
+  .join-btn:hover {
+    background: var(--creative);
+    color: white;
+  }
+  
+  /* Footer */
+  footer {
+    background: #050505;
+    color: white;
+    padding: 80px 0 30px;
+    position: relative;
+    border-top: 1px solid rgba(255,255,255,0.05);
+  }
+  
+  footer:before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 5px;
+    background: linear-gradient(90deg, var(--drama), var(--film), var(--creative));
+  }
+  
+  .footer-content {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 40px;
+    margin-bottom: 50px;
+  }
+  
+  @media (max-width: 768px) {
+    .footer-content {
+      grid-template-columns: 1fr;
+      gap: 30px;
+    }
+    
+    .intro-content {
+      grid-template-columns: 1fr;
+      gap: 40px;
+    }
+  }
+  
+  .footer-column h3 {
+    margin-bottom: 25px;
+    color: var(--creative);
+    font-size: 1.5rem;
+    font-weight: 600;
+    position: relative;
+    padding-bottom: 10px;
+    font-family: 'Montserrat', sans-serif;
+  }
+  
+  .footer-column h3:after {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 50px;
+    height: 3px;
+    background: var(--drama);
+  }
+  
+  .footer-links {
+    list-style: none;
+  }
+  
+  .footer-links li {
+    margin-bottom: 12px;
+  }
+  
+  .footer-links a {
+    color: #aaa;
+    transition: 0.3s;
+    display: inline-block;
+  }
+  
+  .footer-links a:hover {
+    color: var(--creative);
+    transform: translateX(5px);
+  }
+  
+  .social-links {
+    display: flex;
+    gap: 15px;
+    margin-top: 25px;
+  }
+  
+  .social-links a {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 45px;
+    height: 45px;
+    background: rgba(255,255,255,0.1);
+    border-radius: 50%;
+    transition: 0.3s;
+  }
+  
+  .social-links a:hover {
+    background: var(--drama);
+    transform: translateY(-5px);
+  }
+  
+  .footer-bottom {
+    text-align: center;
+    padding-top: 30px;
+    border-top: 1px solid rgba(255,255,255,0.05);
+    font-size: 0.9rem;
+    color: #777;
+  }
+  
+  /* Scroll to top button */
+  .scroll-top {
+    position: fixed;
+    bottom: 30px;
+    right: 30px;
+    width: 50px;
+    height: 50px;
+    background: var(--drama);
+    color: white;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    z-index: 999;
+    opacity: 0;
+    visibility: hidden;
+    transition: all 0.3s ease;
+    box-shadow: 0 5px 15px rgba(156, 39, 176, 0.5);
+  }
+  
+  .scroll-top.visible {
+    opacity: 1;
+    visibility: visible;
+  }
+  
+  .scroll-top:hover {
+    background: var(--film);
+    transform: translateY(-5px);
+    box-shadow: 0 8px 20px rgba(33, 150, 243, 0.5);
+  }
+</style>
+</head>
+<body>
+
+<!-- Scroll to Top Button -->
+<div class="scroll-top" id="scrollTop">
+  <i class="fas fa-chevron-up"></i>
+</div>
+
+<header id="mainHeader">
+  <div class="container header-container">
+    <div class="logo">
+      <div class="logo-frame">
+        <img src="spac-logo.jpg" alt="SPAC Logo">
+      </div>
+      <span class="logo-text">SPAC CHURCH</span>
+    </div>
+    <div class="nav-container">
+      <ul class="nav-menu">
+        <li><a href="index.html">Home</a></li>
+        <li class="dropdown"><a href="about.html">About <i class="fas fa-chevron-down"></i></a>
+          <div class="dropdown-content">
+            <a href="about.html">Our Story</a>
+            <a href="beliefs.html">Beliefs</a>
+            <a href="leadership.html">Leadership</a>
+            <a href="vision.html">Vision & Mission</a>
+          </div>
+        </li>
+        <li><a href="index.html#locations">Branches</a></li>
+        <li class="dropdown"><a href="#ministries" class="active">Ministries <i class="fas fa-chevron-down"></i></a>
+          <div class="dropdown-content">
+            <a href="vanguard.html">Vanguard (Youth)</a>
+            <a href="proclaimers.html" class="active">Proclaimers (Drama)</a>
+            <a href="teen-church.html">Teen Church</a>
+            <a href="kids-church.html">Kids Church</a>
+            <a href="marriage-counselling.html">Marriage & Counselling</a>
+            <a href="spac-uk.html">SPAC UK</a>
+            <a href="spac-nxtion.html">SPAC Nxtion</a>
+            <a href="spac-us.html">SPAC US</a>
+          </div>
+        </li>
+        <li><a href="index.html#contact">Contact</a></li>
+      </ul>
+      <div class="hamburger"><span></span><span></span><span></span></div>
+    </div>
+  </div>
+</header>
+
+<!-- Hero Section -->
+<section class="proclaimers-hero">
+  <video class="hero-video-bg" autoplay muted loop playsinline>
+    <source src="drama-hero-video.mp4" type="video/mp4">
+    <source src="drama-hero-video.webm" type="video/webm">
+    Your browser does not support the video tag.
+  </video>
+  <div class="hero-overlay"></div>
+  <div class="spotlight"></div>
+  <div class="hero-content">
+    <h1 class="proclaimers-title">PROCLAIMERS</h1>
+    <h2 class="proclaimers-subtitle">Drama Ministry & Christian Film Productions</h2>
+    <p class="proclaimers-tagline">Where faith meets creativity, and stories transform hearts. Through drama and film, we proclaim God's truth to a generation in need of hope, redemption, and purpose.</p>
+    <a href="#films" class="btn">Watch Our Films 🎬</a>
+  </div>
+</section>
+
+<!-- Introduction Section -->
+<section class="intro-section">
+  <div class="container">
+    <h2 class="section-title drama-title">The Stage of Redemption</h2>
+    <div class="intro-content">
+      <div class="intro-text">
+        <h3>Drama With Divine Purpose</h3>
+        <p>Proclaimers Drama Ministry is more than just a performance group - we are storytellers for the Kingdom. Through the powerful mediums of theater, film, and creative arts, we communicate timeless biblical truths in ways that resonate with contemporary audiences.</p>
+        <p>Founded on the belief that drama can be a profound tool for evangelism and discipleship, our ministry combines artistic excellence with spiritual depth. We produce original Christian films, stage compelling plays, and create digital content that addresses real-life issues from a faith perspective.</p>
+        <p>Our vision is to raise a new generation of Christian creatives who will use their talents to influence culture, challenge perspectives, and lead people to encounter Jesus through the power of storytelling.</p>
+        <a href="#teams" class="btn btn-secondary">Explore Our Teams</a>
+      </div>
+      <div class="intro-image">
+        <img src="proclaimers-cast.jpg" alt="Proclaimers Drama Cast">
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Film Productions Section -->
+<section class="films-section" id="films">
+  <div class="container">
+    <h2 class="section-title">Our Film Productions</h2>
+    <div class="film-slider">
+      <div class="film-track" id="filmTrack">
+        <div class="film-card" onclick="openFilmDetails('redeemed-youth')">
+          <div class="film-poster">
+            <img src="film-redeemed-youth.jpg" alt="Redeemed Youth Film">
+            <div class="film-overlay">
+              <div class="film-year">2024</div>
+            </div>
+          </div>
+          <div class="film-content">
+            <h3>Redeemed Youth</h3>
+            <p>A powerful drama about four university students navigating faith, relationships, and identity crisis in a secular campus environment. This award-winning film addresses peer pressure, addiction, and the search for purpose.</p>
+            <div class="film-meta">
+              <span><i class="fas fa-clock"></i> 108 mins</span>
+              <span class="film-rating"><i class="fas fa-star"></i> 4.8/5</span>
+            </div>
+          </div>
+        </div>
+        
+        <div class="film-card" onclick="openFilmDetails('crossroads')">
+          <div class="film-poster">
+            <img src="film-crossroads.jpg" alt="Crossroads Film">
+            <div class="film-overlay">
+              <div class="film-year">2023</div>
+            </div>
+          </div>
+          <div class="film-content">
+            <h3>Crossroads</h3>
+            <p>A family drama exploring forgiveness and reconciliation. When a prodigal son returns home after years of rebellion, his Christian family must navigate old wounds and new grace. This film has touched thousands of families worldwide.</p>
+            <div class="film-meta">
+              <span><i class="fas fa-clock"></i> 95 mins</span>
+              <span class="film-rating"><i class="fas fa-star"></i> 4.7/5</span>
+            </div>
+          </div>
+        </div>
+        
+        <div class="film-card" onclick="openFilmDetails('silent-scream')">
+          <div class="film-poster">
+            <img src="film-silent-scream.jpg" alt="Silent Scream Film">
+            <div class="film-overlay">
+              <div class="film-year">2022</div>
+            </div>
+          </div>
+          <div class="film-content">
+            <h3>Silent Scream</h3>
+            <p>A gripping story about mental health, depression, and finding hope in Christ. Following a young artist's journey through darkness to discover that her true identity is found in God, not in achievement or approval.</p>
+            <div class="film-meta">
+              <span><i class="fas fa-clock"></i> 120 mins</span>
+              <span class="film-rating"><i class="fas fa-star"></i> 4.9/5</span>
+            </div>
+          </div>
+        </div>
+        
+        <div class="film-card" onclick="openFilmDetails('legacy-of-faith')">
+          <div class="film-poster">
+            <img src="film-legacy-of-faith.jpg" alt="Legacy of Faith Film">
+            <div class="film-overlay">
+              <div class="film-year">2021</div>
+            </div>
+          </div>
+          <div class="film-content">
+            <h3>Legacy of Faith</h3>
+            <p>Historical drama based on true events of early missionaries in Africa. A testament to sacrificial love and unwavering faith against all odds. This epic production features period costumes and authentic locations.</p>
+            <div class="film-meta">
+              <span><i class="fas fa-clock"></i> 135 mins</span>
+              <span class="film-rating"><i class="fas fa-star"></i> 4.6/5</span>
+            </div>
+          </div>
+        </div>
+        
+        <div class="film-card" onclick="openFilmDetails('digital-dilemma')">
+          <div class="film-poster">
+            <img src="film-digital-dilemma.jpg" alt="Digital Dilemma Film">
+            <div class="film-overlay">
+              <div class="film-year">2020</div>
+            </div>
+          </div>
+          <div class="film-content">
+            <h3>Digital Dilemma</h3>
+            <p>A modern tale about social media addiction, cyberbullying, and digital discipleship. When a viral post goes wrong, a teenage influencer discovers what truly matters. This film is used in youth groups worldwide.</p>
+            <div class="film-meta">
+              <span><i class="fas fa-clock"></i> 88 mins</span>
+              <span class="film-rating"><i class="fas fa-star"></i> 4.5/5</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Drama Teams Section -->
+<section class="teams-section" id="teams">
+  <div class="container">
+    <h2 class="section-title">Our Creative Teams</h2>
+    <div class="teams-grid">
+      <div class="team-card">
+        <div class="team-icon">
+          <i class="fas fa-film"></i>
+        </div>
+        <h3>Film Production</h3>
+        <p>Our film team writes, directs, and produces Christian movies that address contemporary issues with biblical wisdom. From scriptwriting to post-production, we create content for cinema, television, and digital platforms.</p>
+        <ul class="team-list">
+          <li>Scriptwriting & Story Development</li>
+          <li>Cinematography & Directing</li>
+          <li>Editing & Post-Production</li>
+          <li>Sound Design & Original Scores</li>
+        </ul>
+      </div>
+      
+      <div class="team-card">
+        <div class="team-icon">
+          <i class="fas fa-theater-masks"></i>
+        </div>
+        <h3>Theater & Stage</h3>
+        <p>Our theater team produces live performances, stage plays, and dramatic presentations for church events, conferences, and community outreach. We specialize in both contemporary and classical Christian theater.</p>
+        <ul class="team-list">
+          <li>Stage Acting & Performance</li>
+          <li>Set Design & Construction</li>
+          <li>Costume & Makeup Design</li>
+          <li>Lighting & Stage Management</li>
+        </ul>
+      </div>
+      
+      <div class="team-card">
+        <div class="team-icon">
+          <i class="fas fa-video"></i>
+        </div>
+        <h3>Digital Content</h3>
+        <p>Our digital team creates short films, skits, and video content for social media and online ministry. We produce engaging content that reaches younger audiences where they are - on digital platforms.</p>
+        <ul class="team-list">
+          <li>Short Films & Web Series</li>
+          <li>Social Media Skits & Reels</li>
+          <li>Animation & Motion Graphics</li>
+          <li>Video Editing & Effects</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Upcoming Events Section -->
+<section class="events-section">
+  <div class="container">
+    <h2 class="section-title">Upcoming Shows & Events</h2>
+    <div class="events-grid">
+      <div class="event-card" onclick="openEventDetails('easter-drama')">
+        <div class="event-date">
+          <div class="event-day">15</div>
+          <div class="event-month">APR</div>
+        </div>
+        <div class="event-content">
+          <h3>Easter Drama: "The Risen King"</h3>
+          <p>A powerful retelling of the resurrection story through contemporary dance, drama, and multimedia. This annual production has become a community tradition.</p>
+          <div class="event-meta">
+            <span><i class="fas fa-map-marker-alt"></i> SPAC Main Auditorium</span>
+            <span><i class="fas fa-clock"></i> 6:00 PM</span>
+          </div>
+        </div>
+      </div>
+      
+      <div class="event-card" onclick="openEventDetails('youth-film-festival')">
+        <div class="event-date">
+          <div class="event-day">22</div>
+          <div class="event-month">JUN</div>
+        </div>
+        <div class="event-content">
+          <h3>Youth Film Festival</h3>
+          <p>Annual showcase of short films created by young Christian filmmakers. Featuring workshops, screenings, and awards ceremony. Open to ages 16-30.</p>
+          <div class="event-meta">
+            <span><i class="fas fa-map-marker-alt"></i> City Cultural Center</span>
+            <span><i class="fas fa-clock"></i> All Day Event</span>
+          </div>
+        </div>
+      </div>
+      
+      <div class="event-card" onclick="openEventDetails('drama-workshop')">
+        <div class="event-date">
+          <div class="event-day">10</div>
+          <div class="event-month">AUG</div>
+        </div>
+        <div class="event-content">
+          <h3>Acting & Ministry Workshop</h3>
+          <p>Intensive training for Christian actors and dramatists. Learn how to use your dramatic gifts for evangelism and discipleship. All skill levels welcome.</p>
+          <div class="event-meta">
+            <span><i class="fas fa-map-marker-alt"></i> SPAC Youth Center</span>
+            <span><i class="fas fa-clock"></i> 9:00 AM - 4:00 PM</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Join CTA Section -->
+<section class="join-section" id="join">
+  <div class="container">
+    <div class="join-content">
+      <h2>TAKE THE STAGE</h2>
+      <p>Do you have a passion for acting, filmmaking, writing, or production? Join the Proclaimers Drama Ministry and use your creative gifts to glorify God and impact lives through powerful storytelling.</p>
+      <a href="audition.html" class="btn join-btn">Audition Now 🎭</a>
+    </div>
+  </div>
+</section>
+
+<!-- Footer -->
+<footer id="contact">
+  <div class="container footer-content">
+    <div class="footer-column">
+      <h3>Proclaimers Drama</h3>
+      <p>Using drama, film, and creative arts to proclaim God's truth, transform culture, and touch hearts with powerful stories of faith, hope, and redemption.</p>
+      <div class="social-links">
+        <a href="#"><i class="fab fa-youtube"></i></a>
+        <a href="#"><i class="fab fa-instagram"></i></a>
+        <a href="#"><i class="fab fa-tiktok"></i></a>
+        <a href="#"><i class="fab fa-vimeo"></i></a>
+        <a href="#"><i class="fab fa-facebook-f"></i></a>
+      </div>
+    </div>
+    <div class="footer-column">
+      <h3>Quick Links</h3>
+      <ul class="footer-links">
+        <li><a href="index.html">Home</a></li>
+        <li><a href="about.html">About SPAC</a></li>
+        <li><a href="#films">Our Films</a></li>
+        <li><a href="#teams">Creative Teams</a></li>
+        <li><a href="vanguard.html">Vanguard Youth</a></li>
+        <li><a href="index.html#contact">Contact Us</a></li>
+      </ul>
+    </div>
+    <div class="footer-column">
+      <h3>Contact Proclaimers</h3>
+      <ul class="footer-links">
+        <li><i class="fas fa-map-marker-alt"></i> SPAC Creative Arts Center</li>
+        <li><i class="fas fa-phone"></i> Drama Office: (123) 456-7892</li>
+        <li><i class="fas fa-envelope"></i> Email: proclaimers@spacchurch.org</li>
+        <li><i class="fas fa-video"></i> YouTube: SPAC Proclaimers</li>
+        <li><i class="fas fa-user"></i> Director: Sister Grace Okon</li>
+      </ul>
+    </div>
+  </div>
+  <div class="footer-bottom">
+    &copy; 2025 SPAC Church Proclaimers Drama Ministry. All Rights Reserved. | <a href="privacy.html">Privacy Policy</a> | <a href="terms.html">Terms of Use</a>
+  </div>
+</footer>
+
+<script>
+// Header scroll effect
+const header = document.getElementById('mainHeader');
+window.addEventListener('scroll', () => {
+  if (window.scrollY > 50) {
+    header.style.background = 'rgba(10, 10, 10, 0.98)';
+    header.style.boxShadow = '0 3px 20px rgba(0, 0, 0, 0.5)';
+  } else {
+    header.style.background = 'rgba(10, 10, 10, 0.95)';
+    header.style.boxShadow = '0 3px 20px rgba(0, 0, 0, 0.3)';
+  }
+});
+
+// Hamburger Menu
+const hamburger = document.querySelector('.hamburger');
+const navMenu = document.querySelector('.nav-menu');
+const dropdowns = document.querySelectorAll('.dropdown');
+
+hamburger.addEventListener('click', () => {
+  hamburger.classList.toggle('active');
+  navMenu.classList.toggle('active');
+  
+  // Prevent body scroll when menu is open
+  if (navMenu.classList.contains('active')) {
+    document.body.style.overflow = 'hidden';
+  } else {
+    document.body.style.overflow = 'auto';
+  }
+});
+
+// Dropdown menu on mobile
+dropdowns.forEach(dropdown => {
+  const trigger = dropdown.querySelector('a');
+  trigger.addEventListener('click', (e) => {
+    if (window.innerWidth <= 992) {
+      e.preventDefault();
+      dropdown.classList.toggle('active');
+    }
+  });
+});
+
+// Close menu when clicking outside on mobile
+document.addEventListener('click', (e) => {
+  if (window.innerWidth <= 992 && navMenu.classList.contains('active')) {
+    if (!e.target.closest('.nav-menu') && !e.target.closest('.hamburger')) {
+      hamburger.classList.remove('active');
+      navMenu.classList.remove('active');
+      document.body.style.overflow = 'auto';
+    }
+  }
+});
+
+// Film Slider Navigation
+const filmTrack = document.getElementById('filmTrack');
+let filmScrollPosition = 0;
+const filmScrollAmount = 350;
+
+function scrollFilms(direction) {
+  filmScrollPosition += direction * filmScrollAmount;
+  filmTrack.scrollTo({
+    left: filmScrollPosition,
+    behavior: 'smooth'
+  });
+}
+
+// Auto-scroll film slider
+let autoFilmScroll = setInterval(() => {
+  filmScrollPosition += filmScrollAmount;
+  if (filmScrollPosition >= filmTrack.scrollWidth - filmTrack.clientWidth) {
+    filmScrollPosition = 0;
+  }
+  filmTrack.scrollTo({
+    left: filmScrollPosition,
+    behavior: 'smooth'
+  });
+}, 5000);
+
+// Pause auto-scroll on hover
+filmTrack.addEventListener('mouseenter', () => {
+  clearInterval(autoFilmScroll);
+});
+
+filmTrack.addEventListener('mouseleave', () => {
+  autoFilmScroll = setInterval(() => {
+    filmScrollPosition += filmScrollAmount;
+    if (filmScrollPosition >= filmTrack.scrollWidth - filmTrack.clientWidth) {
+      filmScrollPosition = 0;
+    }
+    filmTrack.scrollTo({
+      left: filmScrollPosition,
+      behavior: 'smooth'
+    });
+  }, 5000);
+});
+
+// Scroll to top button
+const scrollTopBtn = document.getElementById('scrollTop');
+
+window.addEventListener('scroll', () => {
+  if (window.scrollY > 300) {
+    scrollTopBtn.classList.add('visible');
+  } else {
+    scrollTopBtn.classList.remove('visible');
+  }
+});
+
+scrollTopBtn.addEventListener('click', () => {
+  window.scrollTo({
+    top: 0,
+    behavior: 'smooth'
+  });
+});
+
+// Film and Event card click functions
+function openFilmDetails(film) {
+  // In a real implementation, this would open a detailed page for the film
+  alert(`Opening details for "${film.replace('-', ' ')}". In a full implementation, this would navigate to a film details page with trailer, cast information, and viewing options.`);
+}
+
+function openEventDetails(event) {
+  // In a real implementation, this would open event registration
+  alert(`Opening registration for "${event.replace('-', ' ')}". In a full implementation, this would navigate to an event registration page.`);
+}
+
+// Initialize animations on load
+window.addEventListener('DOMContentLoaded', function() {
+  // Add animation to film cards on scroll
+  const filmCards = document.querySelectorAll('.film-card');
+  filmCards.forEach(card => {
+    card.style.opacity = '0';
+    card.style.transform = 'translateY(30px)';
+    card.style.transition = 'opacity 0.6s ease, transform 0.6s ease';
+  });
+  
+  // Add animation to team cards on scroll
+  const teamCards = document.querySelectorAll('.team-card');
+  teamCards.forEach(card => {
+    card.style.opacity = '0';
+    card.style.transform = 'translateY(30px)';
+    card.style.transition = 'opacity 0.6s ease, transform 0.6s ease';
+  });
+  
+  // Add animation to event cards on scroll
+  const eventCards = document.querySelectorAll('.event-card');
+  eventCards.forEach(card => {
+    card.style.opacity = '0';
+    card.style.transform = 'translateY(30px)';
+    card.style.transition = 'opacity 0.6s ease, transform 0.6s ease';
+  });
+  
+  // Initial animation check
+  setTimeout(animateOnScroll, 300);
+});
+
+// Animate elements on scroll
+function animateOnScroll() {
+  const elements = document.querySelectorAll('.film-card, .team-card, .event-card');
+  
+  elements.forEach(element => {
+    const elementTop = element.getBoundingClientRect().top;
+    const windowHeight = window.innerHeight;
+    
+    if (elementTop < windowHeight - 100) {
+      element.style.opacity = '1';
+      element.style.transform = 'translateY(0)';
+    }
+  });
+}
+
+// Check animation on scroll
+window.addEventListener('scroll', animateOnScroll);
+
+// Smooth scrolling for anchor links
+document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+  anchor.addEventListener('click', function(e) {
+    if (this.getAttribute('href') === '#') return;
+    
+    e.preventDefault();
+    const targetId = this.getAttribute('href');
+    if (targetId === '#home' || targetId === '#') {
+      window.scrollTo({
+        top: 0,
+        behavior: 'smooth'
+      });
+    } else {
+      const targetElement = document.querySelector(targetId);
+      if (targetElement) {
+        window.scrollTo({
+          top: targetElement.offsetTop - 80,
+          behavior: 'smooth'
+        });
+        
+        // Close mobile menu if open
+        if (window.innerWidth <= 992 && navMenu.classList.contains('active')) {
+          hamburger.classList.remove('active');
+          navMenu.classList.remove('active');
+          document.body.style.overflow = 'auto';
+        }
+      }
+    }
+  });
+});
+
+// Add spotlight effect to hero section
+document.addEventListener('mousemove', (e) => {
+  const spotlight = document.querySelector('.spotlight');
+  if (spotlight) {
+    const x = e.clientX / window.innerWidth * 100;
+    const y = e.clientY / window.innerHeight * 100;
+    spotlight.style.left = `${x}%`;
+    spotlight.style.top = `${y}%`;
+  }
+});
+
+// Add curtain effect to page load
+window.addEventListener('load', () => {
+  document.body.style.opacity = '0';
+  document.body.style.transition = 'opacity 0.8s ease';
+  
+  setTimeout(() => {
+    document.body.style.opacity = '1';
+  }, 100);
+});
+</script>
+
+</body>
+</html>
