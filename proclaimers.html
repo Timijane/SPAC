@@ -13,13 +13,7 @@
     --light: #f8f9fa;
     --dark: #2c3e50;
     --accent: #8b0000;
-    --drama: #9c27b0;
-    --film: #2196f3;
-    --creative: #ff9800;
-    --stage: #4caf50;
     --gradient: linear-gradient(135deg, #1a4b8c 0%, #2c3e50 100%);
-    --drama-gradient: linear-gradient(135deg, #9c27b0 0%, #673ab7 100%);
-    --film-gradient: linear-gradient(135deg, #2196f3 0%, #0d47a1 100%);
   }
   
   * {
@@ -29,9 +23,9 @@
   }
   
   body {
-    font-family: 'Montserrat', sans-serif;
-    background: linear-gradient(180deg, #0a0a0a 0%, #1a1a1a 100%);
-    color: #fff;
+    font-family: 'Poppins', sans-serif;
+    background: linear-gradient(180deg, #f8f9fa 0%, #ffffff 100%);
+    color: #333;
     line-height: 1.6;
     scroll-behavior: smooth;
     overflow-x: hidden;
@@ -53,7 +47,7 @@
   
   .btn {
     display: inline-block;
-    background: var(--drama);
+    background: var(--primary);
     color: white;
     padding: 14px 32px;
     border: none;
@@ -62,7 +56,7 @@
     transition: all 0.3s ease;
     font-weight: 600;
     letter-spacing: 0.5px;
-    box-shadow: 0 4px 15px rgba(156, 39, 176, 0.4);
+    box-shadow: 0 4px 15px rgba(26, 75, 140, 0.2);
     text-transform: uppercase;
     font-size: 1rem;
     font-family: 'Montserrat', sans-serif;
@@ -71,29 +65,30 @@
   .btn:hover {
     background: var(--accent);
     transform: translateY(-3px);
-    box-shadow: 0 6px 20px rgba(139, 0, 0, 0.5);
+    box-shadow: 0 6px 20px rgba(139, 0, 0, 0.25);
   }
   
   .btn-secondary {
-    background: var(--film);
-    box-shadow: 0 4px 15px rgba(33, 150, 243, 0.4);
+    background: var(--secondary);
+    color: var(--dark);
+    box-shadow: 0 4px 15px rgba(212, 175, 55, 0.2);
   }
   
   .btn-secondary:hover {
-    background: var(--creative);
+    background: var(--accent);
+    color: white;
   }
   
   /* Header with Bigger Logo */
   header {
-    background: rgba(10, 10, 10, 0.95);
-    box-shadow: 0 3px 20px rgba(0, 0, 0, 0.3);
+    background: white;
+    box-shadow: 0 3px 20px rgba(0, 0, 0, 0.08);
     position: sticky;
     top: 0;
     z-index: 1000;
     padding: 8px 0;
     transition: all 0.3s ease;
     width: 100%;
-    backdrop-filter: blur(10px);
   }
   
   .header-container {
@@ -116,14 +111,14 @@
     width: 100px;
     height: 100px;
     border-radius: 50%;
-    background: rgba(255, 255, 255, 0.1);
-    border: 4px solid var(--drama);
+    background: white;
+    border: 4px solid var(--primary);
     display: flex;
     align-items: center;
     justify-content: center;
     margin-right: 20px;
     overflow: hidden;
-    box-shadow: 0 6px 20px rgba(156, 39, 176, 0.3);
+    box-shadow: 0 6px 20px rgba(0, 0, 0, 0.15);
   }
   
   .logo-frame img {
@@ -136,12 +131,11 @@
     font-family: 'Lobster', cursive;
     font-size: 42px;
     font-weight: 400;
-    color: white;
+    color: var(--primary);
     letter-spacing: 1.5px;
     line-height: 1;
     text-align: center;
     white-space: nowrap;
-    text-shadow: 0 2px 5px rgba(0, 0, 0, 0.5);
   }
   
   /* Navigation */
@@ -164,7 +158,7 @@
     }
     
     .nav-menu a {
-      color: white;
+      color: var(--dark);
       font-weight: 500;
       font-size: 15px;
       transition: all 0.3s ease;
@@ -179,7 +173,7 @@
       left: 0;
       width: 0;
       height: 2px;
-      background: var(--drama);
+      background: var(--secondary);
       transition: width 0.3s ease;
     }
     
@@ -190,17 +184,15 @@
     .dropdown-content {
       display: none;
       position: absolute;
-      background: rgba(20, 20, 20, 0.95);
+      background: white;
       min-width: 200px;
-      box-shadow: 0 15px 30px rgba(0, 0, 0, 0.3);
+      box-shadow: 0 15px 30px rgba(0, 0, 0, 0.1);
       z-index: 1;
       border-radius: 10px;
       overflow: hidden;
       top: 100%;
       left: 0;
       padding: 10px 0;
-      backdrop-filter: blur(10px);
-      border: 1px solid rgba(255, 255, 255, 0.1);
     }
     
     .dropdown:hover .dropdown-content {
@@ -217,7 +209,7 @@
     position: relative;
     z-index: 1001;
     margin-left: auto;
-    background: var(--drama);
+    background: var(--primary);
     border-radius: 5px;
     padding: 8px;
   }
@@ -261,16 +253,15 @@
       right: -50%;
       width: 50%;
       height: 100vh;
-      background: rgba(20, 20, 20, 0.98);
+      background: white;
       flex-direction: column;
       justify-content: flex-start;
       align-items: flex-start;
       padding: 100px 30px 30px;
       transition: right 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
-      box-shadow: -10px 0 30px rgba(0,0,0,0.5);
+      box-shadow: -10px 0 30px rgba(0,0,0,0.15);
       z-index: 1000;
       overflow-y: auto;
-      backdrop-filter: blur(10px);
     }
     
     .nav-menu.active {
@@ -301,19 +292,18 @@
       display: block;
       padding: 10px 0;
       width: 100%;
-      border-bottom: 1px solid rgba(255,255,255,0.1);
-      color: white;
+      border-bottom: 1px solid rgba(0,0,0,0.05);
+      color: var(--dark);
     }
     
     .dropdown-content {
       position: static;
       display: none;
       box-shadow: none;
-      background: rgba(156, 39, 176, 0.1);
+      background: rgba(26, 75, 140, 0.05);
       margin-top: 10px;
       border-radius: 8px;
       padding: 5px 0;
-      border: 1px solid rgba(255, 255, 255, 0.05);
     }
     
     .dropdown.active .dropdown-content {
@@ -367,18 +357,18 @@
     }
   }
   
-  /* Proclaimers Hero Section - Cinematic */
+  /* Proclaimers Hero Section */
   .proclaimers-hero {
     position: relative;
-    height: 85vh;
-    min-height: 700px;
+    height: 70vh;
+    min-height: 600px;
     overflow: hidden;
     display: flex;
     align-items: center;
     justify-content: center;
     text-align: center;
     color: white;
-    background: #000;
+    background: linear-gradient(135deg, rgba(26, 75, 140, 0.9) 0%, rgba(44, 62, 80, 0.9) 100%);
     width: 100%;
   }
   
@@ -390,7 +380,7 @@
     height: 100%;
     object-fit: cover;
     z-index: 0;
-    opacity: 0.5;
+    opacity: 0.4;
   }
   
   .hero-overlay {
@@ -399,7 +389,7 @@
     left: 0;
     width: 100%;
     height: 100%;
-    background: linear-gradient(135deg, rgba(156, 39, 176, 0.7) 0%, rgba(33, 150, 243, 0.8) 100%);
+    background: linear-gradient(135deg, rgba(26, 75, 140, 0.8) 0%, rgba(44, 62, 80, 0.9) 100%);
     z-index: 1;
   }
   
@@ -412,20 +402,17 @@
   
   .proclaimers-title {
     font-family: 'Montserrat', sans-serif;
-    font-size: 5.5rem;
+    font-size: 5rem;
     margin-bottom: 20px;
     font-weight: 800;
-    text-shadow: 3px 3px 15px rgba(0, 0, 0, 0.7);
+    text-shadow: 3px 3px 15px rgba(0, 0, 0, 0.5);
     text-transform: uppercase;
     letter-spacing: 3px;
-    background: linear-gradient(to right, #fff, var(--drama), var(--film));
-    -webkit-background-clip: text;
-    background-clip: text;
-    color: transparent;
+    color: white;
   }
   
   .proclaimers-subtitle {
-    font-size: 2.2rem;
+    font-size: 2rem;
     margin-bottom: 30px;
     font-weight: 300;
     opacity: 0.95;
@@ -441,10 +428,10 @@
     font-weight: 400;
     line-height: 1.8;
     text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.5);
-    background: rgba(0, 0, 0, 0.6);
+    background: rgba(0, 0, 0, 0.4);
     padding: 25px;
     border-radius: 15px;
-    border-left: 5px solid var(--creative);
+    border-left: 5px solid var(--secondary);
   }
   
   @media (max-width: 992px) {
@@ -463,8 +450,8 @@
   
   @media (max-width: 768px) {
     .proclaimers-hero {
-      height: 75vh;
-      min-height: 600px;
+      height: 60vh;
+      min-height: 500px;
     }
     
     .proclaimers-title {
@@ -532,7 +519,7 @@
   /* Introduction Section */
   .intro-section {
     padding: 100px 0;
-    background: linear-gradient(135deg, #111 0%, #222 100%);
+    background: white;
     position: relative;
     overflow: hidden;
   }
@@ -544,14 +531,14 @@
     left: 0;
     width: 100%;
     height: 5px;
-    background: linear-gradient(90deg, var(--drama), var(--film), var(--creative));
+    background: linear-gradient(90deg, var(--primary), var(--secondary), var(--accent));
   }
   
   .section-title {
     text-align: center;
     font-family: 'Playfair Display', serif;
     font-size: 3.5rem;
-    color: white;
+    color: var(--primary);
     margin-bottom: 50px;
     position: relative;
     padding-bottom: 20px;
@@ -565,15 +552,7 @@
     transform: translateX(-50%);
     width: 150px;
     height: 4px;
-    background: var(--drama);
-  }
-  
-  .drama-title {
-    color: var(--drama);
-  }
-  
-  .drama-title:after {
-    background: var(--drama);
+    background: var(--secondary);
   }
   
   .intro-content {
@@ -585,7 +564,7 @@
   
   .intro-text h3 {
     font-size: 2.5rem;
-    color: var(--film);
+    color: var(--primary);
     margin-bottom: 25px;
     font-family: 'Montserrat', sans-serif;
     font-weight: 700;
@@ -593,7 +572,7 @@
   
   .intro-text p {
     font-size: 1.2rem;
-    color: #ddd;
+    color: #555;
     line-height: 1.9;
     margin-bottom: 25px;
   }
@@ -601,10 +580,10 @@
   .intro-image {
     border-radius: 15px;
     overflow: hidden;
-    box-shadow: 0 25px 50px rgba(0,0,0,0.5);
+    box-shadow: 0 25px 50px rgba(0,0,0,0.1);
     height: 450px;
     position: relative;
-    border: 3px solid var(--drama);
+    border: 3px solid var(--primary);
   }
   
   .intro-image img {
@@ -625,14 +604,14 @@
     left: 0;
     width: 100%;
     height: 100%;
-    background: linear-gradient(to bottom, transparent 50%, rgba(156, 39, 176, 0.2) 100%);
+    background: linear-gradient(to bottom, transparent 50%, rgba(26, 75, 140, 0.1) 100%);
     z-index: 1;
   }
   
   /* Film Productions Section */
   .films-section {
     padding: 100px 0;
-    background: #0a0a0a;
+    background: linear-gradient(135deg, #f8f9fa 0%, #e9ecef 100%);
     position: relative;
   }
   
@@ -643,7 +622,7 @@
     left: 0;
     width: 100%;
     height: 5px;
-    background: linear-gradient(90deg, var(--film), var(--stage), var(--creative));
+    background: linear-gradient(90deg, var(--primary), var(--secondary), var(--accent));
   }
   
   .film-slider {
@@ -667,10 +646,10 @@
   .film-card {
     flex: 0 0 auto;
     width: 320px;
-    background: #1a1a1a;
+    background: white;
     border-radius: 15px;
     overflow: hidden;
-    box-shadow: 0 20px 40px rgba(0,0,0,0.5);
+    box-shadow: 0 20px 40px rgba(0,0,0,0.1);
     transition: all 0.4s ease;
     cursor: pointer;
     border: 2px solid transparent;
@@ -678,8 +657,8 @@
   
   .film-card:hover {
     transform: translateY(-20px) scale(1.03);
-    box-shadow: 0 30px 60px rgba(33, 150, 243, 0.3);
-    border-color: var(--film);
+    box-shadow: 0 30px 60px rgba(26, 75, 140, 0.2);
+    border-color: var(--primary);
   }
   
   .film-poster {
@@ -712,7 +691,7 @@
     position: absolute;
     top: 20px;
     right: 20px;
-    background: var(--drama);
+    background: var(--primary);
     color: white;
     padding: 5px 15px;
     border-radius: 20px;
@@ -726,7 +705,7 @@
   
   .film-content h3 {
     font-size: 1.6rem;
-    color: white;
+    color: var(--primary);
     margin-bottom: 15px;
     font-family: 'Montserrat', sans-serif;
     font-weight: 700;
@@ -734,7 +713,7 @@
   
   .film-content p {
     font-size: 1rem;
-    color: #ccc;
+    color: #555;
     line-height: 1.7;
     margin-bottom: 20px;
   }
@@ -744,20 +723,20 @@
     justify-content: space-between;
     align-items: center;
     font-size: 0.9rem;
-    color: #aaa;
+    color: #666;
     padding-top: 15px;
-    border-top: 1px solid rgba(255,255,255,0.1);
+    border-top: 1px solid rgba(0,0,0,0.1);
   }
   
   .film-rating {
-    color: var(--creative);
+    color: var(--accent);
     font-weight: 600;
   }
   
   /* Drama Teams Section */
   .teams-section {
     padding: 100px 0;
-    background: linear-gradient(135deg, #151515 0%, #252525 100%);
+    background: white;
     position: relative;
   }
   
@@ -768,7 +747,7 @@
     left: 0;
     width: 100%;
     height: 5px;
-    background: linear-gradient(90deg, var(--creative), var(--stage), var(--drama));
+    background: linear-gradient(90deg, var(--primary), var(--secondary), var(--accent));
   }
   
   .teams-grid {
@@ -779,34 +758,33 @@
   }
   
   .team-card {
-    background: rgba(30, 30, 30, 0.8);
+    background: white;
     border-radius: 15px;
     overflow: hidden;
-    box-shadow: 0 15px 35px rgba(0,0,0,0.3);
+    box-shadow: 0 15px 35px rgba(0,0,0,0.08);
     transition: all 0.4s ease;
     padding: 40px 30px;
     text-align: center;
-    border-top: 5px solid var(--stage);
-    backdrop-filter: blur(10px);
+    border-top: 5px solid var(--primary);
   }
   
   .team-card:hover {
     transform: translateY(-15px);
-    box-shadow: 0 25px 50px rgba(76, 175, 80, 0.2);
+    box-shadow: 0 25px 50px rgba(26, 75, 140, 0.15);
   }
   
   .team-card:nth-child(2) {
-    border-top-color: var(--film);
+    border-top-color: var(--secondary);
   }
   
   .team-card:nth-child(3) {
-    border-top-color: var(--creative);
+    border-top-color: var(--accent);
   }
   
   .team-icon {
     width: 90px;
     height: 90px;
-    background: var(--drama-gradient);
+    background: var(--gradient);
     border-radius: 50%;
     display: flex;
     align-items: center;
@@ -814,30 +792,38 @@
     margin: 0 auto 25px;
     color: white;
     font-size: 40px;
-    box-shadow: 0 10px 20px rgba(156, 39, 176, 0.4);
+    box-shadow: 0 10px 20px rgba(26, 75, 140, 0.2);
   }
   
   .team-card:nth-child(2) .team-icon {
-    background: var(--film-gradient);
-    box-shadow: 0 10px 20px rgba(33, 150, 243, 0.4);
+    background: linear-gradient(135deg, var(--secondary) 0%, #c19b2c 100%);
+    box-shadow: 0 10px 20px rgba(212, 175, 55, 0.2);
   }
   
   .team-card:nth-child(3) .team-icon {
-    background: linear-gradient(135deg, var(--creative) 0%, #ff5722 100%);
-    box-shadow: 0 10px 20px rgba(255, 152, 0, 0.4);
+    background: linear-gradient(135deg, var(--accent) 0%, #a30000 100%);
+    box-shadow: 0 10px 20px rgba(139, 0, 0, 0.2);
   }
   
   .team-card h3 {
     font-size: 1.8rem;
-    color: white;
+    color: var(--primary);
     margin-bottom: 20px;
     font-family: 'Montserrat', sans-serif;
     font-weight: 700;
   }
   
+  .team-card:nth-child(2) h3 {
+    color: var(--dark);
+  }
+  
+  .team-card:nth-child(3) h3 {
+    color: var(--accent);
+  }
+  
   .team-card p {
     font-size: 1.1rem;
-    color: #ddd;
+    color: #555;
     line-height: 1.8;
     margin-bottom: 25px;
   }
@@ -851,7 +837,7 @@
     margin-bottom: 12px;
     padding-left: 30px;
     position: relative;
-    color: #ccc;
+    color: #555;
     font-size: 1rem;
   }
   
@@ -861,13 +847,13 @@
     font-weight: 900;
     position: absolute;
     left: 0;
-    color: var(--creative);
+    color: var(--secondary);
   }
   
   /* Upcoming Events Section */
   .events-section {
     padding: 100px 0;
-    background: #0a0a0a;
+    background: linear-gradient(135deg, #f8f9fa 0%, #e9ecef 100%);
     position: relative;
   }
   
@@ -878,7 +864,7 @@
     left: 0;
     width: 100%;
     height: 5px;
-    background: linear-gradient(90deg, var(--stage), var(--drama), var(--film));
+    background: linear-gradient(90deg, var(--primary), var(--secondary), var(--accent));
   }
   
   .events-grid {
@@ -889,10 +875,10 @@
   }
   
   .event-card {
-    background: #1a1a1a;
+    background: white;
     border-radius: 15px;
     overflow: hidden;
-    box-shadow: 0 15px 35px rgba(0,0,0,0.5);
+    box-shadow: 0 15px 35px rgba(0,0,0,0.1);
     transition: all 0.4s ease;
     cursor: pointer;
     border: 2px solid transparent;
@@ -900,12 +886,12 @@
   
   .event-card:hover {
     transform: translateY(-15px);
-    box-shadow: 0 25px 50px rgba(156, 39, 176, 0.3);
-    border-color: var(--drama);
+    box-shadow: 0 25px 50px rgba(26, 75, 140, 0.15);
+    border-color: var(--primary);
   }
   
   .event-date {
-    background: var(--drama);
+    background: var(--primary);
     color: white;
     padding: 20px;
     text-align: center;
@@ -931,7 +917,7 @@
   
   .event-content h3 {
     font-size: 1.6rem;
-    color: white;
+    color: var(--primary);
     margin-bottom: 15px;
     font-family: 'Montserrat', sans-serif;
     font-weight: 700;
@@ -939,7 +925,7 @@
   
   .event-content p {
     font-size: 1rem;
-    color: #ccc;
+    color: #555;
     line-height: 1.7;
     margin-bottom: 20px;
   }
@@ -949,15 +935,15 @@
     justify-content: space-between;
     align-items: center;
     font-size: 0.9rem;
-    color: #aaa;
+    color: #666;
     padding-top: 15px;
-    border-top: 1px solid rgba(255,255,255,0.1);
+    border-top: 1px solid rgba(0,0,0,0.1);
   }
   
   /* Join CTA Section */
   .join-section {
     padding: 120px 0;
-    background: var(--drama-gradient);
+    background: var(--gradient);
     color: white;
     text-align: center;
     position: relative;
@@ -971,7 +957,7 @@
     left: 0;
     width: 100%;
     height: 5px;
-    background: linear-gradient(90deg, white, var(--creative), var(--stage));
+    background: linear-gradient(90deg, white, var(--secondary), var(--accent));
   }
   
   .join-content {
@@ -986,7 +972,7 @@
     font-size: 4rem;
     margin-bottom: 30px;
     font-weight: 800;
-    text-shadow: 2px 2px 10px rgba(0, 0, 0, 0.5);
+    text-shadow: 2px 2px 10px rgba(0, 0, 0, 0.3);
     text-transform: uppercase;
   }
   
@@ -1002,21 +988,21 @@
   
   .join-btn {
     background: white;
-    color: var(--drama);
+    color: var(--primary);
     font-weight: 700;
     font-size: 1.1rem;
     padding: 16px 45px;
-    box-shadow: 0 8px 25px rgba(0,0,0,0.3);
+    box-shadow: 0 8px 25px rgba(0,0,0,0.2);
   }
   
   .join-btn:hover {
-    background: var(--creative);
+    background: var(--secondary);
     color: white;
   }
   
   /* Footer */
   footer {
-    background: #050505;
+    background: var(--dark);
     color: white;
     padding: 80px 0 30px;
     position: relative;
@@ -1030,7 +1016,7 @@
     left: 0;
     width: 100%;
     height: 5px;
-    background: linear-gradient(90deg, var(--drama), var(--film), var(--creative));
+    background: linear-gradient(90deg, var(--primary), var(--secondary), var(--accent));
   }
   
   .footer-content {
@@ -1054,7 +1040,7 @@
   
   .footer-column h3 {
     margin-bottom: 25px;
-    color: var(--creative);
+    color: var(--secondary);
     font-size: 1.5rem;
     font-weight: 600;
     position: relative;
@@ -1069,7 +1055,7 @@
     left: 0;
     width: 50px;
     height: 3px;
-    background: var(--drama);
+    background: var(--primary);
   }
   
   .footer-links {
@@ -1087,7 +1073,7 @@
   }
   
   .footer-links a:hover {
-    color: var(--creative);
+    color: var(--secondary);
     transform: translateX(5px);
   }
   
@@ -1109,7 +1095,7 @@
   }
   
   .social-links a:hover {
-    background: var(--drama);
+    background: var(--secondary);
     transform: translateY(-5px);
   }
   
@@ -1128,7 +1114,7 @@
     right: 30px;
     width: 50px;
     height: 50px;
-    background: var(--drama);
+    background: var(--primary);
     color: white;
     border-radius: 50%;
     display: flex;
@@ -1139,7 +1125,7 @@
     opacity: 0;
     visibility: hidden;
     transition: all 0.3s ease;
-    box-shadow: 0 5px 15px rgba(156, 39, 176, 0.5);
+    box-shadow: 0 5px 15px rgba(26, 75, 140, 0.3);
   }
   
   .scroll-top.visible {
@@ -1148,9 +1134,9 @@
   }
   
   .scroll-top:hover {
-    background: var(--film);
+    background: var(--accent);
     transform: translateY(-5px);
-    box-shadow: 0 8px 20px rgba(33, 150, 243, 0.5);
+    box-shadow: 0 8px 20px rgba(139, 0, 0, 0.3);
   }
 </style>
 </head>
@@ -1220,7 +1206,7 @@
 <!-- Introduction Section -->
 <section class="intro-section">
   <div class="container">
-    <h2 class="section-title drama-title">The Stage of Redemption</h2>
+    <h2 class="section-title">The Stage of Redemption</h2>
     <div class="intro-content">
       <div class="intro-text">
         <h3>Drama With Divine Purpose</h3>
@@ -1491,11 +1477,9 @@
 const header = document.getElementById('mainHeader');
 window.addEventListener('scroll', () => {
   if (window.scrollY > 50) {
-    header.style.background = 'rgba(10, 10, 10, 0.98)';
-    header.style.boxShadow = '0 3px 20px rgba(0, 0, 0, 0.5)';
+    header.classList.add('header-scrolled');
   } else {
-    header.style.background = 'rgba(10, 10, 10, 0.95)';
-    header.style.boxShadow = '0 3px 20px rgba(0, 0, 0, 0.3)';
+    header.classList.remove('header-scrolled');
   }
 });
 
@@ -1601,13 +1585,11 @@ scrollTopBtn.addEventListener('click', () => {
 
 // Film and Event card click functions
 function openFilmDetails(film) {
-  // In a real implementation, this would open a detailed page for the film
-  alert(`Opening details for "${film.replace('-', ' ')}". In a full implementation, this would navigate to a film details page with trailer, cast information, and viewing options.`);
+  alert(`Opening details for "${film.replace('-', ' ')}". This would navigate to a film details page.`);
 }
 
 function openEventDetails(event) {
-  // In a real implementation, this would open event registration
-  alert(`Opening registration for "${event.replace('-', ' ')}". In a full implementation, this would navigate to an event registration page.`);
+  alert(`Opening registration for "${event.replace('-', ' ')}". This would navigate to an event registration page.`);
 }
 
 // Initialize animations on load
@@ -1712,4 +1694,4 @@ window.addEventListener('load', () => {
 </script>
 
 </body>
-</html>
+  </html>
