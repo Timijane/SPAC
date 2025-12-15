@@ -1,0 +1,1468 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SPAC Sermon Library - Listen & Download</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&family=Playfair+Display:wght@400;500;600&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --primary: #1a4b8c;
+            --secondary: #d4af37;
+            --accent: #8b0000;
+            --dark: #2c3e50;
+            --light: #f8f9fa;
+            --success: #28a745;
+        }
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body { 
+            font-family: 'Poppins', sans-serif; 
+            line-height: 1.6; 
+            color: #333; 
+            background: #fff;
+            padding-bottom: 120px; /* Space for fixed audio player */
+        }
+        .container { width: 100%; max-width: 1200px; margin: 0 auto; padding: 0 20px; }
+
+        /* ====== PERSISTENT AUDIO PLAYER ====== */
+        .audio-player-container {
+            position: fixed;
+            bottom: 0;
+            left: 0;
+            width: 100%;
+            background: white;
+            box-shadow: 0 -5px 30px rgba(0,0,0,0.15);
+            z-index: 1000;
+            border-top: 3px solid var(--primary);
+            transition: transform 0.3s ease;
+            padding: 15px 0;
+        }
+        .audio-player-container.minimized {
+            transform: translateY(calc(100% - 60px));
+        }
+        .player-toggle {
+            position: absolute;
+            top: -25px;
+            right: 20px;
+            width: 50px;
+            height: 25px;
+            background: var(--primary);
+            color: white;
+            border: none;
+            border-radius: 10px 10px 0 0;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        .audio-player {
+            display: grid;
+            grid-template-columns: 80px 1fr auto;
+            gap: 20px;
+            align-items: center;
+            padding: 0 20px;
+        }
+        .player-cover {
+            width: 80px;
+            height: 80px;
+            border-radius: 10px;
+            overflow: hidden;
+            background: var(--light);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: var(--primary);
+            font-size: 2rem;
+        }
+        .player-cover img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+        .player-info {
+            flex: 1;
+        }
+        .player-title {
+            font-weight: 600;
+            color: var(--dark);
+            margin-bottom: 5px;
+            font-size: 1.1rem;
+        }
+        .player-subtitle {
+            color: #666;
+            font-size: 0.9rem;
+            margin-bottom: 10px;
+        }
+        .player-controls {
+            display: flex;
+            align-items: center;
+            gap: 20px;
+        }
+        .player-btn {
+            width: 45px;
+            height: 45px;
+            border-radius: 50%;
+            background: var(--primary);
+            color: white;
+            border: none;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.2rem;
+            transition: all 0.3s ease;
+        }
+        .player-btn:hover {
+            background: var(--accent);
+            transform: scale(1.1);
+        }
+        .player-btn.play-btn { background: var(--success); }
+        .player-btn.download-btn { background: var(--secondary); }
+        .progress-container {
+            grid-column: 1 / -1;
+            margin-top: 10px;
+        }
+        .progress-bar {
+            width: 100%;
+            height: 5px;
+            background: #e0e0e0;
+            border-radius: 3px;
+            overflow: hidden;
+            cursor: pointer;
+        }
+        .progress {
+            height: 100%;
+            background: var(--primary);
+            width: 0%;
+            transition: width 0.1s linear;
+        }
+        .time-display {
+            display: flex;
+            justify-content: space-between;
+            margin-top: 5px;
+            font-size: 0.8rem;
+            color: #666;
+        }
+        .background-notice {
+            background: #f8f9fa;
+            padding: 10px 20px;
+            margin-top: 10px;
+            border-radius: 8px;
+            font-size: 0.9rem;
+            color: var(--dark);
+            text-align: center;
+            border-left: 4px solid var(--secondary);
+        }
+        .background-notice i {
+            color: var(--secondary);
+            margin-right: 8px;
+        }
+
+        /* ====== HEADER ====== */
+        header {
+            background: white;
+            box-shadow: 0 3px 20px rgba(0,0,0,0.08);
+            position: sticky;
+            top: 0;
+            z-index: 999;
+        }
+        .header-container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 20px 0;
+        }
+        .logo a {
+            display: flex;
+            align-items: center;
+            text-decoration: none;
+            color: var(--primary);
+            font-weight: 700;
+            font-size: 1.8rem;
+        }
+        .logo i { color: var(--secondary); margin-right: 10px; }
+        .nav-links { display: flex; gap: 30px; }
+        .nav-links a {
+            text-decoration: none;
+            color: var(--dark);
+            font-weight: 500;
+            position: relative;
+            padding: 5px 0;
+        }
+        .nav-links a:after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 0;
+            height: 2px;
+            background: var(--secondary);
+            transition: width 0.3s ease;
+        }
+        .nav-links a:hover:after { width: 100%; }
+        .nav-cta {
+            background: var(--primary);
+            color: white;
+            padding: 10px 25px;
+            border-radius: 30px;
+            text-decoration: none;
+            font-weight: 600;
+            transition: all 0.3s ease;
+        }
+        .nav-cta:hover {
+            background: var(--accent);
+            transform: translateY(-3px);
+        }
+        .mobile-menu-btn { display: none; }
+
+        /* ====== HERO SECTION ====== */
+        .sermon-hero {
+            background: linear-gradient(135deg, var(--primary) 0%, #2c3e80 100%);
+            color: white;
+            padding: 100px 0;
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+        }
+        .hero-wave {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 100%;
+            height: 100px;
+            background: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 1440 320'%3E%3Cpath fill='%23ffffff' fill-opacity='1' d='M0,96L48,112C96,128,192,160,288,160C384,160,480,128,576,112C672,96,768,96,864,112C960,128,1056,160,1152,160C1248,160,1344,128,1392,112L1440,96L1440,320L1392,320C1344,320,1248,320,1152,320C1056,320,960,320,864,320C768,320,672,320,576,320C480,320,384,320,288,320C192,320,96,320,48,320L0,320Z'%3E%3C/path%3E%3C/svg%3E");
+            background-size: cover;
+        }
+        .hero-content {
+            position: relative;
+            z-index: 2;
+            max-width: 800px;
+            margin: 0 auto;
+        }
+        .hero-title {
+            font-family: 'Playfair Display', serif;
+            font-size: 4rem;
+            font-weight: 600;
+            margin-bottom: 20px;
+        }
+        .hero-subtitle {
+            font-size: 1.3rem;
+            opacity: 0.9;
+            margin-bottom: 40px;
+            font-weight: 300;
+        }
+        .hero-stats {
+            display: flex;
+            justify-content: center;
+            gap: 50px;
+            margin-top: 60px;
+            flex-wrap: wrap;
+        }
+        .stat-item {
+            text-align: center;
+        }
+        .stat-number {
+            font-size: 2.5rem;
+            font-weight: 700;
+            color: var(--secondary);
+            margin-bottom: 5px;
+        }
+        .stat-label {
+            font-size: 0.9rem;
+            opacity: 0.8;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        /* ====== CONTENT SECTIONS ====== */
+        .section {
+            padding: 80px 0;
+        }
+        .section-title {
+            font-family: 'Playfair Display', serif;
+            font-size: 2.8rem;
+            color: var(--primary);
+            margin-bottom: 20px;
+            text-align: center;
+        }
+        .section-subtitle {
+            text-align: center;
+            color: #666;
+            font-size: 1.1rem;
+            max-width: 700px;
+            margin: 0 auto 50px;
+        }
+
+        /* Filters */
+        .filters-container {
+            background: #f8f9fa;
+            padding: 30px;
+            border-radius: 15px;
+            margin-bottom: 50px;
+        }
+        .filter-row {
+            display: flex;
+            gap: 20px;
+            flex-wrap: wrap;
+            margin-bottom: 20px;
+        }
+        .filter-group {
+            flex: 1;
+            min-width: 200px;
+        }
+        .filter-group label {
+            display: block;
+            margin-bottom: 10px;
+            font-weight: 500;
+            color: var(--dark);
+        }
+        .filter-group select, .filter-group input {
+            width: 100%;
+            padding: 12px;
+            border: 2px solid #e0e0e0;
+            border-radius: 8px;
+            font-family: 'Poppins', sans-serif;
+            font-size: 1rem;
+            transition: all 0.3s ease;
+        }
+        .filter-group select:focus, .filter-group input:focus {
+            outline: none;
+            border-color: var(--primary);
+            box-shadow: 0 0 0 3px rgba(26, 75, 140, 0.1);
+        }
+        .search-box {
+            position: relative;
+        }
+        .search-box input {
+            padding-left: 45px;
+        }
+        .search-box i {
+            position: absolute;
+            left: 15px;
+            top: 50%;
+            transform: translateY(-50%);
+            color: #666;
+        }
+
+        /* Sermon Grid */
+        .sermon-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(350px, 1fr));
+            gap: 30px;
+        }
+        .sermon-card {
+            background: white;
+            border-radius: 15px;
+            overflow: hidden;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.08);
+            transition: all 0.3s ease;
+            position: relative;
+        }
+        .sermon-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 20px 50px rgba(0,0,0,0.15);
+        }
+        .sermon-card.featured {
+            border: 3px solid var(--secondary);
+        }
+        .sermon-header {
+            padding: 25px;
+            background: linear-gradient(135deg, #f8f9fa 0%, #e9ecef 100%);
+            position: relative;
+        }
+        .sermon-series {
+            display: inline-block;
+            background: var(--primary);
+            color: white;
+            padding: 5px 15px;
+            border-radius: 20px;
+            font-size: 0.8rem;
+            font-weight: 600;
+            margin-bottom: 15px;
+        }
+        .sermon-title {
+            font-size: 1.5rem;
+            color: var(--dark);
+            margin-bottom: 10px;
+            line-height: 1.4;
+        }
+        .sermon-meta {
+            display: flex;
+            gap: 15px;
+            color: #666;
+            font-size: 0.9rem;
+            margin-bottom: 15px;
+        }
+        .sermon-meta i {
+            color: var(--secondary);
+            margin-right: 5px;
+        }
+        .sermon-description {
+            color: #666;
+            margin-bottom: 20px;
+            font-size: 0.95rem;
+            line-height: 1.6;
+        }
+        .sermon-tags {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 8px;
+            margin-top: 15px;
+        }
+        .tag {
+            background: rgba(26, 75, 140, 0.1);
+            color: var(--primary);
+            padding: 5px 12px;
+            border-radius: 15px;
+            font-size: 0.8rem;
+            font-weight: 500;
+        }
+        .sermon-actions {
+            display: flex;
+            padding: 20px;
+            border-top: 1px solid #f0f0f0;
+            gap: 10px;
+        }
+        .action-btn {
+            flex: 1;
+            padding: 12px;
+            border-radius: 8px;
+            border: none;
+            font-family: 'Poppins', sans-serif;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 8px;
+        }
+        .play-btn {
+            background: var(--primary);
+            color: white;
+        }
+        .play-btn:hover {
+            background: var(--accent);
+            transform: translateY(-3px);
+        }
+        .download-btn {
+            background: #f8f9fa;
+            color: var(--dark);
+            border: 2px solid #e0e0e0;
+        }
+        .download-btn:hover {
+            background: var(--secondary);
+            color: var(--dark);
+            border-color: var(--secondary);
+            transform: translateY(-3px);
+        }
+
+        /* Featured Series */
+        .series-container {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 30px;
+            margin-top: 50px;
+        }
+        .series-card {
+            background: white;
+            border-radius: 15px;
+            overflow: hidden;
+            box-shadow: 0 15px 40px rgba(0,0,0,0.08);
+            transition: all 0.3s ease;
+        }
+        .series-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 25px 60px rgba(0,0,0,0.12);
+        }
+        .series-image {
+            height: 200px;
+            overflow: hidden;
+        }
+        .series-image img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.5s ease;
+        }
+        .series-card:hover .series-image img {
+            transform: scale(1.05);
+        }
+        .series-content {
+            padding: 25px;
+        }
+        .series-title {
+            font-size: 1.5rem;
+            color: var(--dark);
+            margin-bottom: 10px;
+        }
+        .series-count {
+            color: var(--secondary);
+            font-weight: 600;
+            margin-bottom: 15px;
+        }
+        .series-desc {
+            color: #666;
+            margin-bottom: 20px;
+            font-size: 0.95rem;
+        }
+
+        /* Download Stats */
+        .stats-container {
+            background: linear-gradient(135deg, var(--primary) 0%, #2c3e80 100%);
+            color: white;
+            padding: 60px;
+            border-radius: 20px;
+            margin-top: 80px;
+        }
+        .stats-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 40px;
+            text-align: center;
+        }
+        .stat-box i {
+            font-size: 3rem;
+            margin-bottom: 20px;
+            color: var(--secondary);
+        }
+        .stat-box h3 {
+            font-size: 2.5rem;
+            margin-bottom: 10px;
+            font-weight: 700;
+        }
+        .stat-box p {
+            opacity: 0.9;
+            font-size: 1rem;
+        }
+
+        /* Footer */
+        footer {
+            background: var(--dark);
+            color: white;
+            padding: 80px 0 40px;
+            margin-top: 100px;
+        }
+        .footer-content {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 50px;
+            margin-bottom: 60px;
+        }
+        .footer-column h3 {
+            color: var(--secondary);
+            margin-bottom: 25px;
+            font-size: 1.5rem;
+        }
+        .footer-links { list-style: none; }
+        .footer-links li { margin-bottom: 12px; }
+        .footer-links a {
+            color: rgba(255,255,255,0.7);
+            text-decoration: none;
+            transition: all 0.3s ease;
+        }
+        .footer-links a:hover { 
+            color: var(--secondary);
+            padding-left: 5px;
+        }
+        .social-links {
+            display: flex;
+            gap: 15px;
+            margin-top: 25px;
+        }
+        .social-links a {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            width: 45px;
+            height: 45px;
+            background: rgba(255,255,255,0.1);
+            border-radius: 50%;
+            color: white;
+            font-size: 1.2rem;
+            transition: all 0.3s ease;
+        }
+        .social-links a:hover {
+            background: var(--secondary);
+            transform: translateY(-5px);
+        }
+        .footer-bottom {
+            text-align: center;
+            padding-top: 40px;
+            border-top: 1px solid rgba(255,255,255,0.1);
+            color: rgba(255,255,255,0.5);
+            font-size: 0.9rem;
+        }
+
+        /* Responsive */
+        @media (max-width: 992px) {
+            .hero-title { font-size: 3rem; }
+            .audio-player { grid-template-columns: 60px 1fr auto; }
+            .player-cover { width: 60px; height: 60px; }
+            .nav-links { display: none; }
+            .mobile-menu-btn {
+                display: block;
+                background: none;
+                border: none;
+                font-size: 1.8rem;
+                color: var(--primary);
+                cursor: pointer;
+            }
+            .section { padding: 60px 0; }
+            .section-title { font-size: 2.3rem; }
+        }
+        @media (max-width: 768px) {
+            .hero-title { font-size: 2.5rem; }
+            .hero-subtitle { font-size: 1.1rem; }
+            .hero-stats { gap: 30px; }
+            .sermon-grid { grid-template-columns: 1fr; }
+            .audio-player { grid-template-columns: 1fr; gap: 15px; }
+            .player-controls { justify-content: center; }
+            .filter-row { flex-direction: column; }
+        }
+    </style>
+</head>
+<body>
+    <!-- Persistent Audio Player -->
+    <div class="audio-player-container" id="audioPlayerContainer">
+        <button class="player-toggle" id="playerToggle">
+            <i class="fas fa-chevron-up"></i>
+        </button>
+        
+        <div class="audio-player" id="audioPlayer">
+            <div class="player-cover" id="playerCover">
+                <i class="fas fa-bible"></i>
+            </div>
+            
+            <div class="player-info">
+                <div class="player-title" id="playerTitle">No Sermon Selected</div>
+                <div class="player-subtitle" id="playerSubtitle">Select a sermon to begin listening</div>
+            </div>
+            
+            <div class="player-controls">
+                <button class="player-btn prev-btn" id="prevBtn" title="Previous">
+                    <i class="fas fa-step-backward"></i>
+                </button>
+                <button class="player-btn play-btn" id="playBtn" title="Play">
+                    <i class="fas fa-play"></i>
+                </button>
+                <button class="player-btn next-btn" id="nextBtn" title="Next">
+                    <i class="fas fa-step-forward"></i>
+                </button>
+                <button class="player-btn download-btn" id="playerDownloadBtn" title="Download">
+                    <i class="fas fa-download"></i>
+                </button>
+            </div>
+            
+            <div class="progress-container">
+                <div class="progress-bar" id="progressBar">
+                    <div class="progress" id="progress"></div>
+                </div>
+                <div class="time-display">
+                    <span id="currentTime">0:00</span>
+                    <span id="duration">0:00</span>
+                </div>
+            </div>
+        </div>
+        
+        <div class="background-notice" id="backgroundNotice">
+            <i class="fas fa-info-circle"></i>
+            Audio will continue playing in background. Download available for offline listening.
+        </div>
+    </div>
+
+    <!-- Header -->
+    <header>
+        <div class="container header-container">
+            <div class="logo">
+                <a href="index.html"><i class="fas fa-church"></i> SPAC SERMONS</a>
+            </div>
+            <nav>
+                <div class="nav-links">
+                    <a href="#series">Series</a>
+                    <a href="#topics">Topics</a>
+                    <a href="#speakers">Speakers</a>
+                    <a href="#popular">Popular</a>
+                    <a href="#download">Download</a>
+                </div>
+                <a href="#subscribe" class="nav-cta">Subscribe</a>
+                <button class="mobile-menu-btn"><i class="fas fa-bars"></i></button>
+            </nav>
+        </div>
+    </header>
+
+    <!-- Hero Section -->
+    <section class="sermon-hero">
+        <div class="hero-content">
+            <h1 class="hero-title">SPAC Sermon Library</h1>
+            <p class="hero-subtitle">Listen, download, and take God's Word with you everywhere. Background playback supported.</p>
+            
+            <div class="hero-stats">
+                <div class="stat-item">
+                    <div class="stat-number" id="totalSermons">250+</div>
+                    <div class="stat-label">Sermons</div>
+                </div>
+                <div class="stat-item">
+                    <div class="stat-number" id="totalHours">500+</div>
+                    <div class="stat-label">Hours of Teaching</div>
+                </div>
+                <div class="stat-item">
+                    <div class="stat-number" id="totalDownloads">50K+</div>
+                    <div class="stat-label">Downloads</div>
+                </div>
+            </div>
+        </div>
+        <div class="hero-wave"></div>
+    </section>
+
+    <!-- Main Content -->
+    <div class="container">
+        <!-- Filters -->
+        <section class="section">
+            <div class="filters-container">
+                <h3 style="color: var(--primary); margin-bottom: 25px;">Find Your Sermon</h3>
+                <div class="filter-row">
+                    <div class="filter-group">
+                        <label for="topicFilter"><i class="fas fa-tag"></i> Topic</label>
+                        <select id="topicFilter">
+                            <option value="">All Topics</option>
+                            <option value="faith">Faith</option>
+                            <option value="prayer">Prayer</option>
+                            <option value="healing">Healing</option>
+                            <option value="relationships">Relationships</option>
+                            <option value="finance">Finance</option>
+                            <option value="prophetic">Prophetic</option>
+                            <option value="salvation">Salvation</option>
+                            <option value="holyspirit">Holy Spirit</option>
+                        </select>
+                    </div>
+                    <div class="filter-group">
+                        <label for="speakerFilter"><i class="fas fa-user"></i> Speaker</label>
+                        <select id="speakerFilter">
+                            <option value="">All Speakers</option>
+                            <option value="pastor-john">Pastor John</option>
+                            <option value="pastor-yomi">Pastor Yomi</option>
+                            <option value="pastor-sarah">Pastor Sarah</option>
+                            <option value="guest">Guest Speakers</option>
+                        </select>
+                    </div>
+                    <div class="filter-group">
+                        <label for="seriesFilter"><i class="fas fa-layer-group"></i> Series</label>
+                        <select id="seriesFilter">
+                            <option value="">All Series</option>
+                            <option value="authentic">Authentic</option>
+                            <option value="arise">Arise</option>
+                            <option value="foundations">Foundations</option>
+                            <option value="kingdom">Kingdom Living</option>
+                        </select>
+                    </div>
+                </div>
+                <div class="filter-row">
+                    <div class="filter-group search-box">
+                        <label for="searchInput"><i class="fas fa-search"></i> Search Sermons</label>
+                        <input type="text" id="searchInput" placeholder="Search by title, keyword, or scripture...">
+                        <i class="fas fa-search"></i>
+                    </div>
+                    <div class="filter-group">
+                        <label for="sortFilter"><i class="fas fa-sort"></i> Sort By</label>
+                        <select id="sortFilter">
+                            <option value="newest">Newest First</option>
+                            <option value="oldest">Oldest First</option>
+                            <option value="popular">Most Popular</option>
+                            <option value="duration">Duration</option>
+                        </select>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Sermon Grid -->
+            <h2 class="section-title">Recent Sermons</h2>
+            <p class="section-subtitle">Click play to listen or download for offline listening</p>
+            
+            <div class="sermon-grid" id="sermonGrid">
+                <!-- Sermon cards will be generated by JavaScript -->
+            </div>
+        </section>
+
+        <!-- Featured Series -->
+        <section class="section" id="series">
+            <h2 class="section-title">Featured Series</h2>
+            <p class="section-subtitle">Complete teaching series for deep study</p>
+            
+            <div class="series-container">
+                <div class="series-card">
+                    <div class="series-image">
+                        <img src="https://images.unsplash.com/photo-1511671782779-c97d3d27a1d4?ixlib=rb-4.0.3&auto=format&fit=crop&w=2070&q=80" alt="Authentic Series">
+                    </div>
+                    <div class="series-content">
+                        <h3 class="series-title">Authentic</h3>
+                        <div class="series-count">8 sermons • 6 hours</div>
+                        <p class="series-desc">Discovering authentic faith in a digital world. A series about being real with God and others.</p>
+                        <button class="action-btn play-btn" data-series="authentic">
+                            <i class="fas fa-play-circle"></i> Play Series
+                        </button>
+                    </div>
+                </div>
+                
+                <div class="series-card">
+                    <div class="series-image">
+                        <img src="https://images.unsplash.com/photo-1545235617-9465d2a55698?ixlib=rb-4.0.3&auto=format&fit=crop&w=2080&q=80" alt="Arise Series">
+                    </div>
+                    <div class="series-content">
+                        <h3 class="series-title">Arise</h3>
+                        <div class="series-count">6 sermons • 4.5 hours</div>
+                        <p class="series-desc">Awakening to your purpose and calling. Based on Isaiah 60:1.</p>
+                        <button class="action-btn play-btn" data-series="arise">
+                            <i class="fas fa-play-circle"></i> Play Series
+                        </button>
+                    </div>
+                </div>
+                
+                <div class="series-card">
+                    <div class="series-image">
+                        <img src="https://images.unsplash.com/photo-1504052434569-70ad71a13e01?ixlib=rb-4.0.3&auto=format&fit=crop&w=2080&q=80" alt="Foundations Series">
+                    </div>
+                    <div class="series-content">
+                        <h3 class="series-title">Foundations</h3>
+                        <div class="series-count">12 sermons • 10 hours</div>
+                        <p class="series-desc">Building a solid spiritual foundation for life and ministry.</p>
+                        <button class="action-btn play-btn" data-series="foundations">
+                            <i class="fas fa-play-circle"></i> Play Series
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Download Stats -->
+        <section class="stats-container">
+            <div class="stats-grid">
+                <div class="stat-box">
+                    <i class="fas fa-headphones"></i>
+                    <h3 id="monthlyListens">15,842</h3>
+                    <p>Monthly Listens</p>
+                </div>
+                <div class="stat-box">
+                    <i class="fas fa-download"></i>
+                    <h3 id="monthlyDownloads">4,237</h3>
+                    <p>Monthly Downloads</p>
+                </div>
+                <div class="stat-box">
+                    <i class="fas fa-globe"></i>
+                    <h3 id="countries">47</h3>
+                    <p>Countries Reached</p>
+                </div>
+                <div class="stat-box">
+                    <i class="fas fa-clock"></i>
+                    <h3 id="totalListening">25K+</h3>
+                    <p>Hours Listened Monthly</p>
+                </div>
+            </div>
+        </section>
+    </div>
+
+    <!-- Footer -->
+    <footer>
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-column">
+                    <h3>SPAC SERMON LIBRARY</h3>
+                    <p>Access hundreds of sermons anytime, anywhere. Background playback supported for continuous listening.</p>
+                    <div class="social-links">
+                        <a href="#"><i class="fab fa-spotify"></i></a>
+                        <a href="#"><i class="fab fa-apple"></i></a>
+                        <a href="#"><i class="fab fa-google-play"></i></a>
+                        <a href="#"><i class="fab fa-youtube"></i></a>
+                    </div>
+                </div>
+                
+                <div class="footer-column">
+                    <h3>Quick Links</h3>
+                    <ul class="footer-links">
+                        <li><a href="#series">Sermon Series</a></li>
+                        <li><a href="#topics">Browse by Topic</a></li>
+                        <li><a href="#speakers">Browse by Speaker</a></li>
+                        <li><a href="#popular">Most Popular</a></li>
+                        <li><a href="#download">Download App</a></li>
+                        <li><a href="#subscribe">Subscribe</a></li>
+                    </ul>
+                </div>
+                
+                <div class="footer-column">
+                    <h3>Listening Options</h3>
+                    <ul class="footer-links">
+                        <li><a href="#"><i class="fas fa-mobile-alt"></i> Mobile App</a></li>
+                        <li><a href="#"><i class="fas fa-podcast"></i> Podcast</a></li>
+                        <li><a href="#"><i class="fas fa-download"></i> Download MP3</a></li>
+                        <li><a href="#"><i class="fas fa-closed-captioning"></i> Transcripts</a></li>
+                        <li><a href="#"><i class="fas fa-book"></i> Study Notes</a></li>
+                    </ul>
+                </div>
+            </div>
+            
+            <div class="footer-bottom">
+                &copy; 2024 SPAC Sermon Library. All sermons are property of SPAC Church. | 
+                <a href="#" style="color: rgba(255,255,255,0.7);">Terms of Use</a> | 
+                <a href="#" style="color: rgba(255,255,255,0.7);">Privacy Policy</a>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // Sermon Data
+        const sermons = [
+            {
+                id: 1,
+                title: "The Power of Authentic Prayer",
+                speaker: "Pastor Yomi",
+                series: "Authentic",
+                date: "2024-02-18",
+                duration: "45:22",
+                description: "Discover how to move from ritual to relationship in your prayer life. Learn the keys to prayers that move mountains.",
+                tags: ["prayer", "faith", "relationship"],
+                audioUrl: "https://www.soundhelix.com/examples/mp3/SoundHelix-Song-1.mp3",
+                downloads: 1245,
+                plays: 3567,
+                featured: true
+            },
+            {
+                id: 2,
+                title: "Arise and Shine in Dark Times",
+                speaker: "Pastor John",
+                series: "Arise",
+                date: "2024-02-11",
+                duration: "52:18",
+                description: "Isaiah 60:1 comes alive as we explore what it means to arise when everything around us seems dark.",
+                tags: ["prophetic", "hope", "calling"],
+                audioUrl: "https://www.soundhelix.com/examples/mp3/SoundHelix-Song-2.mp3",
+                downloads: 987,
+                plays: 2843,
+                featured: true
+            },
+            {
+                id: 3,
+                title: "Financial Breakthrough God's Way",
+                speaker: "Pastor Sarah",
+                series: "Kingdom",
+                date: "2024-02-04",
+                duration: "38:45",
+                description: "Biblical principles for financial freedom and prosperity. God's economy vs. the world's system.",
+                tags: ["finance", "breakthrough", "stewardship"],
+                audioUrl: "https://www.soundhelix.com/examples/mp3/SoundHelix-Song-3.mp3",
+                downloads: 1567,
+                plays: 4231,
+                featured: false
+            },
+            {
+                id: 4,
+                title: "Healing for the Brokenhearted",
+                speaker: "Pastor Yomi",
+                series: "Foundations",
+                date: "2024-01-28",
+                duration: "41:33",
+                description: "God's prescription for emotional healing and restoration. Finding wholeness after loss and disappointment.",
+                tags: ["healing", "emotional", "restoration"],
+                audioUrl: "https://www.soundhelix.com/examples/mp3/SoundHelix-Song-4.mp3",
+                downloads: 892,
+                plays: 2678,
+                featured: false
+            },
+            {
+                id: 5,
+                title: "The Holy Spirit as Your Helper",
+                speaker: "Guest Speaker",
+                series: "Foundations",
+                date: "2024-01-21",
+                duration: "49:12",
+                description: "Understanding the person and work of the Holy Spirit in the life of a believer.",
+                tags: ["holyspirit", "guidance", "power"],
+                audioUrl: "https://www.soundhelix.com/examples/mp3/SoundHelix-Song-5.mp3",
+                downloads: 743,
+                plays: 1987,
+                featured: false
+            },
+            {
+                id: 6,
+                title: "Building Godly Relationships",
+                speaker: "Pastor Sarah",
+                series: "Authentic",
+                date: "2024-01-14",
+                duration: "36:45",
+                description: "Principles for healthy friendships, marriage, and family relationships from a biblical perspective.",
+                tags: ["relationships", "family", "marriage"],
+                audioUrl: "https://www.soundhelix.com/examples/mp3/SoundHelix-Song-6.mp3",
+                downloads: 1034,
+                plays: 3124,
+                featured: true
+            }
+        ];
+
+        // Audio Player State
+        let currentAudio = new Audio();
+        let isPlaying = false;
+        let currentSermonIndex = 0;
+        let currentPlaylist = [];
+        let updateInterval;
+
+        // DOM Elements
+        const audioPlayerContainer = document.getElementById('audioPlayerContainer');
+        const playerToggle = document.getElementById('playerToggle');
+        const playerTitle = document.getElementById('playerTitle');
+        const playerSubtitle = document.getElementById('playerSubtitle');
+        const playerCover = document.getElementById('playerCover');
+        const playBtn = document.getElementById('playBtn');
+        const prevBtn = document.getElementById('prevBtn');
+        const nextBtn = document.getElementById('nextBtn');
+        const playerDownloadBtn = document.getElementById('playerDownloadBtn');
+        const progress = document.getElementById('progress');
+        const progressBar = document.getElementById('progressBar');
+        const currentTimeEl = document.getElementById('currentTime');
+        const durationEl = document.getElementById('duration');
+        const sermonGrid = document.getElementById('sermonGrid');
+
+        // Initialize
+        document.addEventListener('DOMContentLoaded', function() {
+            renderSermonGrid();
+            setupAudioPlayer();
+            setupEventListeners();
+            setupBackgroundPlayback();
+        });
+
+        // Render Sermon Grid
+        function renderSermonGrid() {
+            sermonGrid.innerHTML = '';
+            
+            sermons.forEach((sermon, index) => {
+                const card = document.createElement('div');
+                card.className = `sermon-card ${sermon.featured ? 'featured' : ''}`;
+                card.innerHTML = `
+                    <div class="sermon-header">
+                        <span class="sermon-series">${sermon.series}</span>
+                        <h3 class="sermon-title">${sermon.title}</h3>
+                        <div class="sermon-meta">
+                            <span><i class="fas fa-user"></i> ${sermon.speaker}</span>
+                            <span><i class="fas fa-calendar"></i> ${formatDate(sermon.date)}</span>
+                            <span><i class="fas fa-clock"></i> ${sermon.duration}</span>
+                        </div>
+                        <p class="sermon-description">${sermon.description}</p>
+                        <div class="sermon-tags">
+                            ${sermon.tags.map(tag => `<span class="tag">${tag}</span>`).join('')}
+                        </div>
+                    </div>
+                    <div class="sermon-actions">
+                        <button class="action-btn play-btn" data-index="${index}">
+                            <i class="fas fa-play"></i> Play Now
+                        </button>
+                        <button class="action-btn download-btn" data-url="${sermon.audioUrl}" data-title="${sermon.title}">
+                            <i class="fas fa-download"></i> Download MP3
+                        </button>
+                    </div>
+                    <div style="padding: 0 25px 15px; font-size: 0.8rem; color: #666; display: flex; justify-content: space-between;">
+                        <span><i class="fas fa-play-circle"></i> ${sermon.plays.toLocaleString()} plays</span>
+                        <span><i class="fas fa-download"></i> ${sermon.downloads.toLocaleString()} downloads</span>
+                    </div>
+                `;
+                sermonGrid.appendChild(card);
+            });
+        }
+
+        // Setup Audio Player
+        function setupAudioPlayer() {
+            currentAudio.addEventListener('loadedmetadata', function() {
+                durationEl.textContent = formatTime(currentAudio.duration);
+            });
+
+            currentAudio.addEventListener('timeupdate', function() {
+                if (currentAudio.duration) {
+                    const percent = (currentAudio.currentTime / currentAudio.duration) * 100;
+                    progress.style.width = `${percent}%`;
+                    currentTimeEl.textContent = formatTime(currentAudio.currentTime);
+                }
+            });
+
+            currentAudio.addEventListener('ended', function() {
+                playNext();
+            });
+
+            // Setup progress bar click
+            progressBar.addEventListener('click', function(e) {
+                const clickPosition = e.offsetX;
+                const progressBarWidth = this.offsetWidth;
+                const clickPercentage = clickPosition / progressBarWidth;
+                
+                if (currentAudio.duration) {
+                    currentAudio.currentTime = clickPercentage * currentAudio.duration;
+                }
+            });
+        }
+
+        // Play Sermon
+        function playSermon(sermonIndex) {
+            const sermon = sermons[sermonIndex];
+            
+            // Update player UI
+            playerTitle.textContent = sermon.title;
+            playerSubtitle.textContent = `${sermon.speaker} • ${sermon.series}`;
+            
+            // Update current sermon index and playlist
+            currentSermonIndex = sermonIndex;
+            currentPlaylist = [...sermons];
+            
+            // Set audio source
+            currentAudio.src = sermon.audioUrl;
+            
+            // Play audio
+            currentAudio.play()
+                .then(() => {
+                    isPlaying = true;
+                    updatePlayButton();
+                    startProgressUpdate();
+                })
+                .catch(error => {
+                    console.error('Error playing audio:', error);
+                    alert('Error playing audio. Please try again.');
+                });
+            
+            // Show player if minimized
+            audioPlayerContainer.classList.remove('minimized');
+        }
+
+        // Play/Pause Toggle
+        function togglePlayPause() {
+            if (currentAudio.src) {
+                if (isPlaying) {
+                    currentAudio.pause();
+                } else {
+                    currentAudio.play();
+                }
+                isPlaying = !isPlaying;
+                updatePlayButton();
+            } else if (sermons.length > 0) {
+                // If no audio is loaded, play the first sermon
+                playSermon(0);
+            }
+        }
+
+        // Play Next
+        function playNext() {
+            if (currentPlaylist.length > 0) {
+                const nextIndex = (currentSermonIndex + 1) % currentPlaylist.length;
+                playSermon(nextIndex);
+            }
+        }
+
+        // Play Previous
+        function playPrev() {
+            if (currentPlaylist.length > 0) {
+                const prevIndex = (currentSermonIndex - 1 + currentPlaylist.length) % currentPlaylist.length;
+                playSermon(prevIndex);
+            }
+        }
+
+        // Update Play Button
+        function updatePlayButton() {
+            const icon = playBtn.querySelector('i');
+            if (isPlaying) {
+                icon.className = 'fas fa-pause';
+                playBtn.title = 'Pause';
+            } else {
+                icon.className = 'fas fa-play';
+                playBtn.title = 'Play';
+            }
+        }
+
+        // Start Progress Update Interval
+        function startProgressUpdate() {
+            if (updateInterval) clearInterval(updateInterval);
+            
+            updateInterval = setInterval(() => {
+                if (currentAudio.duration && !isNaN(currentAudio.duration)) {
+                    const percent = (currentAudio.currentTime / currentAudio.duration) * 100;
+                    progress.style.width = `${percent}%`;
+                    currentTimeEl.textContent = formatTime(currentAudio.currentTime);
+                }
+            }, 500);
+        }
+
+        // Format Time (seconds to MM:SS)
+        function formatTime(seconds) {
+            if (isNaN(seconds)) return '0:00';
+            
+            const mins = Math.floor(seconds / 60);
+            const secs = Math.floor(seconds % 60);
+            return `${mins}:${secs.toString().padStart(2, '0')}`;
+        }
+
+        // Format Date
+        function formatDate(dateString) {
+            const options = { year: 'numeric', month: 'long', day: 'numeric' };
+            return new Date(dateString).toLocaleDateString('en-US', options);
+        }
+
+        // Setup Event Listeners
+        function setupEventListeners() {
+            // Play button
+            playBtn.addEventListener('click', togglePlayPause);
+            
+            // Next/Previous buttons
+            nextBtn.addEventListener('click', playNext);
+            prevBtn.addEventListener('click', playPrev);
+            
+            // Player toggle
+            playerToggle.addEventListener('click', function() {
+                audioPlayerContainer.classList.toggle('minimized');
+                const icon = this.querySelector('i');
+                icon.className = audioPlayerContainer.classList.contains('minimized') 
+                    ? 'fas fa-chevron-down' 
+                    : 'fas fa-chevron-up';
+            });
+            
+            // Download button
+            playerDownloadBtn.addEventListener('click', function() {
+                if (currentAudio.src) {
+                    const sermon = sermons[currentSermonIndex];
+                    downloadAudio(sermon.audioUrl, `${sermon.title}.mp3`);
+                }
+            });
+            
+            // Play buttons in sermon cards
+            document.addEventListener('click', function(e) {
+                if (e.target.closest('.play-btn')) {
+                    const playBtn = e.target.closest('.play-btn');
+                    if (playBtn.dataset.index) {
+                        const sermonIndex = parseInt(playBtn.dataset.index);
+                        playSermon(sermonIndex);
+                    } else if (playBtn.dataset.series) {
+                        // Play series
+                        const series = playBtn.dataset.series;
+                        const seriesSermons = sermons.filter(s => s.series.toLowerCase() === series);
+                        if (seriesSermons.length > 0) {
+                            currentPlaylist = seriesSermons;
+                            playSermon(0);
+                        }
+                    }
+                }
+                
+                // Download buttons
+                if (e.target.closest('.download-btn')) {
+                    const downloadBtn = e.target.closest('.download-btn');
+                    const url = downloadBtn.dataset.url;
+                    const title = downloadBtn.dataset.title;
+                    downloadAudio(url, `${title}.mp3`);
+                }
+            });
+            
+            // Filters
+            const filters = ['topicFilter', 'speakerFilter', 'seriesFilter', 'searchInput', 'sortFilter'];
+            filters.forEach(filterId => {
+                const element = document.getElementById(filterId);
+                if (element) {
+                    element.addEventListener('change', filterSermons);
+                }
+            });
+            
+            // Search input
+            const searchInput = document.getElementById('searchInput');
+            if (searchInput) {
+                searchInput.addEventListener('input', filterSermons);
+            }
+        }
+
+        // Filter Sermons
+        function filterSermons() {
+            const topic = document.getElementById('topicFilter').value;
+            const speaker = document.getElementById('speakerFilter').value;
+            const series = document.getElementById('seriesFilter').value;
+            const search = document.getElementById('searchInput').value.toLowerCase();
+            const sort = document.getElementById('sortFilter').value;
+            
+            let filtered = [...sermons];
+            
+            // Apply filters
+            if (topic) {
+                filtered = filtered.filter(s => s.tags.includes(topic));
+            }
+            
+            if (speaker) {
+                filtered = filtered.filter(s => s.speaker.toLowerCase().includes(speaker.toLowerCase()));
+            }
+            
+            if (series) {
+                filtered = filtered.filter(s => s.series.toLowerCase() === series.toLowerCase());
+            }
+            
+            if (search) {
+                filtered = filtered.filter(s => 
+                    s.title.toLowerCase().includes(search) ||
+                    s.description.toLowerCase().includes(search) ||
+                    s.tags.some(tag => tag.toLowerCase().includes(search))
+                );
+            }
+            
+            // Apply sorting
+            switch(sort) {
+                case 'newest':
+                    filtered.sort((a, b) => new Date(b.date) - new Date(a.date));
+                    break;
+                case 'oldest':
+                    filtered.sort((a, b) => new Date(a.date) - new Date(b.date));
+                    break;
+                case 'popular':
+                    filtered.sort((a, b) => b.plays - a.plays);
+                    break;
+                case 'duration':
+                    filtered.sort((a, b) => {
+                        const aTime = parseDuration(a.duration);
+                        const bTime = parseDuration(b.duration);
+                        return bTime - aTime;
+                    });
+                    break;
+            }
+            
+            // Re-render grid
+            renderFilteredSermons(filtered);
+        }
+
+        // Parse duration string to seconds
+        function parseDuration(duration) {
+            const parts = duration.split(':');
+            if (parts.length === 2) {
+                return parseInt(parts[0]) * 60 + parseInt(parts[1]);
+            }
+            return 0;
+        }
+
+        // Render Filtered Sermons
+        function renderFilteredSermons(filteredSermons) {
+            sermonGrid.innerHTML = '';
+            
+            if (filteredSermons.length === 0) {
+                sermonGrid.innerHTML = `
+                    <div style="grid-column: 1 / -1; text-align: center; padding: 60px; background: #f8f9fa; border-radius: 15px;">
+                        <i class="fas fa-search" style="font-size: 3rem; color: #ccc; margin-bottom: 20px;"></i>
+                        <h3 style="color: #666; margin-bottom: 10px;">No sermons found</h3>
+                        <p style="color: #888;">Try different search terms or filters</p>
+                    </div>
+                `;
+                return;
+            }
+            
+            filteredSermons.forEach((sermon, index) => {
+                const card = document.createElement('div');
+                card.className = `sermon-card ${sermon.featured ? 'featured' : ''}`;
+                card.innerHTML = `
+                    <div class="sermon-header">
+                        <span class="sermon-series">${sermon.series}</span>
+                        <h3 class="sermon-title">${sermon.title}</h3>
+                        <div class="sermon-meta">
+                            <span><i class="fas fa-user"></i> ${sermon.speaker}</span>
+                            <span><i class="fas fa-calendar"></i> ${formatDate(sermon.date)}</span>
+                            <span><i class="fas fa-clock"></i> ${sermon.duration}</span>
+                        </div>
+                        <p class="sermon-description">${sermon.description}</p>
+                        <div class="sermon-tags">
+                            ${sermon.tags.map(tag => `<span class="tag">${tag}</span>`).join('')}
+                        </div>
+                    </div>
+                    <div class="sermon-actions">
+                        <button class="action-btn play-btn" data-index="${sermons.indexOf(sermon)}">
+                            <i class="fas fa-play"></i> Play Now
+                        </button>
+                        <button class="action-btn download-btn" data-url="${sermon.audioUrl}" data-title="${sermon.title}">
+                            <i class="fas fa-download"></i> Download MP3
+                        </button>
+                    </div>
+                `;
+                sermonGrid.appendChild(card);
+            });
+        }
+
+        // Download Audio
+        function downloadAudio(url, filename) {
+            const link = document.createElement('a');
+            link.href = url;
+            link.download = filename;
+            document.body.appendChild(link);
+            link.click();
+            document.body.removeChild(link);
+            
+            // Update download count (in a real app, this would be a server call)
+            alert(`Downloading: ${filename}\n\nIn a production app, this would trigger an actual download and update download statistics.`);
+        }
+
+        // Setup Background Playback (Service Worker for true background)
+        function setupBackgroundPlayback() {
+            // Register Service Worker for background playback (simplified)
+            if ('serviceWorker' in navigator) {
+                navigator.serviceWorker.register('/sw.js').catch(error => {
+                    console.log('Service Worker registration failed:', error);
+                });
+            }
+            
+            // Setup visibility change to handle tab switching
+            document.addEventListener('visibilitychange', function() {
+                if (document.hidden && isPlaying) {
+                    console.log('Audio continues playing in background');
+                }
+            });
+            
+            // Setup beforeunload to warn about background playback
+            window.addEventListener('beforeunload', function(e) {
+                if (isPlaying) {
+                    // In a real app, you might want to save playback position
+                    console.log('Audio will continue playing in background');
+                }
+            });
+        }
+
+        // Mobile Menu Toggle
+        const mobileMenuBtn = document.querySelector('.mobile-menu-btn');
+        const navLinks = document.querySelector('.nav-links');
+        
+        if (mobileMenuBtn) {
+            mobileMenuBtn.addEventListener('click', function() {
+                navLinks.style.display = navLinks.style.display === 'flex' ? 'none' : 'flex';
+                mobileMenuBtn.innerHTML = navLinks.style.display === 'flex' 
+                    ? '<i class="fas fa-times"></i>' 
+                    : '<i class="fas fa-bars"></i>';
+            });
+        }
+
+        // Update stats with animation
+        function animateStats() {
+            const stats = [
+                { id: 'monthlyListens', target: 15842 },
+                { id: 'monthlyDownloads', target: 4237 },
+                { id: 'countries', target: 47 },
+                { id: 'totalListening', target: 25000 }
+            ];
+            
+            stats.forEach(stat => {
+                const element = document.getElementById(stat.id);
+                if (element) {
+                    animateValue(element, 0, stat.target, 2000);
+                }
+            });
+        }
+        
+        // Animate number counting
+        function animateValue(element, start, end, duration) {
+            let startTimestamp = null;
+            const step = (timestamp) => {
+                if (!startTimestamp) startTimestamp = timestamp;
+                const progress = Math.min((timestamp - startTimestamp) / duration, 1);
+                const value = Math.floor(progress * (end - start) + start);
+                element.textContent = value.toLocaleString();
+                if (progress < 1) {
+                    window.requestAnimationFrame(step);
+                }
+            };
+            window.requestAnimationFrame(step);
+        }
+        
+        // Start stat animation
+        setTimeout(animateStats, 1000);
+    </script>
+</body>
+</html>
