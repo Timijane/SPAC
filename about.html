@@ -1,0 +1,1430 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>About SPAC Church - Salvation Proclaimers Anointed Church</title>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+<link href="https://fonts.googleapis.com/css2?family=Lobster&family=Poppins:wght@300;400;500;600;700&family=Playfair+Display:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --primary: #1a4b8c;
+    --secondary: #d4af37;
+    --light: #f8f9fa;
+    --dark: #2c3e50;
+    --accent: #8b0000;
+    --gradient: linear-gradient(135deg, #1a4b8c 0%, #2c3e50 100%);
+  }
+  
+  * {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+  }
+  
+  body {
+    font-family: 'Poppins', sans-serif;
+    background: linear-gradient(180deg, #f8f9fa 0%, #ffffff 100%);
+    color: #333;
+    line-height: 1.6;
+    scroll-behavior: smooth;
+    overflow-x: hidden;
+    width: 100%;
+    max-width: 100vw;
+  }
+  
+  a {
+    text-decoration: none;
+    color: inherit;
+  }
+  
+  .container {
+    width: 95%;
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 15px;
+  }
+  
+  .btn {
+    display: inline-block;
+    background: var(--primary);
+    color: white;
+    padding: 12px 28px;
+    border: none;
+    border-radius: 30px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    font-weight: 500;
+    letter-spacing: 0.5px;
+    box-shadow: 0 4px 15px rgba(26, 75, 140, 0.2);
+  }
+  
+  .btn:hover {
+    background: var(--accent);
+    transform: translateY(-3px);
+    box-shadow: 0 6px 20px rgba(139, 0, 0, 0.25);
+  }
+  
+  /* Header with Bigger Logo */
+  header {
+    background: white;
+    box-shadow: 0 3px 20px rgba(0, 0, 0, 0.08);
+    position: sticky;
+    top: 0;
+    z-index: 1000;
+    padding: 8px 0;
+    transition: all 0.3s ease;
+    width: 100%;
+  }
+  
+  .header-container {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 0;
+    width: 100%;
+  }
+  
+  .logo {
+    display: flex;
+    align-items: center;
+    position: absolute;
+    left: 50%;
+    transform: translateX(-50%);
+  }
+  
+  .logo-frame {
+    width: 100px;
+    height: 100px;
+    border-radius: 50%;
+    background: white;
+    border: 4px solid var(--primary);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-right: 20px;
+    overflow: hidden;
+    box-shadow: 0 6px 20px rgba(0, 0, 0, 0.15);
+  }
+  
+  .logo-frame img {
+    width: 85%;
+    height: 85%;
+    object-fit: contain;
+  }
+  
+  .logo-text {
+    font-family: 'Lobster', cursive;
+    font-size: 42px;
+    font-weight: 400;
+    color: var(--primary);
+    letter-spacing: 1.5px;
+    line-height: 1;
+    text-align: center;
+    white-space: nowrap;
+  }
+  
+  /* Navigation */
+  .nav-container {
+    display: flex;
+    align-items: center;
+    justify-content: flex-end;
+    width: 100%;
+  }
+  
+  @media (min-width: 993px) {
+    .nav-menu {
+      display: flex;
+      list-style: none;
+    }
+    
+    .nav-menu li {
+      margin-left: 30px;
+      position: relative;
+    }
+    
+    .nav-menu a {
+      color: var(--dark);
+      font-weight: 500;
+      font-size: 15px;
+      transition: all 0.3s ease;
+      padding: 8px 0;
+      position: relative;
+    }
+    
+    .nav-menu a::after {
+      content: '';
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      width: 0;
+      height: 2px;
+      background: var(--secondary);
+      transition: width 0.3s ease;
+    }
+    
+    .nav-menu a:hover::after {
+      width: 100%;
+    }
+    
+    .dropdown-content {
+      display: none;
+      position: absolute;
+      background: white;
+      min-width: 200px;
+      box-shadow: 0 15px 30px rgba(0, 0, 0, 0.1);
+      z-index: 1;
+      border-radius: 10px;
+      overflow: hidden;
+      top: 100%;
+      left: 0;
+      padding: 10px 0;
+    }
+    
+    .dropdown:hover .dropdown-content {
+      display: block;
+    }
+  }
+  
+  /* Mobile Menu */
+  .hamburger {
+    display: none;
+    cursor: pointer;
+    width: 40px;
+    height: 40px;
+    position: relative;
+    z-index: 1001;
+    margin-left: auto;
+    background: var(--primary);
+    border-radius: 5px;
+    padding: 8px;
+  }
+  
+  .hamburger span {
+    display: block;
+    position: absolute;
+    height: 3px;
+    width: 24px;
+    background: white;
+    border-radius: 3px;
+    opacity: 1;
+    left: 8px;
+    transform: rotate(0deg);
+    transition: .25s ease-in-out;
+  }
+  
+  .hamburger span:nth-child(1) { top: 12px; }
+  .hamburger span:nth-child(2) { top: 18.5px; }
+  .hamburger span:nth-child(3) { top: 25px; }
+  
+  .hamburger.active span:nth-child(1) {
+    top: 18.5px;
+    transform: rotate(45deg);
+  }
+  
+  .hamburger.active span:nth-child(2) {
+    opacity: 0;
+    left: -30px;
+  }
+  
+  .hamburger.active span:nth-child(3) {
+    top: 18.5px;
+    transform: rotate(-45deg);
+  }
+  
+  @media (max-width: 992px) {
+    .nav-menu {
+      position: fixed;
+      top: 0;
+      right: -50%;
+      width: 50%;
+      height: 100vh;
+      background: white;
+      flex-direction: column;
+      justify-content: flex-start;
+      align-items: flex-start;
+      padding: 100px 30px 30px;
+      transition: right 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+      box-shadow: -10px 0 30px rgba(0,0,0,0.15);
+      z-index: 1000;
+      overflow-y: auto;
+    }
+    
+    .nav-menu.active {
+      right: 0;
+    }
+    
+    .nav-menu li {
+      margin: 0 0 25px 0;
+      width: 100%;
+      opacity: 0;
+      transform: translateX(20px);
+      transition: all 0.3s ease;
+    }
+    
+    .nav-menu.active li {
+      opacity: 1;
+      transform: translateX(0);
+    }
+    
+    .nav-menu li:nth-child(1) { transition-delay: 0.1s; }
+    .nav-menu li:nth-child(2) { transition-delay: 0.2s; }
+    .nav-menu li:nth-child(3) { transition-delay: 0.3s; }
+    .nav-menu li:nth-child(4) { transition-delay: 0.4s; }
+    .nav-menu li:nth-child(5) { transition-delay: 0.5s; }
+    
+    .nav-menu a {
+      font-size: 16px;
+      display: block;
+      padding: 10px 0;
+      width: 100%;
+      border-bottom: 1px solid rgba(0,0,0,0.05);
+      color: var(--dark);
+    }
+    
+    .dropdown-content {
+      position: static;
+      display: none;
+      box-shadow: none;
+      background: rgba(26, 75, 140, 0.05);
+      margin-top: 10px;
+      border-radius: 8px;
+      padding: 5px 0;
+    }
+    
+    .dropdown.active .dropdown-content {
+      display: block;
+    }
+    
+    .hamburger {
+      display: block;
+    }
+    
+    .logo {
+      position: static;
+      transform: none;
+      margin-right: auto;
+    }
+    
+    .logo-text {
+      font-size: 30px;
+    }
+    
+    .logo-frame {
+      width: 70px;
+      height: 70px;
+    }
+  }
+  
+  @media (max-width: 768px) {
+    .logo-text {
+      font-size: 24px;
+    }
+    
+    .logo-frame {
+      width: 60px;
+      height: 60px;
+    }
+  }
+  
+  @media (max-width: 576px) {
+    .nav-menu {
+      width: 85%;
+      right: -85%;
+    }
+    
+    .logo-text {
+      font-size: 20px;
+    }
+    
+    .logo-frame {
+      width: 50px;
+      height: 50px;
+    }
+  }
+  
+  /* Hero Section for About Page */
+  .about-hero {
+    position: relative;
+    height: 70vh;
+    min-height: 500px;
+    overflow: hidden;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    color: white;
+    background: #000;
+    width: 100%;
+  }
+  
+  .about-hero-bg {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    z-index: 0;
+    opacity: 0.9;
+  }
+  
+  .about-hero-overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(135deg, rgba(26, 75, 140, 0.8) 0%, rgba(44, 62, 80, 0.9) 100%);
+    z-index: 1;
+  }
+  
+  .about-hero-content {
+    max-width: 900px;
+    padding: 0 20px;
+    z-index: 2;
+    position: relative;
+  }
+  
+  .about-hero h1 {
+    font-family: 'Playfair Display', serif;
+    font-size: 4.5rem;
+    margin-bottom: 20px;
+    font-weight: 700;
+    text-shadow: 2px 2px 8px rgba(0, 0, 0, 0.5);
+  }
+  
+  .about-hero p {
+    font-size: 1.5rem;
+    max-width: 700px;
+    margin: 0 auto 40px;
+    opacity: 0.95;
+    font-weight: 300;
+    line-height: 1.8;
+    text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.5);
+  }
+  
+  @media (max-width: 992px) {
+    .about-hero h1 {
+      font-size: 3.5rem;
+    }
+    
+    .about-hero p {
+      font-size: 1.3rem;
+    }
+  }
+  
+  @media (max-width: 768px) {
+    .about-hero {
+      height: 60vh;
+      min-height: 400px;
+    }
+    
+    .about-hero h1 {
+      font-size: 2.8rem;
+    }
+    
+    .about-hero p {
+      font-size: 1.2rem;
+    }
+  }
+  
+  @media (max-width: 576px) {
+    .about-hero h1 {
+      font-size: 2.3rem;
+    }
+    
+    .about-hero p {
+      font-size: 1.1rem;
+    }
+  }
+  
+  /* About Content Sections */
+  .about-content-section {
+    padding: 100px 0;
+  }
+  
+  .section-title {
+    text-align: center;
+    font-family: 'Playfair Display', serif;
+    font-size: 3rem;
+    color: var(--primary);
+    margin-bottom: 50px;
+    position: relative;
+    padding-bottom: 20px;
+  }
+  
+  .section-title:after {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 100px;
+    height: 4px;
+    background: var(--secondary);
+  }
+  
+  .content-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 60px;
+    align-items: center;
+    margin-bottom: 80px;
+  }
+  
+  .content-text {
+    padding-right: 20px;
+  }
+  
+  .content-text h3 {
+    font-size: 2.2rem;
+    color: var(--primary);
+    margin-bottom: 25px;
+    font-family: 'Playfair Display', serif;
+    font-weight: 600;
+  }
+  
+  .content-text p {
+    font-size: 1.15rem;
+    color: #555;
+    line-height: 1.9;
+    margin-bottom: 25px;
+  }
+  
+  .content-image {
+    border-radius: 20px;
+    overflow: hidden;
+    box-shadow: 0 20px 40px rgba(0,0,0,0.1);
+    height: 400px;
+  }
+  
+  .content-image img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: transform 0.5s ease;
+  }
+  
+  .content-image:hover img {
+    transform: scale(1.05);
+  }
+  
+  /* Founder Section */
+  .founder-section {
+    background: linear-gradient(135deg, #f8f9fa 0%, #e9ecef 100%);
+    padding: 100px 0;
+    position: relative;
+  }
+  
+  .founder-section:before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 5px;
+    background: linear-gradient(90deg, var(--primary), var(--secondary), var(--accent));
+  }
+  
+  .founder-container {
+    max-width: 800px;
+    margin: 0 auto;
+    text-align: center;
+  }
+  
+  .founder-image {
+    width: 220px;
+    height: 220px;
+    border-radius: 50%;
+    overflow: hidden;
+    margin: 0 auto 30px;
+    border: 5px solid var(--secondary);
+    box-shadow: 0 15px 30px rgba(0,0,0,0.15);
+  }
+  
+  .founder-image img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+  }
+  
+  .founder-name {
+    font-family: 'Playfair Display', serif;
+    font-size: 2.5rem;
+    color: var(--primary);
+    margin-bottom: 10px;
+  }
+  
+  .founder-title {
+    font-size: 1.3rem;
+    color: var(--accent);
+    margin-bottom: 30px;
+    font-weight: 600;
+  }
+  
+  .founder-quote {
+    font-size: 1.2rem;
+    color: #555;
+    font-style: italic;
+    max-width: 700px;
+    margin: 0 auto 40px;
+    line-height: 1.8;
+    position: relative;
+    padding: 0 20px;
+  }
+  
+  .founder-quote:before, .founder-quote:after {
+    content: '"';
+    font-size: 3rem;
+    color: var(--secondary);
+    position: absolute;
+    opacity: 0.5;
+  }
+  
+  .founder-quote:before {
+    top: -20px;
+    left: 0;
+  }
+  
+  .founder-quote:after {
+    bottom: -40px;
+    right: 0;
+  }
+  
+  /* Vision, Mission, Tenets Cards */
+  .values-section {
+    padding: 100px 0;
+    background: white;
+  }
+  
+  .values-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+    gap: 40px;
+    margin-top: 60px;
+  }
+  
+  .value-card {
+    background: white;
+    border-radius: 20px;
+    overflow: hidden;
+    box-shadow: 0 15px 35px rgba(0,0,0,0.08);
+    transition: all 0.4s ease;
+    padding: 40px 30px;
+    text-align: center;
+    border-top: 5px solid var(--primary);
+    position: relative;
+  }
+  
+  .value-card:hover {
+    transform: translateY(-15px);
+    box-shadow: 0 25px 50px rgba(0,0,0,0.15);
+  }
+  
+  .value-card:nth-child(2) {
+    border-top-color: var(--secondary);
+  }
+  
+  .value-card:nth-child(3) {
+    border-top-color: var(--accent);
+  }
+  
+  .value-icon {
+    width: 80px;
+    height: 80px;
+    background: var(--primary);
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin: 0 auto 25px;
+    color: white;
+    font-size: 32px;
+  }
+  
+  .value-card:nth-child(2) .value-icon {
+    background: var(--secondary);
+  }
+  
+  .value-card:nth-child(3) .value-icon {
+    background: var(--accent);
+  }
+  
+  .value-card h3 {
+    font-size: 1.8rem;
+    color: var(--primary);
+    margin-bottom: 20px;
+    font-family: 'Playfair Display', serif;
+  }
+  
+  .value-card p {
+    font-size: 1.1rem;
+    color: #555;
+    line-height: 1.8;
+    margin-bottom: 25px;
+  }
+  
+  .value-list {
+    text-align: left;
+    list-style: none;
+  }
+  
+  .value-list li {
+    margin-bottom: 12px;
+    padding-left: 30px;
+    position: relative;
+    color: #555;
+    font-size: 1rem;
+  }
+  
+  .value-list li:before {
+    content: '\f00c';
+    font-family: 'Font Awesome 6 Free';
+    font-weight: 900;
+    position: absolute;
+    left: 0;
+    color: var(--secondary);
+  }
+  
+  /* History Timeline */
+  .history-section {
+    padding: 100px 0;
+    background: linear-gradient(135deg, #f8f9fa 0%, #e9ecef 100%);
+    position: relative;
+  }
+  
+  .history-section:before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 5px;
+    background: linear-gradient(90deg, var(--primary), var(--secondary), var(--accent));
+  }
+  
+  .timeline {
+    max-width: 900px;
+    margin: 60px auto 0;
+    position: relative;
+  }
+  
+  .timeline:before {
+    content: '';
+    position: absolute;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 3px;
+    height: 100%;
+    background: var(--primary);
+  }
+  
+  .timeline-item {
+    margin-bottom: 60px;
+    position: relative;
+    width: 100%;
+  }
+  
+  .timeline-item:nth-child(odd) {
+    padding-right: calc(50% + 30px);
+    text-align: right;
+  }
+  
+  .timeline-item:nth-child(even) {
+    padding-left: calc(50% + 30px);
+    text-align: left;
+  }
+  
+  .timeline-content {
+    background: white;
+    padding: 30px;
+    border-radius: 15px;
+    box-shadow: 0 10px 30px rgba(0,0,0,0.08);
+    position: relative;
+  }
+  
+  .timeline-item:nth-child(odd) .timeline-content:before {
+    content: '';
+    position: absolute;
+    right: -10px;
+    top: 30px;
+    width: 0;
+    height: 0;
+    border-left: 10px solid white;
+    border-top: 10px solid transparent;
+    border-bottom: 10px solid transparent;
+  }
+  
+  .timeline-item:nth-child(even) .timeline-content:before {
+    content: '';
+    position: absolute;
+    left: -10px;
+    top: 30px;
+    width: 0;
+    height: 0;
+    border-right: 10px solid white;
+    border-top: 10px solid transparent;
+    border-bottom: 10px solid transparent;
+  }
+  
+  .timeline-year {
+    position: absolute;
+    top: 0;
+    width: 80px;
+    height: 80px;
+    border-radius: 50%;
+    background: var(--primary);
+    color: white;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-weight: 700;
+    font-size: 1.2rem;
+    box-shadow: 0 5px 15px rgba(26, 75, 140, 0.3);
+  }
+  
+  .timeline-item:nth-child(odd) .timeline-year {
+    right: calc(50% - 40px);
+  }
+  
+  .timeline-item:nth-child(even) .timeline-year {
+    left: calc(50% - 40px);
+  }
+  
+  .timeline-content h3 {
+    color: var(--primary);
+    font-size: 1.5rem;
+    margin-bottom: 15px;
+  }
+  
+  .timeline-content p {
+    color: #555;
+    line-height: 1.7;
+  }
+  
+  @media (max-width: 768px) {
+    .content-grid {
+      grid-template-columns: 1fr;
+      gap: 40px;
+    }
+    
+    .content-text {
+      padding-right: 0;
+    }
+    
+    .timeline:before {
+      left: 30px;
+    }
+    
+    .timeline-item:nth-child(odd),
+    .timeline-item:nth-child(even) {
+      padding-left: 70px;
+      padding-right: 0;
+      text-align: left;
+    }
+    
+    .timeline-item:nth-child(odd) .timeline-year,
+    .timeline-item:nth-child(even) .timeline-year {
+      left: 0;
+    }
+    
+    .timeline-item:nth-child(odd) .timeline-content:before,
+    .timeline-item:nth-child(even) .timeline-content:before {
+      left: -10px;
+      right: auto;
+      border-right: 10px solid white;
+      border-left: none;
+    }
+    
+    .values-grid {
+      grid-template-columns: 1fr;
+    }
+  }
+  
+  /* Call to Action */
+  .cta-section {
+    padding: 100px 0;
+    background: var(--primary);
+    color: white;
+    text-align: center;
+    position: relative;
+  }
+  
+  .cta-section:before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 5px;
+    background: linear-gradient(90deg, var(--secondary), var(--accent), white);
+  }
+  
+  .cta-content {
+    max-width: 800px;
+    margin: 0 auto;
+  }
+  
+  .cta-content h2 {
+    font-family: 'Playfair Display', serif;
+    font-size: 3rem;
+    margin-bottom: 30px;
+  }
+  
+  .cta-content p {
+    font-size: 1.2rem;
+    margin-bottom: 40px;
+    opacity: 0.9;
+    max-width: 600px;
+    margin-left: auto;
+    margin-right: auto;
+  }
+  
+  .cta-btn {
+    background: white;
+    color: var(--primary);
+    font-weight: 600;
+  }
+  
+  .cta-btn:hover {
+    background: var(--secondary);
+    color: white;
+  }
+  
+  /* Footer */
+  footer {
+    background: var(--dark);
+    color: white;
+    padding: 80px 0 30px;
+    position: relative;
+  }
+  
+  footer:before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 5px;
+    background: linear-gradient(90deg, var(--primary), var(--secondary), var(--accent));
+  }
+  
+  .footer-content {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 40px;
+    margin-bottom: 50px;
+  }
+  
+  @media (max-width: 768px) {
+    .footer-content {
+      grid-template-columns: 1fr;
+      gap: 30px;
+    }
+  }
+  
+  .footer-column h3 {
+    margin-bottom: 25px;
+    color: var(--secondary);
+    font-size: 1.5rem;
+    font-weight: 600;
+    position: relative;
+    padding-bottom: 10px;
+  }
+  
+  .footer-column h3:after {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 50px;
+    height: 3px;
+    background: var(--primary);
+  }
+  
+  .footer-links {
+    list-style: none;
+  }
+  
+  .footer-links li {
+    margin-bottom: 12px;
+  }
+  
+  .footer-links a {
+    color: #ddd;
+    transition: 0.3s;
+    display: inline-block;
+  }
+  
+  .footer-links a:hover {
+    color: var(--secondary);
+    transform: translateX(5px);
+  }
+  
+  .social-links {
+    display: flex;
+    gap: 15px;
+    margin-top: 25px;
+  }
+  
+  .social-links a {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 45px;
+    height: 45px;
+    background: rgba(255,255,255,0.1);
+    border-radius: 50%;
+    transition: 0.3s;
+  }
+  
+  .social-links a:hover {
+    background: var(--secondary);
+    transform: translateY(-5px);
+  }
+  
+  .footer-bottom {
+    text-align: center;
+    padding-top: 30px;
+    border-top: 1px solid rgba(255,255,255,0.1);
+    font-size: 0.9rem;
+    color: #aaa;
+  }
+  
+  /* Scroll to top button */
+  .scroll-top {
+    position: fixed;
+    bottom: 30px;
+    right: 30px;
+    width: 50px;
+    height: 50px;
+    background: var(--primary);
+    color: white;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    z-index: 999;
+    opacity: 0;
+    visibility: hidden;
+    transition: all 0.3s ease;
+    box-shadow: 0 5px 15px rgba(26, 75, 140, 0.3);
+  }
+  
+  .scroll-top.visible {
+    opacity: 1;
+    visibility: visible;
+  }
+  
+  .scroll-top:hover {
+    background: var(--accent);
+    transform: translateY(-5px);
+    box-shadow: 0 8px 20px rgba(139, 0, 0, 0.3);
+  }
+</style>
+</head>
+<body>
+
+<!-- Scroll to Top Button -->
+<div class="scroll-top" id="scrollTop">
+  <i class="fas fa-chevron-up"></i>
+</div>
+
+<header id="mainHeader">
+  <div class="container header-container">
+    <div class="logo">
+      <div class="logo-frame">
+        <img src="spac-logo.jpg" alt="SPAC Logo">
+      </div>
+      <span class="logo-text">SPAC CHURCH</span>
+    </div>
+    <div class="nav-container">
+      <ul class="nav-menu">
+        <li><a href="index.html">Home</a></li>
+        <li class="dropdown"><a href="#about" class="active">About <i class="fas fa-chevron-down"></i></a>
+          <div class="dropdown-content">
+            <a href="about.html" class="active">Our Story</a>
+            <a href="beliefs.html">Beliefs</a>
+            <a href="leadership.html">Leadership</a>
+            <a href="vision.html">Vision & Mission</a>
+          </div>
+        </li>
+        <li><a href="index.html#locations">Branches</a></li>
+        <li class="dropdown"><a href="index.html#ministries">Ministries <i class="fas fa-chevron-down"></i></a>
+          <div class="dropdown-content">
+            <a href="vanguard.html">Vanguard (Youth)</a>
+            <a href="teen-church.html">Teen Church</a>
+            <a href="kids-church.html">Kids Church</a>
+            <a href="marriage-counselling.html">Marriage & Counselling</a>
+            <a href="spac-uk.html">SPAC UK</a>
+            <a href="spac-nxtion.html">SPAC Nxtion</a>
+            <a href="spac-us.html">SPAC US</a>
+          </div>
+        </li>
+        <li><a href="index.html#contact">Contact</a></li>
+      </ul>
+      <div class="hamburger"><span></span><span></span><span></span></div>
+    </div>
+  </div>
+</header>
+
+<!-- Hero Section -->
+<section class="about-hero">
+  <img src="picture1.jpg" alt="SPAC Church Community" class="about-hero-bg">
+  <div class="about-hero-overlay"></div>
+  <div class="about-hero-content">
+    <h1>Our Story & Vision</h1>
+    <p>Welcome to Salvation Proclaimers Anointed Church (SPAC), a vibrant community of faith where lives are transformed, destinies are discovered, and God's love is made manifest.</p>
+    <a href="#our-story" class="btn">Discover Our Journey</a>
+  </div>
+</section>
+
+<!-- Church Introduction -->
+<section class="about-content-section" id="our-story">
+  <div class="container">
+    <h2 class="section-title">Salvation Proclaimers Anointed Church</h2>
+    <div class="content-grid">
+      <div class="content-text">
+        <h3>A Legacy of Faith & Transformation</h3>
+        <p>Salvation Proclaimers Anointed Church (SPAC) is more than just a place of worship; it is a dynamic spiritual family committed to proclaiming the gospel of Jesus Christ with power and authenticity. Founded on biblical principles and guided by the Holy Spirit, SPAC stands as a beacon of hope, healing, and transformation in our community and beyond.</p>
+        <p>Our church is built on the foundation of God's Word, empowered by the Holy Spirit, and driven by a passion to see lives radically changed through the saving knowledge of Jesus Christ. We believe in the authority of Scripture, the power of prayer, and the transformative work of the Holy Spirit in the lives of believers.</p>
+        <p>At SPAC, we embrace diversity and welcome people from all walks of life to experience genuine fellowship, grow in spiritual maturity, and discover their God-given purpose. Our community is characterized by authentic worship, sound biblical teaching, compassionate service, and a deep commitment to making disciples who will impact their world for Christ.</p>
+      </div>
+      <div class="content-image">
+        <img src="spac-church-community.jpg" alt="SPAC Church Community Worship">
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Founder Section -->
+<section class="founder-section">
+  <div class="container">
+    <h2 class="section-title">Our Founder</h2>
+    <div class="founder-container">
+      <div class="founder-image">
+        <img src="prophet-samuel-adegboyega.jpg" alt="Prophet Samuel Adegboyega">
+      </div>
+      <h3 class="founder-name">Prophet Samuel Adegboyega</h3>
+      <p class="founder-title">Founder & Visionary Leader of SPAC</p>
+      <p class="founder-quote">"God has called us not just to gather in buildings, but to build His kingdom in the hearts of people. Our mandate is to raise champions who will proclaim salvation with power and transform nations through the anointing of the Holy Spirit."</p>
+      <p>Prophet Samuel Adegboyega is a man of profound spiritual insight, unwavering faith, and deep compassion. Under his visionary leadership, SPAC has grown from a small gathering of believers to a vibrant, multinational ministry impacting thousands of lives. His ministry is characterized by accurate prophetic utterances, deliverance, healing, and a relentless passion for soul-winning.</p>
+      <p>With over three decades of ministerial experience, Prophet Adegboyega continues to inspire believers to pursue intimacy with God, embrace their spiritual gifts, and fulfill their divine destinies. His teachings emphasize practical Christianity, Holy Spirit empowerment, and the manifestation of God's kingdom on earth.</p>
+    </div>
+  </div>
+</section>
+
+<!-- Vision, Mission & Tenets -->
+<section class="values-section">
+  <div class="container">
+    <h2 class="section-title">Our Core Identity</h2>
+    <div class="values-grid">
+      <div class="value-card">
+        <div class="value-icon">
+          <i class="fas fa-eye"></i>
+        </div>
+        <h3>Our Vision</h3>
+        <p>To raise a global community of Spirit-filled believers who manifest God's kingdom on earth through powerful proclamation, authentic worship, and transformative service.</p>
+        <p>We envision a church where every member operates in their God-given gifts, where families are restored, communities are transformed, and nations are impacted by the gospel of Jesus Christ.</p>
+      </div>
+      
+      <div class="value-card">
+        <div class="value-icon">
+          <i class="fas fa-bullseye"></i>
+        </div>
+        <h3>Our Mission</h3>
+        <p>To proclaim the gospel of salvation with apostolic authority, making disciples of all nations through sound teaching, Holy Spirit empowerment, and compassionate ministry.</p>
+        <ul class="value-list">
+          <li>To teach believers to live victoriously through God's Word</li>
+          <li>To equip saints for ministry through spiritual gifts</li>
+          <li>To provide a nurturing environment for spiritual growth</li>
+          <li>To demonstrate God's love through community outreach</li>
+          <li>To raise leaders who will transform their spheres of influence</li>
+        </ul>
+      </div>
+      
+      <div class="value-card">
+        <div class="value-icon">
+          <i class="fas fa-hand-holding-heart"></i>
+        </div>
+        <h3>Our Core Tenets</h3>
+        <p>We believe in the fundamental truths of Christianity as revealed in the Bible:</p>
+        <ul class="value-list">
+          <li>The divine inspiration and authority of Scripture</li>
+          <li>The Trinity: God the Father, Son, and Holy Spirit</li>
+          <li>The deity, virgin birth, and resurrection of Jesus Christ</li>
+          <li>Salvation by grace through faith in Christ alone</li>
+          <li>The present ministry of the Holy Spirit and spiritual gifts</li>
+          <li>The imminent return of Jesus Christ and eternal life</li>
+          <li>The priesthood of all believers and the Great Commission</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- History Timeline -->
+<section class="history-section">
+  <div class="container">
+    <h2 class="section-title">Our Journey Through Time</h2>
+    <div class="timeline">
+      <div class="timeline-item">
+        <div class="timeline-year">1995</div>
+        <div class="timeline-content">
+          <h3>The Birth of a Vision</h3>
+          <p>SPAC was founded by Prophet Samuel Adegboyega with a small group of believers in Lagos, Nigeria. The initial meetings were characterized by intense prayer, prophetic ministry, and a burning passion to proclaim salvation.</p>
+        </div>
+      </div>
+      
+      <div class="timeline-item">
+        <div class="timeline-year">2002</div>
+        <div class="timeline-content">
+          <h3>Establishing Our Foundation</h3>
+          <p>The church acquired its first permanent worship center, marking a significant milestone in our growth. Ministries were established, and the church began to experience notable increase in membership and spiritual impact.</p>
+        </div>
+      </div>
+      
+      <div class="timeline-item">
+        <div class="timeline-year">2010</div>
+        <div class="timeline-content">
+          <h3>Expansion & International Outreach</h3>
+          <p>SPAC launched its first international branch in the United Kingdom, followed by branches in the United States. This period marked our transition from a local church to a global ministry with a multinational footprint.</p>
+        </div>
+      </div>
+      
+      <div class="timeline-item">
+        <div class="timeline-year">2018</div>
+        <div class="timeline-content">
+          <h3>Digital Transformation</h3>
+          <p>We embraced technology to reach a global audience through online services, streaming platforms, and digital discipleship programs. Our virtual campus became a vital extension of our physical ministry.</p>
+        </div>
+      </div>
+      
+      <div class="timeline-item">
+        <div class="timeline-year">Present</div>
+        <div class="timeline-content">
+          <h3>A Growing Global Family</h3>
+          <p>Today, SPAC ministers to thousands of believers across multiple continents through our campuses, online platforms, and various ministry arms. We continue to innovate while remaining steadfast to our founding vision and values.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Call to Action -->
+<section class="cta-section">
+  <div class="container">
+    <div class="cta-content">
+      <h2>Become Part of Our Family</h2>
+      <p>Whether you're seeking spiritual growth, meaningful fellowship, or a place to serve, SPAC welcomes you with open arms. Join us as we journey together in faith, hope, and love.</p>
+      <a href="index.html#contact" class="btn cta-btn">Visit Us This Sunday</a>
+    </div>
+  </div>
+</section>
+
+<!-- Footer -->
+<footer id="contact">
+  <div class="container footer-content">
+    <div class="footer-column">
+      <h3>SPAC Church</h3>
+      <p>A vibrant community of believers committed to spreading the gospel and serving our community through faith, hope, and love.</p>
+      <div class="social-links">
+        <a href="#"><i class="fab fa-facebook-f"></i></a>
+        <a href="#"><i class="fab fa-twitter"></i></a>
+        <a href="#"><i class="fab fa-instagram"></i></a>
+        <a href="#"><i class="fab fa-youtube"></i></a>
+        <a href="#"><i class="fab fa-tiktok"></i></a>
+      </div>
+    </div>
+    <div class="footer-column">
+      <h3>Quick Links</h3>
+      <ul class="footer-links">
+        <li><a href="index.html">Home</a></li>
+        <li><a href="index.html#quick-links">Quick Access</a></li>
+        <li><a href="index.html#locations">Locations</a></li>
+        <li><a href="index.html#ministries">Ministries</a></li>
+        <li><a href="watch-live.html">Watch Live</a></li>
+        <li><a href="give.html">Give Online</a></li>
+      </ul>
+    </div>
+    <div class="footer-column">
+      <h3>Contact Us</h3>
+      <ul class="footer-links">
+        <li><i class="fas fa-map-marker-alt"></i> 123 Church Street, City, State 12345</li>
+        <li><i class="fas fa-phone"></i> Phone: (123) 456-7890</li>
+        <li><i class="fas fa-envelope"></i> Email: info@spacchurch.org</li>
+        <li><i class="fas fa-clock"></i> Service Times: Sun 7am, 9:15am, 11:30am</li>
+      </ul>
+    </div>
+  </div>
+  <div class="footer-bottom">
+    &copy; 2025 Salvation Proclaimers Anointed Church (SPAC). All Rights Reserved. | <a href="privacy.html">Privacy Policy</a> | <a href="terms.html">Terms of Use</a>
+  </div>
+</footer>
+
+<script>
+// Header scroll effect
+const header = document.getElementById('mainHeader');
+window.addEventListener('scroll', () => {
+  if (window.scrollY > 50) {
+    header.classList.add('header-scrolled');
+  } else {
+    header.classList.remove('header-scrolled');
+  }
+});
+
+// Hamburger Menu
+const hamburger = document.querySelector('.hamburger');
+const navMenu = document.querySelector('.nav-menu');
+const dropdowns = document.querySelectorAll('.dropdown');
+
+hamburger.addEventListener('click', () => {
+  hamburger.classList.toggle('active');
+  navMenu.classList.toggle('active');
+  
+  // Prevent body scroll when menu is open
+  if (navMenu.classList.contains('active')) {
+    document.body.style.overflow = 'hidden';
+  } else {
+    document.body.style.overflow = 'auto';
+  }
+});
+
+// Dropdown menu on mobile
+dropdowns.forEach(dropdown => {
+  const trigger = dropdown.querySelector('a');
+  trigger.addEventListener('click', (e) => {
+    if (window.innerWidth <= 992) {
+      e.preventDefault();
+      dropdown.classList.toggle('active');
+    }
+  });
+});
+
+// Close menu when clicking outside on mobile
+document.addEventListener('click', (e) => {
+  if (window.innerWidth <= 992 && navMenu.classList.contains('active')) {
+    if (!e.target.closest('.nav-menu') && !e.target.closest('.hamburger')) {
+      hamburger.classList.remove('active');
+      navMenu.classList.remove('active');
+      document.body.style.overflow = 'auto';
+    }
+  }
+});
+
+// Scroll to top button
+const scrollTopBtn = document.getElementById('scrollTop');
+
+window.addEventListener('scroll', () => {
+  if (window.scrollY > 300) {
+    scrollTopBtn.classList.add('visible');
+  } else {
+    scrollTopBtn.classList.remove('visible');
+  }
+});
+
+scrollTopBtn.addEventListener('click', () => {
+  window.scrollTo({
+    top: 0,
+    behavior: 'smooth'
+  });
+});
+
+// Timeline animation
+function animateTimeline() {
+  const timelineItems = document.querySelectorAll('.timeline-item');
+  
+  timelineItems.forEach(item => {
+    const itemTop = item.getBoundingClientRect().top;
+    const windowHeight = window.innerHeight;
+    
+    if (itemTop < windowHeight - 100) {
+      item.style.opacity = '1';
+      item.style.transform = 'translateY(0)';
+    }
+  });
+}
+
+// Initialize timeline items with animation
+window.addEventListener('DOMContentLoaded', function() {
+  const timelineItems = document.querySelectorAll('.timeline-item');
+  timelineItems.forEach(item => {
+    item.style.opacity = '0';
+    item.style.transform = 'translateY(30px)';
+    item.style.transition = 'opacity 0.5s ease, transform 0.5s ease';
+  });
+  
+  // Initial animation check
+  setTimeout(animateTimeline, 300);
+});
+
+// Check timeline animation on scroll
+window.addEventListener('scroll', animateTimeline);
+
+// Smooth scrolling for anchor links
+document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+  anchor.addEventListener('click', function(e) {
+    if (this.getAttribute('href') === '#') return;
+    
+    e.preventDefault();
+    const targetId = this.getAttribute('href');
+    if (targetId === '#home' || targetId === '#') {
+      window.scrollTo({
+        top: 0,
+        behavior: 'smooth'
+      });
+    } else {
+      const targetElement = document.querySelector(targetId);
+      if (targetElement) {
+        window.scrollTo({
+          top: targetElement.offsetTop - 80,
+          behavior: 'smooth'
+        });
+        
+        // Close mobile menu if open
+        if (window.innerWidth <= 992 && navMenu.classList.contains('active')) {
+          hamburger.classList.remove('active');
+          navMenu.classList.remove('active');
+          document.body.style.overflow = 'auto';
+        }
+      }
+    }
+  });
+});
+
+// Add animation to value cards on scroll
+function animateValueCards() {
+  const valueCards = document.querySelectorAll('.value-card');
+  
+  valueCards.forEach((card, index) => {
+    const cardTop = card.getBoundingClientRect().top;
+    const windowHeight = window.innerHeight;
+    
+    if (cardTop < windowHeight - 100) {
+      card.style.opacity = '1';
+      card.style.transform = 'translateY(0)';
+    }
+  });
+}
+
+// Initialize value cards with animation
+window.addEventListener('DOMContentLoaded', function() {
+  const valueCards = document.querySelectorAll('.value-card');
+  valueCards.forEach(card => {
+    card.style.opacity = '0';
+    card.style.transform = 'translateY(30px)';
+    card.style.transition = 'opacity 0.5s ease, transform 0.5s ease';
+  });
+  
+  // Initial animation check
+  setTimeout(animateValueCards, 300);
+});
+
+// Check value cards animation on scroll
+window.addEventListener('scroll', animateValueCards);
+</script>
+
+</body>
+  </html>
