@@ -1,0 +1,1562 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Vanguard Youth Ministry - SPAC Church</title>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+<link href="https://fonts.googleapis.com/css2?family=Lobster&family=Poppins:wght@300;400;500;600;700;800&family=Playfair+Display:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --primary: #1a4b8c;
+    --secondary: #d4af37;
+    --light: #f8f9fa;
+    --dark: #2c3e50;
+    --accent: #8b0000;
+    --fire: #ff6b35;
+    --energy: #ffd166;
+    --gradient: linear-gradient(135deg, #1a4b8c 0%, #2c3e50 100%);
+    --fire-gradient: linear-gradient(135deg, #ff6b35 0%, #8b0000 100%);
+    --energy-gradient: linear-gradient(135deg, #ffd166 0%, #ff9e00 100%);
+  }
+  
+  * {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+  }
+  
+  body {
+    font-family: 'Poppins', sans-serif;
+    background: linear-gradient(180deg, #f8f9fa 0%, #ffffff 100%);
+    color: #333;
+    line-height: 1.6;
+    scroll-behavior: smooth;
+    overflow-x: hidden;
+    width: 100%;
+    max-width: 100vw;
+  }
+  
+  a {
+    text-decoration: none;
+    color: inherit;
+  }
+  
+  .container {
+    width: 95%;
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 15px;
+  }
+  
+  .btn {
+    display: inline-block;
+    background: var(--fire);
+    color: white;
+    padding: 14px 32px;
+    border: none;
+    border-radius: 30px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    font-weight: 600;
+    letter-spacing: 0.5px;
+    box-shadow: 0 4px 15px rgba(255, 107, 53, 0.3);
+    text-transform: uppercase;
+    font-size: 1rem;
+  }
+  
+  .btn:hover {
+    background: var(--accent);
+    transform: translateY(-3px);
+    box-shadow: 0 6px 20px rgba(139, 0, 0, 0.35);
+  }
+  
+  .btn-secondary {
+    background: var(--primary);
+    box-shadow: 0 4px 15px rgba(26, 75, 140, 0.3);
+  }
+  
+  .btn-secondary:hover {
+    background: var(--accent);
+  }
+  
+  /* Header with Bigger Logo */
+  header {
+    background: white;
+    box-shadow: 0 3px 20px rgba(0, 0, 0, 0.08);
+    position: sticky;
+    top: 0;
+    z-index: 1000;
+    padding: 8px 0;
+    transition: all 0.3s ease;
+    width: 100%;
+  }
+  
+  .header-container {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 0;
+    width: 100%;
+  }
+  
+  .logo {
+    display: flex;
+    align-items: center;
+    position: absolute;
+    left: 50%;
+    transform: translateX(-50%);
+  }
+  
+  .logo-frame {
+    width: 100px;
+    height: 100px;
+    border-radius: 50%;
+    background: white;
+    border: 4px solid var(--primary);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-right: 20px;
+    overflow: hidden;
+    box-shadow: 0 6px 20px rgba(0, 0, 0, 0.15);
+  }
+  
+  .logo-frame img {
+    width: 85%;
+    height: 85%;
+    object-fit: contain;
+  }
+  
+  .logo-text {
+    font-family: 'Lobster', cursive;
+    font-size: 42px;
+    font-weight: 400;
+    color: var(--primary);
+    letter-spacing: 1.5px;
+    line-height: 1;
+    text-align: center;
+    white-space: nowrap;
+  }
+  
+  /* Navigation */
+  .nav-container {
+    display: flex;
+    align-items: center;
+    justify-content: flex-end;
+    width: 100%;
+  }
+  
+  @media (min-width: 993px) {
+    .nav-menu {
+      display: flex;
+      list-style: none;
+    }
+    
+    .nav-menu li {
+      margin-left: 30px;
+      position: relative;
+    }
+    
+    .nav-menu a {
+      color: var(--dark);
+      font-weight: 500;
+      font-size: 15px;
+      transition: all 0.3s ease;
+      padding: 8px 0;
+      position: relative;
+    }
+    
+    .nav-menu a::after {
+      content: '';
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      width: 0;
+      height: 2px;
+      background: var(--secondary);
+      transition: width 0.3s ease;
+    }
+    
+    .nav-menu a:hover::after {
+      width: 100%;
+    }
+    
+    .dropdown-content {
+      display: none;
+      position: absolute;
+      background: white;
+      min-width: 200px;
+      box-shadow: 0 15px 30px rgba(0, 0, 0, 0.1);
+      z-index: 1;
+      border-radius: 10px;
+      overflow: hidden;
+      top: 100%;
+      left: 0;
+      padding: 10px 0;
+    }
+    
+    .dropdown:hover .dropdown-content {
+      display: block;
+    }
+  }
+  
+  /* Mobile Menu */
+  .hamburger {
+    display: none;
+    cursor: pointer;
+    width: 40px;
+    height: 40px;
+    position: relative;
+    z-index: 1001;
+    margin-left: auto;
+    background: var(--primary);
+    border-radius: 5px;
+    padding: 8px;
+  }
+  
+  .hamburger span {
+    display: block;
+    position: absolute;
+    height: 3px;
+    width: 24px;
+    background: white;
+    border-radius: 3px;
+    opacity: 1;
+    left: 8px;
+    transform: rotate(0deg);
+    transition: .25s ease-in-out;
+  }
+  
+  .hamburger span:nth-child(1) { top: 12px; }
+  .hamburger span:nth-child(2) { top: 18.5px; }
+  .hamburger span:nth-child(3) { top: 25px; }
+  
+  .hamburger.active span:nth-child(1) {
+    top: 18.5px;
+    transform: rotate(45deg);
+  }
+  
+  .hamburger.active span:nth-child(2) {
+    opacity: 0;
+    left: -30px;
+  }
+  
+  .hamburger.active span:nth-child(3) {
+    top: 18.5px;
+    transform: rotate(-45deg);
+  }
+  
+  @media (max-width: 992px) {
+    .nav-menu {
+      position: fixed;
+      top: 0;
+      right: -50%;
+      width: 50%;
+      height: 100vh;
+      background: white;
+      flex-direction: column;
+      justify-content: flex-start;
+      align-items: flex-start;
+      padding: 100px 30px 30px;
+      transition: right 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+      box-shadow: -10px 0 30px rgba(0,0,0,0.15);
+      z-index: 1000;
+      overflow-y: auto;
+    }
+    
+    .nav-menu.active {
+      right: 0;
+    }
+    
+    .nav-menu li {
+      margin: 0 0 25px 0;
+      width: 100%;
+      opacity: 0;
+      transform: translateX(20px);
+      transition: all 0.3s ease;
+    }
+    
+    .nav-menu.active li {
+      opacity: 1;
+      transform: translateX(0);
+    }
+    
+    .nav-menu li:nth-child(1) { transition-delay: 0.1s; }
+    .nav-menu li:nth-child(2) { transition-delay: 0.2s; }
+    .nav-menu li:nth-child(3) { transition-delay: 0.3s; }
+    .nav-menu li:nth-child(4) { transition-delay: 0.4s; }
+    .nav-menu li:nth-child(5) { transition-delay: 0.5s; }
+    
+    .nav-menu a {
+      font-size: 16px;
+      display: block;
+      padding: 10px 0;
+      width: 100%;
+      border-bottom: 1px solid rgba(0,0,0,0.05);
+      color: var(--dark);
+    }
+    
+    .dropdown-content {
+      position: static;
+      display: none;
+      box-shadow: none;
+      background: rgba(26, 75, 140, 0.05);
+      margin-top: 10px;
+      border-radius: 8px;
+      padding: 5px 0;
+    }
+    
+    .dropdown.active .dropdown-content {
+      display: block;
+    }
+    
+    .hamburger {
+      display: block;
+    }
+    
+    .logo {
+      position: static;
+      transform: none;
+      margin-right: auto;
+    }
+    
+    .logo-text {
+      font-size: 30px;
+    }
+    
+    .logo-frame {
+      width: 70px;
+      height: 70px;
+    }
+  }
+  
+  @media (max-width: 768px) {
+    .logo-text {
+      font-size: 24px;
+    }
+    
+    .logo-frame {
+      width: 60px;
+      height: 60px;
+    }
+  }
+  
+  @media (max-width: 576px) {
+    .nav-menu {
+      width: 85%;
+      right: -85%;
+    }
+    
+    .logo-text {
+      font-size: 20px;
+    }
+    
+    .logo-frame {
+      width: 50px;
+      height: 50px;
+    }
+  }
+  
+  /* Vanguard Hero Section */
+  .vanguard-hero {
+    position: relative;
+    height: 80vh;
+    min-height: 600px;
+    overflow: hidden;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    color: white;
+    background: #000;
+    width: 100%;
+  }
+  
+  .vanguard-hero-bg {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    z-index: 0;
+    opacity: 0.8;
+  }
+  
+  .vanguard-hero-overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(135deg, rgba(255, 107, 53, 0.85) 0%, rgba(139, 0, 0, 0.9) 100%);
+    z-index: 1;
+  }
+  
+  .vanguard-hero-content {
+    max-width: 900px;
+    padding: 0 20px;
+    z-index: 2;
+    position: relative;
+  }
+  
+  .vanguard-title {
+    font-family: 'Poppins', sans-serif;
+    font-size: 5rem;
+    margin-bottom: 20px;
+    font-weight: 800;
+    text-shadow: 3px 3px 10px rgba(0, 0, 0, 0.5);
+    text-transform: uppercase;
+    letter-spacing: 2px;
+  }
+  
+  .vanguard-subtitle {
+    font-size: 2rem;
+    margin-bottom: 30px;
+    font-weight: 300;
+    opacity: 0.95;
+    text-shadow: 1px 1px 5px rgba(0, 0, 0, 0.5);
+  }
+  
+  .vanguard-tagline {
+    font-size: 1.5rem;
+    max-width: 700px;
+    margin: 0 auto 40px;
+    font-weight: 400;
+    line-height: 1.8;
+    text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.5);
+    background: rgba(0, 0, 0, 0.5);
+    padding: 20px;
+    border-radius: 15px;
+    border-left: 5px solid var(--energy);
+  }
+  
+  @media (max-width: 992px) {
+    .vanguard-title {
+      font-size: 3.5rem;
+    }
+    
+    .vanguard-subtitle {
+      font-size: 1.8rem;
+    }
+    
+    .vanguard-tagline {
+      font-size: 1.3rem;
+    }
+  }
+  
+  @media (max-width: 768px) {
+    .vanguard-hero {
+      height: 70vh;
+      min-height: 500px;
+    }
+    
+    .vanguard-title {
+      font-size: 2.8rem;
+    }
+    
+    .vanguard-subtitle {
+      font-size: 1.5rem;
+    }
+    
+    .vanguard-tagline {
+      font-size: 1.2rem;
+    }
+  }
+  
+  @media (max-width: 576px) {
+    .vanguard-title {
+      font-size: 2.3rem;
+    }
+    
+    .vanguard-subtitle {
+      font-size: 1.3rem;
+    }
+    
+    .vanguard-tagline {
+      font-size: 1.1rem;
+    }
+  }
+  
+  /* Fire Particle Animation */
+  .fire-particles {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: 1;
+    pointer-events: none;
+  }
+  
+  .fire-particle {
+    position: absolute;
+    width: 6px;
+    height: 6px;
+    background: var(--energy);
+    border-radius: 50%;
+    box-shadow: 0 0 10px var(--fire), 0 0 20px var(--fire);
+    animation: floatUp 8s infinite linear;
+  }
+  
+  @keyframes floatUp {
+    0% {
+      transform: translateY(100vh) translateX(0) scale(1);
+      opacity: 0;
+    }
+    10% {
+      opacity: 1;
+    }
+    90% {
+      opacity: 1;
+    }
+    100% {
+      transform: translateY(-100px) translateX(20px) scale(0);
+      opacity: 0;
+    }
+  }
+  
+  /* Introduction Section */
+  .intro-section {
+    padding: 100px 0;
+    background: linear-gradient(135deg, #fff8f5 0%, #ffffff 100%);
+    position: relative;
+  }
+  
+  .intro-section:before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 5px;
+    background: linear-gradient(90deg, var(--fire), var(--energy), var(--accent));
+  }
+  
+  .section-title {
+    text-align: center;
+    font-family: 'Playfair Display', serif;
+    font-size: 3rem;
+    color: var(--primary);
+    margin-bottom: 50px;
+    position: relative;
+    padding-bottom: 20px;
+  }
+  
+  .section-title:after {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 100px;
+    height: 4px;
+    background: var(--secondary);
+  }
+  
+  .fire-title {
+    color: var(--fire);
+  }
+  
+  .fire-title:after {
+    background: var(--fire);
+  }
+  
+  .intro-content {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 60px;
+    align-items: center;
+  }
+  
+  .intro-text h3 {
+    font-size: 2.2rem;
+    color: var(--fire);
+    margin-bottom: 25px;
+    font-family: 'Poppins', sans-serif;
+    font-weight: 700;
+  }
+  
+  .intro-text p {
+    font-size: 1.15rem;
+    color: #555;
+    line-height: 1.9;
+    margin-bottom: 25px;
+  }
+  
+  .intro-image {
+    border-radius: 20px;
+    overflow: hidden;
+    box-shadow: 0 20px 40px rgba(255, 107, 53, 0.2);
+    height: 400px;
+    position: relative;
+  }
+  
+  .intro-image img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: transform 0.5s ease;
+  }
+  
+  .intro-image:hover img {
+    transform: scale(1.05);
+  }
+  
+  .intro-image:after {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(to bottom, transparent 50%, rgba(255, 107, 53, 0.2) 100%);
+    z-index: 1;
+  }
+  
+  /* Core Values Section */
+  .values-section {
+    padding: 100px 0;
+    background: white;
+  }
+  
+  .values-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 40px;
+    margin-top: 60px;
+  }
+  
+  .value-card {
+    background: white;
+    border-radius: 15px;
+    overflow: hidden;
+    box-shadow: 0 15px 35px rgba(0,0,0,0.08);
+    transition: all 0.4s ease;
+    padding: 40px 30px;
+    text-align: center;
+    border-top: 5px solid var(--fire);
+    position: relative;
+    z-index: 1;
+  }
+  
+  .value-card:hover {
+    transform: translateY(-15px) scale(1.02);
+    box-shadow: 0 25px 50px rgba(255, 107, 53, 0.15);
+  }
+  
+  .value-card:nth-child(2) {
+    border-top-color: var(--energy);
+  }
+  
+  .value-card:nth-child(3) {
+    border-top-color: var(--accent);
+  }
+  
+  .value-card:nth-child(4) {
+    border-top-color: var(--primary);
+  }
+  
+  .value-icon {
+    width: 80px;
+    height: 80px;
+    background: var(--fire-gradient);
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin: 0 auto 25px;
+    color: white;
+    font-size: 32px;
+    box-shadow: 0 10px 20px rgba(255, 107, 53, 0.3);
+  }
+  
+  .value-card:nth-child(2) .value-icon {
+    background: var(--energy-gradient);
+    box-shadow: 0 10px 20px rgba(255, 158, 0, 0.3);
+  }
+  
+  .value-card:nth-child(3) .value-icon {
+    background: var(--gradient);
+    box-shadow: 0 10px 20px rgba(26, 75, 140, 0.3);
+  }
+  
+  .value-card:nth-child(4) .value-icon {
+    background: linear-gradient(135deg, var(--accent) 0%, #a30000 100%);
+    box-shadow: 0 10px 20px rgba(139, 0, 0, 0.3);
+  }
+  
+  .value-card h3 {
+    font-size: 1.8rem;
+    color: var(--fire);
+    margin-bottom: 20px;
+    font-family: 'Poppins', sans-serif;
+    font-weight: 700;
+  }
+  
+  .value-card:nth-child(2) h3 {
+    color: var(--accent);
+  }
+  
+  .value-card:nth-child(3) h3 {
+    color: var(--primary);
+  }
+  
+  .value-card:nth-child(4) h3 {
+    color: var(--dark);
+  }
+  
+  .value-card p {
+    font-size: 1.1rem;
+    color: #555;
+    line-height: 1.8;
+  }
+  
+  /* Activities Section */
+  .activities-section {
+    padding: 100px 0;
+    background: linear-gradient(135deg, #f8f9fa 0%, #e9ecef 100%);
+    position: relative;
+  }
+  
+  .activities-section:before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 5px;
+    background: linear-gradient(90deg, var(--fire), var(--energy), var(--primary));
+  }
+  
+  .activities-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 35px;
+    margin-top: 60px;
+  }
+  
+  .activity-card {
+    background: white;
+    border-radius: 15px;
+    overflow: hidden;
+    box-shadow: 0 15px 35px rgba(0,0,0,0.08);
+    transition: all 0.4s ease;
+    cursor: pointer;
+  }
+  
+  .activity-card:hover {
+    transform: translateY(-15px);
+    box-shadow: 0 25px 50px rgba(255, 107, 53, 0.15);
+  }
+  
+  .activity-image {
+    height: 220px;
+    overflow: hidden;
+  }
+  
+  .activity-image img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: transform 0.5s ease;
+  }
+  
+  .activity-card:hover .activity-image img {
+    transform: scale(1.1);
+  }
+  
+  .activity-content {
+    padding: 30px;
+  }
+  
+  .activity-content h3 {
+    font-size: 1.6rem;
+    color: var(--fire);
+    margin-bottom: 15px;
+    font-family: 'Poppins', sans-serif;
+    font-weight: 700;
+  }
+  
+  .activity-content p {
+    font-size: 1rem;
+    color: #555;
+    line-height: 1.7;
+    margin-bottom: 20px;
+  }
+  
+  .activity-meta {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    font-size: 0.9rem;
+    color: var(--dark);
+    padding-top: 15px;
+    border-top: 1px solid rgba(0,0,0,0.1);
+  }
+  
+  /* Testimonials Section */
+  .testimonials-section {
+    padding: 100px 0;
+    background: white;
+  }
+  
+  .testimonials-container {
+    max-width: 900px;
+    margin: 60px auto 0;
+  }
+  
+  .testimonial-card {
+    background: white;
+    border-radius: 15px;
+    box-shadow: 0 15px 35px rgba(0,0,0,0.08);
+    padding: 40px;
+    margin-bottom: 40px;
+    border-left: 5px solid var(--fire);
+    position: relative;
+  }
+  
+  .testimonial-card:before {
+    content: '"';
+    position: absolute;
+    top: 20px;
+    left: 30px;
+    font-size: 5rem;
+    color: rgba(255, 107, 53, 0.2);
+    font-family: 'Playfair Display', serif;
+  }
+  
+  .testimonial-text {
+    font-size: 1.2rem;
+    color: #555;
+    line-height: 1.8;
+    margin-bottom: 25px;
+    font-style: italic;
+  }
+  
+  .testimonial-author {
+    display: flex;
+    align-items: center;
+  }
+  
+  .author-avatar {
+    width: 60px;
+    height: 60px;
+    border-radius: 50%;
+    overflow: hidden;
+    margin-right: 20px;
+    border: 3px solid var(--energy);
+  }
+  
+  .author-avatar img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+  }
+  
+  .author-info h4 {
+    font-size: 1.3rem;
+    color: var(--fire);
+    margin-bottom: 5px;
+  }
+  
+  .author-info p {
+    color: #777;
+    font-size: 0.9rem;
+  }
+  
+  /* Join CTA Section */
+  .join-section {
+    padding: 100px 0;
+    background: var(--fire-gradient);
+    color: white;
+    text-align: center;
+    position: relative;
+    overflow: hidden;
+  }
+  
+  .join-section:before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 5px;
+    background: linear-gradient(90deg, var(--energy), white, var(--primary));
+  }
+  
+  .join-content {
+    max-width: 800px;
+    margin: 0 auto;
+    position: relative;
+    z-index: 2;
+  }
+  
+  .join-content h2 {
+    font-family: 'Poppins', sans-serif;
+    font-size: 3.5rem;
+    margin-bottom: 30px;
+    font-weight: 800;
+    text-shadow: 2px 2px 8px rgba(0, 0, 0, 0.3);
+  }
+  
+  .join-content p {
+    font-size: 1.3rem;
+    margin-bottom: 40px;
+    opacity: 0.95;
+    max-width: 600px;
+    margin-left: auto;
+    margin-right: auto;
+  }
+  
+  .join-btn {
+    background: white;
+    color: var(--fire);
+    font-weight: 700;
+    font-size: 1.1rem;
+    padding: 16px 40px;
+  }
+  
+  .join-btn:hover {
+    background: var(--energy);
+    color: white;
+  }
+  
+  /* Footer */
+  footer {
+    background: var(--dark);
+    color: white;
+    padding: 80px 0 30px;
+    position: relative;
+  }
+  
+  footer:before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 5px;
+    background: linear-gradient(90deg, var(--fire), var(--energy), var(--accent));
+  }
+  
+  .footer-content {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 40px;
+    margin-bottom: 50px;
+  }
+  
+  @media (max-width: 768px) {
+    .footer-content {
+      grid-template-columns: 1fr;
+      gap: 30px;
+    }
+    
+    .intro-content {
+      grid-template-columns: 1fr;
+      gap: 40px;
+    }
+  }
+  
+  .footer-column h3 {
+    margin-bottom: 25px;
+    color: var(--energy);
+    font-size: 1.5rem;
+    font-weight: 600;
+    position: relative;
+    padding-bottom: 10px;
+  }
+  
+  .footer-column h3:after {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 50px;
+    height: 3px;
+    background: var(--fire);
+  }
+  
+  .footer-links {
+    list-style: none;
+  }
+  
+  .footer-links li {
+    margin-bottom: 12px;
+  }
+  
+  .footer-links a {
+    color: #ddd;
+    transition: 0.3s;
+    display: inline-block;
+  }
+  
+  .footer-links a:hover {
+    color: var(--energy);
+    transform: translateX(5px);
+  }
+  
+  .social-links {
+    display: flex;
+    gap: 15px;
+    margin-top: 25px;
+  }
+  
+  .social-links a {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 45px;
+    height: 45px;
+    background: rgba(255,255,255,0.1);
+    border-radius: 50%;
+    transition: 0.3s;
+  }
+  
+  .social-links a:hover {
+    background: var(--fire);
+    transform: translateY(-5px);
+  }
+  
+  .footer-bottom {
+    text-align: center;
+    padding-top: 30px;
+    border-top: 1px solid rgba(255,255,255,0.1);
+    font-size: 0.9rem;
+    color: #aaa;
+  }
+  
+  /* Scroll to top button */
+  .scroll-top {
+    position: fixed;
+    bottom: 30px;
+    right: 30px;
+    width: 50px;
+    height: 50px;
+    background: var(--fire);
+    color: white;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    z-index: 999;
+    opacity: 0;
+    visibility: hidden;
+    transition: all 0.3s ease;
+    box-shadow: 0 5px 15px rgba(255, 107, 53, 0.3);
+  }
+  
+  .scroll-top.visible {
+    opacity: 1;
+    visibility: visible;
+  }
+  
+  .scroll-top:hover {
+    background: var(--accent);
+    transform: translateY(-5px);
+    box-shadow: 0 8px 20px rgba(139, 0, 0, 0.3);
+  }
+</style>
+</head>
+<body>
+
+<!-- Scroll to Top Button -->
+<div class="scroll-top" id="scrollTop">
+  <i class="fas fa-chevron-up"></i>
+</div>
+
+<header id="mainHeader">
+  <div class="container header-container">
+    <div class="logo">
+      <div class="logo-frame">
+        <img src="spac-logo.jpg" alt="SPAC Logo">
+      </div>
+      <span class="logo-text">SPAC CHURCH</span>
+    </div>
+    <div class="nav-container">
+      <ul class="nav-menu">
+        <li><a href="index.html">Home</a></li>
+        <li class="dropdown"><a href="about.html">About <i class="fas fa-chevron-down"></i></a>
+          <div class="dropdown-content">
+            <a href="about.html">Our Story</a>
+            <a href="beliefs.html">Beliefs</a>
+            <a href="leadership.html">Leadership</a>
+            <a href="vision.html">Vision & Mission</a>
+          </div>
+        </li>
+        <li><a href="index.html#locations">Branches</a></li>
+        <li class="dropdown"><a href="#ministries" class="active">Ministries <i class="fas fa-chevron-down"></i></a>
+          <div class="dropdown-content">
+            <a href="vanguard.html" class="active">Vanguard (Youth)</a>
+            <a href="teen-church.html">Teen Church</a>
+            <a href="kids-church.html">Kids Church</a>
+            <a href="marriage-counselling.html">Marriage & Counselling</a>
+            <a href="spac-uk.html">SPAC UK</a>
+            <a href="spac-nxtion.html">SPAC Nxtion</a>
+            <a href="spac-us.html">SPAC US</a>
+          </div>
+        </li>
+        <li><a href="index.html#contact">Contact</a></li>
+      </ul>
+      <div class="hamburger"><span></span><span></span><span></span></div>
+    </div>
+  </div>
+</header>
+
+<!-- Hero Section -->
+<section class="vanguard-hero">
+  <img src="vanguard-hero.jpg" alt="Vanguard Youth Evangelism" class="vanguard-hero-bg">
+  <div class="vanguard-hero-overlay"></div>
+  <div class="fire-particles" id="fireParticles"></div>
+  <div class="vanguard-hero-content">
+    <h1 class="vanguard-title">VANGUARD</h1>
+    <h2 class="vanguard-subtitle">Youth Evangelism Movement</h2>
+    <p class="vanguard-tagline">Igniting a generation with holy fire, equipped to proclaim salvation and transform nations through the power of the Holy Spirit.</p>
+    <a href="#join" class="btn">Join The Fire 🔥</a>
+  </div>
+</section>
+
+<!-- Introduction Section -->
+<section class="intro-section">
+  <div class="container">
+    <h2 class="section-title fire-title">The Zealous Generation</h2>
+    <div class="intro-content">
+      <div class="intro-text">
+        <h3>Army of Firebrands</h3>
+        <p>Vanguard is not just a youth group - we are an army of firebrands, ignited by the Holy Spirit and commissioned to take the gospel to the streets, campuses, and nations. We are young believers filled with passion, courage, and uncompromising faith.</p>
+        <p>Our mission is simple yet profound: to reach every young person with the life-changing message of Jesus Christ. We believe that youth are not just the church of tomorrow but powerful agents of transformation today.</p>
+        <p>At Vanguard, we combine deep spiritual formation with radical evangelism. We train, equip, and release young people to operate in the power of the Holy Spirit, demonstrating God's love through both word and deed.</p>
+        <a href="#values" class="btn btn-secondary">Discover Our Values</a>
+      </div>
+      <div class="intro-image">
+        <img src="vanguard-group.jpg" alt="Vanguard Youth Group">
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Core Values Section -->
+<section class="values-section" id="values">
+  <div class="container">
+    <h2 class="section-title">Our Core Pillars</h2>
+    <div class="values-grid">
+      <div class="value-card">
+        <div class="value-icon">
+          <i class="fas fa-fire"></i>
+        </div>
+        <h3>Holy Fire</h3>
+        <p>We are baptized with the Holy Spirit and fire. Our meetings are characterized by passionate worship, deep intercession, and manifestations of God's power. We believe in the present-day operation of spiritual gifts.</p>
+      </div>
+      
+      <div class="value-card">
+        <div class="value-icon">
+          <i class="fas fa-bullhorn"></i>
+        </div>
+        <h3>Bold Proclamation</h3>
+        <p>We take the gospel beyond the four walls of the church. Through street evangelism, campus outreach, and digital missions, we boldly declare the good news of Jesus Christ without compromise or fear.</p>
+      </div>
+      
+      <div class="value-card">
+        <div class="value-icon">
+          <i class="fas fa-hands-helping"></i>
+        </div>
+        <h3>Community Impact</h3>
+        <p>Our faith is demonstrated through action. We engage in community service, humanitarian projects, and social justice initiatives that reflect God's heart for the marginalized and broken.</p>
+      </div>
+      
+      <div class="value-card">
+        <div class="value-icon">
+          <i class="fas fa-users"></i>
+        </div>
+        <h3>Discipleship & Mentoring</h3>
+        <p>We invest in raising the next generation of leaders. Through small groups, mentorship programs, and leadership training, we equip young believers to fulfill their God-given destiny.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Activities Section -->
+<section class="activities-section">
+  <div class="container">
+    <h2 class="section-title fire-title">Our Fire Activities</h2>
+    <div class="activities-grid">
+      <div class="activity-card" onclick="openActivity('street-evangelism')">
+        <div class="activity-image">
+          <img src="street-evangelism.jpg" alt="Street Evangelism">
+        </div>
+        <div class="activity-content">
+          <h3>Street Evangelism</h3>
+          <p>Weekly outreach programs where we hit the streets with the gospel, prophetic ministry, and healing prayers. We see salvations, deliverances, and miracles in marketplaces, campuses, and public squares.</p>
+          <div class="activity-meta">
+            <span><i class="fas fa-calendar"></i> Every Saturday</span>
+            <span><i class="fas fa-clock"></i> 3:00 PM</span>
+          </div>
+        </div>
+      </div>
+      
+      <div class="activity-card" onclick="openActivity('fire-night')">
+        <div class="activity-image">
+          <img src="fire-night.jpg" alt="Fire Night Vigil">
+        </div>
+        <div class="activity-content">
+          <h3>Fire Night Vigils</h3>
+          <p>Monthly all-night prayer meetings filled with intense worship, prophetic declarations, and intercession for revival. These nights are marked by supernatural encounters and spiritual breakthroughs.</p>
+          <div class="activity-meta">
+            <span><i class="fas fa-calendar"></i> Last Friday Monthly</span>
+            <span><i class="fas fa-clock"></i> 10:00 PM - 5:00 AM</span>
+          </div>
+        </div>
+      </div>
+      
+      <div class="activity-card" onclick="openActivity('youth-rally')">
+        <div class="activity-image">
+          <img src="youth-rally.jpg" alt="Youth Power Rally">
+        </div>
+        <div class="activity-content">
+          <h3>Youth Power Rallies</h3>
+          <p>Quarterly massive gatherings of youth from across the region featuring dynamic preaching, worship concerts, and miracle services. Thousands of young people gather for these life-changing events.</p>
+          <div class="activity-meta">
+            <span><i class="fas fa-calendar"></i> Quarterly</span>
+            <span><i class="fas fa-users"></i> 5000+ Expected</span>
+          </div>
+        </div>
+      </div>
+      
+      <div class="activity-card" onclick="openActivity('discipleship')">
+        <div class="activity-image">
+          <img src="discipleship-class.jpg" alt="Discipleship Class">
+        </div>
+        <div class="activity-content">
+          <h3>Firebrand Discipleship</h3>
+          <p>Weekly training sessions covering topics like prayer, evangelism, spiritual warfare, leadership, and discovering your spiritual gifts. Equipping believers for effective ministry.</p>
+          <div class="activity-meta">
+            <span><i class="fas fa-calendar"></i> Every Tuesday</span>
+            <span><i class="fas fa-clock"></i> 6:00 PM</span>
+          </div>
+        </div>
+      </div>
+      
+      <div class="activity-card" onclick="openActivity('mission-trip')">
+        <div class="activity-image">
+          <img src="mission-trip.jpg" alt="Mission Trip">
+        </div>
+        <div class="activity-content">
+          <h3>Mission Trips</h3>
+          <p>Domestic and international mission trips to unreached communities. We partner with local churches to conduct crusades, medical missions, and community development projects.</p>
+          <div class="activity-meta">
+            <span><i class="fas fa-calendar"></i> Bi-Annually</span>
+            <span><i class="fas fa-map-marker-alt"></i> Various Locations</span>
+          </div>
+        </div>
+      </div>
+      
+      <div class="activity-card" onclick="openActivity('creative-arts')">
+        <div class="activity-image">
+          <img src="creative-arts.jpg" alt="Creative Arts Ministry">
+        </div>
+        <div class="activity-content">
+          <h3>Creative Arts Ministry</h3>
+          <p>Using drama, music, dance, poetry, and visual arts to communicate the gospel in culturally relevant ways. Our creative team produces powerful presentations for outreach events.</p>
+          <div class="activity-meta">
+            <span><i class="fas fa-calendar"></i> Weekly Rehearsals</span>
+            <span><i class="fas fa-palette"></i> Multiple Teams</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Testimonials Section -->
+<section class="testimonials-section">
+  <div class="container">
+    <h2 class="section-title">Stories of Transformation</h2>
+    <div class="testimonials-container">
+      <div class="testimonial-card">
+        <p class="testimonial-text">Before joining Vanguard, I was shy and unsure of my faith. Through their training and encouragement, I now lead street evangelism teams and have seen over 50 people give their lives to Christ in just one year. The fire of God has truly transformed me!</p>
+        <div class="testimonial-author">
+          <div class="author-avatar">
+            <img src="testimonial1.jpg" alt="David Johnson">
+          </div>
+          <div class="author-info">
+            <h4>David Johnson</h4>
+            <p>University Student & Evangelism Team Leader</p>
+          </div>
+        </div>
+      </div>
+      
+      <div class="testimonial-card">
+        <p class="testimonial-text">The Fire Night Vigils have been life-changing for me. During one vigil, I received a powerful encounter with the Holy Spirit that delivered me from addiction and depression. Now I'm helping other young people find freedom in Christ through our support groups.</p>
+        <div class="testimonial-author">
+          <div class="author-avatar">
+            <img src="testimonial2.jpg" alt="Sarah Williams">
+          </div>
+          <div class="author-info">
+            <h4>Sarah Williams</h4>
+            <p>Deliverance Ministry Team Member</p>
+          </div>
+        </div>
+      </div>
+      
+      <div class="testimonial-card">
+        <p class="testimonial-text">As part of the mission trip to rural communities, I witnessed miracles I had only read about in the Bible. The blind saw, the lame walked, and hundreds accepted Jesus. Vanguard has taught me that with God, nothing is impossible for this generation!</p>
+        <div class="testimonial-author">
+          <div class="author-avatar">
+            <img src="testimonial3.jpg" alt="Michael Chen">
+          </div>
+          <div class="author-info">
+            <h4>Michael Chen</h4>
+            <p>Medical Student & Mission Trip Participant</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Join CTA Section -->
+<section class="join-section" id="join">
+  <div class="container">
+    <div class="join-content">
+      <h2>IGNITE YOUR FIRE</h2>
+      <p>Are you between 18-35 years old with a burning passion for Jesus and a desire to impact your generation? Join the Vanguard family today and become part of a movement that's changing lives and transforming nations!</p>
+      <a href="contact.html" class="btn join-btn">Become A Firebrand 🔥</a>
+    </div>
+  </div>
+</section>
+
+<!-- Footer -->
+<footer id="contact">
+  <div class="container footer-content">
+    <div class="footer-column">
+      <h3>Vanguard Youth</h3>
+      <p>A radical army of young believers ignited by the Holy Spirit, committed to evangelism, discipleship, and transforming our generation for Christ.</p>
+      <div class="social-links">
+        <a href="#"><i class="fab fa-facebook-f"></i></a>
+        <a href="#"><i class="fab fa-twitter"></i></a>
+        <a href="#"><i class="fab fa-instagram"></i></a>
+        <a href="#"><i class="fab fa-youtube"></i></a>
+        <a href="#"><i class="fab fa-tiktok"></i></a>
+      </div>
+    </div>
+    <div class="footer-column">
+      <h3>Quick Links</h3>
+      <ul class="footer-links">
+        <li><a href="index.html">Home</a></li>
+        <li><a href="about.html">About SPAC</a></li>
+        <li><a href="#values">Our Values</a></li>
+        <li><a href="#activities">Activities</a></li>
+        <li><a href="teen-church.html">Teen Church</a></li>
+        <li><a href="index.html#contact">Contact Us</a></li>
+      </ul>
+    </div>
+    <div class="footer-column">
+      <h3>Contact Vanguard</h3>
+      <ul class="footer-links">
+        <li><i class="fas fa-map-marker-alt"></i> SPAC Church Youth Center</li>
+        <li><i class="fas fa-phone"></i> Youth Line: (123) 456-7891</li>
+        <li><i class="fas fa-envelope"></i> Email: vanguard@spacchurch.org</li>
+        <li><i class="fas fa-clock"></i> Meetings: Tue 6PM, Sat 3PM</li>
+        <li><i class="fas fa-user"></i> Coordinator: Pastor James Adeyemi</li>
+      </ul>
+    </div>
+  </div>
+  <div class="footer-bottom">
+    &copy; 2025 SPAC Church Vanguard Youth Ministry. All Rights Reserved. | <a href="privacy.html">Privacy Policy</a> | <a href="terms.html">Terms of Use</a>
+  </div>
+</footer>
+
+<script>
+// Header scroll effect
+const header = document.getElementById('mainHeader');
+window.addEventListener('scroll', () => {
+  if (window.scrollY > 50) {
+    header.classList.add('header-scrolled');
+  } else {
+    header.classList.remove('header-scrolled');
+  }
+});
+
+// Hamburger Menu
+const hamburger = document.querySelector('.hamburger');
+const navMenu = document.querySelector('.nav-menu');
+const dropdowns = document.querySelectorAll('.dropdown');
+
+hamburger.addEventListener('click', () => {
+  hamburger.classList.toggle('active');
+  navMenu.classList.toggle('active');
+  
+  // Prevent body scroll when menu is open
+  if (navMenu.classList.contains('active')) {
+    document.body.style.overflow = 'hidden';
+  } else {
+    document.body.style.overflow = 'auto';
+  }
+});
+
+// Dropdown menu on mobile
+dropdowns.forEach(dropdown => {
+  const trigger = dropdown.querySelector('a');
+  trigger.addEventListener('click', (e) => {
+    if (window.innerWidth <= 992) {
+      e.preventDefault();
+      dropdown.classList.toggle('active');
+    }
+  });
+});
+
+// Close menu when clicking outside on mobile
+document.addEventListener('click', (e) => {
+  if (window.innerWidth <= 992 && navMenu.classList.contains('active')) {
+    if (!e.target.closest('.nav-menu') && !e.target.closest('.hamburger')) {
+      hamburger.classList.remove('active');
+      navMenu.classList.remove('active');
+      document.body.style.overflow = 'auto';
+    }
+  }
+});
+
+// Fire Particles Animation
+function createFireParticles() {
+  const fireContainer = document.getElementById('fireParticles');
+  const particleCount = 50;
+  
+  for (let i = 0; i < particleCount; i++) {
+    const particle = document.createElement('div');
+    particle.classList.add('fire-particle');
+    
+    // Random position
+    const left = Math.random() * 100;
+    const size = 3 + Math.random() * 7;
+    const duration = 5 + Math.random() * 10;
+    const delay = Math.random() * 5;
+    
+    particle.style.left = `${left}%`;
+    particle.style.width = `${size}px`;
+    particle.style.height = `${size}px`;
+    particle.style.animationDuration = `${duration}s`;
+    particle.style.animationDelay = `${delay}s`;
+    
+    // Random color variation
+    const hue = 15 + Math.random() * 30; // Orange-red range
+    particle.style.background = `hsl(${hue}, 100%, 60%)`;
+    particle.style.boxShadow = `0 0 10px hsl(${hue}, 100%, 50%), 0 0 20px hsl(${hue}, 100%, 50%)`;
+    
+    fireContainer.appendChild(particle);
+  }
+}
+
+// Scroll to top button
+const scrollTopBtn = document.getElementById('scrollTop');
+
+window.addEventListener('scroll', () => {
+  if (window.scrollY > 300) {
+    scrollTopBtn.classList.add('visible');
+  } else {
+    scrollTopBtn.classList.remove('visible');
+  }
+});
+
+scrollTopBtn.addEventListener('click', () => {
+  window.scrollTo({
+    top: 0,
+    behavior: 'smooth'
+  });
+});
+
+// Activity card click function
+function openActivity(activity) {
+  // In a real implementation, this would open a detailed page for the activity
+  alert(`Opening details for ${activity.replace('-', ' ')}. In a full implementation, this would navigate to a detailed activity page.`);
+}
+
+// Initialize fire particles on load
+window.addEventListener('DOMContentLoaded', function() {
+  createFireParticles();
+  
+  // Add animation to value cards on scroll
+  const valueCards = document.querySelectorAll('.value-card');
+  valueCards.forEach(card => {
+    card.style.opacity = '0';
+    card.style.transform = 'translateY(30px)';
+    card.style.transition = 'opacity 0.5s ease, transform 0.5s ease';
+  });
+  
+  // Add animation to activity cards on scroll
+  const activityCards = document.querySelectorAll('.activity-card');
+  activityCards.forEach(card => {
+    card.style.opacity = '0';
+    card.style.transform = 'translateY(30px)';
+    card.style.transition = 'opacity 0.5s ease, transform 0.5s ease';
+  });
+  
+  // Initial animation check
+  setTimeout(animateOnScroll, 300);
+});
+
+// Animate elements on scroll
+function animateOnScroll() {
+  const elements = document.querySelectorAll('.value-card, .activity-card, .testimonial-card');
+  
+  elements.forEach(element => {
+    const elementTop = element.getBoundingClientRect().top;
+    const windowHeight = window.innerHeight;
+    
+    if (elementTop < windowHeight - 100) {
+      element.style.opacity = '1';
+      element.style.transform = 'translateY(0)';
+    }
+  });
+}
+
+// Check animation on scroll
+window.addEventListener('scroll', animateOnScroll);
+
+// Smooth scrolling for anchor links
+document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+  anchor.addEventListener('click', function(e) {
+    if (this.getAttribute('href') === '#') return;
+    
+    e.preventDefault();
+    const targetId = this.getAttribute('href');
+    if (targetId === '#home' || targetId === '#') {
+      window.scrollTo({
+        top: 0,
+        behavior: 'smooth'
+      });
+    } else {
+      const targetElement = document.querySelector(targetId);
+      if (targetElement) {
+        window.scrollTo({
+          top: targetElement.offsetTop - 80,
+          behavior: 'smooth'
+        });
+        
+        // Close mobile menu if open
+        if (window.innerWidth <= 992 && navMenu.classList.contains('active')) {
+          hamburger.classList.remove('active');
+          navMenu.classList.remove('active');
+          document.body.style.overflow = 'auto';
+        }
+      }
+    }
+  });
+});
+
+// Add pulsing animation to join button
+const joinBtn = document.querySelector('.join-btn');
+if (joinBtn) {
+  setInterval(() => {
+    joinBtn.style.transform = 'scale(1.05)';
+    setTimeout(() => {
+      joinBtn.style.transform = 'scale(1)';
+    }, 500);
+  }, 2000);
+}
+</script>
+
+</body>
+</html>
