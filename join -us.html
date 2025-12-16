@@ -1,0 +1,918 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SPAC Church - Join Us</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&family=Playfair+Display:wght@400;500;600&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --primary: #1a4b8c;
+            --secondary: #d4af37;
+            --accent: #8b0000;
+            --dark: #2c3e50;
+            --light: #f8f9fa;
+            --teal: #2a9d8f;
+            --purple: #9b5de5;
+        }
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body { 
+            font-family: 'Poppins', sans-serif; 
+            line-height: 1.6; 
+            color: #333; 
+            background: #fff;
+        }
+        .container { width: 100%; max-width: 1200px; margin: 0 auto; padding: 0 20px; }
+        
+        /* ====== HEADER ====== */
+        header {
+            position: fixed;
+            top: 0;
+            width: 100%;
+            background: rgba(255, 255, 255, 0.98);
+            box-shadow: 0 5px 30px rgba(0,0,0,0.08);
+            z-index: 1000;
+            backdrop-filter: blur(10px);
+        }
+        .header-container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 15px 0;
+        }
+        .logo a {
+            display: flex;
+            align-items: center;
+            text-decoration: none;
+            color: var(--primary);
+            font-weight: 700;
+            font-size: 1.8rem;
+        }
+        .logo i { color: var(--accent); margin-right: 10px; }
+        .nav-links { display: flex; gap: 30px; }
+        .nav-links a {
+            text-decoration: none;
+            color: var(--dark);
+            font-weight: 500;
+            position: relative;
+            padding: 5px 0;
+        }
+        .nav-links a:after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 0;
+            height: 2px;
+            background: var(--secondary);
+            transition: width 0.3s ease;
+        }
+        .nav-links a:hover:after { width: 100%; }
+        .nav-cta {
+            background: var(--primary);
+            color: white;
+            padding: 10px 25px;
+            border-radius: 30px;
+            text-decoration: none;
+            font-weight: 600;
+            transition: all 0.3s ease;
+        }
+        .nav-cta:hover {
+            background: var(--accent);
+            transform: translateY(-3px);
+        }
+        .mobile-menu-btn { display: none; }
+        
+        /* ====== HERO SECTION ====== */
+        .join-hero {
+            background: linear-gradient(135deg, rgba(155, 93, 229, 0.9) 0%, rgba(26, 75, 140, 0.9) 100%), url('https://images.unsplash.com/photo-1511379938547-c1f69419868d?ixlib=rb-4.0.3&auto=format&fit=crop&w=2070&q=80');
+            background-size: cover;
+            background-position: center;
+            color: white;
+            padding: 180px 0 100px;
+            text-align: center;
+        }
+        .hero-title {
+            font-family: 'Playfair Display', serif;
+            font-size: 4rem;
+            font-weight: 600;
+            margin-bottom: 20px;
+        }
+        .hero-subtitle {
+            font-size: 1.3rem;
+            max-width: 700px;
+            margin: 0 auto 40px;
+            opacity: 0.95;
+        }
+        .hero-buttons {
+            display: flex;
+            gap: 20px;
+            justify-content: center;
+            flex-wrap: wrap;
+        }
+        .btn-primary, .btn-secondary {
+            display: inline-flex;
+            align-items: center;
+            gap: 10px;
+            padding: 18px 35px;
+            border-radius: 50px;
+            font-weight: 600;
+            font-size: 1.1rem;
+            text-decoration: none;
+            transition: all 0.3s ease;
+        }
+        .btn-primary {
+            background: var(--secondary);
+            color: var(--dark);
+            box-shadow: 0 10px 30px rgba(212, 175, 55, 0.3);
+        }
+        .btn-primary:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 15px 40px rgba(212, 175, 55, 0.4);
+        }
+        .btn-secondary {
+            background: rgba(255,255,255,0.2);
+            color: white;
+            backdrop-filter: blur(10px);
+            border: 2px solid rgba(255,255,255,0.3);
+        }
+        .btn-secondary:hover {
+            background: rgba(255,255,255,0.3);
+            transform: translateY(-3px);
+            border-color: white;
+        }
+        
+        /* ====== MAIN CONTENT ====== */
+        .section {
+            padding: 100px 0;
+        }
+        .section-title {
+            font-family: 'Playfair Display', serif;
+            font-size: 3rem;
+            color: var(--primary);
+            margin-bottom: 20px;
+            text-align: center;
+        }
+        .section-subtitle {
+            text-align: center;
+            color: #666;
+            font-size: 1.2rem;
+            max-width: 700px;
+            margin: 0 auto 60px;
+        }
+        .section-light { background: #f8f9fa; }
+        
+        /* Join Methods */
+        .join-methods {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 40px;
+            margin-top: 60px;
+        }
+        .method-card {
+            background: white;
+            border-radius: 20px;
+            padding: 40px 30px;
+            text-align: center;
+            box-shadow: 0 15px 40px rgba(0,0,0,0.08);
+            transition: all 0.3s ease;
+            position: relative;
+            overflow: hidden;
+        }
+        .method-card:hover {
+            transform: translateY(-15px);
+            box-shadow: 0 25px 60px rgba(0,0,0,0.12);
+        }
+        .method-card:before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 5px;
+            background: linear-gradient(90deg, var(--primary), var(--purple));
+        }
+        .method-icon {
+            width: 100px;
+            height: 100px;
+            background: rgba(155, 93, 229, 0.1);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 0 auto 30px;
+            color: var(--purple);
+            font-size: 2.5rem;
+        }
+        .method-title {
+            font-size: 1.8rem;
+            color: var(--dark);
+            margin-bottom: 20px;
+        }
+        .method-desc {
+            color: #666;
+            margin-bottom: 30px;
+            font-size: 1rem;
+            line-height: 1.7;
+        }
+        
+        /* Online Registration */
+        .online-registration {
+            background: linear-gradient(135deg, #f8f9fa 0%, #e8f4f8 100%);
+            border-radius: 30px;
+            padding: 80px;
+            margin: 80px 0;
+        }
+        .reg-content {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 60px;
+            align-items: center;
+        }
+        .reg-text h3 {
+            font-size: 2.5rem;
+            color: var(--dark);
+            margin-bottom: 25px;
+            line-height: 1.3;
+        }
+        .reg-features {
+            list-style: none;
+            margin-top: 30px;
+        }
+        .reg-features li {
+            margin-bottom: 15px;
+            display: flex;
+            align-items: center;
+        }
+        .reg-features i {
+            color: var(--teal);
+            margin-right: 15px;
+            font-size: 1.2rem;
+        }
+        .reg-form-container {
+            background: white;
+            border-radius: 20px;
+            padding: 40px;
+            box-shadow: 0 20px 60px rgba(0,0,0,0.1);
+        }
+        .form-group {
+            margin-bottom: 25px;
+        }
+        .form-group label {
+            display: block;
+            margin-bottom: 10px;
+            font-weight: 500;
+            color: var(--dark);
+        }
+        .form-group input, .form-group select {
+            width: 100%;
+            padding: 15px;
+            border: 2px solid #eaeaea;
+            border-radius: 10px;
+            font-family: 'Poppins', sans-serif;
+            font-size: 1rem;
+            transition: all 0.3s ease;
+        }
+        .form-group input:focus, .form-group select:focus {
+            outline: none;
+            border-color: var(--teal);
+            box-shadow: 0 0 0 3px rgba(42, 157, 143, 0.1);
+        }
+        .submit-btn {
+            display: block;
+            width: 100%;
+            background: linear-gradient(135deg, var(--teal) 0%, #2a9d8f 100%);
+            color: white;
+            border: none;
+            padding: 18px;
+            font-size: 1.2rem;
+            font-weight: 600;
+            border-radius: 15px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            margin-top: 30px;
+        }
+        .submit-btn:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 15px 40px rgba(42, 157, 143, 0.3);
+        }
+        
+        /* Branches List */
+        .branches-list {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 30px;
+            margin-top: 60px;
+        }
+        .branch-item {
+            background: white;
+            border-radius: 15px;
+            padding: 30px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.08);
+            transition: all 0.3s ease;
+        }
+        .branch-item:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 20px 50px rgba(0,0,0,0.12);
+        }
+        .branch-header {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+            margin-bottom: 20px;
+        }
+        .branch-icon {
+            width: 60px;
+            height: 60px;
+            background: rgba(26, 75, 140, 0.1);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: var(--primary);
+            font-size: 1.5rem;
+        }
+        .branch-info h4 {
+            font-size: 1.3rem;
+            color: var(--dark);
+            margin-bottom: 5px;
+        }
+        .branch-info p {
+            color: #666;
+            font-size: 0.9rem;
+        }
+        .branch-details {
+            list-style: none;
+        }
+        .branch-details li {
+            margin-bottom: 10px;
+            display: flex;
+            align-items: center;
+        }
+        .branch-details i {
+            color: var(--secondary);
+            margin-right: 10px;
+            font-size: 0.9rem;
+        }
+        
+        /* Next Steps */
+        .steps-container {
+            background: linear-gradient(135deg, var(--primary) 0%, #2c3e80 100%);
+            color: white;
+            padding: 80px 0;
+            border-radius: 30px;
+            margin-top: 80px;
+        }
+        .steps-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 40px;
+            margin-top: 60px;
+        }
+        .step-card {
+            text-align: center;
+            padding: 40px 30px;
+            background: rgba(255,255,255,0.1);
+            backdrop-filter: blur(10px);
+            border-radius: 20px;
+            transition: all 0.3s ease;
+        }
+        .step-card:hover {
+            background: rgba(255,255,255,0.2);
+            transform: translateY(-10px);
+        }
+        .step-number {
+            width: 60px;
+            height: 60px;
+            background: var(--secondary);
+            color: var(--dark);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.5rem;
+            font-weight: 600;
+            margin: 0 auto 25px;
+        }
+        .step-title {
+            font-size: 1.3rem;
+            margin-bottom: 15px;
+            font-weight: 600;
+        }
+        
+        /* Footer */
+        footer {
+            background: var(--dark);
+            color: white;
+            padding: 80px 0 40px;
+        }
+        .footer-content {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 50px;
+            margin-bottom: 60px;
+        }
+        .footer-column h3 {
+            color: var(--secondary);
+            margin-bottom: 25px;
+            font-size: 1.5rem;
+        }
+        .footer-links { list-style: none; }
+        .footer-links li { margin-bottom: 12px; }
+        .footer-links a {
+            color: rgba(255,255,255,0.7);
+            text-decoration: none;
+            transition: all 0.3s ease;
+        }
+        .footer-links a:hover { 
+            color: var(--secondary);
+            padding-left: 5px;
+        }
+        .social-links {
+            display: flex;
+            gap: 15px;
+            margin-top: 25px;
+        }
+        .social-links a {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            width: 45px;
+            height: 45px;
+            background: rgba(255,255,255,0.1);
+            border-radius: 50%;
+            color: white;
+            font-size: 1.2rem;
+            transition: all 0.3s ease;
+        }
+        .social-links a:hover {
+            background: var(--secondary);
+            transform: translateY(-5px);
+        }
+        .footer-bottom {
+            text-align: center;
+            padding-top: 40px;
+            border-top: 1px solid rgba(255,255,255,0.1);
+            color: rgba(255,255,255,0.5);
+            font-size: 0.9rem;
+        }
+        
+        /* Responsive */
+        @media (max-width: 992px) {
+            .hero-title { font-size: 3rem; }
+            .reg-content { grid-template-columns: 1fr; }
+            .nav-links { display: none; }
+            .mobile-menu-btn {
+                display: block;
+                background: none;
+                border: none;
+                font-size: 1.8rem;
+                color: var(--primary);
+                cursor: pointer;
+            }
+            .section { padding: 80px 0; }
+            .section-title { font-size: 2.5rem; }
+            .online-registration { padding: 50px 30px; }
+        }
+        @media (max-width: 768px) {
+            .hero-title { font-size: 2.5rem; }
+            .hero-buttons { flex-direction: column; align-items: center; }
+            .btn-primary, .btn-secondary { width: 100%; max-width: 300px; justify-content: center; }
+            .section-title { font-size: 2.2rem; }
+            .join-methods { grid-template-columns: 1fr; }
+            .reg-text h3 { font-size: 2rem; }
+        }
+    </style>
+</head>
+<body>
+    <!-- Header -->
+    <header>
+        <div class="container header-container">
+            <div class="logo">
+                <a href="index.html"><i class="fas fa-church"></i> SPAC CHURCH</a>
+            </div>
+            <nav>
+                <div class="nav-links">
+                    <a href="#online">Online</a>
+                    <a href="#physical">Physical</a>
+                    <a href="#branches">Branches</a>
+                    <a href="#next">Next Steps</a>
+                </div>
+                <a href="#online" class="nav-cta">Register Now</a>
+                <button class="mobile-menu-btn"><i class="fas fa-bars"></i></button>
+            </nav>
+        </div>
+    </header>
+
+    <!-- Hero Section -->
+    <section class="join-hero">
+        <div class="container">
+            <h1 class="hero-title">Join the SPAC Family</h1>
+            <p class="hero-subtitle">Whether online or in-person, there's a place for you at SPAC Church. Connect with our growing community of believers and start your spiritual journey today.</p>
+            
+            <div class="hero-buttons">
+                <a href="#online" class="btn-primary">
+                    <i class="fas fa-user-plus"></i> Register Online
+                </a>
+                <a href="#physical" class="btn-secondary">
+                    <i class="fas fa-map-marker-alt"></i> Visit a Branch
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Join Methods -->
+    <section class="section" id="online">
+        <div class="container">
+            <h2 class="section-title">Ways to Join SPAC Church</h2>
+            <p class="section-subtitle">Choose the method that works best for you. We make it easy to connect with our church family.</p>
+            
+            <div class="join-methods">
+                <!-- Online Registration -->
+                <div class="method-card">
+                    <div class="method-icon">
+                        <i class="fas fa-laptop-house"></i>
+                    </div>
+                    <h3 class="method-title">Online Registration</h3>
+                    <p class="method-desc">Register from the comfort of your home. Perfect for those who want to get connected before their first visit or join our online community.</p>
+                    <a href="#registration" class="nav-cta" style="display: inline-block; width: 100%; text-align: center;">
+                        <i class="fas fa-edit"></i> Register Online
+                    </a>
+                </div>
+                
+                <!-- Physical Visit -->
+                <div class="method-card">
+                    <div class="method-icon">
+                        <i class="fas fa-door-open"></i>
+                    </div>
+                    <h3 class="method-title">Visit In-Person</h3>
+                    <p class="method-desc">Walk into any of our branches during service times. Our hospitality team will welcome you and help you get connected immediately.</p>
+                    <a href="#branches" class="nav-cta" style="display: inline-block; width: 100%; text-align: center; background: var(--teal);">
+                        <i class="fas fa-map-marked-alt"></i> Find a Branch
+                    </a>
+                </div>
+                
+                <!-- Connect Card -->
+                <div class="method-card">
+                    <div class="method-icon">
+                        <i class="fas fa-id-card"></i>
+                    </div>
+                    <h3 class="method-title">Connect Card</h3>
+                    <p class="method-desc">Fill out a physical connect card during service. This helps us get to know you better and connect you with relevant ministries.</p>
+                    <a href="#" class="nav-cta" style="display: inline-block; width: 100%; text-align: center; background: var(--purple);">
+                        <i class="fas fa-download"></i> Download Connect Card
+                    </a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Online Registration Form -->
+    <section class="online-registration" id="registration">
+        <div class="container">
+            <div class="reg-content">
+                <div class="reg-text">
+                    <h3>Online Registration</h3>
+                    <p>Take the first step in joining the SPAC Church family. Complete this simple form and our welcome team will reach out to you within 24 hours.</p>
+                    
+                    <ul class="reg-features">
+                        <li><i class="fas fa-check-circle"></i> <strong>Quick & Easy:</strong> Complete in 2 minutes</li>
+                        <li><i class="fas fa-check-circle"></i> <strong>Personal Follow-up:</strong> Our team will contact you</li>
+                        <li><i class="fas fa-check-circle"></i> <strong>Ministry Matching:</strong> Connected to relevant groups</li>
+                        <li><i class="fas fa-check-circle"></i> <strong>Welcome Gift:</strong> Free resource package for new members</li>
+                        <li><i class="fas fa-check-circle"></i> <strong>Information Session:</strong> Invitation to newcomers' orientation</li>
+                    </ul>
+                </div>
+                
+                <div class="reg-form-container">
+                    <h3 style="color: var(--primary); margin-bottom: 25px; font-size: 1.8rem;">Registration Form</h3>
+                    
+                    <form>
+                        <div class="form-group">
+                            <label for="fullName">Full Name *</label>
+                            <input type="text" id="fullName" required>
+                        </div>
+                        
+                        <div class="form-group">
+                            <label for="email">Email Address *</label>
+                            <input type="email" id="email" required>
+                        </div>
+                        
+                        <div class="form-group">
+                            <label for="phone">Phone Number *</label>
+                            <input type="tel" id="phone" required>
+                        </div>
+                        
+                        <div class="form-group">
+                            <label for="location">Preferred Branch *</label>
+                            <select id="location" required>
+                                <option value="">Select Branch</option>
+                                <option value="hq">Headquarters - Sango Ibadan</option>
+                                <option value="lagos">Lagos Branch</option>
+                                <option value="challenge">Challenge Branch, Ibadan</option>
+                                <option value="abeokuta">Abeokuta Branch</option>
+                                <option value="ilaro">Ilaro Branch</option>
+                                <option value="online">Online Only</option>
+                            </select>
+                        </div>
+                        
+                        <div class="form-group">
+                            <label for="interest">Primary Interest</label>
+                            <select id="interest">
+                                <option value="">Select Interest</option>
+                                <option value="worship">Sunday Worship</option>
+                                <option value="bible-study">Bible Study Groups</option>
+                                <option value="youth">Youth Ministry</option>
+                                <option value="marriage">Marriage & Family</option>
+                                <option value="prayer">Prayer Ministry</option>
+                                <option value="outreach">Community Outreach</option>
+                            </select>
+                        </div>
+                        
+                        <button type="submit" class="submit-btn">
+                            <i class="fas fa-paper-plane"></i> Submit Registration
+                        </button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Physical Branches -->
+    <section class="section section-light" id="physical">
+        <div class="container">
+            <h2 class="section-title">Visit Any of Our Branches</h2>
+            <p class="section-subtitle">Walk into any SPAC Church branch during service times. Our hospitality team is ready to welcome you.</p>
+            
+            <div class="branches-list" id="branches">
+                <!-- HQ -->
+                <div class="branch-item">
+                    <div class="branch-header">
+                        <div class="branch-icon">
+                            <i class="fas fa-star"></i>
+                        </div>
+                        <div class="branch-info">
+                            <h4>Headquarters</h4>
+                            <p>Poly Road, Sango Ibadan</p>
+                        </div>
+                    </div>
+                    <ul class="branch-details">
+                        <li><i class="fas fa-clock"></i> <strong>Services:</strong> Sun 7AM, 9:15AM, 11:30AM</li>
+                        <li><i class="fas fa-user"></i> <strong>Pastor:</strong> Senior Pastor</li>
+                        <li><i class="fas fa-phone"></i> <strong>Contact:</strong> 0801-XXX-XXXX</li>
+                        <li><i class="fas fa-car"></i> <strong>Parking:</strong> Available</li>
+                    </ul>
+                    <a href="locations.html" class="nav-cta" style="display: inline-block; width: 100%; text-align: center; margin-top: 20px; font-size: 0.9rem; padding: 10px;">
+                        <i class="fas fa-directions"></i> Get Directions
+                    </a>
+                </div>
+                
+                <!-- Lagos -->
+                <div class="branch-item">
+                    <div class="branch-header">
+                        <div class="branch-icon">
+                            <i class="fas fa-city"></i>
+                        </div>
+                        <div class="branch-info">
+                            <h4>Lagos Branch</h4>
+                            <p>Lagos Mainland</p>
+                        </div>
+                    </div>
+                    <ul class="branch-details">
+                        <li><i class="fas fa-clock"></i> <strong>Services:</strong> Sun 7AM, 9AM, 11AM</li>
+                        <li><i class="fas fa-user"></i> <strong>Pastor:</strong> Rev. Michael Adebayo</li>
+                        <li><i class="fas fa-phone"></i> <strong>Contact:</strong> 0803-XXX-XXXX</li>
+                        <li><i class="fas fa-car"></i> <strong>Parking:</strong> Limited</li>
+                    </ul>
+                    <a href="locations.html" class="nav-cta" style="display: inline-block; width: 100%; text-align: center; margin-top: 20px; font-size: 0.9rem; padding: 10px;">
+                        <i class="fas fa-directions"></i> Get Directions
+                    </a>
+                </div>
+                
+                <!-- Challenge -->
+                <div class="branch-item">
+                    <div class="branch-header">
+                        <div class="branch-icon">
+                            <i class="fas fa-hands-helping"></i>
+                        </div>
+                        <div class="branch-info">
+                            <h4>Challenge Branch</h4>
+                            <p>Challenge, Ibadan</p>
+                        </div>
+                    </div>
+                    <ul class="branch-details">
+                        <li><i class="fas fa-clock"></i> <strong>Services:</strong> Sun 8AM, 10:30AM</li>
+                        <li><i class="fas fa-user"></i> <strong>Pastor:</strong> Pastor Sarah Johnson</li>
+                        <li><i class="fas fa-phone"></i> <strong>Contact:</strong> 0802-XXX-XXXX</li>
+                        <li><i class="fas fa-car"></i> <strong>Parking:</strong> Available</li>
+                    </ul>
+                    <a href="locations.html" class="nav-cta" style="display: inline-block; width: 100%; text-align: center; margin-top: 20px; font-size: 0.9rem; padding: 10px;">
+                        <i class="fas fa-directions"></i> Get Directions
+                    </a>
+                </div>
+                
+                <!-- Abeokuta -->
+                <div class="branch-item">
+                    <div class="branch-header">
+                        <div class="branch-icon">
+                            <i class="fas fa-mountain"></i>
+                        </div>
+                        <div class="branch-info">
+                            <h4>Abeokuta Branch</h4>
+                            <p>Abeokuta, Ogun State</p>
+                        </div>
+                    </div>
+                    <ul class="branch-details">
+                        <li><i class="fas fa-clock"></i> <strong>Services:</strong> Sun 8:30AM, 10:30AM</li>
+                        <li><i class="fas fa-user"></i> <strong>Pastor:</strong> Pastor David Ogunleye</li>
+                        <li><i class="fas fa-phone"></i> <strong>Contact:</strong> 0805-XXX-XXXX</li>
+                        <li><i class="fas fa-car"></i> <strong>Parking:</strong> Available</li>
+                    </ul>
+                    <a href="locations.html" class="nav-cta" style="display: inline-block; width: 100%; text-align: center; margin-top: 20px; font-size: 0.9rem; padding: 10px;">
+                        <i class="fas fa-directions"></i> Get Directions
+                    </a>
+                </div>
+                
+                <!-- Ilaro -->
+                <div class="branch-item">
+                    <div class="branch-header">
+                        <div class="branch-icon">
+                            <i class="fas fa-graduation-cap"></i>
+                        </div>
+                        <div class="branch-info">
+                            <h4>Ilaro Branch</h4>
+                            <p>Ilaro, Ogun State</p>
+                        </div>
+                    </div>
+                    <ul class="branch-details">
+                        <li><i class="fas fa-clock"></i> <strong>Services:</strong> Sun 9AM, 5PM (Youth)</li>
+                        <li><i class="fas fa-user"></i> <strong>Pastor:</strong> Pastor Grace Adeyemi</li>
+                        <li><i class="fas fa-phone"></i> <strong>Contact:</strong> 0807-XXX-XXXX</li>
+                        <li><i class="fas fa-car"></i> <strong>Parking:</strong> Available</li>
+                    </ul>
+                    <a href="locations.html" class="nav-cta" style="display: inline-block; width: 100%; text-align: center; margin-top: 20px; font-size: 0.9rem; padding: 10px;">
+                        <i class="fas fa-directions"></i> Get Directions
+                    </a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Next Steps -->
+    <section class="steps-container" id="next">
+        <div class="container">
+            <h2 class="section-title" style="color: white;">Your Next Steps</h2>
+            <p class="section-subtitle" style="color: rgba(255,255,255,0.9);">After joining SPAC Church, here's what comes next in your spiritual journey.</p>
+            
+            <div class="steps-grid">
+                <div class="step-card">
+                    <div class="step-number">1</div>
+                    <h4 class="step-title">Newcomers' Orientation</h4>
+                    <p>Attend our monthly orientation to learn about SPAC Church vision, values, and ministries.</p>
+                </div>
+                
+                <div class="step-card">
+                    <div class="step-number">2</div>
+                    <h4 class="step-title">Join a Bible Study Group</h4>
+                    <p>Connect with a small group for fellowship, discipleship, and prayer support.</p>
+                </div>
+                
+                <div class="step-card">
+                    <div class="step-number">3</div>
+                    <h4 class="step-title">Discover Your Ministry</h4>
+                    <p>Explore serving opportunities that match your gifts and passion.</p>
+                </div>
+                
+                <div class="step-card">
+                    <div class="step-number">4</div>
+                    <h4 class="step-title">Baptism & Membership</h4>
+                    <p>Take the step of water baptism and formalize your membership.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-column">
+                    <h3>JOIN SPAC CHURCH</h3>
+                    <p>We're excited to welcome you to the SPAC Church family! Whether you're joining online or in-person, you're now part of a community committed to growing in faith together.</p>
+                    <div class="social-links">
+                        <a href="#"><i class="fab fa-facebook-f"></i></a>
+                        <a href="#"><i class="fab fa-instagram"></i></a>
+                        <a href="#"><i class="fab fa-youtube"></i></a>
+                        <a href="#"><i class="fab fa-whatsapp"></i></a>
+                    </div>
+                </div>
+                
+                <div class="footer-column">
+                    <h3>Quick Links</h3>
+                    <ul class="footer-links">
+                        <li><a href="#online">Online Registration</a></li>
+                        <li><a href="#physical">Visit a Branch</a></li>
+                        <li><a href="locations.html">All Branch Locations</a></li>
+                        <li><a href="transport.html">Transport Assistance</a></li>
+                        <li><a href="study.html">Bible Study Groups</a></li>
+                        <li><a href="contact.html">Contact Us</a></li>
+                    </ul>
+                </div>
+                
+                <div class="footer-column">
+                    <h3>Need Help?</h3>
+                    <ul class="footer-links">
+                        <li><i class="fas fa-phone"></i> Helpline: 0800-SPAC-CHURCH</li>
+                        <li><i class="fas fa-envelope"></i> join@spacchurch.org</li>
+                        <li><i class="fas fa-clock"></i> Support: Mon-Fri 8AM-6PM</li>
+                        <li><i class="fas fa-comments"></i> Live Chat Available</li>
+                        <li><i class="fas fa-question-circle"></i> FAQ & Help Center</li>
+                    </ul>
+                </div>
+            </div>
+            
+            <div class="footer-bottom">
+                &copy; 2024 SPAC Church. Welcome to the Family! | 
+                <a href="#" style="color: rgba(255,255,255,0.7);">Privacy Policy</a> | 
+                <a href="#" style="color: rgba(255,255,255,0.7);">Membership Terms</a>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // Mobile Menu Toggle
+        const mobileMenuBtn = document.querySelector('.mobile-menu-btn');
+        const navLinks = document.querySelector('.nav-links');
+        
+        mobileMenuBtn.addEventListener('click', function() {
+            navLinks.style.display = navLinks.style.display === 'flex' ? 'none' : 'flex';
+            mobileMenuBtn.innerHTML = navLinks.style.display === 'flex' 
+                ? '<i class="fas fa-times"></i>' 
+                : '<i class="fas fa-bars"></i>';
+        });
+
+        // Form Submission
+        document.querySelector('form').addEventListener('submit', function(e) {
+            e.preventDefault();
+            
+            // Basic validation
+            const requiredFields = this.querySelectorAll('[required]');
+            let valid = true;
+            
+            requiredFields.forEach(field => {
+                if (!field.value.trim()) {
+                    valid = false;
+                    field.style.borderColor = 'var(--accent)';
+                } else {
+                    field.style.borderColor = '#eaeaea';
+                }
+            });
+            
+            if (valid) {
+                alert('Thank you for registering with SPAC Church! Our welcome team will contact you within 24 hours. Welcome to the family!');
+                this.reset();
+            } else {
+                alert('Please fill in all required fields marked with *.');
+            }
+        });
+
+        // Smooth Scrolling
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function(e) {
+                if(this.getAttribute('href') === '#') return;
+                
+                e.preventDefault();
+                const targetId = this.getAttribute('href');
+                if(targetId === '#') return;
+                
+                const targetElement = document.querySelector(targetId);
+                if(targetElement) {
+                    window.scrollTo({
+                        top: targetElement.offsetTop - 80,
+                        behavior: 'smooth'
+                    });
+                    
+                    // Close mobile menu if open
+                    if(window.innerWidth <= 992 && navLinks.style.display === 'flex') {
+                        navLinks.style.display = 'none';
+                        mobileMenuBtn.innerHTML = '<i class="fas fa-bars"></i>';
+                    }
+                }
+            });
+        });
+
+        // Header Scroll Effect
+        window.addEventListener('scroll', function() {
+            const header = document.querySelector('header');
+            if (window.scrollY > 100) {
+                header.style.background = 'rgba(255, 255, 255, 0.98)';
+                header.style.boxShadow = '0 5px 30px rgba(0,0,0,0.1)';
+            } else {
+                header.style.background = 'rgba(255, 255, 255, 0.98)';
+                header.style.boxShadow = '0 5px 30px rgba(0,0,0,0.08)';
+            }
+        });
+    </script>
+</body>
+</html>
