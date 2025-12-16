@@ -1,0 +1,722 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SPAC Church - Our Locations & Branches</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&family=Playfair+Display:wght@400;500;600&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --primary: #1a4b8c;
+            --secondary: #d4af37;
+            --accent: #8b0000;
+            --dark: #2c3e50;
+            --light: #f8f9fa;
+            --teal: #2a9d8f;
+        }
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body { 
+            font-family: 'Poppins', sans-serif; 
+            line-height: 1.6; 
+            color: #333; 
+            background: #fff;
+        }
+        .container { width: 100%; max-width: 1200px; margin: 0 auto; padding: 0 20px; }
+        
+        /* ====== HEADER ====== */
+        header {
+            position: fixed;
+            top: 0;
+            width: 100%;
+            background: rgba(255, 255, 255, 0.98);
+            box-shadow: 0 5px 30px rgba(0,0,0,0.08);
+            z-index: 1000;
+            backdrop-filter: blur(10px);
+        }
+        .header-container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 15px 0;
+        }
+        .logo a {
+            display: flex;
+            align-items: center;
+            text-decoration: none;
+            color: var(--primary);
+            font-weight: 700;
+            font-size: 1.8rem;
+        }
+        .logo i { color: var(--accent); margin-right: 10px; }
+        .nav-links { display: flex; gap: 30px; }
+        .nav-links a {
+            text-decoration: none;
+            color: var(--dark);
+            font-weight: 500;
+            position: relative;
+            padding: 5px 0;
+        }
+        .nav-links a:after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 0;
+            height: 2px;
+            background: var(--secondary);
+            transition: width 0.3s ease;
+        }
+        .nav-links a:hover:after { width: 100%; }
+        .nav-cta {
+            background: var(--primary);
+            color: white;
+            padding: 10px 25px;
+            border-radius: 30px;
+            text-decoration: none;
+            font-weight: 600;
+            transition: all 0.3s ease;
+        }
+        .nav-cta:hover {
+            background: var(--accent);
+            transform: translateY(-3px);
+        }
+        .mobile-menu-btn { display: none; }
+        
+        /* ====== HERO SECTION ====== */
+        .locations-hero {
+            background: linear-gradient(135deg, rgba(26, 75, 140, 0.9) 0%, rgba(42, 157, 143, 0.85) 100%), url('https://images.unsplash.com/photo-1470225620780-dba8ba36b745?ixlib=rb-4.0.3&auto=format&fit=crop&w=2070&q=80');
+            background-size: cover;
+            background-position: center;
+            color: white;
+            padding: 180px 0 100px;
+            text-align: center;
+        }
+        .hero-title {
+            font-family: 'Playfair Display', serif;
+            font-size: 4rem;
+            font-weight: 600;
+            margin-bottom: 20px;
+        }
+        .hero-subtitle {
+            font-size: 1.3rem;
+            max-width: 700px;
+            margin: 0 auto 40px;
+            opacity: 0.95;
+        }
+        
+        /* ====== MAIN CONTENT ====== */
+        .section {
+            padding: 100px 0;
+        }
+        .section-title {
+            font-family: 'Playfair Display', serif;
+            font-size: 3rem;
+            color: var(--primary);
+            margin-bottom: 20px;
+            text-align: center;
+        }
+        .section-subtitle {
+            text-align: center;
+            color: #666;
+            font-size: 1.2rem;
+            max-width: 700px;
+            margin: 0 auto 60px;
+        }
+        
+        /* Headquarters Highlight */
+        .headquarters-section {
+            background: linear-gradient(135deg, #f8f9fa 0%, #e8f4f8 100%);
+            border-radius: 20px;
+            padding: 60px;
+            margin-bottom: 80px;
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 60px;
+            align-items: center;
+        }
+        .hq-content h3 {
+            font-size: 2.5rem;
+            color: var(--primary);
+            margin-bottom: 20px;
+        }
+        .hq-content p {
+            font-size: 1.1rem;
+            color: #666;
+            margin-bottom: 25px;
+            line-height: 1.8;
+        }
+        .hq-image {
+            border-radius: 15px;
+            overflow: hidden;
+            box-shadow: 0 25px 60px rgba(0,0,0,0.1);
+            height: 400px;
+        }
+        .hq-image img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+        
+        /* Branches Grid */
+        .branches-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            gap: 40px;
+            margin-top: 60px;
+        }
+        .branch-card {
+            background: white;
+            border-radius: 20px;
+            overflow: hidden;
+            box-shadow: 0 15px 40px rgba(0,0,0,0.08);
+            transition: all 0.3s ease;
+        }
+        .branch-card:hover {
+            transform: translateY(-15px);
+            box-shadow: 0 25px 60px rgba(0,0,0,0.15);
+        }
+        .branch-image {
+            height: 250px;
+            overflow: hidden;
+        }
+        .branch-image img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.5s ease;
+        }
+        .branch-card:hover .branch-image img {
+            transform: scale(1.1);
+        }
+        .branch-content {
+            padding: 30px;
+        }
+        .branch-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-start;
+            margin-bottom: 20px;
+        }
+        .branch-title {
+            font-size: 1.8rem;
+            color: var(--dark);
+            margin-bottom: 10px;
+        }
+        .branch-location {
+            color: var(--accent);
+            font-weight: 600;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+        .branch-badge {
+            background: var(--secondary);
+            color: var(--dark);
+            padding: 5px 15px;
+            border-radius: 20px;
+            font-size: 0.8rem;
+            font-weight: 600;
+        }
+        .branch-details {
+            list-style: none;
+            margin: 25px 0;
+        }
+        .branch-details li {
+            margin-bottom: 15px;
+            display: flex;
+            align-items: center;
+        }
+        .branch-details i {
+            color: var(--teal);
+            margin-right: 12px;
+            font-size: 1.1rem;
+            width: 24px;
+        }
+        
+        /* Service Times */
+        .service-times {
+            background: var(--primary);
+            color: white;
+            padding: 80px 0;
+            margin-top: 100px;
+        }
+        .service-times .section-title {
+            color: white;
+        }
+        .times-container {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 40px;
+            margin-top: 60px;
+        }
+        .time-card {
+            background: rgba(255,255,255,0.1);
+            backdrop-filter: blur(10px);
+            padding: 40px;
+            border-radius: 15px;
+            text-align: center;
+            transition: all 0.3s ease;
+        }
+        .time-card:hover {
+            background: rgba(255,255,255,0.2);
+            transform: translateY(-10px);
+        }
+        .time-icon {
+            font-size: 2.5rem;
+            color: var(--secondary);
+            margin-bottom: 20px;
+        }
+        .time-day {
+            font-size: 1.3rem;
+            font-weight: 600;
+            margin-bottom: 10px;
+        }
+        .time-slot {
+            font-size: 1.1rem;
+            opacity: 0.9;
+        }
+        
+        /* Map Section */
+        .map-section {
+            padding: 80px 0;
+            background: #f8f9fa;
+        }
+        .map-container {
+            height: 500px;
+            border-radius: 20px;
+            overflow: hidden;
+            box-shadow: 0 20px 60px rgba(0,0,0,0.1);
+            margin-top: 40px;
+        }
+        
+        /* Footer */
+        footer {
+            background: var(--dark);
+            color: white;
+            padding: 80px 0 40px;
+        }
+        .footer-content {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 50px;
+            margin-bottom: 60px;
+        }
+        .footer-column h3 {
+            color: var(--secondary);
+            margin-bottom: 25px;
+            font-size: 1.5rem;
+        }
+        .footer-links { list-style: none; }
+        .footer-links li { margin-bottom: 12px; }
+        .footer-links a {
+            color: rgba(255,255,255,0.7);
+            text-decoration: none;
+            transition: all 0.3s ease;
+        }
+        .footer-links a:hover { 
+            color: var(--secondary);
+            padding-left: 5px;
+        }
+        .social-links {
+            display: flex;
+            gap: 15px;
+            margin-top: 25px;
+        }
+        .social-links a {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            width: 45px;
+            height: 45px;
+            background: rgba(255,255,255,0.1);
+            border-radius: 50%;
+            color: white;
+            font-size: 1.2rem;
+            transition: all 0.3s ease;
+        }
+        .social-links a:hover {
+            background: var(--secondary);
+            transform: translateY(-5px);
+        }
+        .footer-bottom {
+            text-align: center;
+            padding-top: 40px;
+            border-top: 1px solid rgba(255,255,255,0.1);
+            color: rgba(255,255,255,0.5);
+            font-size: 0.9rem;
+        }
+        
+        /* Responsive */
+        @media (max-width: 992px) {
+            .hero-title { font-size: 3rem; }
+            .headquarters-section { grid-template-columns: 1fr; }
+            .nav-links { display: none; }
+            .mobile-menu-btn {
+                display: block;
+                background: none;
+                border: none;
+                font-size: 1.8rem;
+                color: var(--primary);
+                cursor: pointer;
+            }
+            .section { padding: 80px 0; }
+            .section-title { font-size: 2.5rem; }
+        }
+        @media (max-width: 768px) {
+            .hero-title { font-size: 2.5rem; }
+            .section-title { font-size: 2.2rem; }
+            .branches-grid { grid-template-columns: 1fr; }
+            .headquarters-section { padding: 40px 30px; }
+            .hq-content h3 { font-size: 2rem; }
+        }
+    </style>
+</head>
+<body>
+    <!-- Header -->
+    <header>
+        <div class="container header-container">
+            <div class="logo">
+                <a href="index.html"><i class="fas fa-church"></i> SPAC CHURCH</a>
+            </div>
+            <nav>
+                <div class="nav-links">
+                    <a href="#hq">Headquarters</a>
+                    <a href="#branches">Branches</a>
+                    <a href="#services">Service Times</a>
+                    <a href="#map">Find Us</a>
+                </div>
+                <a href="#map" class="nav-cta">Get Directions</a>
+                <button class="mobile-menu-btn"><i class="fas fa-bars"></i></button>
+            </nav>
+        </div>
+    </header>
+
+    <!-- Hero Section -->
+    <section class="locations-hero">
+        <div class="container">
+            <h1 class="hero-title">Our Locations & Branches</h1>
+            <p class="hero-subtitle">SPAC Church is growing! We have multiple locations across Nigeria where you can join us for worship, fellowship, and spiritual growth. Find the branch nearest to you.</p>
+        </div>
+    </section>
+
+    <!-- Headquarters -->
+    <section class="section" id="hq">
+        <div class="container">
+            <h2 class="section-title">Church Headquarters</h2>
+            <p class="section-subtitle">The main sanctuary where our vision began and continues to grow.</p>
+            
+            <div class="headquarters-section">
+                <div class="hq-content">
+                    <h3>Poly Road, Sango Ibadan</h3>
+                    <p>Our headquarters is more than just a building—it's the spiritual home where SPAC Church began. This is where our vision was birthed and where thousands have encountered God's presence.</p>
+                    <p>With a seating capacity of over 3,000 worshippers, state-of-the-art facilities, and multiple ministry centers, our headquarters serves as the central hub for all SPAC Church activities, leadership training, and major conferences.</p>
+                    
+                    <div style="margin-top: 30px;">
+                        <a href="#map" class="nav-cta" style="display: inline-block; margin-right: 15px;">
+                            <i class="fas fa-directions"></i> Get Directions
+                        </a>
+                        <a href="#" class="btn-secondary" style="display: inline-block; padding: 12px 25px; background: var(--teal); color: white; text-decoration: none; border-radius: 30px;">
+                            <i class="fas fa-phone-alt"></i> Call Headquarters
+                        </a>
+                    </div>
+                </div>
+                
+                <div class="hq-image">
+                    <img src="https://images.unsplash.com/photo-1545569341-9eb8b30979d9?ixlib=rb-4.0.3&auto=format&fit=crop&w=2070&q=80" alt="SPAC Church Headquarters">
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Branches -->
+    <section class="section" id="branches">
+        <div class="container">
+            <h2 class="section-title">Our Branches</h2>
+            <p class="section-subtitle">SPAC Church family extends across multiple cities. Join us at any of our locations.</p>
+            
+            <div class="branches-grid">
+                <!-- Lagos Branch -->
+                <div class="branch-card">
+                    <div class="branch-image">
+                        <img src="https://images.unsplash.com/photo-1578662996442-48f60103fc96?ixlib=rb-4.0.3&auto=format&fit=crop&w=2070&q=80" alt="Lagos Branch">
+                    </div>
+                    <div class="branch-content">
+                        <div class="branch-header">
+                            <div>
+                                <h3 class="branch-title">Lagos Branch</h3>
+                                <div class="branch-location">
+                                    <i class="fas fa-map-marker-alt"></i> Lagos Mainland
+                                </div>
+                            </div>
+                            <span class="branch-badge">Est. 2018</span>
+                        </div>
+                        <p>Our vibrant Lagos branch brings the SPAC Church experience to Nigeria's commercial capital. With dynamic worship and relevant teaching for urban professionals and families.</p>
+                        
+                        <ul class="branch-details">
+                            <li><i class="fas fa-user"></i> <strong>Pastor:</strong> Rev. Michael Adebayo</li>
+                            <li><i class="fas fa-users"></i> <strong>Capacity:</strong> 1,500 seats</li>
+                            <li><i class="fas fa-clock"></i> <strong>Services:</strong> Sun 7AM, 9AM, 11AM</li>
+                            <li><i class="fas fa-phone"></i> <strong>Phone:</strong> 0803-XXX-XXXX</li>
+                        </ul>
+                        
+                        <a href="#" class="nav-cta" style="display: inline-block; width: 100%; text-align: center;">
+                            <i class="fas fa-directions"></i> Directions to Lagos Branch
+                        </a>
+                    </div>
+                </div>
+                
+                <!-- Challenge Branch -->
+                <div class="branch-card">
+                    <div class="branch-image">
+                        <img src="https://images.unsplash.com/photo-1593113630400-ea4288922497?ixlib=rb-4.0.3&auto=format&fit=crop&w=2070&q=80" alt="Challenge Branch">
+                    </div>
+                    <div class="branch-content">
+                        <div class="branch-header">
+                            <div>
+                                <h3 class="branch-title">Challenge Branch</h3>
+                                <div class="branch-location">
+                                    <i class="fas fa-map-marker-alt"></i> Challenge, Ibadan
+                                </div>
+                            </div>
+                            <span class="branch-badge">Est. 2015</span>
+                        </div>
+                        <p>Serving the Challenge community with practical ministry and outreach programs. Known for our strong youth ministry and community development initiatives.</p>
+                        
+                        <ul class="branch-details">
+                            <li><i class="fas fa-user"></i> <strong>Pastor:</strong> Pastor Sarah Johnson</li>
+                            <li><i class="fas fa-users"></i> <strong>Capacity:</strong> 800 seats</li>
+                            <li><i class="fas fa-clock"></i> <strong>Services:</strong> Sun 8AM, 10:30AM</li>
+                            <li><i class="fas fa-phone"></i> <strong>Phone:</strong> 0802-XXX-XXXX</li>
+                        </ul>
+                        
+                        <a href="#" class="nav-cta" style="display: inline-block; width: 100%; text-align: center;">
+                            <i class="fas fa-directions"></i> Directions to Challenge Branch
+                        </a>
+                    </div>
+                </div>
+                
+                <!-- Abeokuta Branch -->
+                <div class="branch-card">
+                    <div class="branch-image">
+                        <img src="https://images.unsplash.com/photo-1566665797739-1674de7a421a?ixlib=rb-4.0.3&auto=format&fit=crop&w=2074&q=80" alt="Abeokuta Branch">
+                    </div>
+                    <div class="branch-content">
+                        <div class="branch-header">
+                            <div>
+                                <h3 class="branch-title">Abeokuta Branch</h3>
+                                <div class="branch-location">
+                                    <i class="fas fa-map-marker-alt"></i> Abeokuta, Ogun State
+                                </div>
+                            </div>
+                            <span class="branch-badge">Est. 2019</span>
+                        </div>
+                        <p>Our Abeokuta branch brings revival to the rock city. With a focus on family ministry and discipleship, we're impacting Ogun State with the gospel.</p>
+                        
+                        <ul class="branch-details">
+                            <li><i class="fas fa-user"></i> <strong>Pastor:</strong> Pastor David Ogunleye</li>
+                            <li><i class="fas fa-users"></i> <strong>Capacity:</strong> 1,200 seats</li>
+                            <li><i class="fas fa-clock"></i> <strong>Services:</strong> Sun 8:30AM, 10:30AM</li>
+                            <li><i class="fas fa-phone"></i> <strong>Phone:</strong> 0805-XXX-XXXX</li>
+                        </ul>
+                        
+                        <a href="#" class="nav-cta" style="display: inline-block; width: 100%; text-align: center;">
+                            <i class="fas fa-directions"></i> Directions to Abeokuta Branch
+                        </a>
+                    </div>
+                </div>
+                
+                <!-- Ilaro Branch -->
+                <div class="branch-card">
+                    <div class="branch-image">
+                        <img src="https://images.unsplash.com/photo-1542403779-3e5c75d3e6f3?ixlib=rb-4.0.3&auto=format&fit=crop&w=2070&q=80" alt="Ilaro Branch">
+                    </div>
+                    <div class="branch-content">
+                        <div class="branch-header">
+                            <div>
+                                <h3 class="branch-title">Ilaro Branch</h3>
+                                <div class="branch-location">
+                                    <i class="fas fa-map-marker-alt"></i> Ilaro, Ogun State
+                                </div>
+                            </div>
+                            <span class="branch-badge">Est. 2021</span>
+                        </div>
+                        <p>Our newest branch, reaching the Ilaro community with fresh fire and evangelistic zeal. Strong campus ministry presence with Federal Polytechnic Ilaro.</p>
+                        
+                        <ul class="branch-details">
+                            <li><i class="fas fa-user"></i> <strong>Pastor:</strong> Pastor Grace Adeyemi</li>
+                            <li><i class="fas fa-users"></i> <strong>Capacity:</strong> 600 seats</li>
+                            <li><i class="fas fa-clock"></i> <strong>Services:</strong> Sun 9AM, 5PM (Youth)</li>
+                            <li><i class="fas fa-phone"></i> <strong>Phone:</strong> 0807-XXX-XXXX</li>
+                        </ul>
+                        
+                        <a href="#" class="nav-cta" style="display: inline-block; width: 100%; text-align: center;">
+                            <i class="fas fa-directions"></i> Directions to Ilaro Branch
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Service Times -->
+    <section class="service-times" id="services">
+        <div class="container">
+            <h2 class="section-title">Service Times</h2>
+            <p class="section-subtitle" style="color: rgba(255,255,255,0.9);">Join us for worship at any of our locations. All services feature dynamic worship, relevant teaching, and ministry time.</p>
+            
+            <div class="times-container">
+                <div class="time-card">
+                    <div class="time-icon"><i class="fas fa-sun"></i></div>
+                    <div class="time-day">Sunday Morning</div>
+                    <div class="time-slot">7:00 AM - 9:00 AM<br>9:15 AM - 11:15 AM<br>11:30 AM - 1:30 PM</div>
+                </div>
+                
+                <div class="time-card">
+                    <div class="time-icon"><i class="fas fa-cloud-sun"></i></div>
+                    <div class="time-day">Wednesday</div>
+                    <div class="time-slot">Bible Study & Prayer<br>5:30 PM - 7:00 PM</div>
+                </div>
+                
+                <div class="time-card">
+                    <div class="time-icon"><i class="fas fa-praying-hands"></i></div>
+                    <div class="time-day">Friday</div>
+                    <div class="time-slot">Power Night Service<br>5:00 PM - 7:30 PM</div>
+                </div>
+                
+                <div class="time-card">
+                    <div class="time-icon"><i class="fas fa-users"></i></div>
+                    <div class="time-day">First Saturday</div>
+                    <div class="time-slot">ARISE Conference<br>7:00 PM - 9:30 PM</div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Map Section -->
+    <section class="map-section" id="map">
+        <div class="container">
+            <h2 class="section-title">Find Your Nearest Branch</h2>
+            <p class="section-subtitle">Use the interactive map to locate SPAC Church branches across Nigeria</p>
+            
+            <div class="map-container">
+                <!-- In a real implementation, this would be a Google Maps embed -->
+                <div style="width: 100%; height: 100%; background: #e9ecef; display: flex; align-items: center; justify-content: center; color: #666; font-size: 1.2rem;">
+                    <div style="text-align: center; padding: 40px;">
+                        <i class="fas fa-map-marked-alt" style="font-size: 4rem; margin-bottom: 20px; color: var(--primary);"></i>
+                        <h3 style="color: var(--dark); margin-bottom: 15px;">Interactive Map</h3>
+                        <p>In a live website, this would display an interactive Google Map showing all SPAC Church locations with directions and contact information.</p>
+                        <a href="#" class="nav-cta" style="display: inline-block; margin-top: 20px;">
+                            <i class="fas fa-external-link-alt"></i> Open in Google Maps
+                        </a>
+                    </div>
+                </div>
+            </div>
+            
+            <div style="text-align: center; margin-top: 60px;">
+                <h3 style="color: var(--primary); margin-bottom: 20px; font-size: 1.8rem;">Need Help Finding Us?</h3>
+                <p style="color: #666; max-width: 700px; margin: 0 auto 30px;">Our hospitality team is ready to assist you with directions and transportation arrangements to any of our branches.</p>
+                <a href="contact.html" class="nav-cta" style="display: inline-block;">
+                    <i class="fas fa-headset"></i> Contact Our Support Team
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-column">
+                    <h3>SPAC CHURCH</h3>
+                    <p>A growing family of believers across Nigeria, committed to spreading the gospel and making disciples in every city.</p>
+                    <div class="social-links">
+                        <a href="#"><i class="fab fa-facebook-f"></i></a>
+                        <a href="#"><i class="fab fa-instagram"></i></a>
+                        <a href="#"><i class="fab fa-youtube"></i></a>
+                        <a href="#"><i class="fab fa-twitter"></i></a>
+                    </div>
+                </div>
+                
+                <div class="footer-column">
+                    <h3>Branch Locations</h3>
+                    <ul class="footer-links">
+                        <li><a href="#hq">Headquarters - Sango Ibadan</a></li>
+                        <li><a href="#branches">Lagos Branch</a></li>
+                        <li><a href="#branches">Challenge Branch</a></li>
+                        <li><a href="#branches">Abeokuta Branch</a></li>
+                        <li><a href="#branches">Ilaro Branch</a></li>
+                    </ul>
+                </div>
+                
+                <div class="footer-column">
+                    <h3>Quick Links</h3>
+                    <ul class="footer-links">
+                        <li><a href="index.html">Home</a></li>
+                        <li><a href="join.html">Join Us</a></li>
+                        <li><a href="transport.html">Transport Information</a></li>
+                        <li><a href="study.html">Bible Study Groups</a></li>
+                        <li><a href="contact.html">Contact Us</a></li>
+                    </ul>
+                </div>
+            </div>
+            
+            <div class="footer-bottom">
+                &copy; 2024 SPAC Church. All Branches. | 
+                <a href="#" style="color: rgba(255,255,255,0.7);">Privacy Policy</a> | 
+                <a href="#" style="color: rgba(255,255,255,0.7);">Branch Directory</a>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // Mobile Menu Toggle
+        const mobileMenuBtn = document.querySelector('.mobile-menu-btn');
+        const navLinks = document.querySelector('.nav-links');
+        
+        mobileMenuBtn.addEventListener('click', function() {
+            navLinks.style.display = navLinks.style.display === 'flex' ? 'none' : 'flex';
+            mobileMenuBtn.innerHTML = navLinks.style.display === 'flex' 
+                ? '<i class="fas fa-times"></i>' 
+                : '<i class="fas fa-bars"></i>';
+        });
+
+        // Smooth Scrolling
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function(e) {
+                if(this.getAttribute('href') === '#') return;
+                
+                e.preventDefault();
+                const targetId = this.getAttribute('href');
+                if(targetId === '#') return;
+                
+                const targetElement = document.querySelector(targetId);
+                if(targetElement) {
+                    window.scrollTo({
+                        top: targetElement.offsetTop - 80,
+                        behavior: 'smooth'
+                    });
+                    
+                    // Close mobile menu if open
+                    if(window.innerWidth <= 992 && navLinks.style.display === 'flex') {
+                        navLinks.style.display = 'none';
+                        mobileMenuBtn.innerHTML = '<i class="fas fa-bars"></i>';
+                    }
+                }
+            });
+        });
+
+        // Header Scroll Effect
+        window.addEventListener('scroll', function() {
+            const header = document.querySelector('header');
+            if (window.scrollY > 100) {
+                header.style.background = 'rgba(255, 255, 255, 0.98)';
+                header.style.boxShadow = '0 5px 30px rgba(0,0,0,0.1)';
+            } else {
+                header.style.background = 'rgba(255, 255, 255, 0.98)';
+                header.style.boxShadow = '0 5px 30px rgba(0,0,0,0.08)';
+            }
+        });
+    </script>
+</body>
+</html>
