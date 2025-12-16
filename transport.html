@@ -1,0 +1,1033 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SPAC Church - Transport & Logistics</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&family=Playfair+Display:wght@400;500;600&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --primary: #1a4b8c;
+            --secondary: #d4af37;
+            --accent: #8b0000;
+            --dark: #2c3e50;
+            --light: #f8f9fa;
+            --teal: #2a9d8f;
+            --green: #28a745;
+        }
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body { 
+            font-family: 'Poppins', sans-serif; 
+            line-height: 1.6; 
+            color: #333; 
+            background: #fff;
+        }
+        .container { width: 100%; max-width: 1200px; margin: 0 auto; padding: 0 20px; }
+        
+        /* ====== HEADER ====== */
+        header {
+            position: fixed;
+            top: 0;
+            width: 100%;
+            background: rgba(255, 255, 255, 0.98);
+            box-shadow: 0 5px 30px rgba(0,0,0,0.08);
+            z-index: 1000;
+            backdrop-filter: blur(10px);
+        }
+        .header-container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 15px 0;
+        }
+        .logo a {
+            display: flex;
+            align-items: center;
+            text-decoration: none;
+            color: var(--primary);
+            font-weight: 700;
+            font-size: 1.8rem;
+        }
+        .logo i { color: var(--accent); margin-right: 10px; }
+        .nav-links { display: flex; gap: 30px; }
+        .nav-links a {
+            text-decoration: none;
+            color: var(--dark);
+            font-weight: 500;
+            position: relative;
+            padding: 5px 0;
+        }
+        .nav-links a:after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 0;
+            height: 2px;
+            background: var(--secondary);
+            transition: width 0.3s ease;
+        }
+        .nav-links a:hover:after { width: 100%; }
+        .nav-cta {
+            background: var(--primary);
+            color: white;
+            padding: 10px 25px;
+            border-radius: 30px;
+            text-decoration: none;
+            font-weight: 600;
+            transition: all 0.3s ease;
+        }
+        .nav-cta:hover {
+            background: var(--accent);
+            transform: translateY(-3px);
+        }
+        .mobile-menu-btn { display: none; }
+        
+        /* ====== HERO SECTION ====== */
+        .transport-hero {
+            background: linear-gradient(135deg, rgba(42, 157, 143, 0.9) 0%, rgba(26, 75, 140, 0.9) 100%), url('https://images.unsplash.com/photo-1544620347-c4fd4a3d5957?ixlib=rb-4.0.3&auto=format&fit=crop&w=2069&q=80');
+            background-size: cover;
+            background-position: center;
+            color: white;
+            padding: 180px 0 100px;
+            text-align: center;
+        }
+        .hero-title {
+            font-family: 'Playfair Display', serif;
+            font-size: 4rem;
+            font-weight: 600;
+            margin-bottom: 20px;
+        }
+        .hero-subtitle {
+            font-size: 1.3rem;
+            max-width: 700px;
+            margin: 0 auto 40px;
+            opacity: 0.95;
+        }
+        .hero-badge {
+            display: inline-flex;
+            align-items: center;
+            gap: 10px;
+            background: rgba(255,255,255,0.2);
+            backdrop-filter: blur(10px);
+            padding: 12px 25px;
+            border-radius: 30px;
+            margin-top: 20px;
+        }
+        
+        /* ====== MAIN CONTENT ====== */
+        .section {
+            padding: 100px 0;
+        }
+        .section-title {
+            font-family: 'Playfair Display', serif;
+            font-size: 3rem;
+            color: var(--primary);
+            margin-bottom: 20px;
+            text-align: center;
+        }
+        .section-subtitle {
+            text-align: center;
+            color: #666;
+            font-size: 1.2rem;
+            max-width: 700px;
+            margin: 0 auto 60px;
+        }
+        .section-light { background: #f8f9fa; }
+        
+        /* Transport Services */
+        .services-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            gap: 40px;
+            margin-top: 60px;
+        }
+        .service-card {
+            background: white;
+            border-radius: 20px;
+            overflow: hidden;
+            box-shadow: 0 15px 40px rgba(0,0,0,0.08);
+            transition: all 0.3s ease;
+        }
+        .service-card:hover {
+            transform: translateY(-15px);
+            box-shadow: 0 25px 60px rgba(0,0,0,0.15);
+        }
+        .service-header {
+            padding: 30px;
+            color: white;
+            position: relative;
+            min-height: 200px;
+            display: flex;
+            flex-direction: column;
+            justify-content: flex-end;
+        }
+        .service-1 .service-header { background: linear-gradient(135deg, var(--primary) 0%, #2c3e80 100%); }
+        .service-2 .service-header { background: linear-gradient(135deg, var(--teal) 0%, #2a9d8f 100%); }
+        .service-3 .service-header { background: linear-gradient(135deg, var(--secondary) 0%, #c9a227 100%); }
+        
+        .service-icon {
+            position: absolute;
+            top: 30px;
+            right: 30px;
+            font-size: 3rem;
+            opacity: 0.3;
+        }
+        .service-title {
+            font-size: 1.8rem;
+            margin-bottom: 10px;
+            font-weight: 600;
+        }
+        .service-content {
+            padding: 30px;
+        }
+        .service-features {
+            list-style: none;
+            margin: 25px 0;
+        }
+        .service-features li {
+            margin-bottom: 12px;
+            display: flex;
+            align-items: center;
+        }
+        .service-features i {
+            color: var(--teal);
+            margin-right: 10px;
+            font-size: 0.9rem;
+        }
+        
+        /* Pickup Points */
+        .pickup-section {
+            background: linear-gradient(135deg, #f8f9fa 0%, #e8f4f8 100%);
+            border-radius: 30px;
+            padding: 80px;
+            margin: 80px 0;
+        }
+        .pickup-content {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 60px;
+            align-items: center;
+        }
+        .pickup-text h3 {
+            font-size: 2.5rem;
+            color: var(--dark);
+            margin-bottom: 25px;
+            line-height: 1.3;
+        }
+        .pickup-list {
+            list-style: none;
+            margin-top: 30px;
+        }
+        .pickup-list li {
+            margin-bottom: 15px;
+            display: flex;
+            align-items: center;
+            padding: 15px;
+            background: rgba(255,255,255,0.5);
+            border-radius: 10px;
+        }
+        .pickup-list i {
+            color: var(--green);
+            margin-right: 15px;
+            font-size: 1.2rem;
+        }
+        .pickup-map {
+            height: 400px;
+            border-radius: 20px;
+            overflow: hidden;
+            box-shadow: 0 20px 60px rgba(0,0,0,0.1);
+            background: #e9ecef;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: #666;
+        }
+        
+        /* Registration Form */
+        .registration-container {
+            max-width: 900px;
+            margin: 60px auto 0;
+            background: white;
+            border-radius: 25px;
+            overflow: hidden;
+            box-shadow: 0 25px 60px rgba(0,0,0,0.1);
+        }
+        .reg-header {
+            background: linear-gradient(135deg, var(--primary) 0%, #2c3e80 100%);
+            color: white;
+            padding: 40px;
+            text-align: center;
+        }
+        .reg-form {
+            padding: 50px;
+        }
+        .form-row {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 30px;
+            margin-bottom: 30px;
+        }
+        .form-group {
+            margin-bottom: 25px;
+        }
+        .form-group label {
+            display: block;
+            margin-bottom: 10px;
+            font-weight: 500;
+            color: var(--dark);
+        }
+        .form-group input, .form-group select, .form-group textarea {
+            width: 100%;
+            padding: 15px;
+            border: 2px solid #eaeaea;
+            border-radius: 10px;
+            font-family: 'Poppins', sans-serif;
+            font-size: 1rem;
+            transition: all 0.3s ease;
+        }
+        .form-group input:focus, .form-group select:focus, .form-group textarea:focus {
+            outline: none;
+            border-color: var(--teal);
+            box-shadow: 0 0 0 3px rgba(42, 157, 143, 0.1);
+        }
+        .info-note {
+            background: #f8f9fa;
+            padding: 20px;
+            border-radius: 10px;
+            margin: 30px 0;
+            font-size: 0.9rem;
+            color: #666;
+            border-left: 4px solid var(--teal);
+        }
+        .submit-btn {
+            display: block;
+            width: 100%;
+            background: linear-gradient(135deg, var(--green) 0%, #28a745 100%);
+            color: white;
+            border: none;
+            padding: 20px;
+            font-size: 1.2rem;
+            font-weight: 600;
+            border-radius: 15px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            margin-top: 40px;
+        }
+        .submit-btn:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 15px 40px rgba(40, 167, 69, 0.3);
+        }
+        
+        /* Safety Guidelines */
+        .safety-container {
+            background: linear-gradient(135deg, #fff5f5 0%, #ffecec 100%);
+            border-radius: 20px;
+            padding: 50px;
+            margin-top: 80px;
+            border: 2px solid #ffcccc;
+        }
+        .safety-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 30px;
+            margin-top: 40px;
+        }
+        .safety-item {
+            text-align: center;
+            padding: 25px;
+            background: white;
+            border-radius: 15px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.05);
+        }
+        .safety-icon {
+            width: 70px;
+            height: 70px;
+            background: var(--primary);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 0 auto 20px;
+            color: white;
+            font-size: 1.5rem;
+        }
+        .safety-item h4 {
+            color: var(--dark);
+            margin-bottom: 10px;
+            font-size: 1.2rem;
+        }
+        
+        /* FAQ */
+        .faq-container {
+            max-width: 900px;
+            margin: 60px auto 0;
+        }
+        .faq-item {
+            background: white;
+            border-radius: 15px;
+            margin-bottom: 20px;
+            overflow: hidden;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.05);
+            transition: all 0.3s ease;
+        }
+        .faq-item.active {
+            box-shadow: 0 15px 40px rgba(0,0,0,0.1);
+        }
+        .faq-question {
+            padding: 25px 30px;
+            cursor: pointer;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            font-weight: 600;
+            color: var(--dark);
+            font-size: 1.1rem;
+        }
+        .faq-question i {
+            color: var(--teal);
+            transition: transform 0.3s ease;
+        }
+        .faq-item.active .faq-question i {
+            transform: rotate(180deg);
+        }
+        .faq-answer {
+            padding: 0 30px;
+            max-height: 0;
+            overflow: hidden;
+            transition: all 0.3s ease;
+            color: #666;
+            line-height: 1.7;
+        }
+        .faq-item.active .faq-answer {
+            padding: 0 30px 25px;
+            max-height: 500px;
+        }
+        
+        /* Footer */
+        footer {
+            background: var(--dark);
+            color: white;
+            padding: 80px 0 40px;
+        }
+        .footer-content {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 50px;
+            margin-bottom: 60px;
+        }
+        .footer-column h3 {
+            color: var(--secondary);
+            margin-bottom: 25px;
+            font-size: 1.5rem;
+        }
+        .footer-links { list-style: none; }
+        .footer-links li { margin-bottom: 12px; }
+        .footer-links a {
+            color: rgba(255,255,255,0.7);
+            text-decoration: none;
+            transition: all 0.3s ease;
+        }
+        .footer-links a:hover { 
+            color: var(--secondary);
+            padding-left: 5px;
+        }
+        .social-links {
+            display: flex;
+            gap: 15px;
+            margin-top: 25px;
+        }
+        .social-links a {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            width: 45px;
+            height: 45px;
+            background: rgba(255,255,255,0.1);
+            border-radius: 50%;
+            color: white;
+            font-size: 1.2rem;
+            transition: all 0.3s ease;
+        }
+        .social-links a:hover {
+            background: var(--secondary);
+            transform: translateY(-5px);
+        }
+        .footer-bottom {
+            text-align: center;
+            padding-top: 40px;
+            border-top: 1px solid rgba(255,255,255,0.1);
+            color: rgba(255,255,255,0.5);
+            font-size: 0.9rem;
+        }
+        
+        /* Responsive */
+        @media (max-width: 992px) {
+            .hero-title { font-size: 3rem; }
+            .pickup-content { grid-template-columns: 1fr; }
+            .nav-links { display: none; }
+            .mobile-menu-btn {
+                display: block;
+                background: none;
+                border: none;
+                font-size: 1.8rem;
+                color: var(--primary);
+                cursor: pointer;
+            }
+            .section { padding: 80px 0; }
+            .section-title { font-size: 2.5rem; }
+            .pickup-section { padding: 50px 30px; }
+            .form-row { grid-template-columns: 1fr; }
+        }
+        @media (max-width: 768px) {
+            .hero-title { font-size: 2.5rem; }
+            .section-title { font-size: 2.2rem; }
+            .services-grid { grid-template-columns: 1fr; }
+            .pickup-text h3 { font-size: 2rem; }
+            .reg-form { padding: 30px; }
+        }
+    </style>
+</head>
+<body>
+    <!-- Header -->
+    <header>
+        <div class="container header-container">
+            <div class="logo">
+                <a href="index.html"><i class="fas fa-bus"></i> SPAC TRANSPORT</a>
+            </div>
+            <nav>
+                <div class="nav-links">
+                    <a href="#services">Services</a>
+                    <a href="#pickup">Pickup Points</a>
+                    <a href="#register">Register</a>
+                    <a href="#safety">Safety</a>
+                    <a href="#faq">FAQ</a>
+                </div>
+                <a href="#register" class="nav-cta">Book Transport</a>
+                <button class="mobile-menu-btn"><i class="fas fa-bars"></i></button>
+            </nav>
+        </div>
+    </header>
+
+    <!-- Hero Section -->
+    <section class="transport-hero">
+        <div class="container">
+            <h1 class="hero-title">Transport & Logistics</h1>
+            <p class="hero-subtitle">We provide free transportation services for members and visitors coming from distant locations. No one should miss church because of transportation challenges.</p>
+            
+            <div class="hero-badge">
+                <i class="fas fa-shield-alt"></i>
+                <span>Safe & Comfortable Buses • Professional Drivers • Free Service</span>
+            </div>
+        </div>
+    </section>
+
+    <!-- Transport Services -->
+    <section class="section" id="services">
+        <div class="container">
+            <h2 class="section-title">Our Transport Services</h2>
+            <p class="section-subtitle">Choose the transportation option that works best for your location and schedule.</p>
+            
+            <div class="services-grid">
+                <!-- Shuttle Service -->
+                <div class="service-card service-1">
+                    <div class="service-header">
+                        <div class="service-icon">
+                            <i class="fas fa-bus"></i>
+                        </div>
+                        <h3 class="service-title">Church Shuttle Service</h3>
+                        <p>Free scheduled pickups from designated points</p>
+                    </div>
+                    <div class="service-content">
+                        <p>Our fleet of comfortable buses provides regular pickups from strategic locations across the city. Perfect for regular attendees and visitors.</p>
+                        
+                        <ul class="service-features">
+                            <li><i class="fas fa-check"></i> <strong>Free of charge</strong> for all attendees</li>
+                            <li><i class="fas fa-check"></i> <strong>Air-conditioned buses</strong> for comfort</li>
+                            <li><i class="fas fa-check"></i> <strong>Regular schedule</strong> for all services</li>
+                            <li><i class="fas fa-check"></i> <strong>Designated pickup points</strong> across city</li>
+                            <li><i class="fas fa-check"></i> <strong>Return trip</strong> after service</li>
+                        </ul>
+                        
+                        <a href="#pickup" class="nav-cta" style="display: inline-block; width: 100%; text-align: center;">
+                            <i class="fas fa-map-marker-alt"></i> View Pickup Points
+                        </a>
+                    </div>
+                </div>
+                
+                <!-- Special Transport -->
+                <div class="service-card service-2">
+                    <div class="service-header">
+                        <div class="service-icon">
+                            <i class="fas fa-car"></i>
+                        </div>
+                        <h3 class="service-title">Special Needs Transport</h3>
+                        <p>For elderly, disabled, or special circumstances</p>
+                    </div>
+                    <div class="service-content">
+                        <p>Door-to-door service for those with mobility challenges, elderly members, or special medical needs. We ensure everyone can attend worship.</p>
+                        
+                        <ul class="service-features">
+                            <li><i class="fas fa-check"></i> <strong>Door-to-door pickup</strong> for convenience</li>
+                            <li><i class="fas fa-check"></i> <strong>Wheelchair accessible</strong> vehicles</li>
+                            <li><i class="fas fa-check"></i> <strong>Trained assistants</strong> for support</li>
+                            <li><i class="fas fa-check"></i> <strong>Priority seating</strong> arrangement</li>
+                            <li><i class="fas fa-check"></i> <strong>Medical needs</strong> accommodation</li>
+                        </ul>
+                        
+                        <a href="#register" class="nav-cta" style="display: inline-block; width: 100%; text-align: center; background: var(--teal);">
+                            <i class="fas fa-user-plus"></i> Request Special Transport
+                        </a>
+                    </div>
+                </div>
+                
+                <!-- Event Transport -->
+                <div class="service-card service-3">
+                    <div class="service-header">
+                        <div class="service-icon">
+                            <i class="fas fa-users"></i>
+                        </div>
+                        <h3 class="service-title">Event & Conference Transport</h3>
+                        <p>For special programs and conferences</p>
+                    </div>
+                    <div class="service-content">
+                        <p>Additional transport arrangements for special events like the ARISE Conference, revival meetings, and church programs that require extra capacity.</p>
+                        
+                        <ul class="service-features">
+                            <li><i class="fas fa-check"></i> <strong>Extended hours</strong> for evening programs</li>
+                            <li><i class="fas fa-check"></i> <strong>Group transportation</strong> for ministries</li>
+                            <li><i class="fas fa-check"></i> <strong>Inter-city shuttles</strong> for conferences</li>
+                            <li><i class="fas fa-check"></i> <strong>Advanced booking</strong> system</li>
+                            <li><i class="fas fa-check"></i> <strong>Dedicated event</strong> coordinators</li>
+                        </ul>
+                        
+                        <a href="#register" class="nav-cta" style="display: inline-block; width: 100%; text-align: center; background: var(--secondary); color: var(--dark);">
+                            <i class="fas fa-calendar-check"></i> Book Event Transport
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Pickup Points -->
+    <section class="pickup-section" id="pickup">
+        <div class="container">
+            <div class="pickup-content">
+                <div class="pickup-text">
+                    <h3>Pickup Points & Schedule</h3>
+                    <p>We have designated pickup points across the city. Buses arrive 1 hour before each service and depart 15 minutes after service starts.</p>
+                    
+                    <ul class="pickup-list">
+                        <li>
+                            <i class="fas fa-map-pin"></i>
+                            <div>
+                                <strong>Bodija Market</strong><br>
+                                Sundays: 6:00 AM, 8:15 AM, 10:30 AM
+                            </div>
+                        </li>
+                        <li>
+                            <i class="fas fa-map-pin"></i>
+                            <div>
+                                <strong>University of Ibadan Main Gate</strong><br>
+                                Sundays: 6:15 AM, 8:30 AM, 10:45 AM
+                            </div>
+                        </li>
+                        <li>
+                            <i class="fas fa-map-pin"></i>
+                            <div>
+                                <strong>Challenge Roundabout</strong><br>
+                                Sundays: 6:30 AM, 8:45 AM, 11:00 AM
+                            </div>
+                        </li>
+                        <li>
+                            <i class="fas fa-map-pin"></i>
+                            <div>
+                                <strong>Mokola Roundabout</strong><br>
+                                Sundays: 6:45 AM, 9:00 AM, 11:15 AM
+                            </div>
+                        </li>
+                        <li>
+                            <i class="fas fa-map-pin"></i>
+                            <div>
+                                <strong>Dugbe Market</strong><br>
+                                Sundays: 7:00 AM, 9:15 AM, 11:30 AM
+                            </div>
+                        </li>
+                    </ul>
+                    
+                    <div style="margin-top: 30px;">
+                        <a href="#register" class="nav-cta" style="display: inline-block; margin-right: 15px;">
+                            <i class="fas fa-user-check"></i> Register for Pickup
+                        </a>
+                        <a href="#" class="btn-secondary" style="display: inline-block; padding: 12px 25px; background: var(--teal); color: white; text-decoration: none; border-radius: 30px;">
+                            <i class="fas fa-download"></i> Download Schedule
+                        </a>
+                    </div>
+                </div>
+                
+                <div class="pickup-map">
+                    <div style="text-align: center; padding: 40px;">
+                        <i class="fas fa-map-marked-alt" style="font-size: 4rem; margin-bottom: 20px; color: var(--primary);"></i>
+                        <h3 style="color: var(--dark); margin-bottom: 15px;">Pickup Points Map</h3>
+                        <p>Interactive map showing all pickup locations with real-time bus tracking.</p>
+                        <a href="#" class="nav-cta" style="display: inline-block; margin-top: 20px;">
+                            <i class="fas fa-external-link-alt"></i> View Live Map
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Registration Form -->
+    <section class="section" id="register">
+        <div class="container">
+            <h2 class="section-title">Register for Transport Service</h2>
+            <p class="section-subtitle">Complete this form to book your spot on our church shuttle. Registration helps us plan adequate transportation for everyone.</p>
+            
+            <div class="registration-container">
+                <div class="reg-header">
+                    <h3>Transport Registration Form</h3>
+                    <p>Please register at least 24 hours before the service you plan to attend.</p>
+                </div>
+                
+                <form class="reg-form">
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label for="transportName">Full Name *</label>
+                            <input type="text" id="transportName" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="transportPhone">Phone Number *</label>
+                            <input type="tel" id="transportPhone" required>
+                        </div>
+                    </div>
+                    
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label for="transportEmail">Email Address</label>
+                            <input type="email" id="transportEmail">
+                        </div>
+                        <div class="form-group">
+                            <label for="transportDate">Date of Service *</label>
+                            <input type="date" id="transportDate" required>
+                        </div>
+                    </div>
+                    
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label for="pickupPoint">Preferred Pickup Point *</label>
+                            <select id="pickupPoint" required>
+                                <option value="">Select Pickup Point</option>
+                                <option value="bodija">Bodija Market</option>
+                                <option value="ui">University of Ibadan Main Gate</option>
+                                <option value="challenge">Challenge Roundabout</option>
+                                <option value="mokola">Mokola Roundabout</option>
+                                <option value="dugbe">Dugbe Market</option>
+                                <option value="other">Other (Specify in notes)</option>
+                            </select>
+                        </div>
+                        <div class="form-group">
+                            <label for="serviceTime">Service Time *</label>
+                            <select id="serviceTime" required>
+                                <option value="">Select Service Time</option>
+                                <option value="7am">7:00 AM Service</option>
+                                <option value="915am">9:15 AM Service</option>
+                                <option value="1130am">11:30 AM Service</option>
+                                <option value="wednesday">Wednesday Bible Study (5:30 PM)</option>
+                                <option value="friday">Friday Power Night (5:00 PM)</option>
+                            </select>
+                        </div>
+                    </div>
+                    
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label for="passengerCount">Number of Passengers *</label>
+                            <select id="passengerCount" required>
+                                <option value="">Select Number</option>
+                                <option value="1">1 person</option>
+                                <option value="2">2 people</option>
+                                <option value="3">3 people</option>
+                                <option value="4">4 people</option>
+                                <option value="5">5+ people</option>
+                            </select>
+                        </div>
+                        <div class="form-group">
+                            <label for="specialNeeds">Special Requirements</label>
+                            <select id="specialNeeds">
+                                <option value="">None</option>
+                                <option value="wheelchair">Wheelchair Access Needed</option>
+                                <option value="elderly">Elderly Assistance</option>
+                                <option value="children">Traveling with Children</option>
+                                <option value="medical">Medical Considerations</option>
+                            </select>
+                        </div>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="additionalNotes">Additional Notes</label>
+                        <textarea id="additionalNotes" rows="3" placeholder="Any specific instructions or additional information..."></textarea>
+                    </div>
+                    
+                    <div class="info-note">
+                        <i class="fas fa-info-circle"></i> <strong>Important:</strong> You will receive a confirmation SMS within 6 hours of registration. Please arrive at your pickup point 10 minutes before the scheduled pickup time.
+                    </div>
+                    
+                    <button type="submit" class="submit-btn">
+                        <i class="fas fa-bus"></i> Register for Transport
+                    </button>
+                </form>
+            </div>
+        </div>
+    </section>
+
+    <!-- Safety Guidelines -->
+    <section class="section section-light" id="safety">
+        <div class="container">
+            <h2 class="section-title">Safety & Guidelines</h2>
+            <p class="section-subtitle">Your safety is our priority. We follow strict safety protocols for all our transportation services.</p>
+            
+            <div class="safety-container">
+                <h3 style="color: var(--accent); text-align: center; margin-bottom: 40px; font-size: 2rem;">Safety First</h3>
+                
+                <div class="safety-grid">
+                    <div class="safety-item">
+                        <div class="safety-icon">
+                            <i class="fas fa-user-shield"></i>
+                        </div>
+                        <h4>Licensed Drivers</h4>
+                        <p>All drivers are licensed, experienced, and trained in defensive driving.</p>
+                    </div>
+                    
+                    <div class="safety-item">
+                        <div class="safety-icon">
+                            <i class="fas fa-bus"></i>
+                        </div>
+                        <h4>Vehicle Maintenance</h4>
+                        <p>Regular maintenance checks and safety inspections on all vehicles.</p>
+                    </div>
+                    
+                    <div class="safety-item">
+                        <div class="safety-icon">
+                            <i class="fas fa-first-aid"></i>
+                        </div>
+                        <h4>First Aid Ready</h4>
+                        <p>All vehicles equipped with first aid kits and emergency supplies.</p>
+                    </div>
+                    
+                    <div class="safety-item">
+                        <div class="safety-icon">
+                            <i class="fas fa-child"></i>
+                        </div>
+                        <h4>Child Safety</h4>
+                        <p>Child seats available and proper seating arrangements for families.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- FAQ -->
+    <section class="section" id="faq">
+        <div class="container">
+            <h2 class="section-title">Frequently Asked Questions</h2>
+            <p class="section-subtitle">Common questions about our transport services answered.</p>
+            
+            <div class="faq-container">
+                <div class="faq-item">
+                    <div class="faq-question">
+                        Is the transport service really free?
+                        <i class="fas fa-chevron-down"></i>
+                    </div>
+                    <div class="faq-answer">
+                        Yes, absolutely free! SPAC Church provides transportation as a ministry service to ensure everyone can attend worship regardless of their location or transportation challenges. There are no hidden charges or fees.
+                    </div>
+                </div>
+                
+                <div class="faq-item">
+                    <div class="faq-question">
+                        How early should I register for transport?
+                        <i class="fas fa-chevron-down"></i>
+                    </div>
+                    <div class="faq-answer">
+                        We recommend registering at least 24 hours before the service you plan to attend. This helps us allocate adequate vehicles and seats. However, we do accept last-minute registrations subject to availability.
+                    </div>
+                </div>
+                
+                <div class="faq-item">
+                    <div class="faq-question">
+                        What if I miss the pickup?
+                        <i class="fas fa-chevron-down"></i>
+                    </div>
+                    <div class="faq-answer">
+                        If you miss your scheduled pickup, please contact our transport coordinator immediately at 0800-SPAC-BUS. We'll do our best to arrange alternative transportation or advise on the next available pickup.
+                    </div>
+                </div>
+                
+                <div class="faq-item">
+                    <div class="faq-question">
+                        Can I bring children on the shuttle?
+                        <i class="fas fa-chevron-down"></i>
+                    </div>
+                    <div class="faq-answer">
+                        Yes, children are welcome! Please indicate the number of children when registering so we can provide appropriate seating. Child safety seats are available upon request with advance notice.
+                    </div>
+                </div>
+                
+                <div class="faq-item">
+                    <div class="faq-question">
+                        What happens after the service?
+                        <i class="fas fa-chevron-down"></i>
+                    </div>
+                    <div class="faq-answer">
+                        Return trips depart from the church 15 minutes after each service ends. Buses return to the same pickup points. The return schedule is announced at the end of each service.
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-column">
+                    <h3>SPAC TRANSPORT</h3>
+                    <p>A ministry of SPAC Church providing free transportation to ensure everyone can worship with us, regardless of location or mobility challenges.</p>
+                    <div class="social-links">
+                        <a href="#"><i class="fab fa-facebook-f"></i></a>
+                        <a href="#"><i class="fab fa-instagram"></i></a>
+                        <a href="#"><i class="fab fa-whatsapp"></i></a>
+                        <a href="#"><i class="fab fa-twitter"></i></a>
+                    </div>
+                </div>
+                
+                <div class="footer-column">
+                    <h3>Transport Links</h3>
+                    <ul class="footer-links">
+                        <li><a href="#services">Transport Services</a></li>
+                        <li><a href="#pickup">Pickup Points</a></li>
+                        <li><a href="#register">Register for Transport</a></li>
+                        <li><a href="#safety">Safety Guidelines</a></li>
+                        <li><a href="#faq">FAQ</a></li>
+                        <li><a href="locations.html">Branch Locations</a></li>
+                    </ul>
+                </div>
+                
+                <div class="footer-column">
+                    <h3>Contact Transport Team</h3>
+                    <ul class="footer-links">
+                        <li><i class="fas fa-phone"></i> Transport Helpline: 0800-SPAC-BUS</li>
+                        <li><i class="fas fa-envelope"></i> transport@spacchurch.org</li>
+                        <li><i class="fas fa-clock"></i> Support: Sat 8AM-8PM, Sun 6AM-2PM</li>
+                        <li><i class="fas fa-exclamation-circle"></i> Emergency: 0803-XXX-XXXX</li>
+                        <li><i class="fas fa-user-headset"></i> Coordinator: Pastor Transport Ministry</li>
+                    </ul>
+                </div>
+            </div>
+            
+            <div class="footer-bottom">
+                &copy; 2024 SPAC Church Transport Ministry. Serving With Love. | 
+                <a href="#" style="color: rgba(255,255,255,0.7);">Safety Policy</a> | 
+                <a href="#" style="color: rgba(255,255,255,0.7);">Driver Standards</a>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // Mobile Menu Toggle
+        const mobileMenuBtn = document.querySelector('.mobile-menu-btn');
+        const navLinks = document.querySelector('.nav-links');
+        
+        mobileMenuBtn.addEventListener('click', function() {
+            navLinks.style.display = navLinks.style.display === 'flex' ? 'none' : 'flex';
+            mobileMenuBtn.innerHTML = navLinks.style.display === 'flex' 
+                ? '<i class="fas fa-times"></i>' 
+                : '<i class="fas fa-bars"></i>';
+        });
+
+        // FAQ Accordion
+        document.querySelectorAll('.faq-question').forEach(question => {
+            question.addEventListener('click', function() {
+                const item = this.parentElement;
+                item.classList.toggle('active');
+            });
+        });
+
+        // Form Submission
+        document.querySelector('.reg-form').addEventListener('submit', function(e) {
+            e.preventDefault();
+            
+            // Basic validation
+            const requiredFields = this.querySelectorAll('[required]');
+            let valid = true;
+            
+            requiredFields.forEach(field => {
+                if (!field.value.trim()) {
+                    valid = false;
+                    field.style.borderColor = 'var(--accent)';
+                } else {
+                    field.style.borderColor = '#eaeaea';
+                }
+            });
+            
+            if (valid) {
+                alert('Thank you for registering for SPAC Church transport! You will receive a confirmation SMS within 6 hours. Please arrive at your pickup point 10 minutes before the scheduled time.');
+                this.reset();
+                
+                // Set minimum date to today
+                const today = new Date().toISOString().split('T')[0];
+                document.getElementById('transportDate').min = today;
+            } else {
+                alert('Please fill in all required fields marked with *.');
+            }
+        });
+
+        // Set minimum date to today
+        const today = new Date().toISOString().split('T')[0];
+        const dateField = document.getElementById('transportDate');
+        if (dateField) {
+            dateField.min = today;
+        }
+
+        // Smooth Scrolling
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function(e) {
+                if(this.getAttribute('href') === '#') return;
+                
+                e.preventDefault();
+                const targetId = this.getAttribute('href');
+                if(targetId === '#') return;
+                
+                const targetElement = document.querySelector(targetId);
+                if(targetElement) {
+                    window.scrollTo({
+                        top: targetElement.offsetTop - 80,
+                        behavior: 'smooth'
+                    });
+                    
+                    // Close mobile menu if open
+                    if(window.innerWidth <= 992 && navLinks.style.display === 'flex') {
+                        navLinks.style.display = 'none';
+                        mobileMenuBtn.innerHTML = '<i class="fas fa-bars"></i>';
+                    }
+                }
+            });
+        });
+
+        // Header Scroll Effect
+        window.addEventListener('scroll', function() {
+            const header = document.querySelector('header');
+            if (window.scrollY > 100) {
+                header.style.background = 'rgba(255, 255, 255, 0.98)';
+                header.style.boxShadow = '0 5px 30px rgba(0,0,0,0.1)';
+            } else {
+                header.style.background = 'rgba(255, 255, 255, 0.98)';
+                header.style.boxShadow = '0 5px 30px rgba(0,0,0,0.08)';
+            }
+        });
+    </script>
+</body>
+</html>
