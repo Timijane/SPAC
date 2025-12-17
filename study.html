@@ -1,0 +1,1897 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, minimum-scale=0.5, user-scalable=yes, viewport-fit=cover">
+    <meta name="theme-color" content="#1a4b8c">
+    <meta name="description" content="SPAC Church Book Shop - Discover inspiring Christian books, devotionals, and resources. Shop our collection of spiritual growth materials.">
+    <title>SPAC Church - Study With Us Book Shop</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Lobster&family=Poppins:wght@300;400;500;600;700&family=Playfair+Display:wght@400;500;600&display=swap" rel="stylesheet">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <style>
+        :root {
+            --primary: #1a4b8c;
+            --secondary: #d4af37;
+            --light: #f8f9fa;
+            --dark: #2c3e50;
+            --accent: #8b0000;
+            --success: #2a9d8f;
+            --gray-light: #f0f2f5;
+            --gray-medium: #6c757d;
+            --amazon-orange: #ff9900;
+            --gradient: linear-gradient(135deg, #1a4b8c 0%, #2c3e50 100%);
+        }
+        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        html {
+            font-size: clamp(14px, 1vw, 18px);
+            overflow-x: hidden;
+            width: 100%;
+            max-width: 100vw;
+        }
+        
+        body {
+            font-family: 'Poppins', sans-serif;
+            background: #ffffff;
+            color: #333;
+            line-height: 1.6;
+            scroll-behavior: smooth;
+            overflow-x: hidden;
+            width: 100%;
+            max-width: 100vw;
+            min-width: 320px;
+            position: relative;
+        }
+        
+        a {
+            text-decoration: none;
+            color: inherit;
+        }
+        
+        .container {
+            width: min(100% - clamp(1rem, 5vw, 3rem), 1400px);
+            margin: 0 auto;
+            padding: 0 clamp(0.5rem, 3vw, 1.5rem);
+        }
+        
+        .btn {
+            display: inline-block;
+            background: var(--primary);
+            color: white;
+            padding: clamp(0.75rem, 2vw, 0.875rem) clamp(1.25rem, 3vw, 1.75rem);
+            border: none;
+            border-radius: 30px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            font-weight: 500;
+            letter-spacing: 0.5px;
+            box-shadow: 0 4px 15px rgba(26, 75, 140, 0.2);
+            font-size: clamp(0.875rem, 1.5vw, 1rem);
+            min-height: 44px;
+            min-width: 44px;
+        }
+        
+        .btn:hover {
+            background: var(--accent);
+            transform: translateY(-3px);
+            box-shadow: 0 6px 20px rgba(139, 0, 0, 0.25);
+        }
+        
+        .btn-amazon {
+            background: var(--amazon-orange);
+            border-radius: 5px;
+            padding: 12px 20px;
+            font-weight: 600;
+        }
+        
+        .btn-amazon:hover {
+            background: #e68a00;
+        }
+        
+        .btn-outline {
+            background: transparent;
+            border: 2px solid var(--primary);
+            color: var(--primary);
+        }
+        
+        .btn-outline:hover {
+            background: var(--primary);
+            color: white;
+        }
+        
+        .glass-effect {
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(10px);
+            -webkit-backdrop-filter: blur(10px);
+        }
+        
+        /* ====== HEADER ====== */
+        header {
+            background: white;
+            box-shadow: 0 3px 20px rgba(0, 0, 0, 0.08);
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+            padding: 8px 0;
+            transition: all 0.3s ease;
+            width: 100%;
+        }
+        
+        .header-container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 0 clamp(1rem, 3vw, 2rem);
+            width: 100%;
+            max-width: 1400px;
+            margin: 0 auto;
+        }
+        
+        .logo {
+            display: flex;
+            align-items: center;
+            position: absolute;
+            left: 50%;
+            transform: translateX(-50%);
+        }
+        
+        .logo-frame {
+            width: clamp(70px, 8vw, 100px);
+            height: clamp(70px, 8vw, 100px);
+            border-radius: 50%;
+            background: white;
+            border: 4px solid var(--primary);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-right: clamp(1rem, 2vw, 1.25rem);
+            overflow: hidden;
+            box-shadow: 0 6px 20px rgba(0, 0, 0, 0.15);
+        }
+        
+        .logo-frame img {
+            width: 85%;
+            height: 85%;
+            object-fit: contain;
+        }
+        
+        .logo-text {
+            font-family: 'Lobster', cursive;
+            font-size: clamp(1.5rem, 4vw, 2.625rem);
+            font-weight: 400;
+            color: var(--primary);
+            letter-spacing: 1.5px;
+            line-height: 1;
+            text-align: center;
+            white-space: nowrap;
+        }
+        
+        .nav-container {
+            display: flex;
+            align-items: center;
+            justify-content: flex-end;
+            width: 100%;
+        }
+        
+        @media (min-width: 993px) {
+            .nav-menu {
+                display: flex;
+                list-style: none;
+            }
+            
+            .nav-menu li {
+                margin-left: clamp(1rem, 2vw, 1.875rem);
+                position: relative;
+            }
+            
+            .nav-menu a {
+                color: var(--dark);
+                font-weight: 500;
+                font-size: clamp(0.875rem, 1vw, 0.9375rem);
+                transition: all 0.3s ease;
+                padding: 8px 0;
+                position: relative;
+            }
+            
+            .nav-menu a::after {
+                content: '';
+                position: absolute;
+                bottom: 0;
+                left: 0;
+                width: 0;
+                height: 2px;
+                background: var(--secondary);
+                transition: width 0.3s ease;
+            }
+            
+            .nav-menu a:hover::after {
+                width: 100%;
+            }
+        }
+        
+        /* Book Shop Header */
+        .shop-header {
+            display: flex;
+            align-items: center;
+            gap: 20px;
+            margin-left: 20px;
+        }
+        
+        .search-box {
+            display: flex;
+            align-items: center;
+            background: var(--gray-light);
+            border-radius: 30px;
+            padding: 8px 15px;
+            width: 300px;
+        }
+        
+        .search-box input {
+            border: none;
+            background: transparent;
+            padding: 8px;
+            width: 100%;
+            font-family: 'Poppins', sans-serif;
+        }
+        
+        .search-box input:focus {
+            outline: none;
+        }
+        
+        .cart-icon {
+            position: relative;
+            font-size: 1.5rem;
+            color: var(--dark);
+        }
+        
+        .cart-count {
+            position: absolute;
+            top: -8px;
+            right: -8px;
+            background: var(--accent);
+            color: white;
+            width: 20px;
+            height: 20px;
+            border-radius: 50%;
+            font-size: 0.8rem;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        
+        /* Mobile Menu */
+        .hamburger {
+            display: none;
+            cursor: pointer;
+            width: 44px;
+            height: 44px;
+            position: relative;
+            z-index: 1001;
+            margin-left: auto;
+            background: var(--primary);
+            border-radius: 5px;
+            padding: 8px;
+        }
+        
+        .hamburger span {
+            display: block;
+            position: absolute;
+            height: 3px;
+            width: 24px;
+            background: white;
+            border-radius: 3px;
+            opacity: 1;
+            left: 8px;
+            transform: rotate(0deg);
+            transition: .25s ease-in-out;
+        }
+        
+        .hamburger span:nth-child(1) { top: 12px; }
+        .hamburger span:nth-child(2) { top: 18.5px; }
+        .hamburger span:nth-child(3) { top: 25px; }
+        
+        .hamburger.active span:nth-child(1) {
+            top: 18.5px;
+            transform: rotate(45deg);
+        }
+        
+        .hamburger.active span:nth-child(2) {
+            opacity: 0;
+            left: -30px;
+        }
+        
+        .hamburger.active span:nth-child(3) {
+            top: 18.5px;
+            transform: rotate(-45deg);
+        }
+        
+        @media (max-width: 1200px) {
+            .shop-header {
+                display: none;
+            }
+        }
+        
+        @media (max-width: 992px) {
+            .nav-menu {
+                position: fixed;
+                top: 0;
+                right: -50%;
+                width: min(85%, 400px);
+                height: 100vh;
+                background: rgba(255, 255, 255, 0.98);
+                backdrop-filter: blur(10px);
+                -webkit-backdrop-filter: blur(10px);
+                flex-direction: column;
+                justify-content: flex-start;
+                align-items: flex-start;
+                padding: 100px 30px 30px;
+                transition: right 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+                box-shadow: -10px 0 30px rgba(0,0,0,0.15);
+                z-index: 1000;
+                overflow-y: auto;
+            }
+            
+            .nav-menu.active {
+                right: 0;
+            }
+            
+            .nav-menu li {
+                margin: 0 0 25px 0;
+                width: 100%;
+                opacity: 0;
+                transform: translateX(20px);
+                transition: all 0.3s ease;
+            }
+            
+            .nav-menu.active li {
+                opacity: 1;
+                transform: translateX(0);
+            }
+            
+            .nav-menu li:nth-child(1) { transition-delay: 0.1s; }
+            .nav-menu li:nth-child(2) { transition-delay: 0.2s; }
+            .nav-menu li:nth-child(3) { transition-delay: 0.3s; }
+            .nav-menu li:nth-child(4) { transition-delay: 0.4s; }
+            .nav-menu li:nth-child(5) { transition-delay: 0.5s; }
+            
+            .nav-menu a {
+                font-size: 1.125rem;
+                display: block;
+                padding: 12px 0;
+                width: 100%;
+                border-bottom: 1px solid rgba(0,0,0,0.05);
+                color: var(--dark);
+            }
+            
+            .hamburger {
+                display: block;
+            }
+            
+            .logo {
+                position: static;
+                transform: none;
+                margin-right: auto;
+            }
+            
+            .logo-text {
+                font-size: clamp(1.25rem, 5vw, 1.875rem);
+            }
+            
+            .logo-frame {
+                width: clamp(60px, 8vw, 70px);
+                height: clamp(60px, 8vw, 70px);
+            }
+        }
+        
+        /* ====== BOOK SHOP HERO ====== */
+        .shop-hero {
+            background: linear-gradient(135deg, #1a4b8c 0%, #2c3e50 100%);
+            color: white;
+            padding: 80px 0 40px;
+            text-align: center;
+        }
+        
+        .hero-content {
+            max-width: min(90%, 800px);
+            margin: 0 auto;
+        }
+        
+        .hero-title {
+            font-family: 'Playfair Display', serif;
+            font-size: clamp(2rem, 5vw, 3.5rem);
+            font-weight: 600;
+            margin-bottom: 15px;
+        }
+        
+        .hero-subtitle {
+            font-size: clamp(1rem, 2vw, 1.3rem);
+            opacity: 0.9;
+            margin-bottom: 30px;
+            font-weight: 300;
+        }
+        
+        /* ====== SHOP LAYOUT ====== */
+        .shop-layout {
+            display: grid;
+            grid-template-columns: 250px 1fr;
+            gap: 30px;
+            padding: 40px 0 60px;
+        }
+        
+        /* Sidebar Filters */
+        .shop-sidebar {
+            background: white;
+            border-radius: 10px;
+            padding: 20px;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.05);
+            height: fit-content;
+            position: sticky;
+            top: 100px;
+        }
+        
+        .sidebar-section {
+            margin-bottom: 30px;
+            padding-bottom: 20px;
+            border-bottom: 1px solid #eee;
+        }
+        
+        .sidebar-section h3 {
+            font-size: 1.2rem;
+            color: var(--dark);
+            margin-bottom: 15px;
+            font-weight: 600;
+        }
+        
+        .category-list {
+            list-style: none;
+        }
+        
+        .category-list li {
+            margin-bottom: 10px;
+        }
+        
+        .category-list a {
+            color: #666;
+            transition: color 0.3s ease;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        
+        .category-list a:hover {
+            color: var(--primary);
+        }
+        
+        .category-count {
+            background: var(--gray-light);
+            color: var(--gray-medium);
+            padding: 2px 8px;
+            border-radius: 10px;
+            font-size: 0.8rem;
+        }
+        
+        .price-range {
+            width: 100%;
+            margin: 15px 0;
+        }
+        
+        .price-display {
+            display: flex;
+            justify-content: space-between;
+            margin-top: 10px;
+            font-size: 0.9rem;
+            color: #666;
+        }
+        
+        .filter-option {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            margin-bottom: 10px;
+        }
+        
+        .filter-option input {
+            margin-right: 5px;
+        }
+        
+        /* Main Content */
+        .shop-main {
+            background: white;
+            border-radius: 10px;
+            overflow: hidden;
+        }
+        
+        .shop-header-bar {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 20px;
+            border-bottom: 1px solid #eee;
+            background: white;
+        }
+        
+        .results-count {
+            color: #666;
+            font-size: 0.95rem;
+        }
+        
+        .sort-options select {
+            padding: 8px 15px;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+            font-family: 'Poppins', sans-serif;
+        }
+        
+        /* Books Grid */
+        .books-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
+            gap: 25px;
+            padding: 25px;
+        }
+        
+        .book-card {
+            background: white;
+            border-radius: 10px;
+            overflow: hidden;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.05);
+            transition: all 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+            border: 1px solid #eee;
+        }
+        
+        .book-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 15px 30px rgba(0,0,0,0.1);
+        }
+        
+        .book-image {
+            height: 280px;
+            overflow: hidden;
+            position: relative;
+        }
+        
+        .book-image img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.5s ease;
+        }
+        
+        .book-card:hover .book-image img {
+            transform: scale(1.05);
+        }
+        
+        .book-badge {
+            position: absolute;
+            top: 10px;
+            left: 10px;
+            background: var(--accent);
+            color: white;
+            padding: 3px 10px;
+            border-radius: 3px;
+            font-size: 0.8rem;
+            font-weight: 600;
+        }
+        
+        .book-content {
+            padding: 15px;
+        }
+        
+        .book-title {
+            font-size: 1.1rem;
+            color: var(--dark);
+            margin-bottom: 5px;
+            font-weight: 600;
+            line-height: 1.4;
+            height: 3em;
+            overflow: hidden;
+        }
+        
+        .book-author {
+            color: var(--gray-medium);
+            font-size: 0.9rem;
+            margin-bottom: 10px;
+        }
+        
+        .book-rating {
+            display: flex;
+            align-items: center;
+            gap: 5px;
+            margin-bottom: 10px;
+        }
+        
+        .stars {
+            color: var(--amazon-orange);
+        }
+        
+        .rating-count {
+            color: #666;
+            font-size: 0.85rem;
+        }
+        
+        .book-price {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            margin-bottom: 15px;
+        }
+        
+        .current-price {
+            font-size: 1.3rem;
+            font-weight: 600;
+            color: var(--primary);
+        }
+        
+        .original-price {
+            font-size: 0.9rem;
+            color: #999;
+            text-decoration: line-through;
+        }
+        
+        .book-actions {
+            display: flex;
+            gap: 10px;
+        }
+        
+        .btn-cart {
+            flex: 1;
+            background: var(--amazon-orange);
+            color: white;
+            border: none;
+            padding: 10px;
+            border-radius: 5px;
+            cursor: pointer;
+            font-weight: 600;
+            transition: all 0.3s ease;
+        }
+        
+        .btn-cart:hover {
+            background: #e68a00;
+        }
+        
+        .btn-wishlist {
+            width: 40px;
+            background: var(--gray-light);
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        
+        .btn-wishlist:hover {
+            background: #ffcccc;
+            color: var(--accent);
+        }
+        
+        /* Featured Books */
+        .featured-books {
+            margin: 40px 0;
+        }
+        
+        .section-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 30px;
+        }
+        
+        .section-title {
+            font-family: 'Playfair Display', serif;
+            font-size: 2rem;
+            color: var(--dark);
+            font-weight: 600;
+        }
+        
+        .books-slider {
+            display: flex;
+            gap: 20px;
+            overflow-x: auto;
+            padding: 10px 0;
+            scrollbar-width: none;
+        }
+        
+        .books-slider::-webkit-scrollbar {
+            display: none;
+        }
+        
+        .slider-book {
+            flex: 0 0 auto;
+            width: 180px;
+        }
+        
+        /* Book Detail Modal */
+        .modal {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0,0,0,0.8);
+            z-index: 2000;
+            overflow-y: auto;
+        }
+        
+        .modal-content {
+            background: white;
+            max-width: 1000px;
+            margin: 50px auto;
+            border-radius: 10px;
+            overflow: hidden;
+        }
+        
+        .modal-close {
+            position: absolute;
+            top: 20px;
+            right: 20px;
+            background: white;
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            font-size: 1.5rem;
+        }
+        
+        /* Cart Sidebar */
+        .cart-sidebar {
+            position: fixed;
+            top: 0;
+            right: -400px;
+            width: 400px;
+            height: 100%;
+            background: white;
+            box-shadow: -5px 0 15px rgba(0,0,0,0.1);
+            z-index: 1500;
+            transition: right 0.3s ease;
+            padding: 20px;
+            overflow-y: auto;
+        }
+        
+        .cart-sidebar.active {
+            right: 0;
+        }
+        
+        .cart-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 20px;
+            padding-bottom: 15px;
+            border-bottom: 1px solid #eee;
+        }
+        
+        .cart-items {
+            margin-bottom: 20px;
+        }
+        
+        .cart-item {
+            display: flex;
+            gap: 15px;
+            margin-bottom: 15px;
+            padding-bottom: 15px;
+            border-bottom: 1px solid #eee;
+        }
+        
+        .cart-item-image {
+            width: 80px;
+            height: 100px;
+            object-fit: cover;
+            border-radius: 5px;
+        }
+        
+        .cart-item-details {
+            flex: 1;
+        }
+        
+        .cart-item-title {
+            font-weight: 600;
+            margin-bottom: 5px;
+        }
+        
+        .cart-item-price {
+            color: var(--primary);
+            font-weight: 600;
+        }
+        
+        .cart-item-remove {
+            color: #999;
+            cursor: pointer;
+            font-size: 0.9rem;
+        }
+        
+        .cart-total {
+            text-align: right;
+            font-size: 1.2rem;
+            font-weight: 600;
+            margin: 20px 0;
+        }
+        
+        /* ====== FOOTER ====== */
+        footer {
+            background: var(--dark);
+            color: white;
+            padding: clamp(3rem, 8vw, 5rem) 0 clamp(1.5rem, 4vw, 1.875rem);
+            position: relative;
+            width: 100%;
+            overflow: hidden;
+        }
+        
+        footer:before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 5px;
+            background: linear-gradient(90deg, var(--primary), var(--secondary), var(--accent));
+        }
+        
+        .footer-content {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(min(250px, 100%), 1fr));
+            gap: clamp(1.5rem, 4vw, 2.5rem);
+            margin-bottom: clamp(2rem, 5vw, 3.125rem);
+        }
+        
+        .footer-column h3 {
+            margin-bottom: clamp(1rem, 2.5vw, 1.5rem);
+            color: var(--secondary);
+            font-size: clamp(1.25rem, 2vw, 1.5rem);
+            font-weight: 600;
+            position: relative;
+            padding-bottom: 0.625rem;
+        }
+        
+        .footer-column h3:after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 50px;
+            height: 3px;
+            background: var(--primary);
+        }
+        
+        .footer-links {
+            list-style: none;
+        }
+        
+        .footer-links li {
+            margin-bottom: 0.75rem;
+        }
+        
+        .footer-links a {
+            color: #ddd;
+            transition: 0.3s;
+            display: inline-block;
+        }
+        
+        .footer-links a:hover {
+            color: var(--secondary);
+            transform: translateX(5px);
+        }
+        
+        .social-links {
+            display: flex;
+            gap: clamp(0.75rem, 2vw, 1rem);
+            margin-top: clamp(1rem, 2.5vw, 1.5rem);
+        }
+        
+        .social-links a {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            width: clamp(40px, 5vw, 45px);
+            height: clamp(40px, 5vw, 45px);
+            background: rgba(255,255,255,0.1);
+            border-radius: 50%;
+            transition: 0.3s;
+        }
+        
+        .social-links a:hover {
+            background: var(--secondary);
+            transform: translateY(-5px);
+        }
+        
+        .footer-bottom {
+            text-align: center;
+            padding-top: clamp(1rem, 2.5vw, 1.875rem);
+            border-top: 1px solid rgba(255,255,255,0.1);
+            font-size: clamp(0.75rem, 1.5vw, 0.9rem);
+            color: #aaa;
+        }
+        
+        /* Scroll to top button */
+        .scroll-top {
+            position: fixed;
+            bottom: clamp(1rem, 3vw, 1.875rem);
+            right: clamp(1rem, 3vw, 1.875rem);
+            width: clamp(45px, 5vw, 50px);
+            height: clamp(45px, 5vw, 50px);
+            background: var(--primary);
+            color: white;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            z-index: 999;
+            opacity: 0;
+            visibility: hidden;
+            transition: all 0.3s ease;
+            box-shadow: 0 5px 15px rgba(26, 75, 140, 0.3);
+        }
+        
+        .scroll-top.visible {
+            opacity: 1;
+            visibility: visible;
+        }
+        
+        .scroll-top:hover {
+            background: var(--accent);
+            transform: translateY(-5px);
+            box-shadow: 0 8px 20px rgba(139, 0, 0, 0.3);
+        }
+        
+        /* Gradient text */
+        .gradient-text {
+            background: linear-gradient(135deg, var(--primary), var(--secondary));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+        
+        /* Responsive */
+        @media (max-width: 992px) {
+            .shop-layout {
+                grid-template-columns: 1fr;
+            }
+            
+            .shop-sidebar {
+                position: static;
+                order: 2;
+            }
+            
+            .books-grid {
+                grid-template-columns: repeat(auto-fill, minmax(180px, 1fr));
+                gap: 15px;
+                padding: 15px;
+            }
+            
+            .cart-sidebar {
+                width: 100%;
+                right: -100%;
+            }
+        }
+        
+        @media (max-width: 768px) {
+            .books-grid {
+                grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
+            }
+            
+            .book-image {
+                height: 220px;
+            }
+            
+            .section-title {
+                font-size: 1.5rem;
+            }
+        }
+        
+        @media (max-width: 576px) {
+            .shop-header-bar {
+                flex-direction: column;
+                gap: 15px;
+                align-items: flex-start;
+            }
+            
+            .books-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+        }
+        
+        /* Loading animation */
+        .loading {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 3px;
+            background: linear-gradient(90deg, var(--primary), var(--secondary), var(--accent));
+            z-index: 9999;
+            transform-origin: 0 50%;
+            animation: loading 2s ease-in-out infinite;
+        }
+        
+        @keyframes loading {
+            0% { transform: scaleX(0); transform-origin: 0 50%; }
+            50% { transform: scaleX(1); transform-origin: 0 50%; }
+            100% { transform: scaleX(0); transform-origin: 100% 50%; }
+        }
+    </style>
+</head>
+<body>
+    <!-- Loading animation -->
+    <div class="loading"></div>
+
+    <!-- Scroll to Top Button -->
+    <div class="scroll-top" id="scrollTop">
+        <i class="fas fa-chevron-up"></i>
+    </div>
+
+    <!-- Header -->
+    <header class="glass-effect">
+        <div class="container header-container">
+            <div class="logo">
+                <div class="logo-frame">
+                    <img src="spac-logo.jpg" alt="SPAC Logo">
+                </div>
+                <span class="logo-text">SPAC BOOKS</span>
+            </div>
+            <div class="nav-container">
+                <ul class="nav-menu">
+                    <li><a href="index.html">Home</a></li>
+                    <li><a href="locations.html">Locations</a></li>
+                    <li><a href="join.html">Join Us</a></li>
+                    <li><a href="#bestsellers">Bestsellers</a></li>
+                    <li><a href="#categories">Categories</a></li>
+                </ul>
+                
+                <div class="shop-header">
+                    <div class="search-box">
+                        <i class="fas fa-search"></i>
+                        <input type="text" placeholder="Search books, authors, topics..." id="searchInput">
+                    </div>
+                    <div class="cart-icon" id="cartIcon">
+                        <i class="fas fa-shopping-cart"></i>
+                        <span class="cart-count" id="cartCount">0</span>
+                    </div>
+                </div>
+                
+                <div class="hamburger"><span></span><span></span><span></span></div>
+            </div>
+        </div>
+    </header>
+
+    <!-- Hero Section -->
+    <section class="shop-hero">
+        <div class="container">
+            <div class="hero-content">
+                <h1 class="hero-title">Study With Us Book Shop</h1>
+                <p class="hero-subtitle">Discover inspiring Christian books, devotionals, and resources for your spiritual journey. Quality materials at affordable prices.</p>
+                <div style="display: flex; gap: 15px; justify-content: center; flex-wrap: wrap;">
+                    <a href="#bestsellers" class="btn">Browse Bestsellers</a>
+                    <a href="#categories" class="btn btn-outline">View Categories</a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Shop Layout -->
+    <div class="container">
+        <div class="shop-layout">
+            <!-- Sidebar -->
+            <aside class="shop-sidebar" id="categories">
+                <div class="sidebar-section">
+                    <h3>Categories</h3>
+                    <ul class="category-list">
+                        <li><a href="#">Christian Living <span class="category-count">42</span></a></li>
+                        <li><a href="#">Theology & Doctrine <span class="category-count">28</span></a></li>
+                        <li><a href="#">Devotionals <span class="category-count">35</span></a></li>
+                        <li><a href="#">Bible Studies <span class="category-count">19</span></a></li>
+                        <li><a href="#">Prayer & Worship <span class="category-count">22</span></a></li>
+                        <li><a href="#">Marriage & Family <span class="category-count">15</span></a></li>
+                        <li><a href="#">Youth & Teens <span class="category-count">18</span></a></li>
+                        <li><a href="#">Leadership <span class="category-count">12</span></a></li>
+                        <li><a href="#">African Christianity <span class="category-count">24</span></a></li>
+                    </ul>
+                </div>
+                
+                <div class="sidebar-section">
+                    <h3>Filter by Price</h3>
+                    <input type="range" min="0" max="10000" value="5000" class="price-range" id="priceRange">
+                    <div class="price-display">
+                        <span>₦0</span>
+                        <span>₦<span id="priceValue">5000</span></span>
+                        <span>₦10,000</span>
+                    </div>
+                </div>
+                
+                <div class="sidebar-section">
+                    <h3>Format</h3>
+                    <div class="filter-option">
+                        <input type="checkbox" id="format-paperback" checked>
+                        <label for="format-paperback">Paperback</label>
+                    </div>
+                    <div class="filter-option">
+                        <input type="checkbox" id="format-hardcover">
+                        <label for="format-hardcover">Hardcover</label>
+                    </div>
+                    <div class="filter-option">
+                        <input type="checkbox" id="format-ebook">
+                        <label for="format-ebook">E-Book</label>
+                    </div>
+                    <div class="filter-option">
+                        <input type="checkbox" id="format-audiobook">
+                        <label for="format-audiobook">Audiobook</label>
+                    </div>
+                </div>
+                
+                <div class="sidebar-section">
+                    <h3>Best for</h3>
+                    <div class="filter-option">
+                        <input type="checkbox" id="for-new-believers">
+                        <label for="for-new-believers">New Believers</label>
+                    </div>
+                    <div class="filter-option">
+                        <input type="checkbox" id="for-pastors">
+                        <label for="for-pastors">Pastors & Leaders</label>
+                    </div>
+                    <div class="filter-option">
+                        <input type="checkbox" id="for-youth">
+                        <label for="for-youth">Youth & Students</label>
+                    </div>
+                    <div class="filter-option">
+                        <input type="checkbox" id="for-women">
+                        <label for="for-women">Women</label>
+                    </div>
+                    <div class="filter-option">
+                        <input type="checkbox" id="for-men">
+                        <label for="for-men">Men</label>
+                    </div>
+                </div>
+                
+                <button class="btn" style="width: 100%; margin-top: 20px;">Apply Filters</button>
+            </aside>
+            
+            <!-- Main Content -->
+            <main class="shop-main">
+                <div class="shop-header-bar">
+                    <div class="results-count">Showing 24 of 156 products</div>
+                    <div class="sort-options">
+                        <select id="sortSelect">
+                            <option value="popular">Sort by: Most Popular</option>
+                            <option value="newest">Newest Arrivals</option>
+                            <option value="price-low">Price: Low to High</option>
+                            <option value="price-high">Price: High to Low</option>
+                            <option value="rating">Customer Rating</option>
+                        </select>
+                    </div>
+                </div>
+                
+                <!-- Bestsellers -->
+                <section class="featured-books" id="bestsellers">
+                    <div class="section-header">
+                        <h2 class="section-title">Bestsellers</h2>
+                        <a href="#" class="btn-outline btn">View All</a>
+                    </div>
+                    
+                    <div class="books-grid" id="booksGrid">
+                        <!-- Book cards will be generated by JavaScript -->
+                    </div>
+                </section>
+                
+                <!-- New Arrivals -->
+                <section class="featured-books">
+                    <div class="section-header">
+                        <h2 class="section-title">New Arrivals</h2>
+                    </div>
+                    
+                    <div class="books-slider">
+                        <!-- Slider books will be generated by JavaScript -->
+                    </div>
+                </section>
+                
+                <!-- Featured Authors -->
+                <section class="featured-books">
+                    <div class="section-header">
+                        <h2 class="section-title">Featured Authors</h2>
+                    </div>
+                    
+                    <div class="books-grid">
+                        <!-- More book cards -->
+                    </div>
+                </section>
+            </main>
+        </div>
+    </div>
+
+    <!-- Cart Sidebar -->
+    <div class="cart-sidebar" id="cartSidebar">
+        <div class="cart-header">
+            <h2>Your Cart</h2>
+            <button class="btn-outline btn" id="closeCart">Close</button>
+        </div>
+        
+        <div class="cart-items" id="cartItems">
+            <!-- Cart items will be added here -->
+            <p style="text-align: center; color: #666; padding: 40px 0;">Your cart is empty</p>
+        </div>
+        
+        <div class="cart-total" id="cartTotal">
+            Total: ₦0.00
+        </div>
+        
+        <button class="btn btn-amazon" style="width: 100%;" id="checkoutBtn">Proceed to Checkout</button>
+    </div>
+
+    <!-- Book Detail Modal -->
+    <div class="modal" id="bookModal">
+        <div class="modal-content" id="modalContent">
+            <!-- Modal content will be generated by JavaScript -->
+        </div>
+        <div class="modal-close" id="modalClose">
+            <i class="fas fa-times"></i>
+        </div>
+    </div>
+
+    <!-- Footer -->
+    <footer>
+        <div class="container footer-content">
+            <div class="footer-column">
+                <h3>SPAC BOOK SHOP</h3>
+                <p>Your source for inspiring Christian books and resources. Quality materials for spiritual growth and discipleship.</p>
+                <div class="social-links">
+                    <a href="#" aria-label="Facebook"><i class="fab fa-facebook-f"></i></a>
+                    <a href="#" aria-label="Instagram"><i class="fab fa-instagram"></i></a>
+                    <a href="#" aria-label="YouTube"><i class="fab fa-youtube"></i></a>
+                    <a href="#" aria-label="Twitter"><i class="fab fa-twitter"></i></a>
+                </div>
+            </div>
+            
+            <div class="footer-column">
+                <h3>Quick Links</h3>
+                <ul class="footer-links">
+                    <li><a href="index.html">Home</a></li>
+                    <li><a href="locations.html">Locations</a></li>
+                    <li><a href="join.html">Join Us</a></li>
+                    <li><a href="#bestsellers">Bestsellers</a></li>
+                    <li><a href="#categories">Categories</a></li>
+                </ul>
+            </div>
+            
+            <div class="footer-column">
+                <h3>Contact & Support</h3>
+                <ul class="footer-links">
+                    <li><i class="fas fa-map-marker-alt"></i> SPAC Church Headquarters</li>
+                    <li><i class="fas fa-phone"></i> 09056658964</li>
+                    <li><i class="fas fa-envelope"></i> books@spacchurch.org</li>
+                    <li><i class="fas fa-clock"></i> Mon-Sat: 9AM-6PM</li>
+                    <li><i class="fas fa-truck"></i> Free shipping on orders over ₦5000</li>
+                </ul>
+            </div>
+            
+            <div class="footer-column">
+                <h3>Newsletter</h3>
+                <p>Subscribe to get updates on new books, sales, and spiritual resources.</p>
+                <div style="margin-top: 15px;">
+                    <input type="email" placeholder="Your email" style="padding: 10px; width: 100%; border: none; border-radius: 5px; margin-bottom: 10px;">
+                    <button class="btn" style="width: 100%;">Subscribe</button>
+                </div>
+            </div>
+        </div>
+        
+        <div class="footer-bottom">
+            &copy; 2025 SPAC Church Book Shop. All Rights Reserved. | 
+            <a href="#" style="color: rgba(255,255,255,0.7);">Privacy Policy</a> | 
+            <a href="#" style="color: rgba(255,255,255,0.7);">Shipping Policy</a> |
+            <a href="#" style="color: rgba(255,255,255,0.7);">Returns & Refunds</a>
+        </div>
+    </footer>
+
+    <script>
+        // Sample book data
+        const books = [
+            {
+                id: 1,
+                title: "The Power of Prayer in Spiritual Warfare",
+                author: "Dr. Samuel Adeboye",
+                price: 3500,
+                originalPrice: 4500,
+                rating: 4.5,
+                ratingCount: 128,
+                image: "book1.jpg",
+                category: "Prayer & Worship",
+                description: "A comprehensive guide to understanding and engaging in spiritual warfare through prayer. This book provides practical insights for overcoming spiritual battles.",
+                format: "Paperback",
+                pages: 280,
+                published: "2023",
+                bestseller: true,
+                stock: 15
+            },
+            {
+                id: 2,
+                title: "Understanding God's Purpose for Your Life",
+                author: "Pastor Sarah Johnson",
+                price: 2800,
+                originalPrice: 3500,
+                rating: 4.8,
+                ratingCount: 89,
+                image: "book2.jpg",
+                category: "Christian Living",
+                description: "Discover how to align your life with God's divine purpose. Practical steps for finding and fulfilling your God-given destiny.",
+                format: "Paperback",
+                pages: 220,
+                published: "2024",
+                bestseller: true,
+                stock: 23
+            },
+            {
+                id: 3,
+                title: "The African Christian Heritage",
+                author: "Prof. Chinedu Okoro",
+                price: 4200,
+                originalPrice: 5200,
+                rating: 4.3,
+                ratingCount: 56,
+                image: "book3.jpg",
+                category: "African Christianity",
+                description: "Exploring the rich history and unique contributions of African Christianity to the global church.",
+                format: "Hardcover",
+                pages: 320,
+                published: "2022",
+                bestseller: false,
+                stock: 8
+            },
+            {
+                id: 4,
+                title: "Daily Devotions for Busy Christians",
+                author: "Rev. Michael Adebayo",
+                price: 2500,
+                originalPrice: 3000,
+                rating: 4.7,
+                ratingCount: 203,
+                image: "book4.jpg",
+                category: "Devotionals",
+                description: "365 daily readings designed for Christians with busy schedules but hungry hearts for God's Word.",
+                format: "Paperback",
+                pages: 365,
+                published: "2023",
+                bestseller: true,
+                stock: 42
+            },
+            {
+                id: 5,
+                title: "Building a Godly Family in Modern Times",
+                author: "Pastor Grace Adeyemi",
+                price: 3200,
+                originalPrice: 4000,
+                rating: 4.6,
+                ratingCount: 74,
+                image: "book5.jpg",
+                category: "Marriage & Family",
+                description: "Practical biblical principles for raising children and maintaining a Christ-centered home in today's world.",
+                format: "Paperback",
+                pages: 240,
+                published: "2023",
+                bestseller: false,
+                stock: 18
+            },
+            {
+                id: 6,
+                title: "Youth Alive: Staying Strong in Your Faith",
+                author: "Brother David Ogunleye",
+                price: 2000,
+                originalPrice: 2500,
+                rating: 4.4,
+                ratingCount: 112,
+                image: "book6.jpg",
+                category: "Youth & Teens",
+                description: "A youth-focused guide to navigating faith challenges in school, relationships, and digital life.",
+                format: "Paperback",
+                pages: 180,
+                published: "2024",
+                bestseller: true,
+                stock: 35
+            },
+            {
+                id: 7,
+                title: "Leadership Lessons from Biblical Characters",
+                author: "Dr. Samuel Adeboye",
+                price: 3800,
+                originalPrice: 4800,
+                rating: 4.9,
+                ratingCount: 45,
+                image: "book7.jpg",
+                category: "Leadership",
+                description: "Drawing leadership principles from the lives of biblical figures for today's church and business leaders.",
+                format: "Hardcover",
+                pages: 300,
+                published: "2022",
+                bestseller: false,
+                stock: 12
+            },
+            {
+                id: 8,
+                title: "The Book of Romans: A Verse-by-Verse Study",
+                author: "Pastor Sarah Johnson",
+                price: 2900,
+                originalPrice: 3700,
+                rating: 4.7,
+                ratingCount: 67,
+                image: "book8.jpg",
+                category: "Bible Studies",
+                description: "An in-depth study of Paul's letter to the Romans with practical applications for modern believers.",
+                format: "Paperback",
+                pages: 260,
+                published: "2023",
+                bestseller: false,
+                stock: 22
+            }
+        ];
+
+        // Shopping cart
+        let cart = JSON.parse(localStorage.getItem('spacCart')) || [];
+
+        // DOM Elements
+        const booksGrid = document.getElementById('booksGrid');
+        const cartIcon = document.getElementById('cartIcon');
+        const cartSidebar = document.getElementById('cartSidebar');
+        const closeCart = document.getElementById('closeCart');
+        const cartCount = document.getElementById('cartCount');
+        const cartItems = document.getElementById('cartItems');
+        const cartTotal = document.getElementById('cartTotal');
+        const checkoutBtn = document.getElementById('checkoutBtn');
+        const bookModal = document.getElementById('bookModal');
+        const modalContent = document.getElementById('modalContent');
+        const modalClose = document.getElementById('modalClose');
+        const searchInput = document.getElementById('searchInput');
+        const priceRange = document.getElementById('priceRange');
+        const priceValue = document.getElementById('priceValue');
+        const sortSelect = document.getElementById('sortSelect');
+
+        // Initialize the page
+        function initPage() {
+            renderBooks();
+            updateCartDisplay();
+            setupEventListeners();
+            
+            // Hide loading animation
+            setTimeout(() => {
+                document.querySelector('.loading').style.opacity = '0';
+                setTimeout(() => {
+                    document.querySelector('.loading').style.display = 'none';
+                }, 300);
+            }, 1000);
+        }
+
+        // Render books to the grid
+        function renderBooks() {
+            booksGrid.innerHTML = '';
+            
+            books.forEach(book => {
+                const bookCard = createBookCard(book);
+                booksGrid.appendChild(bookCard);
+            });
+        }
+
+        // Create a book card element
+        function createBookCard(book) {
+            const card = document.createElement('div');
+            card.className = 'book-card';
+            card.dataset.id = book.id;
+            
+            const discount = book.originalPrice ? Math.round(((book.originalPrice - book.price) / book.originalPrice) * 100) : 0;
+            
+            card.innerHTML = `
+                <div class="book-image">
+                    <img src="${book.image}" alt="${book.title}" loading="lazy">
+                    ${book.bestseller ? '<span class="book-badge">Bestseller</span>' : ''}
+                    ${discount > 0 ? `<span class="book-badge" style="background: var(--success);">${discount}% OFF</span>` : ''}
+                </div>
+                <div class="book-content">
+                    <h3 class="book-title">${book.title}</h3>
+                    <p class="book-author">${book.author}</p>
+                    <div class="book-rating">
+                        <div class="stars">
+                            ${generateStars(book.rating)}
+                        </div>
+                        <span class="rating-count">(${book.ratingCount})</span>
+                    </div>
+                    <div class="book-price">
+                        <span class="current-price">₦${book.price.toLocaleString()}</span>
+                        ${book.originalPrice ? `<span class="original-price">₦${book.originalPrice.toLocaleString()}</span>` : ''}
+                    </div>
+                    <div class="book-actions">
+                        <button class="btn-cart" data-id="${book.id}">
+                            <i class="fas fa-shopping-cart"></i> Add to Cart
+                        </button>
+                        <button class="btn-wishlist" data-id="${book.id}">
+                            <i class="far fa-heart"></i>
+                        </button>
+                    </div>
+                </div>
+            `;
+            
+            // Add click event to view book details
+            card.addEventListener('click', (e) => {
+                if (!e.target.closest('.book-actions')) {
+                    viewBookDetails(book.id);
+                }
+            });
+            
+            return card;
+        }
+
+        // Generate star rating HTML
+        function generateStars(rating) {
+            let stars = '';
+            const fullStars = Math.floor(rating);
+            const hasHalfStar = rating % 1 >= 0.5;
+            
+            for (let i = 0; i < 5; i++) {
+                if (i < fullStars) {
+                    stars += '<i class="fas fa-star"></i>';
+                } else if (i === fullStars && hasHalfStar) {
+                    stars += '<i class="fas fa-star-half-alt"></i>';
+                } else {
+                    stars += '<i class="far fa-star"></i>';
+                }
+            }
+            
+            return stars;
+        }
+
+        // View book details in modal
+        function viewBookDetails(bookId) {
+            const book = books.find(b => b.id === bookId);
+            if (!book) return;
+            
+            const discount = book.originalPrice ? Math.round(((book.originalPrice - book.price) / book.originalPrice) * 100) : 0;
+            
+            modalContent.innerHTML = `
+                <div style="display: grid; grid-template-columns: 1fr 2fr; gap: 30px; padding: 30px;">
+                    <div>
+                        <img src="${book.image}" alt="${book.title}" style="width: 100%; border-radius: 10px; box-shadow: 0 10px 30px rgba(0,0,0,0.1);">
+                        <div style="display: flex; gap: 10px; margin-top: 20px;">
+                            <button class="btn btn-amazon" style="flex: 1;" data-id="${book.id}" id="modalAddToCart">
+                                <i class="fas fa-shopping-cart"></i> Add to Cart
+                            </button>
+                            <button class="btn-outline btn" style="width: 50px;">
+                                <i class="far fa-heart"></i>
+                            </button>
+                        </div>
+                    </div>
+                    <div>
+                        <h1 style="color: var(--dark); margin-bottom: 10px; font-size: 1.8rem;">${book.title}</h1>
+                        <p style="color: var(--gray-medium); margin-bottom: 20px; font-size: 1.1rem;">by ${book.author}</p>
+                        
+                        <div class="book-rating" style="margin-bottom: 20px;">
+                            <div class="stars">
+                                ${generateStars(book.rating)}
+                            </div>
+                            <span class="rating-count">${book.rating} (${book.ratingCount} reviews)</span>
+                        </div>
+                        
+                        <div style="background: #f8f9fa; padding: 20px; border-radius: 10px; margin-bottom: 20px;">
+                            <div style="display: flex; align-items: center; gap: 20px; margin-bottom: 15px;">
+                                <div>
+                                    <div style="font-size: 2rem; font-weight: 600; color: var(--primary);">₦${book.price.toLocaleString()}</div>
+                                    ${book.originalPrice ? `<div style="color: #999; text-decoration: line-through;">₦${book.originalPrice.toLocaleString()}</div>` : ''}
+                                </div>
+                                ${discount > 0 ? `<div style="background: var(--success); color: white; padding: 5px 10px; border-radius: 5px; font-weight: 600;">Save ${discount}%</div>` : ''}
+                            </div>
+                            
+                            <div style="color: #666; font-size: 0.9rem;">
+                                <div><strong>Format:</strong> ${book.format}</div>
+                                <div><strong>Pages:</strong> ${book.pages}</div>
+                                <div><strong>Published:</strong> ${book.published}</div>
+                                <div><strong>Category:</strong> ${book.category}</div>
+                                <div><strong>Stock:</strong> ${book.stock} items available</div>
+                            </div>
+                        </div>
+                        
+                        <h3 style="color: var(--dark); margin-bottom: 10px;">Description</h3>
+                        <p style="color: #666; line-height: 1.8; margin-bottom: 20px;">${book.description}</p>
+                        
+                        <div style="background: #fff8e1; padding: 15px; border-radius: 10px; border-left: 4px solid var(--secondary);">
+                            <strong>Delivery Information:</strong> Free shipping on orders over ₦5000. Delivery within 3-7 business days.
+                        </div>
+                    </div>
+                </div>
+            `;
+            
+            bookModal.style.display = 'block';
+            document.body.style.overflow = 'hidden';
+            
+            // Add event listener to modal add to cart button
+            document.getElementById('modalAddToCart').addEventListener('click', () => {
+                addToCart(book.id);
+                bookModal.style.display = 'none';
+                document.body.style.overflow = 'auto';
+            });
+        }
+
+        // Add to cart function
+        function addToCart(bookId) {
+            const book = books.find(b => b.id === bookId);
+            if (!book) return;
+            
+            const existingItem = cart.find(item => item.id === bookId);
+            
+            if (existingItem) {
+                existingItem.quantity += 1;
+            } else {
+                cart.push({
+                    id: book.id,
+                    title: book.title,
+                    price: book.price,
+                    image: book.image,
+                    author: book.author,
+                    quantity: 1
+                });
+            }
+            
+            updateCartDisplay();
+            saveCartToLocalStorage();
+            
+            // Show notification
+            showNotification(`${book.title} added to cart!`);
+        }
+
+        // Remove from cart function
+        function removeFromCart(bookId) {
+            cart = cart.filter(item => item.id !== bookId);
+            updateCartDisplay();
+            saveCartToLocalStorage();
+        }
+
+        // Update cart display
+        function updateCartDisplay() {
+            // Update cart count
+            const totalItems = cart.reduce((sum, item) => sum + item.quantity, 0);
+            cartCount.textContent = totalItems;
+            
+            // Update cart items
+            cartItems.innerHTML = '';
+            
+            if (cart.length === 0) {
+                cartItems.innerHTML = '<p style="text-align: center; color: #666; padding: 40px 0;">Your cart is empty</p>';
+                cartTotal.textContent = 'Total: ₦0.00';
+                return;
+            }
+            
+            let total = 0;
+            
+            cart.forEach(item => {
+                const itemTotal = item.price * item.quantity;
+                total += itemTotal;
+                
+                const cartItem = document.createElement('div');
+                cartItem.className = 'cart-item';
+                cartItem.innerHTML = `
+                    <img src="${item.image}" alt="${item.title}" class="cart-item-image">
+                    <div class="cart-item-details">
+                        <div class="cart-item-title">${item.title}</div>
+                        <div class="cart-item-author" style="color: #666; font-size: 0.9rem; margin-bottom: 5px;">${item.author}</div>
+                        <div style="display: flex; justify-content: space-between; align-items: center;">
+                            <div>
+                                <span class="cart-item-price">₦${item.price.toLocaleString()}</span>
+                                <span style="margin-left: 10px; font-size: 0.9rem;">Qty: ${item.quantity}</span>
+                            </div>
+                            <div class="cart-item-remove" data-id="${item.id}">Remove</div>
+                        </div>
+                    </div>
+                `;
+                
+                cartItems.appendChild(cartItem);
+            });
+            
+            cartTotal.textContent = `Total: ₦${total.toLocaleString()}`;
+            
+            // Add event listeners to remove buttons
+            document.querySelectorAll('.cart-item-remove').forEach(button => {
+                button.addEventListener('click', (e) => {
+                    const bookId = parseInt(e.target.dataset.id);
+                    removeFromCart(bookId);
+                });
+            });
+        }
+
+        // Save cart to local storage
+        function saveCartToLocalStorage() {
+            localStorage.setItem('spacCart', JSON.stringify(cart));
+        }
+
+        // Show notification
+        function showNotification(message) {
+            const notification = document.createElement('div');
+            notification.style.cssText = `
+                position: fixed;
+                bottom: 20px;
+                right: 20px;
+                background: var(--success);
+                color: white;
+                padding: 15px 20px;
+                border-radius: 5px;
+                z-index: 2000;
+                animation: slideIn 0.3s ease;
+                max-width: 300px;
+                box-shadow: 0 5px 15px rgba(0,0,0,0.2);
+            `;
+            
+            notification.innerHTML = `
+                <div style="display: flex; align-items: center; gap: 10px;">
+                    <i class="fas fa-check-circle"></i>
+                    <span>${message}</span>
+                </div>
+            `;
+            
+            document.body.appendChild(notification);
+            
+            setTimeout(() => {
+                notification.style.animation = 'slideOut 0.3s ease';
+                setTimeout(() => notification.remove(), 300);
+            }, 3000);
+        }
+
+        // Setup event listeners
+        function setupEventListeners() {
+            // Mobile menu toggle
+            const hamburger = document.querySelector('.hamburger');
+            const navMenu = document.querySelector('.nav-menu');
+            
+            hamburger.addEventListener('click', () => {
+                hamburger.classList.toggle('active');
+                navMenu.classList.toggle('active');
+                
+                if (navMenu.classList.contains('active')) {
+                    document.body.style.overflow = 'hidden';
+                } else {
+                    document.body.style.overflow = 'auto';
+                }
+            });
+            
+            // Close menu when clicking outside on mobile
+            document.addEventListener('click', (e) => {
+                if (window.innerWidth <= 992 && navMenu.classList.contains('active')) {
+                    if (!e.target.closest('.nav-menu') && !e.target.closest('.hamburger')) {
+                        hamburger.classList.remove('active');
+                        navMenu.classList.remove('active');
+                        document.body.style.overflow = 'auto';
+                    }
+                }
+            });
+            
+            // Cart toggle
+            cartIcon.addEventListener('click', () => {
+                cartSidebar.classList.add('active');
+                document.body.style.overflow = 'hidden';
+            });
+            
+            closeCart.addEventListener('click', () => {
+                cartSidebar.classList.remove('active');
+                document.body.style.overflow = 'auto';
+            });
+            
+            // Close modal
+            modalClose.addEventListener('click', () => {
+                bookModal.style.display = 'none';
+                document.body.style.overflow = 'auto';
+            });
+            
+            // Close modal when clicking outside
+            window.addEventListener('click', (e) => {
+                if (e.target === bookModal) {
+                    bookModal.style.display = 'none';
+                    document.body.style.overflow = 'auto';
+                }
+            });
+            
+            // Checkout button
+            checkoutBtn.addEventListener('click', () => {
+                if (cart.length === 0) {
+                    alert('Your cart is empty!');
+                    return;
+                }
+                
+                // In a real implementation, this would redirect to checkout page
+                alert(`Proceeding to checkout with ${cart.reduce((sum, item) => sum + item.quantity, 0)} items. Total: ₦${cart.reduce((sum, item) => sum + (item.price * item.quantity), 0).toLocaleString()}`);
+            });
+            
+            // Add to cart buttons
+            document.addEventListener('click', (e) => {
+                if (e.target.closest('.btn-cart')) {
+                    const bookId = parseInt(e.target.closest('.btn-cart').dataset.id);
+                    addToCart(bookId);
+                }
+            });
+            
+            // Price range display
+            priceRange.addEventListener('input', () => {
+                priceValue.textContent = parseInt(priceRange.value).toLocaleString();
+            });
+            
+            // Search functionality
+            searchInput.addEventListener('input', () => {
+                const searchTerm = searchInput.value.toLowerCase();
+                // In a full implementation, this would filter the books
+                console.log('Searching for:', searchTerm);
+            });
+            
+            // Smooth scrolling for anchor links
+            document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+                anchor.addEventListener('click', function(e) {
+                    if (this.getAttribute('href') === '#') return;
+                    
+                    e.preventDefault();
+                    const targetId = this.getAttribute('href');
+                    if (targetId === '#home') {
+                        window.scrollTo({
+                            top: 0,
+                            behavior: 'smooth'
+                        });
+                    } else {
+                        const targetElement = document.querySelector(targetId);
+                        if (targetElement) {
+                            window.scrollTo({
+                                top: targetElement.offsetTop - 80,
+                                behavior: 'smooth'
+                            });
+                        }
+                    }
+                });
+            });
+            
+            // Scroll to top button
+            const scrollTopBtn = document.getElementById('scrollTop');
+            
+            window.addEventListener('scroll', () => {
+                if (window.scrollY > 300) {
+                    scrollTopBtn.classList.add('visible');
+                } else {
+                    scrollTopBtn.classList.remove('visible');
+                }
+            });
+            
+            scrollTopBtn.addEventListener('click', () => {
+                window.scrollTo({
+                    top: 0,
+                    behavior: 'smooth'
+                });
+            });
+            
+            // Header scroll effect
+            window.addEventListener('scroll', () => {
+                const header = document.querySelector('header');
+                if (window.scrollY > 50) {
+                    header.style.boxShadow = '0 3px 20px rgba(0, 0, 0, 0.1)';
+                } else {
+                    header.style.boxShadow = '0 3px 20px rgba(0, 0, 0, 0.08)';
+                }
+            });
+        }
+
+        // Initialize the page when DOM is loaded
+        document.addEventListener('DOMContentLoaded', initPage);
+
+        // Add CSS animations for notifications
+        const style = document.createElement('style');
+        style.textContent = `
+            @keyframes slideIn {
+                from { transform: translateX(100%); opacity: 0; }
+                to { transform: translateX(0); opacity: 1; }
+            }
+            
+            @keyframes slideOut {
+                from { transform: translateX(0); opacity: 1; }
+                to { transform: translateX(100%); opacity: 0; }
+            }
+        `;
+        document.head.appendChild(style);
+    </script>
+</body>
+</html>
