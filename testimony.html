@@ -1,0 +1,761 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Testimonies - SPAC Church</title>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+<link href="https://fonts.googleapis.com/css2?family=Lobster&family=Poppins:wght@300;400;500;600;700&family=Playfair+Display:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --primary: #1a4b8c;
+    --secondary: #d4af37;
+    --light: #f8f9fa;
+    --dark: #2c3e50;
+    --accent: #8b0000;
+  }
+  
+  * {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+  }
+  
+  body {
+    font-family: 'Poppins', sans-serif;
+    background: #f8f9fa;
+    color: #333;
+    line-height: 1.6;
+  }
+  
+  .container {
+    width: min(90%, 1200px);
+    margin: 0 auto;
+    padding: 0 20px;
+  }
+  
+  /* Header */
+  header {
+    background: white;
+    box-shadow: 0 3px 20px rgba(0, 0, 0, 0.08);
+    padding: 15px 0;
+    position: sticky;
+    top: 0;
+    z-index: 1000;
+  }
+  
+  .header-container {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+  
+  .logo {
+    display: flex;
+    align-items: center;
+  }
+  
+  .logo-frame {
+    width: 60px;
+    height: 60px;
+    border-radius: 50%;
+    background: white;
+    border: 3px solid var(--primary);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-right: 15px;
+    overflow: hidden;
+  }
+  
+  .logo-frame img {
+    width: 85%;
+    height: 85%;
+    object-fit: contain;
+  }
+  
+  .logo-text {
+    font-family: 'Lobster', cursive;
+    font-size: 1.8rem;
+    color: var(--primary);
+    letter-spacing: 1px;
+  }
+  
+  .nav-links {
+    display: flex;
+    gap: 20px;
+  }
+  
+  .nav-links a {
+    color: var(--dark);
+    text-decoration: none;
+    font-weight: 500;
+    transition: color 0.3s ease;
+  }
+  
+  .nav-links a:hover {
+    color: var(--primary);
+  }
+  
+  .back-btn {
+    background: var(--primary);
+    color: white;
+    padding: 10px 25px;
+    border-radius: 30px;
+    text-decoration: none;
+    font-weight: 500;
+    transition: all 0.3s ease;
+  }
+  
+  .back-btn:hover {
+    background: var(--accent);
+    transform: translateY(-2px);
+  }
+  
+  /* Hero Section */
+  .hero-section {
+    background: linear-gradient(135deg, #1a4b8c 0%, #2c3e50 100%);
+    color: white;
+    padding: 80px 0;
+    text-align: center;
+    position: relative;
+    overflow: hidden;
+  }
+  
+  .hero-section:before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 5px;
+    background: var(--secondary);
+  }
+  
+  .hero-title {
+    font-family: 'Playfair Display', serif;
+    font-size: clamp(2.5rem, 5vw, 3.5rem);
+    margin-bottom: 20px;
+    font-weight: 600;
+  }
+  
+  .hero-subtitle {
+    font-size: 1.2rem;
+    opacity: 0.9;
+    max-width: 600px;
+    margin: 0 auto;
+  }
+  
+  /* Testimonies Section */
+  .testimonies-section {
+    padding: 80px 0;
+  }
+  
+  .section-title {
+    font-family: 'Playfair Display', serif;
+    font-size: 2.5rem;
+    color: var(--primary);
+    margin-bottom: 40px;
+    text-align: center;
+    position: relative;
+    padding-bottom: 20px;
+  }
+  
+  .section-title:after {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 100px;
+    height: 4px;
+    background: var(--secondary);
+  }
+  
+  /* Testimony Form */
+  .testimony-form-section {
+    background: white;
+    padding: 80px 0;
+  }
+  
+  .form-container {
+    max-width: 800px;
+    margin: 0 auto;
+    background: #f8f9fa;
+    padding: 50px;
+    border-radius: 20px;
+    box-shadow: 0 15px 40px rgba(0,0,0,0.1);
+  }
+  
+  .form-title {
+    color: var(--primary);
+    margin-bottom: 30px;
+    text-align: center;
+    font-size: 2rem;
+  }
+  
+  .form-group {
+    margin-bottom: 25px;
+  }
+  
+  .form-group label {
+    display: block;
+    margin-bottom: 8px;
+    color: var(--dark);
+    font-weight: 500;
+  }
+  
+  .form-control {
+    width: 100%;
+    padding: 15px;
+    border: 1px solid #ddd;
+    border-radius: 10px;
+    font-size: 1rem;
+    font-family: 'Poppins', sans-serif;
+    transition: border 0.3s ease;
+  }
+  
+  .form-control:focus {
+    border-color: var(--primary);
+    outline: none;
+    box-shadow: 0 0 0 3px rgba(26, 75, 140, 0.1);
+  }
+  
+  textarea.form-control {
+    min-height: 150px;
+    resize: vertical;
+  }
+  
+  .btn-submit {
+    background: var(--primary);
+    color: white;
+    border: none;
+    padding: 16px 40px;
+    border-radius: 30px;
+    font-size: 1.1rem;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    display: block;
+    margin: 40px auto 0;
+    min-width: 200px;
+  }
+  
+  .btn-submit:hover {
+    background: var(--accent);
+    transform: translateY(-3px);
+    box-shadow: 0 10px 20px rgba(139, 0, 0, 0.2);
+  }
+  
+  /* Testimonies Grid */
+  .testimonies-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(350px, 1fr));
+    gap: 30px;
+    margin-top: 50px;
+  }
+  
+  .testimony-card {
+    background: white;
+    border-radius: 15px;
+    overflow: hidden;
+    box-shadow: 0 10px 30px rgba(0,0,0,0.08);
+    transition: transform 0.3s ease;
+  }
+  
+  .testimony-card:hover {
+    transform: translateY(-10px);
+    box-shadow: 0 15px 40px rgba(0,0,0,0.15);
+  }
+  
+  .testimony-header {
+    background: linear-gradient(135deg, var(--primary) 0%, #2c3e80 100%);
+    color: white;
+    padding: 25px;
+    position: relative;
+  }
+  
+  .testimony-header:after {
+    content: '"';
+    position: absolute;
+    top: 10px;
+    right: 25px;
+    font-size: 80px;
+    color: rgba(255,255,255,0.2);
+    font-family: serif;
+  }
+  
+  .testimony-name {
+    font-size: 1.3rem;
+    font-weight: 600;
+    margin-bottom: 5px;
+  }
+  
+  .testimony-date {
+    font-size: 0.9rem;
+    opacity: 0.8;
+  }
+  
+  .testimony-content {
+    padding: 30px;
+    color: #555;
+    line-height: 1.8;
+    position: relative;
+  }
+  
+  .testimony-category {
+    display: inline-block;
+    background: rgba(212, 175, 55, 0.1);
+    color: var(--secondary);
+    padding: 5px 15px;
+    border-radius: 20px;
+    font-size: 0.8rem;
+    font-weight: 500;
+    margin-top: 20px;
+  }
+  
+  /* Filter Section */
+  .filter-section {
+    background: white;
+    padding: 40px 0;
+    margin-bottom: 40px;
+    border-radius: 15px;
+    box-shadow: 0 10px 30px rgba(0,0,0,0.05);
+  }
+  
+  .filter-container {
+    display: flex;
+    justify-content: center;
+    gap: 15px;
+    flex-wrap: wrap;
+  }
+  
+  .filter-btn {
+    background: #f8f9fa;
+    border: 2px solid #ddd;
+    padding: 10px 25px;
+    border-radius: 30px;
+    cursor: pointer;
+    font-weight: 500;
+    transition: all 0.3s ease;
+  }
+  
+  .filter-btn:hover, .filter-btn.active {
+    background: var(--primary);
+    color: white;
+    border-color: var(--primary);
+  }
+  
+  /* Empty State */
+  .empty-state {
+    text-align: center;
+    padding: 60px 20px;
+    background: white;
+    border-radius: 15px;
+    margin-top: 30px;
+  }
+  
+  .empty-state i {
+    font-size: 4rem;
+    color: #ddd;
+    margin-bottom: 20px;
+  }
+  
+  .empty-state h3 {
+    color: var(--primary);
+    margin-bottom: 10px;
+  }
+  
+  /* Footer */
+  footer {
+    background: #2c3e50;
+    color: white;
+    padding: 40px 0;
+    text-align: center;
+  }
+  
+  .footer-bottom {
+    border-top: 1px solid rgba(255,255,255,0.1);
+    padding-top: 20px;
+    margin-top: 30px;
+    font-size: 0.9rem;
+    color: #aaa;
+  }
+  
+  @media (max-width: 768px) {
+    .testimonies-grid {
+      grid-template-columns: 1fr;
+    }
+    
+    .form-container {
+      padding: 30px 20px;
+    }
+    
+    .hero-title {
+      font-size: 2.2rem;
+    }
+    
+    .section-title {
+      font-size: 2rem;
+    }
+    
+    .header-container {
+      flex-direction: column;
+      gap: 15px;
+    }
+    
+    .nav-links {
+      order: 1;
+    }
+    
+    .logo {
+      order: 2;
+    }
+    
+    .back-btn {
+      order: 3;
+      margin-top: 15px;
+    }
+  }
+</style>
+</head>
+<body>
+<header>
+  <div class="container header-container">
+    <div class="nav-links">
+      <a href="index.html">Home</a>
+      <a href="prayer.html">Prayer</a>
+      <a href="resources.html">Resources</a>
+    </div>
+    
+    <div class="logo">
+      <div class="logo-frame">
+        <img src="spac-logo.jpg" alt="SPAC Logo">
+      </div>
+      <span class="logo-text">SPAC CHURCH</span>
+    </div>
+    
+    <a href="index.html" class="back-btn">
+      <i class="fas fa-arrow-left"></i> Back to Home
+    </a>
+  </div>
+</header>
+
+<section class="hero-section">
+  <div class="container">
+    <h1 class="hero-title">Share Your Testimony</h1>
+    <p class="hero-subtitle">"They triumphed over him by the blood of the Lamb and by the word of their testimony..." Revelation 12:11</p>
+  </div>
+</section>
+
+<section class="testimony-form-section">
+  <div class="container">
+    <div class="form-container">
+      <h2 class="form-title">Share Your Testimony</h2>
+      <p style="text-align: center; margin-bottom: 30px; color: #666;">
+        Your story can encourage others. Share how God has worked in your life.
+      </p>
+      
+      <form id="testimonyForm">
+        <div class="form-group">
+          <label for="name">Your Name (Optional)</label>
+          <input type="text" class="form-control" id="name" name="name" placeholder="You can remain anonymous">
+        </div>
+        
+        <div class="form-group">
+          <label for="category">Category</label>
+          <select class="form-control" id="category" name="category" required>
+            <option value="">Select Category</option>
+            <option value="Healing">Healing</option>
+            <option value="Deliverance">Deliverance</option>
+            <option value="Financial Breakthrough">Financial Breakthrough</option>
+            <option value="Marriage Restoration">Marriage Restoration</option>
+            <option value="Salvation">Salvation</option>
+            <option value="Career Breakthrough">Career Breakthrough</option>
+            <option value="Family Restoration">Family Restoration</option>
+            <option value="Miracle">Miracle</option>
+            <option value="Other">Other</option>
+          </select>
+        </div>
+        
+        <div class="form-group">
+          <label for="testimony">Your Testimony</label>
+          <textarea class="form-control" id="testimony" name="testimony" required placeholder="Share your testimony here..."></textarea>
+        </div>
+        
+        <button type="submit" class="btn-submit">Share Testimony</button>
+      </form>
+    </div>
+  </div>
+</section>
+
+<section class="testimonies-section">
+  <div class="container">
+    <h2 class="section-title">Recent Testimonies</h2>
+    
+    <div class="filter-section">
+      <div class="filter-container">
+        <button class="filter-btn active" data-filter="all">All Testimonies</button>
+        <button class="filter-btn" data-filter="Healing">Healing</button>
+        <button class="filter-btn" data-filter="Deliverance">Deliverance</button>
+        <button class="filter-btn" data-filter="Financial Breakthrough">Financial</button>
+        <button class="filter-btn" data-filter="Marriage Restoration">Marriage</button>
+        <button class="filter-btn" data-filter="Salvation">Salvation</button>
+      </div>
+    </div>
+    
+    <div class="testimonies-grid" id="testimoniesGrid">
+      <!-- Testimonies will be dynamically loaded here -->
+      <div class="testimony-card" data-category="Healing">
+        <div class="testimony-header">
+          <div class="testimony-name">John M.</div>
+          <div class="testimony-date">March 15, 2025</div>
+        </div>
+        <div class="testimony-content">
+          <p>After years of struggling with chronic back pain, I received prayer during the healing service. The pain completely left my body and I've been pain-free for 6 months now! Glory to God!</p>
+          <span class="testimony-category">Healing</span>
+        </div>
+      </div>
+      
+      <div class="testimony-card" data-category="Financial Breakthrough">
+        <div class="testimony-header">
+          <div class="testimony-name">Sarah K.</div>
+          <div class="testimony-date">March 10, 2025</div>
+        </div>
+        <div class="testimony-content">
+          <p>I was facing financial crisis and about to lose my home. After committing to faithful giving and attending the financial breakthrough workshop, I received an unexpected promotion and bonus that covered all my debts!</p>
+          <span class="testimony-category">Financial Breakthrough</span>
+        </div>
+      </div>
+      
+      <div class="testimony-card" data-category="Deliverance">
+        <div class="testimony-header">
+          <div class="testimony-name">Anonymous</div>
+          <div class="testimony-date">March 5, 2025</div>
+        </div>
+        <div class="testimony-content">
+          <p>Delivered from 10 years of addiction through the deliverance prayers at SPAC. I've been clean for 8 months now and my life has completely transformed. Jesus set me free!</p>
+          <span class="testimony-category">Deliverance</span>
+        </div>
+      </div>
+      
+      <div class="testimony-card" data-category="Marriage Restoration">
+        <div class="testimony-header">
+          <div class="testimony-name">David & Grace</div>
+          <div class="testimony-date">February 28, 2025</div>
+        </div>
+        <div class="testimony-content">
+          <p>Our marriage was on the brink of divorce. Through the marriage counseling ministry at SPAC and God's grace, we found restoration and our love has been renewed stronger than ever!</p>
+          <span class="testimony-category">Marriage Restoration</span>
+        </div>
+      </div>
+      
+      <div class="testimony-card" data-category="Salvation">
+        <div class="testimony-header">
+          <div class="testimony-name">Michael T.</div>
+          <div class="testimony-date">February 20, 2025</div>
+        </div>
+        <div class="testimony-content">
+          <p>I came to SPAC as an atheist, just accompanying a friend. But during the altar call, I felt the Holy Spirit like never before and gave my life to Christ. My entire worldview has changed!</p>
+          <span class="testimony-category">Salvation</span>
+        </div>
+      </div>
+      
+      <div class="testimony-card" data-category="Miracle">
+        <div class="testimony-header">
+          <div class="testimony-name">Patricia L.</div>
+          <div class="testimony-date">February 15, 2025</div>
+        </div>
+        <div class="testimony-content">
+          <p>Doctors said I would never conceive. After years of trying and numerous failed treatments, we received prayer at the miracle service. I'm now 3 months pregnant with our miracle baby!</p>
+          <span class="testimony-category">Miracle</span>
+        </div>
+      </div>
+    </div>
+    
+    <div class="empty-state" id="emptyState" style="display: none;">
+      <i class="fas fa-comment-slash"></i>
+      <h3>No Testimonies Found</h3>
+      <p>Be the first to share your testimony!</p>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <div class="container">
+    <p>&copy; 2025 SPAC Church. All Rights Reserved.</p>
+    <div class="footer-bottom">
+      <a href="privacy.html" style="color: #aaa; margin: 0 10px;">Privacy Policy</a> | 
+      <a href="terms.html" style="color: #aaa; margin: 0 10px;">Terms of Use</a> | 
+      <a href="contact.html" style="color: #aaa; margin: 0 10px;">Contact Us</a>
+    </div>
+  </div>
+</footer>
+
+<script>
+// Testimonies data
+let testimonies = [
+  {
+    id: 1,
+    name: "John M.",
+    date: "March 15, 2025",
+    category: "Healing",
+    content: "After years of struggling with chronic back pain, I received prayer during the healing service. The pain completely left my body and I've been pain-free for 6 months now! Glory to God!"
+  },
+  {
+    id: 2,
+    name: "Sarah K.",
+    date: "March 10, 2025",
+    category: "Financial Breakthrough",
+    content: "I was facing financial crisis and about to lose my home. After committing to faithful giving and attending the financial breakthrough workshop, I received an unexpected promotion and bonus that covered all my debts!"
+  },
+  {
+    id: 3,
+    name: "Anonymous",
+    date: "March 5, 2025",
+    category: "Deliverance",
+    content: "Delivered from 10 years of addiction through the deliverance prayers at SPAC. I've been clean for 8 months now and my life has completely transformed. Jesus set me free!"
+  },
+  {
+    id: 4,
+    name: "David & Grace",
+    date: "February 28, 2025",
+    category: "Marriage Restoration",
+    content: "Our marriage was on the brink of divorce. Through the marriage counseling ministry at SPAC and God's grace, we found restoration and our love has been renewed stronger than ever!"
+  },
+  {
+    id: 5,
+    name: "Michael T.",
+    date: "February 20, 2025",
+    category: "Salvation",
+    content: "I came to SPAC as an atheist, just accompanying a friend. But during the altar call, I felt the Holy Spirit like never before and gave my life to Christ. My entire worldview has changed!"
+  },
+  {
+    id: 6,
+    name: "Patricia L.",
+    date: "February 15, 2025",
+    category: "Miracle",
+    content: "Doctors said I would never conceive. After years of trying and numerous failed treatments, we received prayer at the miracle service. I'm now 3 months pregnant with our miracle baby!"
+  }
+];
+
+// Form submission
+document.getElementById('testimonyForm').addEventListener('submit', function(e) {
+  e.preventDefault();
+  
+  const name = document.getElementById('name').value || 'Anonymous';
+  const category = document.getElementById('category').value;
+  const testimony = document.getElementById('testimony').value;
+  
+  if (!category || !testimony) {
+    alert('Please fill in all required fields');
+    return;
+  }
+  
+  const submitBtn = document.querySelector('.btn-submit');
+  const originalText = submitBtn.textContent;
+  
+  submitBtn.innerHTML = '<i class="fas fa-spinner fa-spin"></i> Sharing...';
+  submitBtn.disabled = true;
+  
+  // Create new testimony object
+  const newTestimony = {
+    id: testimonies.length + 1,
+    name: name,
+    date: new Date().toLocaleDateString('en-US', { 
+      year: 'numeric', 
+      month: 'long', 
+      day: 'numeric' 
+    }),
+    category: category,
+    content: testimony
+  };
+  
+  // Add to beginning of array
+  testimonies.unshift(newTestimony);
+  
+  setTimeout(() => {
+    // Show success message
+    alert('Thank you for sharing your testimony! It has been submitted for review.');
+    
+    // Reset form
+    document.getElementById('testimonyForm').reset();
+    
+    // Reset button
+    submitBtn.textContent = originalText;
+    submitBtn.disabled = false;
+    
+    // Refresh testimonies display
+    renderTestimonies('all');
+    
+    // Reset filter buttons
+    document.querySelectorAll('.filter-btn').forEach(btn => {
+      btn.classList.remove('active');
+    });
+    document.querySelector('[data-filter="all"]').classList.add('active');
+  }, 1500);
+});
+
+// Filter functionality
+document.querySelectorAll('.filter-btn').forEach(button => {
+  button.addEventListener('click', function() {
+    const filter = this.getAttribute('data-filter');
+    
+    // Update active button
+    document.querySelectorAll('.filter-btn').forEach(btn => {
+      btn.classList.remove('active');
+    });
+    this.classList.add('active');
+    
+    // Render filtered testimonies
+    renderTestimonies(filter);
+  });
+});
+
+// Render testimonies
+function renderTestimonies(filter = 'all') {
+  const grid = document.getElementById('testimoniesGrid');
+  const emptyState = document.getElementById('emptyState');
+  
+  // Filter testimonies
+  const filteredTestimonies = filter === 'all' 
+    ? testimonies 
+    : testimonies.filter(t => t.category === filter);
+  
+  // Clear grid
+  grid.innerHTML = '';
+  
+  // Show empty state if no testimonies
+  if (filteredTestimonies.length === 0) {
+    emptyState.style.display = 'block';
+    return;
+  }
+  
+  emptyState.style.display = 'none';
+  
+  // Render testimonies
+  filteredTestimonies.forEach(testimony => {
+    const card = document.createElement('div');
+    card.className = 'testimony-card';
+    card.setAttribute('data-category', testimony.category);
+    
+    card.innerHTML = `
+      <div class="testimony-header">
+        <div class="testimony-name">${testimony.name}</div>
+        <div class="testimony-date">${testimony.date}</div>
+      </div>
+      <div class="testimony-content">
+        <p>${testimony.content}</p>
+        <span class="testimony-category">${testimony.category}</span>
+      </div>
+    `;
+    
+    grid.appendChild(card);
+  });
+}
+
+// Initial render
+renderTestimonies('all');
+</script>
+</body>
+</html>
