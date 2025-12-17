@@ -1,0 +1,844 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Prayer - SPAC Church</title>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+<link href="https://fonts.googleapis.com/css2?family=Lobster&family=Poppins:wght@300;400;500;600;700&family=Playfair+Display:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --primary: #1a4b8c;
+    --secondary: #d4af37;
+    --light: #f8f9fa;
+    --dark: #2c3e50;
+    --accent: #8b0000;
+  }
+  
+  * {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+  }
+  
+  body {
+    font-family: 'Poppins', sans-serif;
+    background: #f8f9fa;
+    color: #333;
+    line-height: 1.6;
+  }
+  
+  .container {
+    width: min(90%, 1200px);
+    margin: 0 auto;
+    padding: 0 20px;
+  }
+  
+  /* Header */
+  header {
+    background: white;
+    box-shadow: 0 3px 20px rgba(0, 0, 0, 0.08);
+    padding: 15px 0;
+    position: sticky;
+    top: 0;
+    z-index: 1000;
+  }
+  
+  .header-container {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+  
+  .logo {
+    display: flex;
+    align-items: center;
+  }
+  
+  .logo-frame {
+    width: 60px;
+    height: 60px;
+    border-radius: 50%;
+    background: white;
+    border: 3px solid var(--primary);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-right: 15px;
+    overflow: hidden;
+  }
+  
+  .logo-frame img {
+    width: 85%;
+    height: 85%;
+    object-fit: contain;
+  }
+  
+  .logo-text {
+    font-family: 'Lobster', cursive;
+    font-size: 1.8rem;
+    color: var(--primary);
+    letter-spacing: 1px;
+  }
+  
+  .nav-links {
+    display: flex;
+    gap: 20px;
+  }
+  
+  .nav-links a {
+    color: var(--dark);
+    text-decoration: none;
+    font-weight: 500;
+    transition: color 0.3s ease;
+  }
+  
+  .nav-links a:hover {
+    color: var(--primary);
+  }
+  
+  .back-btn {
+    background: var(--primary);
+    color: white;
+    padding: 10px 25px;
+    border-radius: 30px;
+    text-decoration: none;
+    font-weight: 500;
+    transition: all 0.3s ease;
+  }
+  
+  .back-btn:hover {
+    background: var(--accent);
+    transform: translateY(-2px);
+  }
+  
+  /* Hero Section */
+  .hero-section {
+    background: linear-gradient(rgba(0,0,0,0.7), rgba(0,0,0,0.7)), url('prayer-bg.jpg');
+    background-size: cover;
+    background-position: center;
+    color: white;
+    padding: 120px 0;
+    text-align: center;
+    position: relative;
+    overflow: hidden;
+  }
+  
+  .hero-section:before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 5px;
+    background: var(--secondary);
+  }
+  
+  .hero-title {
+    font-family: 'Playfair Display', serif;
+    font-size: clamp(4rem, 8vw, 6rem);
+    margin-bottom: 20px;
+    font-weight: 600;
+    letter-spacing: 2px;
+  }
+  
+  .hero-verse {
+    font-size: 1.5rem;
+    font-style: italic;
+    opacity: 0.9;
+    max-width: 800px;
+    margin: 0 auto;
+    padding: 20px;
+    background: rgba(0,0,0,0.5);
+    border-radius: 10px;
+  }
+  
+  /* Content Section */
+  .content-section {
+    padding: 80px 0;
+    background: white;
+  }
+  
+  .content-container {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 60px;
+    align-items: center;
+  }
+  
+  .prayer-image {
+    border-radius: 15px;
+    overflow: hidden;
+    box-shadow: 0 20px 40px rgba(0,0,0,0.1);
+  }
+  
+  .prayer-image img {
+    width: 100%;
+    height: auto;
+    display: block;
+  }
+  
+  .prayer-content h2 {
+    font-family: 'Playfair Display', serif;
+    font-size: 2.5rem;
+    color: var(--primary);
+    margin-bottom: 30px;
+  }
+  
+  .prayer-content p {
+    font-size: 1.1rem;
+    color: #555;
+    line-height: 1.8;
+    margin-bottom: 20px;
+  }
+  
+  .scripture-box {
+    background: #f8f9fa;
+    padding: 25px;
+    border-radius: 10px;
+    border-left: 5px solid var(--secondary);
+    margin-top: 30px;
+  }
+  
+  .scripture-box p {
+    font-style: italic;
+    color: #444;
+    margin-bottom: 0;
+  }
+  
+  .scripture-ref {
+    text-align: right;
+    color: var(--primary);
+    font-weight: 500;
+    margin-top: 10px;
+  }
+  
+  /* Prayer Form Section */
+  .prayer-form-section {
+    background: #f8f9fa;
+    padding: 80px 0;
+  }
+  
+  .section-title {
+    font-family: 'Playfair Display', serif;
+    font-size: 2.5rem;
+    color: var(--primary);
+    margin-bottom: 40px;
+    text-align: center;
+    position: relative;
+    padding-bottom: 20px;
+  }
+  
+  .section-title:after {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 100px;
+    height: 4px;
+    background: var(--secondary);
+  }
+  
+  .form-container {
+    max-width: 800px;
+    margin: 0 auto;
+    background: white;
+    padding: 50px;
+    border-radius: 20px;
+    box-shadow: 0 15px 40px rgba(0,0,0,0.1);
+  }
+  
+  .form-group {
+    margin-bottom: 25px;
+  }
+  
+  .form-group label {
+    display: block;
+    margin-bottom: 8px;
+    color: var(--dark);
+    font-weight: 500;
+  }
+  
+  .form-control {
+    width: 100%;
+    padding: 15px;
+    border: 1px solid #ddd;
+    border-radius: 10px;
+    font-size: 1rem;
+    font-family: 'Poppins', sans-serif;
+    transition: border 0.3s ease;
+  }
+  
+  .form-control:focus {
+    border-color: var(--primary);
+    outline: none;
+    box-shadow: 0 0 0 3px rgba(26, 75, 140, 0.1);
+  }
+  
+  textarea.form-control {
+    min-height: 150px;
+    resize: vertical;
+  }
+  
+  .privacy-note {
+    font-size: 0.9rem;
+    color: #666;
+    margin-top: 10px;
+  }
+  
+  .btn-submit {
+    background: var(--primary);
+    color: white;
+    border: none;
+    padding: 16px 40px;
+    border-radius: 30px;
+    font-size: 1.1rem;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    display: block;
+    margin: 40px auto 0;
+    min-width: 200px;
+  }
+  
+  .btn-submit:hover {
+    background: var(--accent);
+    transform: translateY(-3px);
+    box-shadow: 0 10px 20px rgba(139, 0, 0, 0.2);
+  }
+  
+  /* Prayer Points Section */
+  .prayer-points-section {
+    padding: 80px 0;
+    background: white;
+  }
+  
+  .prayer-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 30px;
+    margin-top: 50px;
+  }
+  
+  .prayer-point-card {
+    background: #f8f9fa;
+    padding: 30px;
+    border-radius: 15px;
+    border-top: 5px solid var(--primary);
+    transition: transform 0.3s ease;
+  }
+  
+  .prayer-point-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+  }
+  
+  .prayer-point-card h3 {
+    color: var(--primary);
+    margin-bottom: 15px;
+    font-size: 1.3rem;
+  }
+  
+  .prayer-point-card ul {
+    list-style: none;
+    padding-left: 0;
+  }
+  
+  .prayer-point-card li {
+    padding: 8px 0;
+    border-bottom: 1px dashed #ddd;
+    position: relative;
+    padding-left: 25px;
+  }
+  
+  .prayer-point-card li:before {
+    content: '✝';
+    position: absolute;
+    left: 0;
+    color: var(--secondary);
+  }
+  
+  /* Prayer Wall */
+  .prayer-wall-section {
+    background: #f8f9fa;
+    padding: 80px 0;
+  }
+  
+  .prayer-wall {
+    max-width: 800px;
+    margin: 0 auto;
+  }
+  
+  .prayer-note {
+    background: white;
+    padding: 25px;
+    border-radius: 10px;
+    margin-bottom: 20px;
+    box-shadow: 0 5px 15px rgba(0,0,0,0.05);
+    border-left: 4px solid var(--primary);
+  }
+  
+  .prayer-note-header {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 15px;
+  }
+  
+  .prayer-name {
+    font-weight: 600;
+    color: var(--primary);
+  }
+  
+  .prayer-date {
+    font-size: 0.9rem;
+    color: #888;
+  }
+  
+  .prayer-content {
+    color: #555;
+    line-height: 1.7;
+  }
+  
+  .prayers-count {
+    background: var(--primary);
+    color: white;
+    padding: 10px 20px;
+    border-radius: 20px;
+    display: inline-block;
+    margin-top: 20px;
+  }
+  
+  /* Footer */
+  footer {
+    background: #2c3e50;
+    color: white;
+    padding: 40px 0;
+    text-align: center;
+  }
+  
+  .footer-bottom {
+    border-top: 1px solid rgba(255,255,255,0.1);
+    padding-top: 20px;
+    margin-top: 30px;
+    font-size: 0.9rem;
+    color: #aaa;
+  }
+  
+  @media (max-width: 992px) {
+    .content-container {
+      grid-template-columns: 1fr;
+      gap: 40px;
+    }
+    
+    .prayer-grid {
+      grid-template-columns: 1fr;
+    }
+  }
+  
+  @media (max-width: 768px) {
+    .form-container {
+      padding: 30px 20px;
+    }
+    
+    .hero-title {
+      font-size: 3.5rem;
+    }
+    
+    .hero-verse {
+      font-size: 1.2rem;
+    }
+    
+    .prayer-content h2 {
+      font-size: 2rem;
+    }
+    
+    .section-title {
+      font-size: 2rem;
+    }
+    
+    .header-container {
+      flex-direction: column;
+      gap: 15px;
+    }
+    
+    .nav-links {
+      order: 1;
+    }
+    
+    .logo {
+      order: 2;
+    }
+    
+    .back-btn {
+      order: 3;
+      margin-top: 15px;
+    }
+  }
+</style>
+</head>
+<body>
+<header>
+  <div class="container header-container">
+    <div class="nav-links">
+      <a href="index.html">Home</a>
+      <a href="testimony.html">Testimony</a>
+      <a href="resources.html">Resources</a>
+    </div>
+    
+    <div class="logo">
+      <div class="logo-frame">
+        <img src="spac-logo.jpg" alt="SPAC Logo">
+      </div>
+      <span class="logo-text">SPAC CHURCH</span>
+    </div>
+    
+    <a href="index.html" class="back-btn">
+      <i class="fas fa-arrow-left"></i> Back to Home
+    </a>
+  </div>
+</header>
+
+<section class="hero-section">
+  <div class="container">
+    <h1 class="hero-title">PRAYER</h1>
+    <p class="hero-verse">"If two of you agree on earth concerning anything that they ask, it will be done for them by my Father in heaven." Matthew 18:19</p>
+  </div>
+</section>
+
+<section class="content-section">
+  <div class="container">
+    <div class="content-container">
+      <div class="prayer-image">
+        <img src="prayer-image.jpg" alt="Prayer at SPAC Church">
+      </div>
+      
+      <div class="prayer-content">
+        <h2>Prayer</h2>
+        <p>Then they cried to the LORD in their trouble, and he delivered them from their distress. He made the storm be still, and the waves of the sea were hushed. Then they were glad that the waters were quiet, and he brought them to their desired haven. Psalm 107:28-30</p>
+        
+        <p>At SPAC Church, we believe in the power of prayer. Prayer is our direct line of communication with God, and through it, we find strength, guidance, healing, and miracles.</p>
+        
+        <p>Our prayer ministry is available to support you in your spiritual journey. Whether you need prayer for healing, deliverance, breakthrough, or guidance, our prayer team is ready to stand with you in agreement.</p>
+        
+        <div class="scripture-box">
+          <p>"Do not be anxious about anything, but in every situation, by prayer and petition, with thanksgiving, present your requests to God."</p>
+          <div class="scripture-ref">Philippians 4:6</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="prayer-form-section">
+  <div class="container">
+    <h2 class="section-title">Submit Your Prayer Request</h2>
+    
+    <div class="form-container">
+      <p style="text-align: center; margin-bottom: 30px; color: #666;">
+        Share your prayer request with us. Our prayer team will pray for you confidentially.
+      </p>
+      
+      <form id="prayerRequestForm">
+        <div class="form-group">
+          <label for="name">Your Name (Optional)</label>
+          <input type="text" class="form-control" id="name" name="name" placeholder="You can remain anonymous">
+        </div>
+        
+        <div class="form-group">
+          <label for="email">Email Address (Optional)</label>
+          <input type="email" class="form-control" id="email" name="email" placeholder="For follow-up if needed">
+        </div>
+        
+        <div class="form-group">
+          <label for="category">Prayer Category</label>
+          <select class="form-control" id="category" name="category" required>
+            <option value="">Select Category</option>
+            <option value="Healing">Healing</option>
+            <option value="Deliverance">Deliverance</option>
+            <option value="Financial Breakthrough">Financial Breakthrough</option>
+            <option value="Family">Family & Relationships</option>
+            <option value="Career">Career & Business</option>
+            <option value="Salvation">Salvation for Loved Ones</option>
+            <option value="Guidance">Guidance & Direction</option>
+            <option value="Other">Other</option>
+          </select>
+        </div>
+        
+        <div class="form-group">
+          <label for="prayerRequest">Your Prayer Request *</label>
+          <textarea class="form-control" id="prayerRequest" name="prayerRequest" required placeholder="Please share your prayer request here..."></textarea>
+          <div class="privacy-note">All prayer requests are kept confidential within our prayer team.</div>
+        </div>
+        
+        <div class="form-group">
+          <label for="prayedFor">
+            <input type="checkbox" id="prayedFor" name="prayedFor"> 
+            I would like a prayer partner to contact me
+          </label>
+        </div>
+        
+        <button type="submit" class="btn-submit">Submit Prayer Request</button>
+      </form>
+    </div>
+  </div>
+</section>
+
+<section class="prayer-points-section">
+  <div class="container">
+    <h2 class="section-title">Weekly Prayer Points</h2>
+    
+    <div class="prayer-grid">
+      <div class="prayer-point-card">
+        <h3>For Our Church</h3>
+        <ul>
+          <li>Unity among leadership and members</li>
+          <li>Wisdom for our pastors and leaders</li>
+          <li>Financial provision for church projects</li>
+          <li>Growth in membership and impact</li>
+          <li>Protection over all church activities</li>
+        </ul>
+      </div>
+      
+      <div class="prayer-point-card">
+        <h3>For Our Nation</h3>
+        <ul>
+          <li>Righteous leadership in government</li>
+          <li>Peace and security in our communities</li>
+          <li>Economic stability and growth</li>
+          <li>Healing from social divisions</li>
+          <li>Revival and spiritual awakening</li>
+        </ul>
+      </div>
+      
+      <div class="prayer-point-card">
+        <h3>For Families</h3>
+        <ul>
+          <li>Strong and godly marriages</li>
+          <li>Protection over our children</li>
+          <li>Healing for broken relationships</li>
+          <li>Financial stability in homes</li>
+          <li>Salvation for family members</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="prayer-wall-section">
+  <div class="container">
+    <h2 class="section-title">Recent Prayer Requests</h2>
+    <p style="text-align: center; margin-bottom: 40px; color: #666; max-width: 600px; margin-left: auto; margin-right: auto;">
+      Join us in praying for these requests. You can click "I Prayed" to show your support.
+    </p>
+    
+    <div class="prayer-wall" id="prayerWall">
+      <div class="prayer-note">
+        <div class="prayer-note-header">
+          <div class="prayer-name">Anonymous</div>
+          <div class="prayer-date">March 18, 2025</div>
+        </div>
+        <div class="prayer-content">
+          <p>Pray for healing from chronic migraines that have been affecting my work and daily life for 6 months.</p>
+        </div>
+        <div class="prayers-count">24 people have prayed</div>
+      </div>
+      
+      <div class="prayer-note">
+        <div class="prayer-note-header">
+          <div class="prayer-name">James</div>
+          <div class="prayer-date">March 17, 2025</div>
+        </div>
+        <div class="prayer-content">
+          <p>Prayer for job opportunity. Been unemployed for 4 months and need God's provision for my family.</p>
+        </div>
+        <div class="prayers-count">31 people have prayed</div>
+      </div>
+      
+      <div class="prayer-note">
+        <div class="prayer-note-header">
+          <div class="prayer-name">Sarah</div>
+          <div class="prayer-date">March 16, 2025</div>
+        </div>
+        <div class="prayer-content">
+          <p>My son is struggling with addiction. Pray for deliverance and that he would return to God.</p>
+        </div>
+        <div class="prayers-count">42 people have prayed</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <div class="container">
+    <p>&copy; 2025 SPAC Church. All Rights Reserved.</p>
+    <div class="footer-bottom">
+      <a href="privacy.html" style="color: #aaa; margin: 0 10px;">Privacy Policy</a> | 
+      <a href="terms.html" style="color: #aaa; margin: 0 10px;">Terms of Use</a> | 
+      <a href="contact.html" style="color: #aaa; margin: 0 10px;">Contact Us</a>
+    </div>
+  </div>
+</footer>
+
+<script>
+// Prayer requests data
+let prayerRequests = [
+  {
+    id: 1,
+    name: "Anonymous",
+    date: "March 18, 2025",
+    category: "Healing",
+    request: "Pray for healing from chronic migraines that have been affecting my work and daily life for 6 months.",
+    prayers: 24
+  },
+  {
+    id: 2,
+    name: "James",
+    date: "March 17, 2025",
+    category: "Financial Breakthrough",
+    request: "Prayer for job opportunity. Been unemployed for 4 months and need God's provision for my family.",
+    prayers: 31
+  },
+  {
+    id: 3,
+    name: "Sarah",
+    date: "March 16, 2025",
+    category: "Deliverance",
+    request: "My son is struggling with addiction. Pray for deliverance and that he would return to God.",
+    prayers: 42
+  },
+  {
+    id: 4,
+    name: "David",
+    date: "March 15, 2025",
+    category: "Family",
+    request: "Pray for reconciliation with my brother. We haven't spoken in 3 years due to a misunderstanding.",
+    prayers: 18
+  },
+  {
+    id: 5,
+    name: "Grace",
+    date: "March 14, 2025",
+    category: "Guidance",
+    request: "Seeking God's direction regarding a major career decision. Need clarity and wisdom.",
+    prayers: 27
+  }
+];
+
+// Form submission
+document.getElementById('prayerRequestForm').addEventListener('submit', function(e) {
+  e.preventDefault();
+  
+  const name = document.getElementById('name').value || 'Anonymous';
+  const email = document.getElementById('email').value;
+  const category = document.getElementById('category').value;
+  const prayerRequest = document.getElementById('prayerRequest').value;
+  const prayedFor = document.getElementById('prayedFor').checked;
+  
+  if (!category || !prayerRequest) {
+    alert('Please fill in all required fields');
+    return;
+  }
+  
+  const submitBtn = document.querySelector('.btn-submit');
+  const originalText = submitBtn.textContent;
+  
+  submitBtn.innerHTML = '<i class="fas fa-spinner fa-spin"></i> Submitting...';
+  submitBtn.disabled = true;
+  
+  // Create new prayer request object
+  const newRequest = {
+    id: prayerRequests.length + 1,
+    name: name,
+    date: new Date().toLocaleDateString('en-US', { 
+      year: 'numeric', 
+      month: 'long', 
+      day: 'numeric' 
+    }),
+    category: category,
+    request: prayerRequest,
+    prayers: 0
+  };
+  
+  // Add to beginning of array
+  prayerRequests.unshift(newRequest);
+  
+  setTimeout(() => {
+    // Show success message
+    let message = 'Thank you for submitting your prayer request! Our prayer team will pray for you.';
+    if (prayedFor) {
+      message += ' A prayer partner will contact you soon.';
+    }
+    alert(message);
+    
+    // Reset form
+    document.getElementById('prayerRequestForm').reset();
+    
+    // Reset button
+    submitBtn.textContent = originalText;
+    submitBtn.disabled = false;
+    
+    // Refresh prayer wall
+    renderPrayerWall();
+  }, 1500);
+});
+
+// Render prayer wall
+function renderPrayerWall() {
+  const wall = document.getElementById('prayerWall');
+  
+  // Clear wall
+  wall.innerHTML = '';
+  
+  // Render prayer requests (show only first 5)
+  prayerRequests.slice(0, 5).forEach(request => {
+    const note = document.createElement('div');
+    note.className = 'prayer-note';
+    
+    note.innerHTML = `
+      <div class="prayer-note-header">
+        <div class="prayer-name">${request.name}</div>
+        <div class="prayer-date">${request.date}</div>
+      </div>
+      <div class="prayer-content">
+        <p>${request.request}</p>
+      </div>
+      <div class="prayers-count">
+        <span id="prayerCount-${request.id}">${request.prayers}</span> people have prayed
+        <button onclick="incrementPrayer(${request.id})" style="margin-left: 15px; background: var(--secondary); color: white; border: none; padding: 5px 15px; border-radius: 15px; cursor: pointer; font-size: 0.9rem;">
+          <i class="fas fa-hands-praying"></i> I Prayed
+        </button>
+      </div>
+    `;
+    
+    wall.appendChild(note);
+  });
+}
+
+// Increment prayer count
+function incrementPrayer(id) {
+  const request = prayerRequests.find(r => r.id === id);
+  if (request) {
+    request.prayers++;
+    document.getElementById(`prayerCount-${id}`).textContent = request.prayers;
+    
+    // Show confirmation
+    const btn = event.target.closest('button');
+    const originalText = btn.innerHTML;
+    btn.innerHTML = '<i class="fas fa-check"></i> Thank You!';
+    btn.disabled = true;
+    btn.style.background = '#4CAF50';
+    
+    setTimeout(() => {
+      btn.innerHTML = originalText;
+      btn.disabled = false;
+      btn.style.background = 'var(--secondary)';
+    }, 2000);
+  }
+}
+
+// Initial render
+renderPrayerWall();
+</script>
+</body>
+</html>
