@@ -1,0 +1,834 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Resources - SPAC Church</title>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+<link href="https://fonts.googleapis.com/css2?family=Lobster&family=Poppins:wght@300;400;500;600;700&family=Playfair+Display:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --primary: #1a4b8c;
+    --secondary: #d4af37;
+    --light: #f8f9fa;
+    --dark: #2c3e50;
+    --accent: #8b0000;
+  }
+  
+  * {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+  }
+  
+  body {
+    font-family: 'Poppins', sans-serif;
+    background: #f8f9fa;
+    color: #333;
+    line-height: 1.6;
+  }
+  
+  .container {
+    width: min(90%, 1200px);
+    margin: 0 auto;
+    padding: 0 20px;
+  }
+  
+  /* Header */
+  header {
+    background: white;
+    box-shadow: 0 3px 20px rgba(0, 0, 0, 0.08);
+    padding: 15px 0;
+    position: sticky;
+    top: 0;
+    z-index: 1000;
+  }
+  
+  .header-container {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+  
+  .logo {
+    display: flex;
+    align-items: center;
+  }
+  
+  .logo-frame {
+    width: 60px;
+    height: 60px;
+    border-radius: 50%;
+    background: white;
+    border: 3px solid var(--primary);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-right: 15px;
+    overflow: hidden;
+  }
+  
+  .logo-frame img {
+    width: 85%;
+    height: 85%;
+    object-fit: contain;
+  }
+  
+  .logo-text {
+    font-family: 'Lobster', cursive;
+    font-size: 1.8rem;
+    color: var(--primary);
+    letter-spacing: 1px;
+  }
+  
+  .nav-links {
+    display: flex;
+    gap: 20px;
+  }
+  
+  .nav-links a {
+    color: var(--dark);
+    text-decoration: none;
+    font-weight: 500;
+    transition: color 0.3s ease;
+  }
+  
+  .nav-links a:hover {
+    color: var(--primary);
+  }
+  
+  .back-btn {
+    background: var(--primary);
+    color: white;
+    padding: 10px 25px;
+    border-radius: 30px;
+    text-decoration: none;
+    font-weight: 500;
+    transition: all 0.3s ease;
+  }
+  
+  .back-btn:hover {
+    background: var(--accent);
+    transform: translateY(-2px);
+  }
+  
+  /* Hero Section */
+  .hero-section {
+    background: linear-gradient(135deg, #1a4b8c 0%, #2c3e50 100%);
+    color: white;
+    padding: 80px 0;
+    text-align: center;
+    position: relative;
+    overflow: hidden;
+  }
+  
+  .hero-section:before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 5px;
+    background: var(--secondary);
+  }
+  
+  .hero-title {
+    font-family: 'Playfair Display', serif;
+    font-size: clamp(2.5rem, 5vw, 3.5rem);
+    margin-bottom: 20px;
+    font-weight: 600;
+  }
+  
+  .hero-subtitle {
+    font-size: 1.2rem;
+    opacity: 0.9;
+    max-width: 600px;
+    margin: 0 auto;
+  }
+  
+  /* Resources Section */
+  .resources-section {
+    padding: 80px 0;
+  }
+  
+  .section-title {
+    font-family: 'Playfair Display', serif;
+    font-size: 2.5rem;
+    color: var(--primary);
+    margin-bottom: 40px;
+    text-align: center;
+    position: relative;
+    padding-bottom: 20px;
+  }
+  
+  .section-title:after {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 100px;
+    height: 4px;
+    background: var(--secondary);
+  }
+  
+  .section-intro {
+    text-align: center;
+    max-width: 800px;
+    margin: 0 auto 50px;
+    color: #666;
+    font-size: 1.1rem;
+  }
+  
+  /* Resources Grid */
+  .resources-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+    gap: 30px;
+    margin-top: 50px;
+  }
+  
+  .resource-card {
+    background: white;
+    border-radius: 15px;
+    overflow: hidden;
+    box-shadow: 0 10px 30px rgba(0,0,0,0.08);
+    transition: all 0.3s ease;
+    position: relative;
+  }
+  
+  .resource-card:hover {
+    transform: translateY(-10px);
+    box-shadow: 0 15px 40px rgba(0,0,0,0.15);
+  }
+  
+  .resource-card.featured {
+    border: 3px solid var(--secondary);
+  }
+  
+  .resource-badge {
+    position: absolute;
+    top: 15px;
+    right: 15px;
+    background: var(--secondary);
+    color: white;
+    padding: 5px 15px;
+    border-radius: 20px;
+    font-size: 0.8rem;
+    font-weight: 600;
+    z-index: 2;
+  }
+  
+  .resource-image {
+    height: 200px;
+    overflow: hidden;
+  }
+  
+  .resource-image img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: transform 0.5s ease;
+  }
+  
+  .resource-card:hover .resource-image img {
+    transform: scale(1.05);
+  }
+  
+  .resource-content {
+    padding: 25px;
+  }
+  
+  .resource-category {
+    display: inline-block;
+    background: rgba(26, 75, 140, 0.1);
+    color: var(--primary);
+    padding: 5px 15px;
+    border-radius: 20px;
+    font-size: 0.8rem;
+    font-weight: 500;
+    margin-bottom: 15px;
+  }
+  
+  .resource-title {
+    font-size: 1.3rem;
+    color: var(--dark);
+    margin-bottom: 10px;
+    font-weight: 600;
+  }
+  
+  .resource-description {
+    color: #666;
+    font-size: 0.95rem;
+    margin-bottom: 20px;
+    line-height: 1.6;
+  }
+  
+  .resource-meta {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-top: 20px;
+    padding-top: 20px;
+    border-top: 1px solid #eee;
+  }
+  
+  .resource-author {
+    font-size: 0.9rem;
+    color: #888;
+  }
+  
+  .resource-btn {
+    background: var(--primary);
+    color: white;
+    padding: 8px 20px;
+    border-radius: 20px;
+    text-decoration: none;
+    font-size: 0.9rem;
+    font-weight: 500;
+    transition: all 0.3s ease;
+  }
+  
+  .resource-btn:hover {
+    background: var(--accent);
+    transform: translateY(-2px);
+  }
+  
+  /* Bookshelf Preview */
+  .bookshelf-preview {
+    background: #f8f9fa;
+    padding: 80px 0;
+    margin-top: 50px;
+    border-radius: 20px;
+  }
+  
+  .bookshelf-container {
+    max-width: 1000px;
+    margin: 0 auto;
+  }
+  
+  .bookshelf-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+    gap: 25px;
+    margin-top: 40px;
+  }
+  
+  .book-item {
+    background: white;
+    padding: 20px;
+    border-radius: 10px;
+    text-align: center;
+    box-shadow: 0 8px 25px rgba(0,0,0,0.05);
+    transition: transform 0.3s ease;
+    cursor: pointer;
+  }
+  
+  .book-item:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 12px 30px rgba(0,0,0,0.1);
+  }
+  
+  .book-cover {
+    width: 120px;
+    height: 160px;
+    background: linear-gradient(135deg, var(--primary) 0%, #2c3e80 100%);
+    margin: 0 auto 15px;
+    border-radius: 5px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: white;
+    font-size: 2.5rem;
+  }
+  
+  .book-title {
+    font-weight: 600;
+    color: var(--dark);
+    margin-bottom: 5px;
+    font-size: 1rem;
+  }
+  
+  .book-author {
+    color: #666;
+    font-size: 0.85rem;
+    margin-bottom: 10px;
+  }
+  
+  .view-all-btn {
+    display: block;
+    width: 200px;
+    margin: 40px auto 0;
+    background: var(--primary);
+    color: white;
+    padding: 12px 30px;
+    border-radius: 30px;
+    text-decoration: none;
+    text-align: center;
+    font-weight: 600;
+    transition: all 0.3s ease;
+  }
+  
+  .view-all-btn:hover {
+    background: var(--accent);
+    transform: translateY(-3px);
+    box-shadow: 0 10px 20px rgba(139, 0, 0, 0.2);
+  }
+  
+  /* Filter Section */
+  .filter-section {
+    background: white;
+    padding: 30px;
+    border-radius: 15px;
+    margin-bottom: 40px;
+    box-shadow: 0 10px 30px rgba(0,0,0,0.05);
+  }
+  
+  .filter-container {
+    display: flex;
+    justify-content: center;
+    gap: 15px;
+    flex-wrap: wrap;
+  }
+  
+  .filter-btn {
+    background: #f8f9fa;
+    border: 2px solid #ddd;
+    padding: 10px 25px;
+    border-radius: 30px;
+    cursor: pointer;
+    font-weight: 500;
+    transition: all 0.3s ease;
+  }
+  
+  .filter-btn:hover, .filter-btn.active {
+    background: var(--primary);
+    color: white;
+    border-color: var(--primary);
+  }
+  
+  /* Footer */
+  footer {
+    background: #2c3e50;
+    color: white;
+    padding: 40px 0;
+    text-align: center;
+  }
+  
+  .footer-bottom {
+    border-top: 1px solid rgba(255,255,255,0.1);
+    padding-top: 20px;
+    margin-top: 30px;
+    font-size: 0.9rem;
+    color: #aaa;
+  }
+  
+  @media (max-width: 768px) {
+    .resources-grid {
+      grid-template-columns: 1fr;
+    }
+    
+    .bookshelf-grid {
+      grid-template-columns: repeat(2, 1fr);
+    }
+    
+    .hero-title {
+      font-size: 2.2rem;
+    }
+    
+    .section-title {
+      font-size: 2rem;
+    }
+    
+    .header-container {
+      flex-direction: column;
+      gap: 15px;
+    }
+    
+    .nav-links {
+      order: 1;
+    }
+    
+    .logo {
+      order: 2;
+    }
+    
+    .back-btn {
+      order: 3;
+      margin-top: 15px;
+    }
+  }
+  
+  @media (max-width: 480px) {
+    .bookshelf-grid {
+      grid-template-columns: 1fr;
+    }
+    
+    .filter-container {
+      flex-direction: column;
+      align-items: center;
+    }
+  }
+</style>
+</head>
+<body>
+<header>
+  <div class="container header-container">
+    <div class="nav-links">
+      <a href="index.html">Home</a>
+      <a href="prayer.html">Prayer</a>
+      <a href="testimony.html">Testimony</a>
+    </div>
+    
+    <div class="logo">
+      <div class="logo-frame">
+        <img src="spac-logo.jpg" alt="SPAC Logo">
+      </div>
+      <span class="logo-text">SPAC CHURCH</span>
+    </div>
+    
+    <a href="index.html" class="back-btn">
+      <i class="fas fa-arrow-left"></i> Back to Home
+    </a>
+  </div>
+</header>
+
+<section class="hero-section">
+  <div class="container">
+    <h1 class="hero-title">Resources</h1>
+    <p class="hero-subtitle">"All Scripture is God-breathed and is useful for teaching, rebuking, correcting and training in righteousness." 2 Timothy 3:16</p>
+  </div>
+</section>
+
+<section class="resources-section">
+  <div class="container">
+    <h2 class="section-title">Spiritual Resources</h2>
+    <p class="section-intro">
+      Access a wealth of spiritual resources to help you grow in your faith journey. From sermons and books to study guides and devotionals, we've curated materials to strengthen your walk with God.
+    </p>
+    
+    <div class="filter-section">
+      <div class="filter-container">
+        <button class="filter-btn active" data-filter="all">All Resources</button>
+        <button class="filter-btn" data-filter="sermons">Sermons</button>
+        <button class="filter-btn" data-filter="books">Books</button>
+        <button class="filter-btn" data-filter="studies">Bible Studies</button>
+        <button class="filter-btn" data-filter="devotionals">Devotionals</button>
+        <button class="filter-btn" data-filter="videos">Videos</button>
+      </div>
+    </div>
+    
+    <div class="resources-grid" id="resourcesGrid">
+      <!-- Resource cards will be dynamically loaded here -->
+      <div class="resource-card featured" data-category="books">
+        <div class="resource-badge">Featured</div>
+        <div class="resource-image">
+          <img src="resource-books.jpg" alt="SPAC Books Collection">
+        </div>
+        <div class="resource-content">
+          <span class="resource-category">Books</span>
+          <h3 class="resource-title">SPAC Bookshelf</h3>
+          <p class="resource-description">Access our complete collection of spiritual books, study guides, and publications from our pastors and guest authors.</p>
+          <div class="resource-meta">
+            <div class="resource-author">SPAC Publications</div>
+            <a href="bookshelf.html" class="resource-btn">View Collection</a>
+          </div>
+        </div>
+      </div>
+      
+      <div class="resource-card" data-category="sermons">
+        <div class="resource-image">
+          <img src="resource-sermons.jpg" alt="Sermon Archive">
+        </div>
+        <div class="resource-content">
+          <span class="resource-category">Sermons</span>
+          <h3 class="resource-title">Sermon Archive</h3>
+          <p class="resource-description">Access past sermons, teachings, and messages from our Sunday services and special events. Available in audio and video formats.</p>
+          <div class="resource-meta">
+            <div class="resource-author">Pastor's Ministry</div>
+            <a href="sermons.html" class="resource-btn">Listen Now</a>
+          </div>
+        </div>
+      </div>
+      
+      <div class="resource-card" data-category="studies">
+        <div class="resource-image">
+          <img src="resource-bible-study.jpg" alt="Bible Study Guides">
+        </div>
+        <div class="resource-content">
+          <span class="resource-category">Bible Studies</span>
+          <h3 class="resource-title">Bible Study Guides</h3>
+          <p class="resource-description">In-depth study guides for individuals and groups covering various books of the Bible and theological topics.</p>
+          <div class="resource-meta">
+            <div class="resource-author">SPAC Bible Ministry</div>
+            <a href="bible-studies.html" class="resource-btn">Download</a>
+          </div>
+        </div>
+      </div>
+      
+      <div class="resource-card" data-category="devotionals">
+        <div class="resource-image">
+          <img src="resource-devotional.jpg" alt="Daily Devotionals">
+        </div>
+        <div class="resource-content">
+          <span class="resource-category">Devotionals</span>
+          <h3 class="resource-title">Daily Devotionals</h3>
+          <p class="resource-description">Start your day with God. Daily devotionals with scripture readings, reflections, and prayer points for spiritual growth.</p>
+          <div class="resource-meta">
+            <div class="resource-author">SPAC Prayer Team</div>
+            <a href="devotionals.html" class="resource-btn">Read Today</a>
+          </div>
+        </div>
+      </div>
+      
+      <div class="resource-card" data-category="videos">
+        <div class="resource-image">
+          <img src="resource-videos.jpg" alt="Teaching Videos">
+        </div>
+        <div class="resource-content">
+          <span class="resource-category">Videos</span>
+          <h3 class="resource-title">Teaching Series</h3>
+          <p class="resource-description">Video teachings on faith, relationships, finances, spiritual warfare, and other topics for Christian living.</p>
+          <div class="resource-meta">
+            <div class="resource-author">SPAC Media</div>
+            <a href="videos.html" class="resource-btn">Watch Now</a>
+          </div>
+        </div>
+      </div>
+      
+      <div class="resource-card" data-category="books">
+        <div class="resource-image">
+          <img src="resource-children.jpg" alt="Children's Resources">
+        </div>
+        <div class="resource-content">
+          <span class="resource-category">Children</span>
+          <h3 class="resource-title">Kids Church Resources</h3>
+          <p class="resource-description">Fun and engaging Bible stories, activities, and lessons for children to learn about God in age-appropriate ways.</p>
+          <div class="resource-meta">
+            <div class="resource-author">SPAC Kids Ministry</div>
+            <a href="kids-resources.html" class="resource-btn">Explore</a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="bookshelf-preview">
+  <div class="container bookshelf-container">
+    <h2 class="section-title">Featured from Our Bookshelf</h2>
+    <p class="section-intro" style="color: #666;">
+      Preview some of our most popular books and resources. Visit our full bookshelf for the complete collection.
+    </p>
+    
+    <div class="bookshelf-grid">
+      <div class="book-item" onclick="window.location.href='bookshelf.html#book1'">
+        <div class="book-cover">
+          <i class="fas fa-cross"></i>
+        </div>
+        <h4 class="book-title">The Power of Faith</h4>
+        <div class="book-author">Pastor James Smith</div>
+        <div style="color: var(--secondary); font-size: 0.9rem;">★★★★★</div>
+      </div>
+      
+      <div class="book-item" onclick="window.location.href='bookshelf.html#book2'">
+        <div class="book-cover">
+          <i class="fas fa-pray"></i>
+        </div>
+        <h4 class="book-title">Prayer That Moves Mountains</h4>
+        <div class="book-author">Dr. Sarah Johnson</div>
+        <div style="color: var(--secondary); font-size: 0.9rem;">★★★★☆</div>
+      </div>
+      
+      <div class="book-item" onclick="window.location.href='bookshelf.html#book3'">
+        <div class="book-cover">
+          <i class="fas fa-heart"></i>
+        </div>
+        <h4 class="book-title">Love & Relationships</h4>
+        <div class="book-author">Pastor David & Grace</div>
+        <div style="color: var(--secondary); font-size: 0.9rem;">★★★★★</div>
+      </div>
+      
+      <div class="book-item" onclick="window.location.href='bookshelf.html#book4'">
+        <div class="book-cover">
+          <i class="fas fa-coins"></i>
+        </div>
+        <h4 class="book-title">Biblical Finances</h4>
+        <div class="book-author">Elder Michael Brown</div>
+        <div style="color: var(--secondary); font-size: 0.9rem;">★★★★☆</div>
+      </div>
+    </div>
+    
+    <a href="bookshelf.html" class="view-all-btn">
+      <i class="fas fa-book-open"></i> Visit Full Bookshelf
+    </a>
+  </div>
+</section>
+
+<footer>
+  <div class="container">
+    <p>&copy; 2025 SPAC Church. All Rights Reserved.</p>
+    <div class="footer-bottom">
+      <a href="privacy.html" style="color: #aaa; margin: 0 10px;">Privacy Policy</a> | 
+      <a href="terms.html" style="color: #aaa; margin: 0 10px;">Terms of Use</a> | 
+      <a href="contact.html" style="color: #aaa; margin: 0 10px;">Contact Us</a>
+    </div>
+  </div>
+</footer>
+
+<script>
+// Resources data
+let resources = [
+  {
+    id: 1,
+    title: "SPAC Bookshelf",
+    category: "books",
+    description: "Access our complete collection of spiritual books, study guides, and publications from our pastors and guest authors.",
+    author: "SPAC Publications",
+    link: "bookshelf.html",
+    featured: true,
+    image: "resource-books.jpg"
+  },
+  {
+    id: 2,
+    title: "Sermon Archive",
+    category: "sermons",
+    description: "Access past sermons, teachings, and messages from our Sunday services and special events. Available in audio and video formats.",
+    author: "Pastor's Ministry",
+    link: "sermons.html",
+    featured: false,
+    image: "resource-sermons.jpg"
+  },
+  {
+    id: 3,
+    title: "Bible Study Guides",
+    category: "studies",
+    description: "In-depth study guides for individuals and groups covering various books of the Bible and theological topics.",
+    author: "SPAC Bible Ministry",
+    link: "bible-studies.html",
+    featured: false,
+    image: "resource-bible-study.jpg"
+  },
+  {
+    id: 4,
+    title: "Daily Devotionals",
+    category: "devotionals",
+    description: "Start your day with God. Daily devotionals with scripture readings, reflections, and prayer points for spiritual growth.",
+    author: "SPAC Prayer Team",
+    link: "devotionals.html",
+    featured: false,
+    image: "resource-devotional.jpg"
+  },
+  {
+    id: 5,
+    title: "Teaching Series",
+    category: "videos",
+    description: "Video teachings on faith, relationships, finances, spiritual warfare, and other topics for Christian living.",
+    author: "SPAC Media",
+    link: "videos.html",
+    featured: false,
+    image: "resource-videos.jpg"
+  },
+  {
+    id: 6,
+    title: "Kids Church Resources",
+    category: "books",
+    description: "Fun and engaging Bible stories, activities, and lessons for children to learn about God in age-appropriate ways.",
+    author: "SPAC Kids Ministry",
+    link: "kids-resources.html",
+    featured: false,
+    image: "resource-children.jpg"
+  },
+  {
+    id: 7,
+    title: "Worship Music",
+    category: "videos",
+    description: "Original worship songs and music from SPAC worship team. Sheet music and audio downloads available.",
+    author: "SPAC Worship Team",
+    link: "worship-music.html",
+    featured: false,
+    image: "resource-music.jpg"
+  },
+  {
+    id: 8,
+    title: "Leadership Resources",
+    category: "books",
+    description: "Materials for church leaders, small group facilitators, and ministry team members.",
+    author: "SPAC Leadership",
+    link: "leadership-resources.html",
+    featured: false,
+    image: "resource-leadership.jpg"
+  }
+];
+
+// Filter functionality
+document.querySelectorAll('.filter-btn').forEach(button => {
+  button.addEventListener('click', function() {
+    const filter = this.getAttribute('data-filter');
+    
+    // Update active button
+    document.querySelectorAll('.filter-btn').forEach(btn => {
+      btn.classList.remove('active');
+    });
+    this.classList.add('active');
+    
+    // Render filtered resources
+    renderResources(filter);
+  });
+});
+
+// Render resources
+function renderResources(filter = 'all') {
+  const grid = document.getElementById('resourcesGrid');
+  
+  // Filter resources
+  const filteredResources = filter === 'all' 
+    ? resources 
+    : resources.filter(r => r.category === filter);
+  
+  // Clear grid
+  grid.innerHTML = '';
+  
+  // Render resources
+  filteredResources.forEach(resource => {
+    const card = document.createElement('div');
+    card.className = `resource-card ${resource.featured ? 'featured' : ''}`;
+    card.setAttribute('data-category', resource.category);
+    
+    card.innerHTML = `
+      ${resource.featured ? '<div class="resource-badge">Featured</div>' : ''}
+      <div class="resource-image">
+        <img src="${resource.image}" alt="${resource.title}">
+      </div>
+      <div class="resource-content">
+        <span class="resource-category">${resource.category.charAt(0).toUpperCase() + resource.category.slice(1)}</span>
+        <h3 class="resource-title">${resource.title}</h3>
+        <p class="resource-description">${resource.description}</p>
+        <div class="resource-meta">
+          <div class="resource-author">${resource.author}</div>
+          <a href="${resource.link}" class="resource-btn">${getButtonText(resource.category)}</a>
+        </div>
+      </div>
+    `;
+    
+    grid.appendChild(card);
+  });
+}
+
+// Get appropriate button text based on category
+function getButtonText(category) {
+  switch(category) {
+    case 'sermons': return 'Listen Now';
+    case 'videos': return 'Watch Now';
+    case 'books': return 'View Collection';
+    case 'studies': return 'Download';
+    case 'devotionals': return 'Read Now';
+    default: return 'View More';
+  }
+}
+
+// Initial render
+renderResources('all');
+</script>
+</body>
+</html>
