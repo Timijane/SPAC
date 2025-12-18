@@ -54,6 +54,7 @@
     color: inherit;
   }
   
+  /* Enhanced container for better responsiveness */
   .container {
     width: min(100% - clamp(1rem, 5vw, 3rem), 1200px);
     margin: 0 auto;
@@ -83,12 +84,14 @@
     box-shadow: 0 6px 20px rgba(139, 0, 0, 0.25);
   }
   
+  /* Professional touch: Glass morphism effect */
   .glass-effect {
     background: rgba(255, 255, 255, 0.95);
     backdrop-filter: blur(10px);
     -webkit-backdrop-filter: blur(10px);
   }
   
+  /* 1. BIGGER LOGO IN MENU BAR */
   header {
     background: white;
     box-shadow: 0 3px 20px rgba(0, 0, 0, 0.08);
@@ -118,6 +121,7 @@
     transform: translateX(-50%);
   }
   
+  /* MUCH BIGGER LOGO FRAME */
   .logo-frame {
     width: clamp(70px, 8vw, 100px);
     height: clamp(70px, 8vw, 100px);
@@ -138,6 +142,7 @@
     object-fit: contain;
   }
   
+  /* 6. SPAC CHURCH ON ONE LINE */
   .logo-text {
     font-family: 'Lobster', cursive;
     font-size: clamp(1.5rem, 4vw, 2.625rem);
@@ -149,6 +154,7 @@
     white-space: nowrap;
   }
   
+  /* Navigation */
   .nav-container {
     display: flex;
     align-items: center;
@@ -210,6 +216,7 @@
     }
   }
   
+  /* Mobile Menu */
   .hamburger {
     display: none;
     cursor: pointer;
@@ -292,6 +299,12 @@
       transform: translateX(0);
     }
     
+    .nav-menu li:nth-child(1) { transition-delay: 0.1s; }
+    .nav-menu li:nth-child(2) { transition-delay: 0.2s; }
+    .nav-menu li:nth-child(3) { transition-delay: 0.3s; }
+    .nav-menu li:nth-child(4) { transition-delay: 0.4s; }
+    .nav-menu li:nth-child(5) { transition-delay: 0.5s; }
+    
     .nav-menu a {
       font-size: 1.125rem;
       display: block;
@@ -335,6 +348,50 @@
     }
   }
   
+  @media (max-width: 768px) {
+    .logo-text {
+      font-size: clamp(1.125rem, 4vw, 1.5rem);
+    }
+    
+    .logo-frame {
+      width: clamp(50px, 8vw, 60px);
+      height: clamp(50px, 8vw, 60px);
+    }
+  }
+  
+  @media (max-width: 576px) {
+    .nav-menu {
+      width: min(90%, 350px);
+      right: -100%;
+    }
+    
+    .logo-text {
+      font-size: clamp(1rem, 4vw, 1.25rem);
+    }
+    
+    .logo-frame {
+      width: clamp(45px, 8vw, 50px);
+      height: clamp(45px, 8vw, 50px);
+    }
+    
+    .header-container {
+      padding: 0 1rem;
+    }
+  }
+  
+  @media (max-width: 400px) {
+    .logo-text {
+      font-size: 0.875rem;
+    }
+    
+    .logo-frame {
+      width: 40px;
+      height: 40px;
+      margin-right: 0.5rem;
+    }
+  }
+  
+  /* Hero Section */
   .hero {
     position: relative;
     height: clamp(500px, 85vh, 800px);
@@ -362,6 +419,7 @@
     z-index: 1;
   }
   
+  /* 7. FASTER VIDEO LOADING */
   .hero-video {
     position: absolute;
     top: 0;
@@ -377,6 +435,7 @@
     autoplay: true;
   }
   
+  /* 4. LOWER HERO TEXT */
   .hero-content {
     max-width: min(90%, 800px);
     padding: 0 clamp(1rem, 3vw, 2rem);
@@ -394,6 +453,7 @@
     text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.5);
   }
   
+  /* 5. FASTER & SLANTED BIBLE TICKER */
   .scripture-ticker {
     position: absolute;
     bottom: 0;
@@ -424,10 +484,15 @@
   }
   
   @keyframes ticker-scroll {
-    0% { transform: translateX(0) skewY(3deg); }
-    100% { transform: translateX(-50%) skewY(3deg); }
+    0% {
+      transform: translateX(0) skewY(3deg);
+    }
+    100% {
+      transform: translateX(-50%) skewY(3deg);
+    }
   }
   
+  /* Professional touch: Scroll progress indicator */
   .scroll-progress {
     position: fixed;
     top: 0;
@@ -439,6 +504,7 @@
     transition: width 0.1s ease;
   }
   
+  /* ====== 1. FIXED CIRCLE BUTTONS SECTION ====== */
   .circle-buttons-section {
     padding: clamp(3rem, 8vw, 4.375rem) 0;
     background: white;
@@ -465,7 +531,7 @@
     justify-content: center;
     flex-direction: column;
     cursor: pointer;
-    transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+    transition: all 0.5s cubic-bezier(0.175, 0.885, 0.32, 1.275);
     box-shadow: 0 15px 35px rgba(26, 75, 140, 0.2);
     text-align: center;
     padding: 1.25rem;
@@ -491,7 +557,16 @@
     box-shadow: 0 20px 40px rgba(26, 75, 140, 0.3);
   }
   
-  .circle-button:hover:before { opacity: 1; }
+  .circle-button:hover:before {
+    opacity: 1;
+  }
+  
+  .circle-button.square {
+    border-radius: 20px;
+    width: clamp(160px, 22vw, 200px);
+    height: clamp(160px, 22vw, 200px);
+    background: linear-gradient(135deg, var(--accent) 0%, #a30000 100%);
+  }
   
   .circle-button i {
     font-size: clamp(2.5rem, 5vw, 2.75rem);
@@ -507,16 +582,115 @@
     z-index: 2;
     line-height: 1.3;
   }
-
-  @keyframes bounce { 0%, 100% { transform: translateY(0); } 50% { transform: translateY(-15px); } }
-  @keyframes pulse { 0%, 100% { transform: scale(1); } 50% { transform: scale(1.05); } }
-  @keyframes rotate { 0% { transform: rotate(0deg); } 100% { transform: rotate(360deg); } }
-  @keyframes glow { 0%, 100% { box-shadow: 0 15px 35px rgba(26, 75, 140, 0.2); } 50% { box-shadow: 0 15px 35px rgba(212, 175, 55, 0.5); } }
   
-  .circle-button.bounce { animation: bounce 3s ease-in-out infinite; }
-  .circle-button.pulse { animation: pulse 4s ease-in-out infinite; }
-  .circle-button.glow { animation: glow 3s ease-in-out infinite; }
+  /* ====== DYNAMIC BUTTON ANIMATIONS ====== */
+  @keyframes bounce {
+    0%, 100% { transform: translateY(0); }
+    50% { transform: translateY(-15px); }
+  }
   
+  @keyframes pulse {
+    0%, 100% { transform: scale(1); }
+    50% { transform: scale(1.05); }
+  }
+  
+  @keyframes rotate {
+    0% { transform: rotate(0deg); }
+    100% { transform: rotate(360deg); }
+  }
+  
+  @keyframes glow {
+    0%, 100% { box-shadow: 0 15px 35px rgba(26, 75, 140, 0.2); }
+    50% { box-shadow: 0 15px 35px rgba(212, 175, 55, 0.5), 0 0 20px rgba(212, 175, 55, 0.3); }
+  }
+  
+  @keyframes shake {
+    0%, 100% { transform: translateX(0); }
+    25% { transform: translateX(-5px); }
+    75% { transform: translateX(5px); }
+  }
+  
+  .circle-button.bounce {
+    animation: bounce var(--animation-time, 3s) ease-in-out infinite;
+  }
+  
+  .circle-button.pulse {
+    animation: pulse var(--animation-time, 4s) ease-in-out infinite;
+  }
+  
+  .circle-button.rotate i {
+    animation: rotate var(--animation-time, 5s) linear infinite;
+  }
+  
+  .circle-button.glow {
+    animation: glow var(--animation-time, 3s) ease-in-out infinite;
+  }
+  
+  .circle-button.shake {
+    animation: shake var(--animation-time, 2s) ease-in-out infinite;
+  }
+  
+  .circle-button.hover-active {
+    transform: scale(1.1) !important;
+    z-index: 10;
+  }
+  
+  .ripple {
+    position: absolute;
+    border-radius: 50%;
+    background: rgba(255, 255, 255, 0.7);
+    transform: scale(0);
+    animation: ripple-animation 1s linear;
+    pointer-events: none;
+  }
+  
+  @keyframes ripple-animation {
+    to {
+      transform: scale(4);
+      opacity: 0;
+    }
+  }
+  
+  .circle-button.clicked {
+    animation: none !important;
+    transform: scale(0.9);
+    transition: transform 0.3s ease;
+  }
+  
+  @media (max-width: 768px) {
+    .circle-buttons-container {
+      grid-template-columns: repeat(2, 1fr);
+      gap: 1.5rem;
+    }
+    
+    .circle-button {
+      width: clamp(130px, 35vw, 160px);
+      height: clamp(130px, 35vw, 160px);
+    }
+    
+    .circle-button i {
+      font-size: clamp(2rem, 6vw, 2.5rem);
+      margin-bottom: 0.75rem;
+    }
+    
+    .circle-button h3 {
+      font-size: clamp(0.75rem, 2vw, 0.875rem);
+    }
+  }
+  
+  @media (max-width: 480px) {
+    .circle-buttons-container {
+      grid-template-columns: 1fr;
+      gap: 1.5rem;
+    }
+    
+    .circle-button {
+      width: 160px;
+      height: 160px;
+    }
+  }
+  
+  /* Logo Section */
   .logo-section {
     padding: clamp(4rem, 10vw, 7.5rem) 0;
     background: linear-gradient(135deg, #f8f9fa 0%, #e9ecef 100%);
@@ -528,7 +702,10 @@
   .logo-section:before {
     content: '';
     position: absolute;
-    top: 0; left: 0; width: 100%; height: 5px;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 5px;
     background: linear-gradient(90deg, var(--primary), var(--secondary), var(--accent));
   }
   
@@ -536,9 +713,20 @@
     max-width: min(90%, 450px);
     margin: 0 auto clamp(2rem, 5vw, 3.125rem);
     animation: float 4s ease-in-out infinite;
+    position: relative;
   }
   
-  @keyframes float { 0%, 100% { transform: translateY(0px); } 50% { transform: translateY(-20px); } }
+  .big-logo img {
+    width: 100%;
+    height: auto;
+    filter: drop-shadow(0 10px 20px rgba(0,0,0,0.1));
+  }
+  
+  @keyframes float {
+    0% { transform: translateY(0px); }
+    50% { transform: translateY(-20px); }
+    100% { transform: translateY(0px); }
+  }
   
   .we-are-spac {
     font-family: 'Lobster', cursive;
@@ -547,15 +735,29 @@
     margin-bottom: clamp(1.5rem, 4vw, 1.875rem);
     font-weight: 400;
     letter-spacing: 1.5px;
+    text-shadow: 2px 2px 4px rgba(0,0,0,0.1);
+    position: relative;
+    display: inline-block;
   }
   
+  .we-are-spac:after {
+    content: '';
+    position: absolute;
+    bottom: -10px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: clamp(100px, 20vw, 150px);
+    height: 3px;
+    background: var(--secondary);
+  }
+  
+  /* About Card - UPDATED FOR SWIFT ANIMATION */
   .about-card-section {
     padding: clamp(3rem, 8vw, 5rem) 0 clamp(5rem, 12vw, 8.75rem);
     background: white;
-    overflow: hidden;
+    position: relative;
   }
   
-  /* WELCOME DYNAMIC ANIMATION */
   .floating-card {
     background: white;
     max-width: min(95%, 900px);
@@ -564,20 +766,25 @@
     border-radius: 25px;
     box-shadow: 0 25px 60px rgba(0,0,0,0.08);
     position: relative;
+    overflow: hidden;
     border: 1px solid rgba(0,0,0,0.05);
     opacity: 0;
-    transform: translateY(100px) scale(0.9);
-    transition: all 0.8s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+    transform: translateY(50px);
+    transition: all 0.8s cubic-bezier(0.175, 0.885, 0.32, 1.275);
   }
   
-  .floating-card.visible {
+  .floating-card.animated {
     opacity: 1;
-    transform: translateY(0) scale(1);
+    transform: translateY(0);
   }
   
   .floating-card:before {
     content: '';
-    position: absolute; top: 0; left: 0; width: 100%; height: 8px;
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 8px;
     background: linear-gradient(90deg, var(--primary), var(--secondary), var(--accent));
   }
   
@@ -587,9 +794,22 @@
     font-size: clamp(2rem, 4vw, 2.8rem);
     margin-bottom: clamp(1.5rem, 4vw, 1.875rem);
     text-align: center;
+    font-weight: 600;
   }
-
-  /* REFINED SWIFT PICTURE SECTION */
+  
+  .floating-card p {
+    font-size: clamp(1rem, 1.5vw, 1.15rem);
+    color: #555;
+    line-height: 1.9;
+    margin-bottom: clamp(1rem, 2.5vw, 1.875rem);
+    text-align: center;
+  }
+  
+  .card-btn-container {
+    text-align: center;
+  }
+  
+  /* ====== 2. ENHANCED DYNAMIC PICTURES SECTION - OPTIMIZED FOR PERFORMANCE ====== */
   .dynamic-pictures {
     padding: clamp(4rem, 10vw, 7.5rem) 0;
     background: linear-gradient(135deg, #f8f9fa 0%, #ffffff 100%);
@@ -601,6 +821,19 @@
     font-size: clamp(2rem, 5vw, 3rem);
     color: var(--primary);
     margin-bottom: clamp(2rem, 6vw, 5rem);
+    position: relative;
+    padding-bottom: clamp(1rem, 2.5vw, 1.25rem);
+  }
+  
+  .section-title:after {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 50%;
+    transform: translateX(-50%);
+    width: clamp(80px, 15vw, 100px);
+    height: 4px;
+    background: var(--secondary);
   }
   
   .picture-grid {
@@ -614,130 +847,346 @@
     background: white;
     border-radius: 18px;
     overflow: hidden;
-    box-shadow: 0 10px 25px rgba(0,0,0,0.05);
+    box-shadow: 0 15px 35px rgba(0,0,0,0.08);
+    transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+    opacity: 0;
     cursor: pointer;
     position: relative;
-    opacity: 0;
+    transform-origin: center;
     will-change: transform, opacity;
-    transition: transform 0.4s cubic-bezier(0.165, 0.84, 0.44, 1), opacity 0.4s ease-out;
+  }
+  
+  .picture-card:before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(to bottom, transparent 60%, rgba(0,0,0,0.7) 100%);
+    z-index: 1;
+    opacity: 0;
+    transition: opacity 0.3s ease;
+  }
+  
+  .picture-card:hover:before {
+    opacity: 1;
+  }
+  
+  .picture-card:hover {
+    transform: translateY(-15px) scale(1.02);
+    box-shadow: 0 25px 50px rgba(0,0,0,0.15);
+  }
+  
+  /* Optimized animation classes for better performance */
+  .picture-card.from-left {
+    transform: translate3d(-100px, 0, 0);
+  }
+  
+  .picture-card.from-right {
+    transform: translate3d(100px, 0, 0);
+  }
+  
+  .picture-card.from-up {
+    transform: translate3d(0, -100px, 0);
+  }
+  
+  .picture-card.from-down {
+    transform: translate3d(0, 100px, 0);
+  }
+  
+  .picture-card.from-diagonal-left {
+    transform: translate3d(-100px, 100px, 0);
+  }
+  
+  .picture-card.from-diagonal-right {
+    transform: translate3d(100px, 100px, 0);
   }
   
   .picture-card.visible {
     opacity: 1;
-    transform: translate(0, 0) !important;
-  }
-  
-  .picture-card:hover {
-    transform: translateY(-10px) !important;
-    box-shadow: 0 20px 40px rgba(0,0,0,0.12);
+    transform: translate3d(0, 0, 0) !important;
   }
   
   .picture-card img {
     width: 100%;
     height: 280px;
     object-fit: cover;
+    transition: transform 0.5s ease;
+  }
+  
+  .picture-card:hover img {
+    transform: scale(1.05);
   }
   
   .picture-card h3 {
-    padding: 1.25rem;
+    padding: clamp(1rem, 2.5vw, 1.5rem);
     color: var(--primary);
     text-align: center;
-    font-size: 1.25rem;
+    font-size: clamp(1.25rem, 2vw, 1.6rem);
     font-weight: 600;
+    position: relative;
+    z-index: 2;
+  }
+  
+  .picture-card.large {
+    grid-column: span 2;
+  }
+  
+  .picture-card.large img {
+    height: 380px;
+  }
+  
+  @media (max-width: 1100px) {
+    .picture-card.large {
+      grid-column: span 1;
+    }
+    
+    .picture-card.large img {
+      height: 280px;
+    }
+  }
+  
+  @media (max-width: 768px) {
+    .picture-grid {
+      grid-template-columns: repeat(auto-fit, minmax(min(250px, 100%), 1fr));
+    }
+    
+    .picture-card img {
+      height: 200px;
+    }
+    
+    .picture-card.large img {
+      height: 220px;
+    }
+  }
+  
+  @media (max-width: 480px) {
+    .picture-grid {
+      grid-template-columns: 1fr;
+    }
+    
+    .picture-card img {
+      height: 180px;
+    }
   }
   
   /* Instagram-like Slider */
   .insta-slider {
-    margin: clamp(2rem, 5vw, 3.75rem) 0;
+    margin: clamp(2rem, 5vw, 3.75rem) 0 clamp(1.5rem, 4vw, 2.5rem);
     padding: clamp(1.5rem, 4vw, 2.5rem);
+    background: white;
     border-radius: 20px;
+    box-shadow: 0 15px 40px rgba(0,0,0,0.05);
     position: relative;
+  }
+  
+  .insta-title {
+    text-align: center;
+    color: var(--primary);
+    margin-bottom: clamp(1.5rem, 4vw, 1.875rem);
+    font-size: clamp(1.5rem, 3vw, 2.2rem);
+    font-family: 'Playfair Display', serif;
   }
   
   .insta-track {
     display: flex;
-    gap: 1.5rem;
+    gap: clamp(1rem, 2.5vw, 1.5rem);
     overflow-x: auto;
-    padding: 1rem 0;
+    padding: clamp(1rem, 2.5vw, 1.5rem) 0;
     scroll-behavior: smooth;
     scrollbar-width: none;
+    -ms-overflow-style: none;
   }
   
-  .insta-track::-webkit-scrollbar { display: none; }
+  .insta-track::-webkit-scrollbar {
+    display: none;
+  }
   
   .insta-slide {
     flex: 0 0 auto;
-    width: 220px;
-    height: 220px;
+    width: clamp(180px, 25vw, 220px);
+    height: clamp(180px, 25vw, 220px);
     border-radius: 15px;
     overflow: hidden;
     box-shadow: 0 10px 25px rgba(0,0,0,0.1);
-    transition: 0.3s;
+    cursor: pointer;
+    transition: all 0.3s ease;
   }
   
-  .insta-slide:hover { transform: scale(1.05); }
+  .insta-slide:hover {
+    transform: scale(1.05);
+    box-shadow: 0 15px 35px rgba(0,0,0,0.15);
+  }
   
-  .insta-slide img { width: 100%; height: 100%; object-fit: cover; }
+  .insta-slide img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+  }
   
+  /* Location Section */
   .location-section {
     padding: clamp(4rem, 10vw, 7.5rem) 0;
     background: white;
     position: relative;
   }
   
+  .location-section:before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 5px;
+    background: linear-gradient(90deg, var(--primary), var(--secondary), var(--accent));
+  }
+  
   .location-grid {
     display: grid;
     grid-template-columns: repeat(auto-fill, minmax(min(280px, 100%), 1fr));
-    gap: 2rem;
-    margin-top: 3.75rem;
+    gap: clamp(1rem, 3vw, 2rem);
+    margin-top: clamp(2rem, 5vw, 3.75rem);
   }
   
+  /* Footer */
   footer {
     background: var(--dark);
     color: white;
-    padding: clamp(3rem, 8vw, 5rem) 0 1.875rem;
+    padding: clamp(3rem, 8vw, 5rem) 0 clamp(1.5rem, 4vw, 1.875rem);
     position: relative;
+    width: 100%;
+    overflow: hidden;
+  }
+  
+  footer:before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 5px;
+    background: linear-gradient(90deg, var(--primary), var(--secondary), var(--accent));
   }
   
   .footer-content {
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(min(250px, 100%), 1fr));
-    gap: 2.5rem;
+    gap: clamp(1.5rem, 4vw, 2.5rem);
+    margin-bottom: clamp(2rem, 5vw, 3.125rem);
   }
   
   .footer-column h3 {
-    margin-bottom: 1.5rem;
+    margin-bottom: clamp(1rem, 2.5vw, 1.5rem);
     color: var(--secondary);
+    font-size: clamp(1.25rem, 2vw, 1.5rem);
+    font-weight: 600;
+    position: relative;
+    padding-bottom: 0.625rem;
   }
   
-  .footer-links { list-style: none; }
-  .footer-links li { margin-bottom: 0.75rem; }
-  .footer-links a { color: #ddd; transition: 0.3s; }
-  .footer-links a:hover { color: var(--secondary); transform: translateX(5px); display: inline-block; }
+  .footer-column h3:after {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 50px;
+    height: 3px;
+    background: var(--primary);
+  }
   
-  .social-links { display: flex; gap: 1rem; margin-top: 1.5rem; }
+  .footer-links {
+    list-style: none;
+  }
+  
+  .footer-links li {
+    margin-bottom: 0.75rem;
+  }
+  
+  .footer-links a {
+    color: #ddd;
+    transition: 0.3s;
+    display: inline-block;
+  }
+  
+  .footer-links a:hover {
+    color: var(--secondary);
+    transform: translateX(5px);
+  }
+  
+  .social-links {
+    display: flex;
+    gap: clamp(0.75rem, 2vw, 1rem);
+    margin-top: clamp(1rem, 2.5vw, 1.5rem);
+  }
+  
   .social-links a {
-    width: 45px; height: 45px; background: rgba(255,255,255,0.1);
-    border-radius: 50%; display: flex; align-items: center; justify-content: center;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: clamp(40px, 5vw, 45px);
+    height: clamp(40px, 5vw, 45px);
+    background: rgba(255,255,255,0.1);
+    border-radius: 50%;
     transition: 0.3s;
   }
-  .social-links a:hover { background: var(--secondary); transform: translateY(-5px); }
   
+  .social-links a:hover {
+    background: var(--secondary);
+    transform: translateY(-5px);
+  }
+  
+  .footer-bottom {
+    text-align: center;
+    padding-top: clamp(1rem, 2.5vw, 1.875rem);
+    border-top: 1px solid rgba(255,255,255,0.1);
+    font-size: clamp(0.75rem, 1.5vw, 0.9rem);
+    color: #aaa;
+  }
+  
+  /* Scroll to top button */
   .scroll-top {
-    position: fixed; bottom: 30px; right: 30px;
-    width: 50px; height: 50px; background: var(--primary);
-    color: white; border-radius: 50%; display: flex;
-    align-items: center; justify-content: center;
-    cursor: pointer; z-index: 999; opacity: 0; visibility: hidden;
-    transition: 0.3s;
+    position: fixed;
+    bottom: clamp(1rem, 3vw, 1.875rem);
+    right: clamp(1rem, 3vw, 1.875rem);
+    width: clamp(45px, 5vw, 50px);
+    height: clamp(45px, 5vw, 50px);
+    background: var(--primary);
+    color: white;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    z-index: 999;
+    opacity: 0;
+    visibility: hidden;
+    transition: all 0.3s ease;
+    box-shadow: 0 5px 15px rgba(26, 75, 140, 0.3);
   }
   
-  .scroll-top.visible { opacity: 1; visibility: visible; }
+  .scroll-top.visible {
+    opacity: 1;
+    visibility: visible;
+  }
   
+  .scroll-top:hover {
+    background: var(--accent);
+    transform: translateY(-5px);
+    box-shadow: 0 8px 20px rgba(139, 0, 0, 0.3);
+  }
+  
+  /* Professional touch: Loading animation */
   .loading {
-    position: fixed; top: 0; left: 0; width: 100%; height: 3px;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 3px;
     background: linear-gradient(90deg, var(--primary), var(--secondary), var(--accent));
-    z-index: 9999; animation: loading 2s ease-in-out infinite;
+    z-index: 9999;
+    transform-origin: 0 50%;
+    animation: loading 2s ease-in-out infinite;
   }
   
   @keyframes loading {
@@ -745,20 +1194,123 @@
     50% { transform: scaleX(1); transform-origin: 0 50%; }
     100% { transform: scaleX(0); transform-origin: 100% 50%; }
   }
-
+  
+  /* Professional touch: Modern hover effects */
+  .hover-lift {
+    transition: transform 0.3s cubic-bezier(0.34, 1.56, 0.64, 1);
+  }
+  
+  .hover-lift:hover {
+    transform: translateY(-8px);
+  }
+  
+  /* Professional touch: Gradient text */
   .gradient-text {
     background: linear-gradient(135deg, var(--primary), var(--secondary));
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
+    background-clip: text;
   }
-
+  
+  /* Professional touch: Modern focus states */
+  *:focus-visible {
+    outline: 2px solid var(--secondary);
+    outline-offset: 3px;
+    border-radius: 4px;
+  }
+  
+  /* Professional touch: Custom scrollbar */
+  ::-webkit-scrollbar {
+    width: 10px;
+    height: 10px;
+  }
+  
+  ::-webkit-scrollbar-track {
+    background: rgba(0, 0, 0, 0.05);
+    border-radius: 10px;
+  }
+  
+  ::-webkit-scrollbar-thumb {
+    background: linear-gradient(var(--primary), var(--secondary));
+    border-radius: 10px;
+  }
+  
+  ::-webkit-scrollbar-thumb:hover {
+    background: linear-gradient(var(--secondary), var(--accent));
+  }
+  
+  /* Professional touch: Reduced motion */
+  @media (prefers-reduced-motion: reduce) {
+    *,
+    *::before,
+    *::after {
+      animation-duration: 0.01ms !important;
+      animation-iteration-count: 1 !important;
+      transition-duration: 0.01ms !important;
+      scroll-behavior: auto !important;
+    }
+  }
+  
+  /* Professional touch: Print styles */
+  @media print {
+    .no-print {
+      display: none !important;
+    }
+    
+    body {
+      font-size: 12pt;
+      line-height: 1.5;
+      background: white !important;
+    }
+    
+    .hero-video {
+      display: none;
+    }
+    
+    .hero {
+      background: var(--primary);
+      color: white;
+    }
+  }
+  
+  /* Ensure all images are responsive */
+  img {
+    max-width: 100%;
+    height: auto;
+    display: block;
+  }
+  
+  /* Professional touch: Skip to main content */
+  .skip-to-main {
+    position: absolute;
+    top: -40px;
+    left: 0;
+    background: var(--primary);
+    color: white;
+    padding: 8px 16px;
+    z-index: 9999;
+    transition: top 0.3s ease;
+  }
+  
+  .skip-to-main:focus {
+    top: 0;
+  }
 </style>
 </head>
 <body>
-
+<!-- Loading animation -->
 <div class="loading"></div>
+
+<!-- Scroll progress indicator -->
 <div class="scroll-progress" id="scrollProgress"></div>
-<div class="scroll-top" id="scrollTop"><i class="fas fa-chevron-up"></i></div>
+
+<!-- Skip to main content link -->
+<a href="#main-content" class="skip-to-main">Skip to main content</a>
+
+<!-- Scroll to Top Button -->
+<div class="scroll-top" id="scrollTop">
+  <i class="fas fa-chevron-up"></i>
+</div>
 
 <header id="mainHeader" class="glass-effect">
   <div class="container header-container">
@@ -770,7 +1322,7 @@
     </div>
     <div class="nav-container">
       <ul class="nav-menu">
-        <li><a href="#home">Home</a></li>
+        <li><a href="#home" class="active">Home</a></li>
         <li class="dropdown"><a href="#about">About <i class="fas fa-chevron-down"></i></a>
           <div class="dropdown-content">
             <a href="about.html">Our Story</a>
@@ -786,6 +1338,7 @@
             <a href="teen-church.html">Teen Church</a>
             <a href="kids-church.html">Kids Church</a>
             <a href="marriage-counselling.html">Marriage & Counselling</a>
+            <!-- SPAC UK REMOVED -->
             <a href="spac-nxtion.html">SPAC Nxtion</a>
             <a href="spac-us.html">SPAC US</a>
           </div>
@@ -797,44 +1350,62 @@
   </div>
 </header>
 
-<section class="hero" id="home">
-  <video class="hero-video" autoplay muted loop playsinline preload="auto">
+<!-- Hero Section -->
+<section class="hero" id="home" id="main-content">
+  <!-- 7. FASTER VIDEO LOADING WITH OPTIMIZED ATTRIBUTES -->
+  <video class="hero-video" autoplay muted loop playsinline preload="auto" poster="hero-poster.jpg">
     <source src="spac001.mp4" type="video/mp4">
+    <source src="spac001.webm" type="video/webm">
     Your browser does not support the video tag.
   </video>
   <div class="hero-overlay"></div>
+  
   <div class="hero-content">
     <p>We are delighted that you have chosen to visit our website! We welcome you and pray the Word of God delivered from this ministry becomes a testimony. God bless you.</p>
   </div>
   
+  <!-- 5. FASTER & SLANTED SCRIPTURE TICKER -->
   <div class="scripture-ticker">
     <div class="ticker-container">
-      <div class="ticker-item"><i class="fas fa-fire"></i> "But you will receive power..." - Acts 1:8</div>
-      <div class="ticker-item"><i class="fas fa-cross"></i> "For we walk by faith..." - 2 Cor 5:7</div>
-      <div class="ticker-item"><i class="fas fa-heart"></i> "I have come that they may have life..." - John 10:10</div>
-      <div class="ticker-item"><i class="fas fa-dove"></i> "But the fruit of the Spirit is love..." - Gal 5:22</div>
-      <div class="ticker-item"><i class="fas fa-fire"></i> "But you will receive power..." - Acts 1:8</div>
-      <div class="ticker-item"><i class="fas fa-cross"></i> "For we walk by faith..." - 2 Cor 5:7</div>
+      <div class="ticker-item"><i class="fas fa-fire"></i> "But you will receive power when the Holy Spirit comes on you..." - Acts 1:8</div>
+      <div class="ticker-item"><i class="fas fa-cross"></i> "For we walk by faith, not by sight." - 2 Corinthians 5:7</div>
+      <div class="ticker-item"><i class="fas fa-heart"></i> "I have come that they may have life, and have it to the full." - John 10:10</div>
+      <div class="ticker-item"><i class="fas fa-hand-holding-heart"></i> "For the Spirit God gave us does not make us timid, but gives us power, love and self-discipline." - 2 Timothy 1:7</div>
+      <div class="ticker-item"><i class="fas fa-crown"></i> "The thief comes only to steal and kill and destroy; I have come that they may have life..." - John 10:10</div>
+      <div class="ticker-item"><i class="fas fa-dove"></i> "But the fruit of the Spirit is love, joy, peace, forbearance, kindness, goodness, faithfulness..." - Galatians 5:22</div>
+      <div class="ticker-item"><i class="fas fa-mountain"></i> "I can do all this through him who gives me strength." - Philippians 4:13</div>
+      <div class="ticker-item"><i class="fas fa-seedling"></i> "For God has not given us a spirit of fear, but of power and of love and of a sound mind." - 2 Timothy 1:7</div>
+      
+      <!-- Duplicate for seamless loop -->
+      <div class="ticker-item"><i class="fas fa-fire"></i> "But you will receive power when the Holy Spirit comes on you..." - Acts 1:8</div>
+      <div class="ticker-item"><i class="fas fa-cross"></i> "For we walk by faith, not by sight." - 2 Corinthians 5:7</div>
+      <div class="ticker-item"><i class="fas fa-heart"></i> "I have come that they may have life, and have it to the full." - John 10:10</div>
+      <div class="ticker-item"><i class="fas fa-hand-holding-heart"></i> "For the Spirit God gave us does not make us timid, but gives us power, love and self-discipline." - 2 Timothy 1:7</div>
+      <div class="ticker-item"><i class="fas fa-crown"></i> "The thief comes only to steal and kill and destroy; I have come that they may have life..." - John 10:10</div>
+      <div class="ticker-item"><i class="fas fa-dove"></i> "But the fruit of the Spirit is love, joy, peace, forbearance, kindness, goodness, faithfulness..." - Galatians 5:22</div>
+      <div class="ticker-item"><i class="fas fa-mountain"></i> "I can do all this through him who gives me strength." - Philippians 4:13</div>
+      <div class="ticker-item"><i class="fas fa-seedling"></i> "For God has not given us a spirit of fear, but of power and of love and of a sound mind." - 2 Timothy 1:7</div>
     </div>
   </div>
 </section>
 
+<!-- Circle Buttons Section -->
 <section class="circle-buttons-section" id="quick-links">
   <div class="container">
     <div class="circle-buttons-container">
-      <div class="circle-button bounce" onclick="navigateToPage('new-member.html', this)">
+      <div class="circle-button dynamic hover-lift" id="new-button" onclick="navigateToPage('new-member.html', this)">
         <i class="fas fa-user-plus"></i>
-        <h3>I'm New Member</h3>
+        <h3>I'm New Member/Visitor</h3>
       </div>
-      <div class="circle-button pulse" onclick="navigateToPage('prayer.html', this)">
+      <div class="circle-button dynamic hover-lift" id="prayer-button" onclick="navigateToPage('prayer.html', this)">
         <i class="fas fa-praying-hands"></i>
         <h3>Prayer</h3>
       </div>
-      <div class="circle-button glow" onclick="navigateToPage('testimony.html', this)">
+      <div class="circle-button dynamic hover-lift" id="testimony-button" onclick="navigateToPage('testimony.html', this)">
         <i class="fas fa-bullhorn"></i>
         <h3>Testimony</h3>
       </div>
-      <div class="circle-button" onclick="navigateToPage('resources.html', this)">
+      <div class="circle-button hover-lift" id="resources-button" onclick="navigateToPage('resources.html', this)">
         <i class="fas fa-book"></i>
         <h3>Resources</h3>
       </div>
@@ -842,83 +1413,125 @@
   </div>
 </section>
 
+<!-- Logo and About Section -->
 <section class="logo-section">
   <div class="container">
-    <div class="big-logo"><img src="spac-logo-large.jpg" alt="SPAC Logo"></div>
+    <div class="big-logo">
+      <img src="spac-logo-large.jpg" alt="SPAC Church Logo">
+    </div>
     <div class="we-are-spac gradient-text">We are SPAC</div>
   </div>
 </section>
 
 <section class="about-card-section" id="about">
   <div class="container">
-    <div class="floating-card glass-effect" id="welcomeCard">
+    <div class="floating-card glass-effect">
       <h2>Welcome to SPAC Church</h2>
       <p>SPAC Church is a vibrant, multicultural community of believers committed to spreading the gospel of Jesus Christ and making disciples of all nations. Founded on the principles of faith, love, and hope, we are dedicated to worship, fellowship, and service.</p>
-      <p>Our mission is to raise champions and nurture leaders who will transform their world through the power of the Holy Spirit.</p>
-      <div class="card-btn-container" style="text-align: center;">
+      <p>Our mission is to raise champions and nurture leaders who will transform their world through the power of the Holy Spirit. Through dynamic worship, sound biblical teaching, and compassionate outreach, we strive to impact our community and beyond.</p>
+      <p>Join us as we worship, learn, and serve together in unity and love, building a church that reflects God's kingdom here on earth.</p>
+      <div class="card-btn-container">
         <a href="about.html" class="btn">Read More</a>
       </div>
     </div>
   </div>
 </section>
 
-<section class="dynamic-pictures" id="ministries">
+<!-- Dynamic Pictures Section -->
+<section class="dynamic-pictures">
   <div class="container">
     <h2 class="section-title gradient-text">Our Ministries & Programs</h2>
     <div class="picture-grid">
-      <div class="picture-card" onclick="openPage('vanguard.html')">
-        <img src="vanguard.png" alt="Vanguard Youth" loading="lazy">
+      <div class="picture-card hover-lift" onclick="openPage('vanguard.html')">
+        <img src="vanguard.png" alt="Vanguard Youth Ministry" loading="lazy">
         <h3>Vanguard Youth</h3>
       </div>
-      <div class="picture-card" onclick="openPage('proclaimers.html')">
-        <img src="proclaimers.png" alt="Proclaimers" loading="lazy">
+      <div class="picture-card hover-lift" onclick="openPage('proclaimers.html')">
+        <img src="proclaimers.png" alt="Proclaimers Ministry" loading="lazy">
         <h3>Proclaimers</h3>
       </div>
-      <div class="picture-card" onclick="openPage('announcements.html')">
-        <img src="announcements.jpg" alt="Announcements" loading="lazy">
+      <div class="picture-card hover-lift" onclick="openPage('announcements.html')">
+        <img src="announcements.jpg" alt="Church Announcements" loading="lazy">
         <h3>Announcements</h3>
       </div>
-      <div class="picture-card" onclick="openPage('teen-church.html')">
+      <div class="picture-card large hover-lift" onclick="openPage('teen-church.html')">
         <img src="teen-church.png" alt="Teen Church" loading="lazy">
         <h3>Teen Church</h3>
       </div>
-      <div class="picture-card" onclick="openPage('kids-church.html')">
+      <div class="picture-card hover-lift" onclick="openPage('arise-conference.html')">
+        <img src="arise-conference.jpg" alt="Arise Conference" loading="lazy">
+        <h3>Arise Conference</h3>
+      </div>
+      <div class="picture-card hover-lift" onclick="openPage('kids-church.html')">
         <img src="kids-church.jpg" alt="Kids Church" loading="lazy">
         <h3>Kids Church</h3>
       </div>
-      <div class="picture-card" onclick="openPage('spac-nxtion.html')">
+      <div class="picture-card hover-lift" onclick="openPage('sermons.html')">
+        <img src="sermons.png" alt="Listen to Sermon" loading="lazy">
+        <h3>Listen to Sermon</h3>
+      </div>
+      <div class="picture-card hover-lift" onclick="openPage('marriage-counselling.html')">
+        <img src="marriage-counselling.png" alt="Marriage & Counselling" loading="lazy">
+        <h3>Marriage & Counselling</h3>
+      </div>
+      <!-- SPAC UK REMOVED from here -->
+      <div class="picture-card hover-lift" onclick="openPage('spac-nxtion.html')">
         <img src="spac-nxtion.jpg" alt="SPAC Nxtion" loading="lazy">
         <h3>SPAC Nxtion</h3>
       </div>
-      <div class="picture-card" onclick="openPage('spac-us.html')">
+      <div class="picture-card hover-lift" onclick="openPage('spac-us.html')">
         <img src="spac-us.jpg" alt="SPAC US" loading="lazy">
         <h3>SPAC US</h3>
       </div>
-      <div class="picture-card" onclick="openPage('sermons.html')">
-        <img src="sermons.png" alt="Listen to Sermon" loading="lazy">
-        <h3>Listen to Sermon</h3>
+    </div>
+    
+    <!-- Instagram-like Program Slider -->
+    <div class="insta-slider glass-effect">
+      <h3 class="insta-title gradient-text">Our Programs Gallery</h3>
+      <div class="insta-track">
+        <div class="insta-slide hover-lift" onclick="openPage('program1.html')">
+          <img src="program1.jpg" alt="Program 1" loading="lazy">
+        </div>
+        <div class="insta-slide hover-lift" onclick="openPage('program2.html')">
+          <img src="program2.jpg" alt="Program 2" loading="lazy">
+        </div>
+        <div class="insta-slide hover-lift" onclick="openPage('program3.html')">
+          <img src="program3.jpg" alt="Program 3" loading="lazy">
+        </div>
+        <div class="insta-slide hover-lift" onclick="openPage('program4.html')">
+          <img src="program4.jpg" alt="Program 4" loading="lazy">
+        </div>
+        <div class="insta-slide hover-lift" onclick="openPage('program5.html')">
+          <img src="program5.jpg" alt="Program 5" loading="lazy">
+        </div>
       </div>
     </div>
   </div>
 </section>
 
+<!-- Location Section -->
 <section class="location-section" id="locations">
   <div class="container">
-    <h2 class="section-title gradient-text">SPAC INFORMATION</h2>
+    <h2 class="section-title gradient-text">SPAC LOCATION AND INFORMATION</h2>
     <div class="location-grid">
-      <div class="picture-card" onclick="openPage('locations-branches.html')">
-        <img src="locations.png" alt="Our Locations" loading="lazy">
-        <h3>Our Locations</h3>
+      <div class="picture-card hover-lift" onclick="openPage('locations-branches.html')">
+        <img src="locations.png" alt="Our Locations and Branches" loading="lazy">
+        <h3>Our Locations & Branches</h3>
       </div>
-      <div class="picture-card" onclick="openPage('join-us.html')">
+      <div class="picture-card hover-lift" onclick="openPage('join-us.html')">
         <img src="join-us.png" alt="Join Us" loading="lazy">
         <h3>Join Us</h3>
       </div>
-      <div class="picture-card" onclick="openPage('bookshelf.html')">
+      <div class="picture-card hover-lift" onclick="openPage('transport.html')">
+        <img src="transport.png" alt="Transport Information" loading="lazy">
+        <h3>Transport Information</h3>
+      </div>
+      <!-- CHANGED: Bible Study Group to Bookshelf -->
+      <div class="picture-card hover-lift" onclick="openPage('bookshelf.html')">
         <img src="bookshelf.png" alt="Bookshelf" loading="lazy">
         <h3>Bookshelf</h3>
       </div>
-      <div class="picture-card" onclick="openPage('contact-info.html')">
+      <div class="picture-card hover-lift" onclick="openPage('contact-info.html')">
         <img src="contact-info.png" alt="Contact Information" loading="lazy">
         <h3>Contact Information</h3>
       </div>
@@ -926,124 +1539,619 @@
   </div>
 </section>
 
+<!-- Footer -->
 <footer id="contact">
   <div class="container footer-content">
     <div class="footer-column">
       <h3>SPAC Church</h3>
-      <p>A vibrant community of believers committed to spreading the gospel through faith, hope, and love.</p>
+      <p>A vibrant community of believers committed to spreading the gospel and serving our community through faith, hope, and love.</p>
       <div class="social-links">
-        <a href="#"><i class="fab fa-facebook-f"></i></a>
-        <a href="#"><i class="fab fa-instagram"></i></a>
-        <a href="#"><i class="fab fa-youtube"></i></a>
-        <a href="#"><i class="fab fa-tiktok"></i></a>
+        <a href="#" aria-label="Facebook"><i class="fab fa-facebook-f"></i></a>
+        <a href="#" aria-label="Twitter"><i class="fab fa-twitter"></i></a>
+        <a href="#" aria-label="Instagram"><i class="fab fa-instagram"></i></a>
+        <a href="#" aria-label="YouTube"><i class="fab fa-youtube"></i></a>
+        <a href="#" aria-label="TikTok"><i class="fab fa-tiktok"></i></a>
       </div>
     </div>
     <div class="footer-column">
       <h3>Quick Links</h3>
       <ul class="footer-links">
         <li><a href="#home">Home</a></li>
+        <li><a href="#quick-links">Quick Access</a></li>
         <li><a href="#locations">Locations</a></li>
+        <li><a href="#ministries">Ministries</a></li>
+        <li><a href="watch-live.html">Watch Live</a></li>
         <li><a href="give.html">Give Online</a></li>
       </ul>
     </div>
     <div class="footer-column">
       <h3>Contact Us</h3>
       <ul class="footer-links">
-        <li><i class="fas fa-phone"></i> (123) 456-7890</li>
-        <li><i class="fas fa-envelope"></i> info@spacchurch.org</li>
-        <li><i class="fas fa-clock"></i> Sun 7am, 9:15am, 11:30am</li>
+        <li><i class="fas fa-map-marker-alt"></i> 123 Church Street, City, State 12345</li>
+        <li><i class="fas fa-phone"></i> Phone: (123) 456-7890</li>
+        <li><i class="fas fa-envelope"></i> Email: info@spacchurch.org</li>
+        <li><i class="fas fa-clock"></i> Service Times: Sun 7am, 9:15am, 11:30am</li>
       </ul>
     </div>
   </div>
   <div class="footer-bottom">
-    &copy; 2025 SPAC Church. All Rights Reserved.
+    &copy; 2025 SPAC Church. All Rights Reserved. | <a href="privacy.html">Privacy Policy</a> | <a href="terms.html">Terms of Use</a>
   </div>
 </footer>
 
 <script>
-// Header Scroll Effect
+// Header scroll effect
+const header = document.getElementById('mainHeader');
 window.addEventListener('scroll', () => {
-  const header = document.getElementById('mainHeader');
-  if (window.scrollY > 50) header.style.padding = "5px 0";
-  else header.style.padding = "8px 0";
+  if (window.scrollY > 50) {
+    header.classList.add('header-scrolled');
+  } else {
+    header.classList.remove('header-scrolled');
+  }
 });
 
-// Hamburger Menu
+// 2. HAMBURGER MENU - ONLY X CLOSES THE MENU
 const hamburger = document.querySelector('.hamburger');
 const navMenu = document.querySelector('.nav-menu');
+const dropdowns = document.querySelectorAll('.dropdown');
+
 hamburger.addEventListener('click', () => {
   hamburger.classList.toggle('active');
   navMenu.classList.toggle('active');
+  
+  // Prevent body scroll when menu is open
+  if (navMenu.classList.contains('active')) {
+    document.body.style.overflow = 'hidden';
+  } else {
+    document.body.style.overflow = 'auto';
+  }
 });
 
-// Scroll Progress
-window.addEventListener('scroll', () => {
+// REMOVED: The code that closes menu when clicking links
+// Now menu stays open when clicking links, only X closes it
+
+// Dropdown menu on mobile - still works but doesn't close main menu
+dropdowns.forEach(dropdown => {
+  const trigger = dropdown.querySelector('a');
+  trigger.addEventListener('click', (e) => {
+    if (window.innerWidth <= 992) {
+      e.preventDefault();
+      dropdown.classList.toggle('active');
+    }
+  });
+});
+
+// Close menu when clicking outside on mobile
+document.addEventListener('click', (e) => {
+  if (window.innerWidth <= 992 && navMenu.classList.contains('active')) {
+    if (!e.target.closest('.nav-menu') && !e.target.closest('.hamburger')) {
+      hamburger.classList.remove('active');
+      navMenu.classList.remove('active');
+      document.body.style.overflow = 'auto';
+    }
+  }
+});
+
+// Professional touch: Scroll progress indicator
+window.addEventListener('scroll', function() {
   const winScroll = document.body.scrollTop || document.documentElement.scrollTop;
   const height = document.documentElement.scrollHeight - document.documentElement.clientHeight;
   const scrolled = (winScroll / height) * 100;
-  document.getElementById('scrollProgress').style.width = scrolled + '%';
+  const scrollProgress = document.getElementById('scrollProgress');
+  if (scrollProgress) {
+    scrollProgress.style.width = scrolled + '%';
+  }
 });
 
-// Scroll Animations (Swift & Efficient)
-function handleScrollAnimations() {
-  const windowHeight = window.innerHeight;
+// 7. FASTER VIDEO LOADING
+const heroVideo = document.querySelector('.hero-video');
+
+// Preload video immediately
+window.addEventListener('DOMContentLoaded', function() {
+  // Force immediate video load
+  heroVideo.load();
   
-  // Welcome Card Dynamic Entry
-  const welcomeCard = document.getElementById('welcomeCard');
-  if (welcomeCard.getBoundingClientRect().top < windowHeight - 100) {
-    welcomeCard.classList.add('visible');
-  }
-
-  // Ministry Cards Swift Entry
-  const cards = document.querySelectorAll('.picture-card');
-  cards.forEach((card, index) => {
-    const rect = card.getBoundingClientRect();
-    if (rect.top < windowHeight - 50) {
-      // Apply different entry directions based on index for variety
-      if (!card.classList.contains('visible')) {
-        const directions = ['translateX(-50px)', 'translateX(50px)', 'translateY(50px)'];
-        const randomDir = directions[index % directions.length];
-        card.style.transform = randomDir;
-        
-        // Use requestAnimationFrame for smoother "Swift" feel
-        requestAnimationFrame(() => {
-          card.classList.add('visible');
-        });
-      }
+  // Set video to lowest quality for faster loading, then switch to higher
+  heroVideo.currentTime = 0;
+  
+  // Try to play immediately
+  setTimeout(() => {
+    const playPromise = heroVideo.play();
+    if (playPromise !== undefined) {
+      playPromise.then(() => {
+        console.log('Video playing successfully');
+      }).catch(error => {
+        console.log('Video autoplay may be blocked:', error);
+        // Add play button if autoplay fails
+        addVideoPlayButton();
+      });
     }
+  }, 100);
+  
+  // Add event listener for when video metadata is loaded
+  heroVideo.addEventListener('loadedmetadata', function() {
+    this.currentTime = 0;
   });
+  
+  // Add event listener for when video can play through
+  heroVideo.addEventListener('canplaythrough', function() {
+    console.log('Video can play through without buffering');
+  });
+  
+  // Initialize picture cards with random directional animations
+  initializePictureCards();
+  
+  // Initialize dynamic buttons
+  initializeDynamicButtons();
+  
+  // Initialize Welcome to SPAC Church animation
+  initializeWelcomeAnimation();
+  
+  // Hide loading animation
+  setTimeout(() => {
+    document.querySelector('.loading').style.opacity = '0';
+    setTimeout(() => {
+      document.querySelector('.loading').style.display = 'none';
+    }, 300);
+  }, 1000);
+});
+
+// ====== DYNAMIC EFFECTS FOR FIRST THREE CIRCLE BUTTONS ======
+function initializeDynamicButtons() {
+    const buttons = document.querySelectorAll('.circle-button.dynamic');
+    
+    // Remove existing animations
+    buttons.forEach(btn => {
+        btn.classList.remove('bounce', 'pulse', 'rotate', 'glow', 'shake');
+    });
+    
+    // SURPRISE EFFECT: Assign random dynamic effects to each button
+    const effects = ['bounce', 'pulse', 'rotate', 'glow', 'shake'];
+    const timings = ['2s', '3s', '4s', '5s'];
+    
+    buttons.forEach((button, index) => {
+        // Add initial animation class
+        const randomEffect = effects[Math.floor(Math.random() * effects.length)];
+        const randomTiming = timings[Math.floor(Math.random() * timings.length)];
+        
+        button.style.setProperty('--animation-time', randomTiming);
+        
+        // Clear previous animation classes
+        effects.forEach(effect => button.classList.remove(effect));
+        
+        // Add new animation class
+        button.classList.add(randomEffect);
+        
+        // Add hover effect
+        button.addEventListener('mouseenter', function() {
+            this.classList.add('hover-active');
+        });
+        
+        button.addEventListener('mouseleave', function() {
+            this.classList.remove('hover-active');
+        });
+        
+        // Add click ripple effect
+        button.addEventListener('click', function(e) {
+            createRipple(e, this);
+        });
+    });
 }
 
-window.addEventListener('scroll', handleScrollAnimations);
-window.addEventListener('load', handleScrollAnimations);
-
-// Navigation Functions
-function navigateToPage(page, el) {
-  el.style.transform = "scale(0.9)";
-  setTimeout(() => window.location.href = page, 300);
+// Create ripple effect on click
+function createRipple(event, element) {
+    const ripple = document.createElement('span');
+    const rect = element.getBoundingClientRect();
+    const size = Math.max(rect.width, rect.height);
+    const x = event.clientX - rect.left - size / 2;
+    const y = event.clientY - rect.top - size / 2;
+    
+    ripple.style.width = ripple.style.height = size + 'px';
+    ripple.style.left = x + 'px';
+    ripple.style.top = y + 'px';
+    ripple.classList.add('ripple');
+    
+    // Remove existing ripples
+    const existingRipples = element.querySelectorAll('.ripple');
+    existingRipples.forEach(r => r.remove());
+    
+    element.appendChild(ripple);
+    
+    // Remove ripple after animation
+    setTimeout(() => {
+        ripple.remove();
+    }, 1000);
 }
 
+// ====== ENHANCED WELCOME TO SPAC CHURCH ANIMATION ======
+function initializeWelcomeAnimation() {
+  const welcomeCard = document.querySelector('.floating-card');
+  
+  // Add animation when in viewport
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        entry.target.classList.add('animated');
+        
+        // Random direction for the animation
+        const directions = ['left', 'right', 'top', 'bottom'];
+        const randomDirection = directions[Math.floor(Math.random() * directions.length)];
+        
+        // Apply direction-specific animation
+        entry.target.style.transform = getTransformForDirection(randomDirection);
+        
+        // Animate to original position
+        setTimeout(() => {
+          entry.target.style.transform = 'translateY(0)';
+        }, 50);
+        
+        observer.unobserve(entry.target);
+      }
+    });
+  }, {
+    threshold: 0.2,
+    rootMargin: '50px'
+  });
+  
+  if (welcomeCard) {
+    observer.observe(welcomeCard);
+  }
+}
+
+function getTransformForDirection(direction) {
+  switch(direction) {
+    case 'left': return 'translateX(-100px)';
+    case 'right': return 'translateX(100px)';
+    case 'top': return 'translateY(-100px)';
+    case 'bottom': return 'translateY(100px)';
+    default: return 'translateY(50px)';
+  }
+}
+
+// Dynamic prayer content
+const dynamicPrayers = [
+    "Lord, grant us wisdom in these challenging times...",
+    "Heavenly Father, bless our church with unity and love...",
+    "God of all comfort, be with those who are suffering today...",
+    "Lord Jesus, guide our leaders with Your divine wisdom...",
+    "Holy Spirit, fill our hearts with peace that surpasses understanding..."
+];
+
+// Dynamic testimonies
+const dynamicTestimonies = [
+    "God healed me from a long-term illness!",
+    "I found peace in Christ after years of searching...",
+    "Financial breakthrough after faithful giving!",
+    "Restored marriage through God's grace...",
+    "Delivered from addiction - 2 years clean!"
+];
+
+// Update button text dynamically
+function updateButtonContent() {
+    const prayerBtn = document.getElementById('prayer-button');
+    const testimonyBtn = document.getElementById('testimony-button');
+    
+    if(prayerBtn) {
+        const randomPrayer = dynamicPrayers[Math.floor(Math.random() * dynamicPrayers.length)];
+        prayerBtn.setAttribute('title', randomPrayer);
+    }
+    
+    if(testimonyBtn) {
+        const randomTestimony = dynamicTestimonies[Math.floor(Math.random() * dynamicTestimonies.length)];
+        testimonyBtn.setAttribute('title', randomTestimony);
+    }
+}
+
+// Call when page loads
+document.addEventListener('DOMContentLoaded', function() {
+    updateButtonContent();
+    
+    // Update content every 30 seconds
+    setInterval(updateButtonContent, 30000);
+});
+
+// Function to add play button if autoplay fails
+function addVideoPlayButton() {
+  const playBtn = document.createElement('div');
+  playBtn.className = 'video-play-btn';
+  playBtn.innerHTML = '<i class="fas fa-play"></i>';
+  playBtn.style.cssText = `
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 80px;
+    height: 80px;
+    background: rgba(0,0,0,0.7);
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: white;
+    font-size: 30px;
+    z-index: 4;
+    cursor: pointer;
+    transition: all 0.3s ease;
+  `;
+  
+  playBtn.addEventListener('click', () => {
+    heroVideo.play();
+    playBtn.style.display = 'none';
+  });
+  
+  document.querySelector('.hero').appendChild(playBtn);
+}
+
+// Scroll to top button
+const scrollTopBtn = document.getElementById('scrollTop');
+
+window.addEventListener('scroll', () => {
+  if (window.scrollY > 300) {
+    scrollTopBtn.classList.add('visible');
+  } else {
+    scrollTopBtn.classList.remove('visible');
+  }
+});
+
+scrollTopBtn.addEventListener('click', () => {
+  window.scrollTo({
+    top: 0,
+    behavior: 'smooth'
+  });
+});
+
+// Circle button navigation with shape change
+function navigateToPage(page, element) {
+  // Special handling for dynamic buttons
+  if(['new-button', 'prayer-button', 'testimony-button'].includes(element.id)) {
+    element.classList.add('clicked');
+    
+    // Show loading animation
+    const originalContent = element.innerHTML;
+    element.innerHTML = '<i class="fas fa-spinner fa-spin"></i><h3>Loading...</h3>';
+    
+    // Navigate after animation
+    setTimeout(() => {
+      window.location.href = page;
+    }, 800);
+    
+    return false;
+  }
+  
+  // Original behavior for other buttons
+  element.classList.add('square');
+  
+  // Navigate after animation
+  setTimeout(() => {
+    window.location.href = page;
+  }, 500);
+}
+
+// Open page for picture cards
 function openPage(page) {
   window.location.href = page;
 }
 
-// Loading cleanup
-window.addEventListener('load', () => {
-  setTimeout(() => {
-    document.querySelector('.loading').style.display = 'none';
-  }, 500);
+// ====== OPTIMIZED PICTURE CARDS INITIALIZATION ======
+function initializePictureCards() {
+  const pictureCards = document.querySelectorAll('.picture-card');
+  const animationClasses = [
+    'from-left',
+    'from-right', 
+    'from-up',
+    'from-down',
+    'from-diagonal-left',
+    'from-diagonal-right'
+  ];
+  
+  // Remove any existing directional classes and add random ones
+  pictureCards.forEach((card, index) => {
+    // Remove any existing directional classes
+    animationClasses.forEach(cls => card.classList.remove(cls));
+    
+    // Add random animation class
+    const randomClass = animationClasses[index % animationClasses.length];
+    card.classList.add(randomClass);
+    
+    // Add staggered delay for performance
+    card.style.transitionDelay = `${(index % 6) * 0.05}s`;
+  });
+  
+  // Use Intersection Observer for better performance
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        entry.target.classList.add('visible');
+        observer.unobserve(entry.target);
+      }
+    });
+  }, {
+    threshold: 0.1,
+    rootMargin: '50px'
+  });
+  
+  pictureCards.forEach(card => {
+    observer.observe(card);
+  });
+}
+
+// Auto scroll for Instagram-like slider
+const instaTrack = document.querySelector('.insta-track');
+let scrollAmount = 0;
+const slideWidth = 245; // width + gap
+let autoScrollInterval;
+
+function startAutoScroll() {
+  autoScrollInterval = setInterval(() => {
+    scrollAmount += slideWidth;
+    
+    // If scrolled to the end, reset
+    if (scrollAmount >= instaTrack.scrollWidth - instaTrack.clientWidth) {
+      scrollAmount = 0;
+      instaTrack.scrollTo({ left: 0, behavior: 'smooth' });
+    } else {
+      instaTrack.scrollTo({ left: scrollAmount, behavior: 'smooth' });
+    }
+  }, 3500);
+}
+
+// Start auto-scroll for Instagram slider
+startAutoScroll();
+
+// Pause auto-scroll on hover
+instaTrack.addEventListener('mouseenter', () => {
+  clearInterval(autoScrollInterval);
 });
 
-// Scroll to Top
-const scrollTopBtn = document.getElementById('scrollTop');
-window.addEventListener('scroll', () => {
-  if (window.scrollY > 300) scrollTopBtn.classList.add('visible');
-  else scrollTopBtn.classList.remove('visible');
+instaTrack.addEventListener('mouseleave', () => {
+  startAutoScroll();
 });
-scrollTopBtn.addEventListener('click', () => {
-  window.scrollTo({ top: 0, behavior: 'smooth' });
+
+// Make Instagram slider draggable
+let isDown = false;
+let startX;
+let scrollLeft;
+
+instaTrack.addEventListener('mousedown', (e) => {
+  isDown = true;
+  startX = e.pageX - instaTrack.offsetLeft;
+  scrollLeft = instaTrack.scrollLeft;
 });
+
+instaTrack.addEventListener('mouseleave', () => {
+  isDown = false;
+});
+
+instaTrack.addEventListener('mouseup', () => {
+  isDown = false;
+});
+
+instaTrack.addEventListener('mousemove', (e) => {
+  if (!isDown) return;
+  e.preventDefault();
+  const x = e.pageX - instaTrack.offsetLeft;
+  const walk = (x - startX) * 2;
+  instaTrack.scrollLeft = scrollLeft - walk;
+});
+
+// Touch events for mobile
+instaTrack.addEventListener('touchstart', (e) => {
+  isDown = true;
+  startX = e.touches[0].pageX - instaTrack.offsetLeft;
+  scrollLeft = instaTrack.scrollLeft;
+});
+
+instaTrack.addEventListener('touchend', () => {
+  isDown = false;
+});
+
+instaTrack.addEventListener('touchmove', (e) => {
+  if (!isDown) return;
+  e.preventDefault();
+  const x = e.touches[0].pageX - instaTrack.offsetLeft;
+  const walk = (x - startX) * 2;
+  instaTrack.scrollLeft = scrollLeft - walk;
+});
+
+// Add smooth scrolling for anchor links
+document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+  anchor.addEventListener('click', function(e) {
+    if (this.getAttribute('href') === '#') return;
+    
+    e.preventDefault();
+    const targetId = this.getAttribute('href');
+    if (targetId === '#home') {
+      window.scrollTo({
+        top: 0,
+        behavior: 'smooth'
+      });
+    } else {
+      const targetElement = document.querySelector(targetId);
+      if (targetElement) {
+        window.scrollTo({
+          top: targetElement.offsetTop - 80,
+          behavior: 'smooth'
+        });
+      }
+    }
+  });
+});
+
+// Reinitialize on window resize
+window.addEventListener('resize', initializeDynamicButtons);
+
+// Professional touch: Lazy loading images
+const lazyImages = document.querySelectorAll('img[loading="lazy"]');
+const imageObserver = new IntersectionObserver((entries, observer) => {
+  entries.forEach(entry => {
+    if (entry.isIntersecting) {
+      const img = entry.target;
+      img.src = img.dataset.src || img.src;
+      img.classList.add('loaded');
+      observer.unobserve(img);
+    }
+  });
+});
+
+lazyImages.forEach(img => {
+  if (img.complete) {
+    img.classList.add('loaded');
+  } else {
+    img.addEventListener('load', () => {
+      img.classList.add('loaded');
+    });
+  }
+  imageObserver.observe(img);
+});
+
+// Professional touch: Network status detection
+window.addEventListener('online', () => {
+  showNotification('You are back online', 'success');
+});
+
+window.addEventListener('offline', () => {
+  showNotification('You are offline. Some features may not work.', 'warning');
+});
+
+function showNotification(message, type) {
+  const notification = document.createElement('div');
+  notification.className = `notification ${type}`;
+  notification.textContent = message;
+  notification.style.cssText = `
+    position: fixed;
+    top: 20px;
+    right: 20px;
+    background: ${type === 'success' ? '#4CAF50' : '#FF9800'};
+    color: white;
+    padding: 1rem;
+    border-radius: 8px;
+    z-index: 9999;
+    animation: slideIn 0.3s ease;
+    max-width: 300px;
+  `;
+  
+  document.body.appendChild(notification);
+  setTimeout(() => {
+    notification.style.animation = 'slideOut 0.3s ease';
+    setTimeout(() => notification.remove(), 300);
+  }, 3000);
+}
+
+// Add notification animation styles
+const style = document.createElement('style');
+style.textContent = `
+  @keyframes slideIn {
+    from { transform: translateX(100%); opacity: 0; }
+    to { transform: translateX(0); opacity: 1; }
+  }
+  
+  @keyframes slideOut {
+    from { transform: translateX(0); opacity: 1; }
+    to { transform: translateX(100%); opacity: 0; }
+  }
+`;
+document.head.appendChild(style);
 </script>
 
 </body>
-</html>
+  </html>
