@@ -713,7 +713,7 @@
     line-height: 1.8;
   }
   
-  /* Activities Section */
+  /* Activities Section - UPDATED: No click functionality */
   .activities-section {
     padding: 100px 0;
     background: linear-gradient(135deg, #f8f9fa 0%, #e9ecef 100%);
@@ -743,7 +743,7 @@
     overflow: hidden;
     box-shadow: 0 15px 35px rgba(0,0,0,0.08);
     transition: all 0.4s ease;
-    cursor: pointer;
+    cursor: default; /* Changed from pointer to default */
   }
   
   .activity-card:hover {
@@ -796,7 +796,7 @@
     border-top: 1px solid rgba(0,0,0,0.1);
   }
   
-  /* Testimonials Section */
+  /* Testimonials Section - UPDATED: Removed images */
   .testimonials-section {
     padding: 100px 0;
     background: white;
@@ -833,26 +833,12 @@
     line-height: 1.8;
     margin-bottom: 25px;
     font-style: italic;
+    padding-left: 40px;
   }
   
   .testimonial-author {
-    display: flex;
-    align-items: center;
-  }
-  
-  .author-avatar {
-    width: 60px;
-    height: 60px;
-    border-radius: 50%;
-    overflow: hidden;
-    margin-right: 20px;
-    border: 3px solid var(--energy);
-  }
-  
-  .author-avatar img {
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
+    text-align: center;
+    padding-left: 40px;
   }
   
   .author-info h4 {
@@ -923,6 +909,174 @@
     color: white;
   }
   
+  /* Modal for Form */
+  .modal {
+    display: none;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.8);
+    z-index: 10000;
+    align-items: center;
+    justify-content: center;
+    padding: 20px;
+  }
+  
+  .modal.active {
+    display: flex;
+  }
+  
+  .modal-content {
+    background: white;
+    width: 100%;
+    max-width: 600px;
+    border-radius: 20px;
+    overflow: hidden;
+    box-shadow: 0 25px 60px rgba(0, 0, 0, 0.3);
+    position: relative;
+    max-height: 90vh;
+    overflow-y: auto;
+  }
+  
+  .modal-header {
+    background: var(--fire-gradient);
+    color: white;
+    padding: 25px 30px;
+    text-align: center;
+  }
+  
+  .modal-header h2 {
+    font-family: 'Poppins', sans-serif;
+    font-size: 2.5rem;
+    margin-bottom: 10px;
+    font-weight: 800;
+  }
+  
+  .modal-header p {
+    opacity: 0.9;
+    font-size: 1.1rem;
+  }
+  
+  .modal-body {
+    padding: 30px;
+  }
+  
+  .form-group {
+    margin-bottom: 25px;
+  }
+  
+  .form-group label {
+    display: block;
+    margin-bottom: 8px;
+    color: var(--dark);
+    font-weight: 500;
+    font-size: 1rem;
+  }
+  
+  .form-group input,
+  .form-group select,
+  .form-group textarea {
+    width: 100%;
+    padding: 14px 18px;
+    border: 2px solid #e1e5eb;
+    border-radius: 10px;
+    font-family: 'Poppins', sans-serif;
+    font-size: 1rem;
+    transition: all 0.3s ease;
+    background: #f8f9fa;
+  }
+  
+  .form-group input:focus,
+  .form-group select:focus,
+  .form-group textarea:focus {
+    outline: none;
+    border-color: var(--fire);
+    background: white;
+    box-shadow: 0 0 0 3px rgba(255, 107, 53, 0.1);
+  }
+  
+  .form-row {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 20px;
+  }
+  
+  .submit-btn {
+    width: 100%;
+    background: var(--fire-gradient);
+    color: white;
+    border: none;
+    padding: 16px;
+    border-radius: 10px;
+    font-size: 1.1rem;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    margin-top: 10px;
+  }
+  
+  .submit-btn:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 10px 25px rgba(255, 107, 53, 0.3);
+  }
+  
+  .close-modal {
+    position: absolute;
+    top: 20px;
+    right: 20px;
+    background: rgba(0, 0, 0, 0.3);
+    color: white;
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    font-size: 1.5rem;
+    transition: all 0.3s ease;
+    z-index: 10001;
+  }
+  
+  .close-modal:hover {
+    background: rgba(0, 0, 0, 0.5);
+    transform: rotate(90deg);
+  }
+  
+  /* Google Form Container */
+  .google-form-container {
+    margin-top: 30px;
+    border: 3px dashed #e1e5eb;
+    border-radius: 10px;
+    padding: 40px 20px;
+    text-align: center;
+    background: #f8f9fa;
+  }
+  
+  .google-form-container h3 {
+    color: var(--primary);
+    margin-bottom: 15px;
+    font-size: 1.5rem;
+  }
+  
+  .google-form-container p {
+    color: #666;
+    margin-bottom: 20px;
+    max-width: 500px;
+    margin-left: auto;
+    margin-right: auto;
+  }
+  
+  .google-form-placeholder {
+    background: white;
+    padding: 30px;
+    border-radius: 10px;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
+    margin-top: 20px;
+  }
+  
   /* Footer */
   footer {
     background: var(--dark);
@@ -957,6 +1111,11 @@
     .intro-content {
       grid-template-columns: 1fr;
       gap: 40px;
+    }
+    
+    .form-row {
+      grid-template-columns: 1fr;
+      gap: 15px;
     }
   }
   
@@ -1063,6 +1222,104 @@
 </head>
 <body>
 
+<!-- Modal for Become a Firebrand Form -->
+<div class="modal" id="firebrandModal">
+  <div class="modal-content">
+    <div class="close-modal" id="closeModal">&times;</div>
+    
+    <div class="modal-header">
+      <h2>Become a Firebrand</h2>
+      <p>Join the Vanguard Youth Evangelism Movement</p>
+    </div>
+    
+    <div class="modal-body">
+      <!-- Custom Form Section -->
+      <div id="customForm">
+        <h3 style="color: var(--primary); margin-bottom: 25px; text-align: center;">Apply to Join Vanguard</h3>
+        
+        <form id="firebrandApplicationForm">
+          <div class="form-row">
+            <div class="form-group">
+              <label for="firstName">First Name *</label>
+              <input type="text" id="firstName" name="firstName" required>
+            </div>
+            
+            <div class="form-group">
+              <label for="lastName">Last Name *</label>
+              <input type="text" id="lastName" name="lastName" required>
+            </div>
+          </div>
+          
+          <div class="form-row">
+            <div class="form-group">
+              <label for="email">Email Address *</label>
+              <input type="email" id="email" name="email" required>
+            </div>
+            
+            <div class="form-group">
+              <label for="phone">Phone Number *</label>
+              <input type="tel" id="phone" name="phone" required>
+            </div>
+          </div>
+          
+          <div class="form-group">
+            <label for="age">Age *</label>
+            <input type="number" id="age" name="age" min="13" max="35" required>
+          </div>
+          
+          <div class="form-group">
+            <label for="location">Location *</label>
+            <input type="text" id="location" name="location" placeholder="City, State" required>
+          </div>
+          
+          <div class="form-group">
+            <label for="church">Current Church (if any)</label>
+            <input type="text" id="church" name="church">
+          </div>
+          
+          <div class="form-group">
+            <label for="testimony">Your Testimony *</label>
+            <textarea id="testimony" name="testimony" rows="4" placeholder="Briefly share your salvation experience..." required></textarea>
+          </div>
+          
+          <div class="form-group">
+            <label for="whyJoin">Why do you want to join Vanguard? *</label>
+            <textarea id="whyJoin" name="whyJoin" rows="4" placeholder="Share your passion for evangelism and youth ministry..." required></textarea>
+          </div>
+          
+          <button type="submit" class="submit-btn">Submit Application</button>
+        </form>
+        
+        <p style="text-align: center; margin-top: 20px; color: #666; font-size: 0.9rem;">
+          We'll contact you within 48 hours after receiving your application.
+        </p>
+      </div>
+      
+      <!-- Google Form Integration Section -->
+      <div class="google-form-container">
+        <h3>Alternative: Use Google Form</h3>
+        <p>You can also submit your application through our Google Form. Paste your Google Form embed code or link below:</p>
+        
+        <div class="google-form-placeholder">
+          <!-- This is where you'll add your Google Form embed code -->
+          <div id="googleFormPlaceholder">
+            <i class="fas fa-link" style="font-size: 2rem; color: var(--primary); margin-bottom: 15px;"></i>
+            <p style="color: #666; margin-bottom: 15px;">Add your Google Form embed code here</p>
+            <p style="color: #888; font-size: 0.9rem;">
+              To embed your Google Form:<br>
+              1. Open your Google Form<br>
+              2. Click "Send"<br>
+              3. Click the embed icon (&lt;&gt;)<br>
+              4. Copy the embed code<br>
+              5. Paste it here
+            </p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
 <!-- Scroll to Top Button -->
 <div class="scroll-top" id="scrollTop">
   <i class="fas fa-chevron-up"></i>
@@ -1094,7 +1351,7 @@
             <a href="teen-church.html">Teen Church</a>
             <a href="kids-church.html">Kids Church</a>
             <a href="marriage-counselling.html">Marriage & Counselling</a>
-            <a href="spac-uk.html">SPAC UK</a>
+            <!-- SPAC UK removed as requested -->
             <a href="spac-nxtion.html">SPAC Nxtion</a>
             <a href="spac-us.html">SPAC US</a>
           </div>
@@ -1106,7 +1363,7 @@
   </div>
 </header>
 
-<!-- Hero Section -->
+<!-- Hero Section with vanguard-hero image -->
 <section class="vanguard-hero">
   <img src="vanguard-hero.jpg" alt="Vanguard Youth Evangelism" class="vanguard-hero-bg">
   <div class="vanguard-hero-overlay"></div>
@@ -1132,7 +1389,7 @@
         <a href="#values" class="btn btn-secondary">Discover Our Values</a>
       </div>
       <div class="intro-image">
-        <img src="vanguard-group.jpg" alt="Vanguard Youth Group">
+        <img src="vanguard1.jpg" alt="Vanguard Youth Group">
       </div>
     </div>
   </div>
@@ -1178,14 +1435,14 @@
   </div>
 </section>
 
-<!-- Activities Section -->
+<!-- Activities Section - UPDATED: No click functionality -->
 <section class="activities-section">
   <div class="container">
     <h2 class="section-title fire-title">Our Fire Activities</h2>
     <div class="activities-grid">
-      <div class="activity-card" onclick="openActivity('street-evangelism')">
+      <div class="activity-card">
         <div class="activity-image">
-          <img src="street-evangelism.jpg" alt="Street Evangelism">
+          <img src="vanguard2.jpg" alt="Street Evangelism">
         </div>
         <div class="activity-content">
           <h3>Street Evangelism</h3>
@@ -1197,9 +1454,9 @@
         </div>
       </div>
       
-      <div class="activity-card" onclick="openActivity('fire-night')">
+      <div class="activity-card">
         <div class="activity-image">
-          <img src="fire-night.jpg" alt="Fire Night Vigil">
+          <img src="vanguard3.jpg" alt="Fire Night Vigil">
         </div>
         <div class="activity-content">
           <h3>Fire Night Vigils</h3>
@@ -1211,9 +1468,9 @@
         </div>
       </div>
       
-      <div class="activity-card" onclick="openActivity('youth-rally')">
+      <div class="activity-card">
         <div class="activity-image">
-          <img src="youth-rally.jpg" alt="Youth Power Rally">
+          <img src="vanguard4.jpg" alt="Youth Power Rally">
         </div>
         <div class="activity-content">
           <h3>Youth Power Rallies</h3>
@@ -1225,9 +1482,9 @@
         </div>
       </div>
       
-      <div class="activity-card" onclick="openActivity('discipleship')">
+      <div class="activity-card">
         <div class="activity-image">
-          <img src="discipleship-class.jpg" alt="Discipleship Class">
+          <img src="vanguard5.jpg" alt="Discipleship Class">
         </div>
         <div class="activity-content">
           <h3>Firebrand Discipleship</h3>
@@ -1239,9 +1496,9 @@
         </div>
       </div>
       
-      <div class="activity-card" onclick="openActivity('mission-trip')">
+      <div class="activity-card">
         <div class="activity-image">
-          <img src="mission-trip.jpg" alt="Mission Trip">
+          <img src="vanguard6.jpg" alt="Mission Trip">
         </div>
         <div class="activity-content">
           <h3>Mission Trips</h3>
@@ -1253,9 +1510,9 @@
         </div>
       </div>
       
-      <div class="activity-card" onclick="openActivity('creative-arts')">
+      <div class="activity-card">
         <div class="activity-image">
-          <img src="creative-arts.jpg" alt="Creative Arts Ministry">
+          <img src="vanguard7.jpg" alt="Creative Arts Ministry">
         </div>
         <div class="activity-content">
           <h3>Creative Arts Ministry</h3>
@@ -1270,7 +1527,7 @@
   </div>
 </section>
 
-<!-- Testimonials Section -->
+<!-- Testimonials Section - UPDATED: Removed images -->
 <section class="testimonials-section">
   <div class="container">
     <h2 class="section-title">Stories of Transformation</h2>
@@ -1278,9 +1535,6 @@
       <div class="testimonial-card">
         <p class="testimonial-text">Before joining Vanguard, I was shy and unsure of my faith. Through their training and encouragement, I now lead street evangelism teams and have seen over 50 people give their lives to Christ in just one year. The fire of God has truly transformed me!</p>
         <div class="testimonial-author">
-          <div class="author-avatar">
-            <img src="testimonial1.jpg" alt="David Johnson">
-          </div>
           <div class="author-info">
             <h4>David Johnson</h4>
             <p>University Student & Evangelism Team Leader</p>
@@ -1291,9 +1545,6 @@
       <div class="testimonial-card">
         <p class="testimonial-text">The Fire Night Vigils have been life-changing for me. During one vigil, I received a powerful encounter with the Holy Spirit that delivered me from addiction and depression. Now I'm helping other young people find freedom in Christ through our support groups.</p>
         <div class="testimonial-author">
-          <div class="author-avatar">
-            <img src="testimonial2.jpg" alt="Sarah Williams">
-          </div>
           <div class="author-info">
             <h4>Sarah Williams</h4>
             <p>Deliverance Ministry Team Member</p>
@@ -1304,9 +1555,6 @@
       <div class="testimonial-card">
         <p class="testimonial-text">As part of the mission trip to rural communities, I witnessed miracles I had only read about in the Bible. The blind saw, the lame walked, and hundreds accepted Jesus. Vanguard has taught me that with God, nothing is impossible for this generation!</p>
         <div class="testimonial-author">
-          <div class="author-avatar">
-            <img src="testimonial3.jpg" alt="Michael Chen">
-          </div>
           <div class="author-info">
             <h4>Michael Chen</h4>
             <p>Medical Student & Mission Trip Participant</p>
@@ -1317,18 +1565,18 @@
   </div>
 </section>
 
-<!-- Join CTA Section -->
+<!-- Join CTA Section - UPDATED: Opens modal instead of contact page -->
 <section class="join-section" id="join">
   <div class="container">
     <div class="join-content">
       <h2>IGNITE YOUR FIRE</h2>
-      <p>Are you between 18-35 years old with a burning passion for Jesus and a desire to impact your generation? Join the Vanguard family today and become part of a movement that's changing lives and transforming nations!</p>
-      <a href="contact.html" class="btn join-btn">Become A Firebrand 🔥</a>
+      <p>Are you between 13-35 years old with a burning passion for Jesus and a desire to impact your generation? Join the Vanguard family today and become part of a movement that's changing lives and transforming nations!</p>
+      <a href="#" class="btn join-btn" id="openFirebrandModal">Become A Firebrand 🔥</a>
     </div>
   </div>
 </section>
 
-<!-- Footer -->
+<!-- Footer - UPDATED: Coordinator name changed -->
 <footer id="contact">
   <div class="container footer-content">
     <div class="footer-column">
@@ -1360,7 +1608,7 @@
         <li><i class="fas fa-phone"></i> Youth Line: (123) 456-7891</li>
         <li><i class="fas fa-envelope"></i> Email: vanguard@spacchurch.org</li>
         <li><i class="fas fa-clock"></i> Meetings: Tue 6PM, Sat 3PM</li>
-        <li><i class="fas fa-user"></i> Coordinator: Pastor James Adeyemi</li>
+        <li><i class="fas fa-user"></i> Coordinator: Yomi Okewunmi</li>
       </ul>
     </div>
   </div>
@@ -1467,11 +1715,61 @@ scrollTopBtn.addEventListener('click', () => {
   });
 });
 
-// Activity card click function
-function openActivity(activity) {
-  // In a real implementation, this would open a detailed page for the activity
-  alert(`Opening details for ${activity.replace('-', ' ')}. In a full implementation, this would navigate to a detailed activity page.`);
-}
+// Modal functionality
+const firebrandModal = document.getElementById('firebrandModal');
+const openFirebrandModalBtn = document.getElementById('openFirebrandModal');
+const closeModalBtn = document.getElementById('closeModal');
+
+// Open modal when "Become A Firebrand" is clicked
+openFirebrandModalBtn.addEventListener('click', (e) => {
+  e.preventDefault();
+  firebrandModal.classList.add('active');
+  document.body.style.overflow = 'hidden';
+});
+
+// Close modal when close button is clicked
+closeModalBtn.addEventListener('click', () => {
+  firebrandModal.classList.remove('active');
+  document.body.style.overflow = 'auto';
+});
+
+// Close modal when clicking outside the modal content
+firebrandModal.addEventListener('click', (e) => {
+  if (e.target === firebrandModal) {
+    firebrandModal.classList.remove('active');
+    document.body.style.overflow = 'auto';
+  }
+});
+
+// Close modal with Escape key
+document.addEventListener('keydown', (e) => {
+  if (e.key === 'Escape' && firebrandModal.classList.contains('active')) {
+    firebrandModal.classList.remove('active');
+    document.body.style.overflow = 'auto';
+  }
+});
+
+// Form submission handling
+const applicationForm = document.getElementById('firebrandApplicationForm');
+
+applicationForm.addEventListener('submit', (e) => {
+  e.preventDefault();
+  
+  // Get form data
+  const formData = new FormData(applicationForm);
+  const formObject = Object.fromEntries(formData);
+  
+  // In a real implementation, you would send this data to your server
+  // For now, we'll just show a success message
+  alert('Thank you for your application! We will contact you within 48 hours. In a real implementation, this would be sent to a Google Form or your backend.');
+  
+  // Reset form
+  applicationForm.reset();
+  
+  // Close modal
+  firebrandModal.classList.remove('active');
+  document.body.style.overflow = 'auto';
+});
 
 // Initialize fire particles on load
 window.addEventListener('DOMContentLoaded', function() {
@@ -1559,4 +1857,4 @@ if (joinBtn) {
 </script>
 
 </body>
-</html>
+  </html>
