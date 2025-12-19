@@ -14,6 +14,8 @@
     --dark: #2c3e50;
     --accent: #8b0000;
     --gradient: linear-gradient(135deg, #1a4b8c 0%, #2c3e50 100%);
+    --glass-bg: rgba(255, 255, 255, 0.1);
+    --glass-border: rgba(255, 255, 255, 0.2);
   }
   
   * {
@@ -45,50 +47,86 @@
     padding: 0 15px;
   }
   
+  /* Modern 2025 Button Styles */
   .btn {
-    display: inline-block;
-    background: var(--primary);
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+    background: var(--gradient);
     color: white;
-    padding: 14px 32px;
+    padding: 16px 36px;
     border: none;
-    border-radius: 30px;
+    border-radius: 50px;
     cursor: pointer;
-    transition: all 0.3s ease;
+    transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
     font-weight: 600;
     letter-spacing: 0.5px;
-    box-shadow: 0 4px 15px rgba(26, 75, 140, 0.2);
+    box-shadow: 0 8px 30px rgba(26, 75, 140, 0.25);
     text-transform: uppercase;
     font-size: 1rem;
     font-family: 'Montserrat', sans-serif;
+    position: relative;
+    overflow: hidden;
+    z-index: 1;
+  }
+  
+  .btn:before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(90deg, transparent, rgba(255,255,255,0.2), transparent);
+    transition: 0.5s;
+    z-index: -1;
+  }
+  
+  .btn:hover:before {
+    left: 100%;
   }
   
   .btn:hover {
-    background: var(--accent);
-    transform: translateY(-3px);
-    box-shadow: 0 6px 20px rgba(139, 0, 0, 0.25);
+    transform: translateY(-5px);
+    box-shadow: 0 15px 40px rgba(26, 75, 140, 0.35);
   }
   
   .btn-secondary {
-    background: var(--secondary);
-    color: var(--dark);
-    box-shadow: 0 4px 15px rgba(212, 175, 55, 0.2);
+    background: linear-gradient(135deg, var(--secondary) 0%, #c19b2c 100%);
+    box-shadow: 0 8px 30px rgba(212, 175, 55, 0.25);
   }
   
   .btn-secondary:hover {
-    background: var(--accent);
-    color: white;
+    box-shadow: 0 15px 40px rgba(212, 175, 55, 0.35);
   }
   
-  /* Header with Bigger Logo */
+  /* Glassmorphism Effect */
+  .glass-effect {
+    background: var(--glass-bg);
+    backdrop-filter: blur(20px);
+    -webkit-backdrop-filter: blur(20px);
+    border: 1px solid var(--glass-border);
+    box-shadow: 0 15px 35px rgba(0, 0, 0, 0.05);
+  }
+  
+  /* Header with Modern Design */
   header {
-    background: white;
-    box-shadow: 0 3px 20px rgba(0, 0, 0, 0.08);
-    position: sticky;
+    background: rgba(255, 255, 255, 0.95);
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
+    box-shadow: 0 5px 30px rgba(0, 0, 0, 0.08);
+    position: fixed;
     top: 0;
-    z-index: 1000;
-    padding: 8px 0;
-    transition: all 0.3s ease;
     width: 100%;
+    z-index: 1000;
+    padding: 15px 0;
+    transition: all 0.3s ease;
+  }
+  
+  .header-scrolled {
+    padding: 10px 0;
+    box-shadow: 0 5px 20px rgba(0, 0, 0, 0.1);
   }
   
   .header-container {
@@ -102,23 +140,20 @@
   .logo {
     display: flex;
     align-items: center;
-    position: absolute;
-    left: 50%;
-    transform: translateX(-50%);
   }
   
   .logo-frame {
-    width: 100px;
-    height: 100px;
-    border-radius: 50%;
+    width: 70px;
+    height: 70px;
+    border-radius: 20px;
     background: white;
-    border: 4px solid var(--primary);
+    border: 3px solid var(--primary);
     display: flex;
     align-items: center;
     justify-content: center;
-    margin-right: 20px;
+    margin-right: 15px;
     overflow: hidden;
-    box-shadow: 0 6px 20px rgba(0, 0, 0, 0.15);
+    box-shadow: 0 8px 25px rgba(0, 0, 0, 0.1);
   }
   
   .logo-frame img {
@@ -129,31 +164,27 @@
   
   .logo-text {
     font-family: 'Lobster', cursive;
-    font-size: 42px;
+    font-size: 32px;
     font-weight: 400;
     color: var(--primary);
-    letter-spacing: 1.5px;
+    letter-spacing: 1px;
     line-height: 1;
-    text-align: center;
-    white-space: nowrap;
   }
   
-  /* Navigation */
+  /* Navigation - 2025 Style */
   .nav-container {
     display: flex;
     align-items: center;
-    justify-content: flex-end;
-    width: 100%;
   }
   
   @media (min-width: 993px) {
     .nav-menu {
       display: flex;
       list-style: none;
+      gap: 30px;
     }
     
     .nav-menu li {
-      margin-left: 30px;
       position: relative;
     }
     
@@ -172,9 +203,10 @@
       bottom: 0;
       left: 0;
       width: 0;
-      height: 2px;
+      height: 3px;
       background: var(--secondary);
       transition: width 0.3s ease;
+      border-radius: 2px;
     }
     
     .nav-menu a:hover::after {
@@ -184,34 +216,42 @@
     .dropdown-content {
       display: none;
       position: absolute;
-      background: white;
-      min-width: 200px;
-      box-shadow: 0 15px 30px rgba(0, 0, 0, 0.1);
+      background: rgba(255, 255, 255, 0.95);
+      backdrop-filter: blur(10px);
+      min-width: 220px;
+      box-shadow: 0 20px 40px rgba(0, 0, 0, 0.1);
       z-index: 1;
-      border-radius: 10px;
+      border-radius: 15px;
       overflow: hidden;
       top: 100%;
       left: 0;
-      padding: 10px 0;
+      padding: 15px 0;
+      border: 1px solid rgba(0,0,0,0.05);
     }
     
     .dropdown:hover .dropdown-content {
       display: block;
+      animation: fadeIn 0.3s ease;
+    }
+    
+    @keyframes fadeIn {
+      from { opacity: 0; transform: translateY(-10px); }
+      to { opacity: 1; transform: translateY(0); }
     }
   }
   
-  /* Mobile Menu */
+  /* Mobile Menu - Modern Design */
   .hamburger {
     display: none;
     cursor: pointer;
-    width: 40px;
-    height: 40px;
+    width: 44px;
+    height: 44px;
     position: relative;
     z-index: 1001;
-    margin-left: auto;
-    background: var(--primary);
-    border-radius: 5px;
-    padding: 8px;
+    background: var(--gradient);
+    border-radius: 12px;
+    padding: 10px;
+    box-shadow: 0 8px 20px rgba(26, 75, 140, 0.2);
   }
   
   .hamburger span {
@@ -222,17 +262,17 @@
     background: white;
     border-radius: 3px;
     opacity: 1;
-    left: 8px;
+    left: 10px;
     transform: rotate(0deg);
     transition: .25s ease-in-out;
   }
   
-  .hamburger span:nth-child(1) { top: 12px; }
-  .hamburger span:nth-child(2) { top: 18.5px; }
-  .hamburger span:nth-child(3) { top: 25px; }
+  .hamburger span:nth-child(1) { top: 13px; }
+  .hamburger span:nth-child(2) { top: 20px; }
+  .hamburger span:nth-child(3) { top: 27px; }
   
   .hamburger.active span:nth-child(1) {
-    top: 18.5px;
+    top: 20px;
     transform: rotate(45deg);
   }
   
@@ -242,7 +282,7 @@
   }
   
   .hamburger.active span:nth-child(3) {
-    top: 18.5px;
+    top: 20px;
     transform: rotate(-45deg);
   }
   
@@ -250,16 +290,17 @@
     .nav-menu {
       position: fixed;
       top: 0;
-      right: -50%;
-      width: 50%;
+      right: -100%;
+      width: 320px;
       height: 100vh;
-      background: white;
+      background: rgba(255, 255, 255, 0.98);
+      backdrop-filter: blur(20px);
       flex-direction: column;
       justify-content: flex-start;
       align-items: flex-start;
       padding: 100px 30px 30px;
-      transition: right 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
-      box-shadow: -10px 0 30px rgba(0,0,0,0.15);
+      transition: right 0.5s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+      box-shadow: -20px 0 40px rgba(0,0,0,0.1);
       z-index: 1000;
       overflow-y: auto;
     }
@@ -272,8 +313,8 @@
       margin: 0 0 25px 0;
       width: 100%;
       opacity: 0;
-      transform: translateX(20px);
-      transition: all 0.3s ease;
+      transform: translateX(30px);
+      transition: all 0.4s ease;
     }
     
     .nav-menu.active li {
@@ -281,16 +322,10 @@
       transform: translateX(0);
     }
     
-    .nav-menu li:nth-child(1) { transition-delay: 0.1s; }
-    .nav-menu li:nth-child(2) { transition-delay: 0.2s; }
-    .nav-menu li:nth-child(3) { transition-delay: 0.3s; }
-    .nav-menu li:nth-child(4) { transition-delay: 0.4s; }
-    .nav-menu li:nth-child(5) { transition-delay: 0.5s; }
-    
     .nav-menu a {
-      font-size: 16px;
+      font-size: 18px;
       display: block;
-      padding: 10px 0;
+      padding: 12px 0;
       width: 100%;
       border-bottom: 1px solid rgba(0,0,0,0.05);
       color: var(--dark);
@@ -302,8 +337,9 @@
       box-shadow: none;
       background: rgba(26, 75, 140, 0.05);
       margin-top: 10px;
-      border-radius: 8px;
-      padding: 5px 0;
+      border-radius: 12px;
+      padding: 10px 0;
+      border: 1px solid rgba(0,0,0,0.05);
     }
     
     .dropdown.active .dropdown-content {
@@ -314,19 +350,13 @@
       display: block;
     }
     
-    .logo {
-      position: static;
-      transform: none;
-      margin-right: auto;
-    }
-    
     .logo-text {
-      font-size: 30px;
+      font-size: 28px;
     }
     
     .logo-frame {
-      width: 70px;
-      height: 70px;
+      width: 60px;
+      height: 60px;
     }
   }
   
@@ -336,39 +366,23 @@
     }
     
     .logo-frame {
-      width: 60px;
-      height: 60px;
-    }
-  }
-  
-  @media (max-width: 576px) {
-    .nav-menu {
-      width: 85%;
-      right: -85%;
-    }
-    
-    .logo-text {
-      font-size: 20px;
-    }
-    
-    .logo-frame {
       width: 50px;
       height: 50px;
     }
   }
   
-  /* Proclaimers Hero Section */
+  /* Hero Section - 2025 Style */
   .proclaimers-hero {
     position: relative;
-    height: 70vh;
-    min-height: 600px;
+    height: 100vh;
+    min-height: 700px;
     overflow: hidden;
     display: flex;
     align-items: center;
     justify-content: center;
     text-align: center;
     color: white;
-    background: linear-gradient(135deg, rgba(26, 75, 140, 0.9) 0%, rgba(44, 62, 80, 0.9) 100%);
+    background: #000;
     width: 100%;
   }
   
@@ -380,7 +394,7 @@
     height: 100%;
     object-fit: cover;
     z-index: 0;
-    opacity: 0.4;
+    opacity: 0.5;
   }
   
   .hero-overlay {
@@ -389,12 +403,12 @@
     left: 0;
     width: 100%;
     height: 100%;
-    background: linear-gradient(135deg, rgba(26, 75, 140, 0.8) 0%, rgba(44, 62, 80, 0.9) 100%);
+    background: linear-gradient(135deg, rgba(26, 75, 140, 0.85) 0%, rgba(44, 62, 80, 0.9) 100%);
     z-index: 1;
   }
   
   .hero-content {
-    max-width: 900px;
+    max-width: 1000px;
     padding: 0 20px;
     z-index: 2;
     position: relative;
@@ -402,18 +416,22 @@
   
   .proclaimers-title {
     font-family: 'Montserrat', sans-serif;
-    font-size: 5rem;
-    margin-bottom: 20px;
+    font-size: 5.5rem;
+    margin-bottom: 25px;
     font-weight: 800;
-    text-shadow: 3px 3px 15px rgba(0, 0, 0, 0.5);
+    text-shadow: 3px 3px 20px rgba(0, 0, 0, 0.5);
     text-transform: uppercase;
-    letter-spacing: 3px;
+    letter-spacing: 4px;
     color: white;
+    background: linear-gradient(to right, #fff, var(--secondary));
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
   }
   
   .proclaimers-subtitle {
-    font-size: 2rem;
-    margin-bottom: 30px;
+    font-size: 2.2rem;
+    margin-bottom: 40px;
     font-weight: 300;
     opacity: 0.95;
     text-shadow: 1px 1px 5px rgba(0, 0, 0, 0.5);
@@ -424,14 +442,14 @@
   .proclaimers-tagline {
     font-size: 1.5rem;
     max-width: 800px;
-    margin: 0 auto 40px;
+    margin: 0 auto 50px;
     font-weight: 400;
     line-height: 1.8;
-    text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.5);
     background: rgba(0, 0, 0, 0.4);
-    padding: 25px;
-    border-radius: 15px;
-    border-left: 5px solid var(--secondary);
+    backdrop-filter: blur(10px);
+    padding: 30px;
+    border-radius: 20px;
+    border: 1px solid rgba(255,255,255,0.1);
   }
   
   @media (max-width: 992px) {
@@ -450,12 +468,13 @@
   
   @media (max-width: 768px) {
     .proclaimers-hero {
-      height: 60vh;
-      min-height: 500px;
+      height: 90vh;
+      min-height: 600px;
     }
     
     .proclaimers-title {
       font-size: 3rem;
+      letter-spacing: 2px;
     }
     
     .proclaimers-subtitle {
@@ -464,6 +483,7 @@
     
     .proclaimers-tagline {
       font-size: 1.2rem;
+      padding: 20px;
     }
   }
   
@@ -481,44 +501,48 @@
     }
   }
   
-  /* Spotlight Effect */
-  .spotlight {
+  /* 3D Spotlight Effect */
+  .spotlight-container {
     position: absolute;
-    width: 300px;
-    height: 300px;
-    border-radius: 50%;
-    background: radial-gradient(circle, rgba(255,255,255,0.2) 0%, rgba(255,255,255,0) 70%);
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
     z-index: 1;
     pointer-events: none;
-    animation: moveSpotlight 15s infinite alternate ease-in-out;
   }
   
-  @keyframes moveSpotlight {
+  .spotlight {
+    position: absolute;
+    width: 400px;
+    height: 400px;
+    border-radius: 50%;
+    background: radial-gradient(circle, rgba(255,255,255,0.25) 0%, rgba(255,255,255,0) 70%);
+    filter: blur(40px);
+    animation: floatSpotlight 20s infinite alternate ease-in-out;
+  }
+  
+  @keyframes floatSpotlight {
     0% {
-      top: 20%;
-      left: 10%;
+      transform: translate(0, 0) rotate(0deg);
     }
     25% {
-      top: 60%;
-      left: 70%;
+      transform: translate(40vw, 30vh) rotate(90deg);
     }
     50% {
-      top: 30%;
-      left: 80%;
+      transform: translate(60vw, 50vh) rotate(180deg);
     }
     75% {
-      top: 70%;
-      left: 20%;
+      transform: translate(20vw, 60vh) rotate(270deg);
     }
     100% {
-      top: 40%;
-      left: 50%;
+      transform: translate(80vw, 40vh) rotate(360deg);
     }
   }
   
-  /* Introduction Section */
+  /* Introduction Section - Modern Design */
   .intro-section {
-    padding: 100px 0;
+    padding: 120px 0;
     background: white;
     position: relative;
     overflow: hidden;
@@ -536,10 +560,10 @@
   
   .section-title {
     text-align: center;
-    font-family: 'Playfair Display', serif;
+    font-family: 'Montserrat', sans-serif;
     font-size: 3.5rem;
     color: var(--primary);
-    margin-bottom: 50px;
+    margin-bottom: 60px;
     position: relative;
     padding-bottom: 20px;
   }
@@ -551,39 +575,47 @@
     left: 50%;
     transform: translateX(-50%);
     width: 150px;
-    height: 4px;
-    background: var(--secondary);
+    height: 5px;
+    background: linear-gradient(90deg, var(--primary), var(--secondary));
+    border-radius: 3px;
   }
   
   .intro-content {
     display: grid;
     grid-template-columns: 1fr 1fr;
-    gap: 60px;
+    gap: 80px;
     align-items: center;
   }
   
   .intro-text h3 {
-    font-size: 2.5rem;
+    font-size: 2.8rem;
     color: var(--primary);
-    margin-bottom: 25px;
+    margin-bottom: 30px;
     font-family: 'Montserrat', sans-serif;
     font-weight: 700;
+    line-height: 1.2;
   }
   
   .intro-text p {
     font-size: 1.2rem;
     color: #555;
     line-height: 1.9;
-    margin-bottom: 25px;
+    margin-bottom: 30px;
   }
   
   .intro-image {
-    border-radius: 15px;
+    border-radius: 25px;
     overflow: hidden;
-    box-shadow: 0 25px 50px rgba(0,0,0,0.1);
-    height: 450px;
+    box-shadow: 0 30px 60px rgba(0,0,0,0.15);
+    height: 500px;
     position: relative;
-    border: 3px solid var(--primary);
+    border: 1px solid rgba(0,0,0,0.05);
+    transform: perspective(1000px) rotateY(-10deg);
+    transition: transform 0.5s ease;
+  }
+  
+  .intro-image:hover {
+    transform: perspective(1000px) rotateY(0deg);
   }
   
   .intro-image img {
@@ -597,20 +629,9 @@
     transform: scale(1.05);
   }
   
-  .intro-image:after {
-    content: '';
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    background: linear-gradient(to bottom, transparent 50%, rgba(26, 75, 140, 0.1) 100%);
-    z-index: 1;
-  }
-  
-  /* Film Productions Section */
+  /* Film Productions Section - UPDATED: No click functionality */
   .films-section {
-    padding: 100px 0;
+    padding: 120px 0;
     background: linear-gradient(135deg, #f8f9fa 0%, #e9ecef 100%);
     position: relative;
   }
@@ -637,6 +658,11 @@
     padding: 30px 10px;
     scroll-behavior: smooth;
     scrollbar-width: none;
+    cursor: grab;
+  }
+  
+  .film-track:active {
+    cursor: grabbing;
   }
   
   .film-track::-webkit-scrollbar {
@@ -647,18 +673,18 @@
     flex: 0 0 auto;
     width: 320px;
     background: white;
-    border-radius: 15px;
+    border-radius: 20px;
     overflow: hidden;
     box-shadow: 0 20px 40px rgba(0,0,0,0.1);
-    transition: all 0.4s ease;
-    cursor: pointer;
-    border: 2px solid transparent;
+    transition: all 0.5s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+    border: 1px solid rgba(0,0,0,0.05);
+    cursor: default; /* Changed from pointer to default */
   }
   
   .film-card:hover {
-    transform: translateY(-20px) scale(1.03);
-    box-shadow: 0 30px 60px rgba(26, 75, 140, 0.2);
-    border-color: var(--primary);
+    transform: translateY(-20px) scale(1.02);
+    box-shadow: 0 40px 80px rgba(26, 75, 140, 0.2);
+    border-color: rgba(26, 75, 140, 0.1);
   }
   
   .film-poster {
@@ -691,12 +717,13 @@
     position: absolute;
     top: 20px;
     right: 20px;
-    background: var(--primary);
+    background: var(--gradient);
     color: white;
-    padding: 5px 15px;
-    border-radius: 20px;
+    padding: 8px 20px;
+    border-radius: 30px;
     font-weight: 600;
     font-size: 0.9rem;
+    box-shadow: 0 5px 15px rgba(0,0,0,0.2);
   }
   
   .film-content {
@@ -735,7 +762,7 @@
   
   /* Drama Teams Section */
   .teams-section {
-    padding: 100px 0;
+    padding: 120px 0;
     background: white;
     position: relative;
   }
@@ -752,57 +779,57 @@
   
   .teams-grid {
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
     gap: 40px;
     margin-top: 60px;
   }
   
   .team-card {
     background: white;
-    border-radius: 15px;
+    border-radius: 20px;
     overflow: hidden;
-    box-shadow: 0 15px 35px rgba(0,0,0,0.08);
-    transition: all 0.4s ease;
+    box-shadow: 0 20px 40px rgba(0,0,0,0.08);
+    transition: all 0.5s cubic-bezier(0.175, 0.885, 0.32, 1.275);
     padding: 40px 30px;
     text-align: center;
-    border-top: 5px solid var(--primary);
+    border: 1px solid rgba(0,0,0,0.05);
+    position: relative;
+    overflow: hidden;
+  }
+  
+  .team-card:before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 5px;
+    background: linear-gradient(90deg, var(--primary), var(--secondary));
   }
   
   .team-card:hover {
     transform: translateY(-15px);
-    box-shadow: 0 25px 50px rgba(26, 75, 140, 0.15);
-  }
-  
-  .team-card:nth-child(2) {
-    border-top-color: var(--secondary);
-  }
-  
-  .team-card:nth-child(3) {
-    border-top-color: var(--accent);
+    box-shadow: 0 30px 60px rgba(26, 75, 140, 0.15);
   }
   
   .team-icon {
-    width: 90px;
-    height: 90px;
+    width: 100px;
+    height: 100px;
     background: var(--gradient);
-    border-radius: 50%;
+    border-radius: 25px;
     display: flex;
     align-items: center;
     justify-content: center;
-    margin: 0 auto 25px;
+    margin: 0 auto 30px;
     color: white;
-    font-size: 40px;
-    box-shadow: 0 10px 20px rgba(26, 75, 140, 0.2);
+    font-size: 45px;
+    box-shadow: 0 15px 30px rgba(26, 75, 140, 0.2);
+    transform: rotate(45deg);
+    transition: transform 0.5s ease;
   }
   
-  .team-card:nth-child(2) .team-icon {
-    background: linear-gradient(135deg, var(--secondary) 0%, #c19b2c 100%);
-    box-shadow: 0 10px 20px rgba(212, 175, 55, 0.2);
-  }
-  
-  .team-card:nth-child(3) .team-icon {
-    background: linear-gradient(135deg, var(--accent) 0%, #a30000 100%);
-    box-shadow: 0 10px 20px rgba(139, 0, 0, 0.2);
+  .team-card:hover .team-icon {
+    transform: rotate(0deg);
   }
   
   .team-card h3 {
@@ -811,14 +838,6 @@
     margin-bottom: 20px;
     font-family: 'Montserrat', sans-serif;
     font-weight: 700;
-  }
-  
-  .team-card:nth-child(2) h3 {
-    color: var(--dark);
-  }
-  
-  .team-card:nth-child(3) h3 {
-    color: var(--accent);
   }
   
   .team-card p {
@@ -852,7 +871,7 @@
   
   /* Upcoming Events Section */
   .events-section {
-    padding: 100px 0;
+    padding: 120px 0;
     background: linear-gradient(135deg, #f8f9fa 0%, #e9ecef 100%);
     position: relative;
   }
@@ -869,46 +888,45 @@
   
   .events-grid {
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-    gap: 35px;
+    grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+    gap: 40px;
     margin-top: 60px;
   }
   
   .event-card {
     background: white;
-    border-radius: 15px;
+    border-radius: 20px;
     overflow: hidden;
-    box-shadow: 0 15px 35px rgba(0,0,0,0.1);
-    transition: all 0.4s ease;
-    cursor: pointer;
-    border: 2px solid transparent;
+    box-shadow: 0 20px 40px rgba(0,0,0,0.1);
+    transition: all 0.5s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+    border: 1px solid rgba(0,0,0,0.05);
+    cursor: default; /* Changed from pointer to default */
   }
   
   .event-card:hover {
     transform: translateY(-15px);
-    box-shadow: 0 25px 50px rgba(26, 75, 140, 0.15);
-    border-color: var(--primary);
+    box-shadow: 0 30px 60px rgba(26, 75, 140, 0.15);
   }
   
   .event-date {
-    background: var(--primary);
+    background: var(--gradient);
     color: white;
-    padding: 20px;
+    padding: 25px;
     text-align: center;
     font-family: 'Montserrat', sans-serif;
   }
   
   .event-day {
-    font-size: 2.5rem;
+    font-size: 3rem;
     font-weight: 800;
     line-height: 1;
   }
   
   .event-month {
-    font-size: 1.2rem;
+    font-size: 1.3rem;
     font-weight: 600;
     text-transform: uppercase;
-    letter-spacing: 1px;
+    letter-spacing: 2px;
   }
   
   .event-content {
@@ -940,9 +958,73 @@
     border-top: 1px solid rgba(0,0,0,0.1);
   }
   
-  /* Join CTA Section */
+  /* YouTube Integration Section */
+  .youtube-section {
+    padding: 100px 0;
+    background: white;
+    position: relative;
+  }
+  
+  .youtube-section:before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 5px;
+    background: linear-gradient(90deg, var(--primary), var(--secondary), var(--accent));
+  }
+  
+  .youtube-container {
+    max-width: 1000px;
+    margin: 60px auto 0;
+    border-radius: 25px;
+    overflow: hidden;
+    box-shadow: 0 30px 60px rgba(0,0,0,0.15);
+    position: relative;
+  }
+  
+  .youtube-video {
+    position: relative;
+    padding-bottom: 56.25%;
+    height: 0;
+    overflow: hidden;
+  }
+  
+  .youtube-video iframe {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    border: none;
+  }
+  
+  .youtube-info {
+    background: var(--gradient);
+    color: white;
+    padding: 40px;
+    text-align: center;
+  }
+  
+  .youtube-info h3 {
+    font-family: 'Montserrat', sans-serif;
+    font-size: 2.2rem;
+    margin-bottom: 20px;
+    font-weight: 700;
+  }
+  
+  .youtube-info p {
+    font-size: 1.2rem;
+    opacity: 0.9;
+    max-width: 600px;
+    margin: 0 auto 30px;
+    line-height: 1.7;
+  }
+  
+  /* Join CTA Section with Modal Trigger */
   .join-section {
-    padding: 120px 0;
+    padding: 140px 0;
     background: var(--gradient);
     color: white;
     text-align: center;
@@ -969,7 +1051,7 @@
   
   .join-content h2 {
     font-family: 'Montserrat', sans-serif;
-    font-size: 4rem;
+    font-size: 4.5rem;
     margin-bottom: 30px;
     font-weight: 800;
     text-shadow: 2px 2px 10px rgba(0, 0, 0, 0.3);
@@ -978,7 +1060,7 @@
   
   .join-content p {
     font-size: 1.4rem;
-    margin-bottom: 40px;
+    margin-bottom: 50px;
     opacity: 0.95;
     max-width: 600px;
     margin-left: auto;
@@ -990,9 +1072,9 @@
     background: white;
     color: var(--primary);
     font-weight: 700;
-    font-size: 1.1rem;
-    padding: 16px 45px;
-    box-shadow: 0 8px 25px rgba(0,0,0,0.2);
+    font-size: 1.2rem;
+    padding: 20px 50px;
+    box-shadow: 0 15px 40px rgba(0,0,0,0.2);
   }
   
   .join-btn:hover {
@@ -1000,11 +1082,194 @@
     color: white;
   }
   
-  /* Footer */
+  /* Modal for Audition Form */
+  .modal {
+    display: none;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.85);
+    backdrop-filter: blur(10px);
+    z-index: 10000;
+    align-items: center;
+    justify-content: center;
+    padding: 20px;
+    opacity: 0;
+    transition: opacity 0.3s ease;
+  }
+  
+  .modal.active {
+    display: flex;
+    opacity: 1;
+  }
+  
+  .modal-content {
+    background: white;
+    width: 100%;
+    max-width: 800px;
+    border-radius: 30px;
+    overflow: hidden;
+    box-shadow: 0 40px 80px rgba(0, 0, 0, 0.3);
+    position: relative;
+    max-height: 90vh;
+    overflow-y: auto;
+    transform: translateY(50px);
+    transition: transform 0.5s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+  }
+  
+  .modal.active .modal-content {
+    transform: translateY(0);
+  }
+  
+  .modal-header {
+    background: var(--gradient);
+    color: white;
+    padding: 40px 30px;
+    text-align: center;
+  }
+  
+  .modal-header h2 {
+    font-family: 'Montserrat', sans-serif;
+    font-size: 3rem;
+    margin-bottom: 15px;
+    font-weight: 800;
+  }
+  
+  .modal-header p {
+    opacity: 0.9;
+    font-size: 1.2rem;
+    max-width: 500px;
+    margin: 0 auto;
+  }
+  
+  .modal-body {
+    padding: 40px;
+  }
+  
+  .form-group {
+    margin-bottom: 30px;
+  }
+  
+  .form-group label {
+    display: block;
+    margin-bottom: 10px;
+    color: var(--dark);
+    font-weight: 500;
+    font-size: 1rem;
+  }
+  
+  .form-group input,
+  .form-group select,
+  .form-group textarea {
+    width: 100%;
+    padding: 16px 20px;
+    border: 2px solid #e1e5eb;
+    border-radius: 12px;
+    font-family: 'Poppins', sans-serif;
+    font-size: 1rem;
+    transition: all 0.3s ease;
+    background: #f8f9fa;
+  }
+  
+  .form-group input:focus,
+  .form-group select:focus,
+  .form-group textarea:focus {
+    outline: none;
+    border-color: var(--primary);
+    background: white;
+    box-shadow: 0 0 0 4px rgba(26, 75, 140, 0.1);
+  }
+  
+  .form-row {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 25px;
+  }
+  
+  .submit-btn {
+    width: 100%;
+    background: var(--gradient);
+    color: white;
+    border: none;
+    padding: 18px;
+    border-radius: 12px;
+    font-size: 1.2rem;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    margin-top: 20px;
+  }
+  
+  .submit-btn:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 15px 30px rgba(26, 75, 140, 0.2);
+  }
+  
+  .close-modal {
+    position: absolute;
+    top: 25px;
+    right: 25px;
+    background: rgba(0, 0, 0, 0.2);
+    color: white;
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    font-size: 1.8rem;
+    transition: all 0.3s ease;
+    z-index: 10001;
+    backdrop-filter: blur(5px);
+  }
+  
+  .close-modal:hover {
+    background: rgba(0, 0, 0, 0.4);
+    transform: rotate(90deg);
+  }
+  
+  /* Google Form Container */
+  .google-form-container {
+    margin-top: 40px;
+    border: 2px dashed #e1e5eb;
+    border-radius: 15px;
+    padding: 40px;
+    text-align: center;
+    background: #f8f9fa;
+  }
+  
+  .google-form-container h3 {
+    color: var(--primary);
+    margin-bottom: 20px;
+    font-size: 1.8rem;
+    font-family: 'Montserrat', sans-serif;
+  }
+  
+  .google-form-container p {
+    color: #666;
+    margin-bottom: 25px;
+    max-width: 600px;
+    margin-left: auto;
+    margin-right: auto;
+    font-size: 1.1rem;
+  }
+  
+  .google-form-placeholder {
+    background: white;
+    padding: 40px;
+    border-radius: 15px;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.05);
+    margin-top: 25px;
+  }
+  
+  /* Footer - 2025 Design */
   footer {
     background: var(--dark);
     color: white;
-    padding: 80px 0 30px;
+    padding: 100px 0 40px;
     position: relative;
     border-top: 1px solid rgba(255,255,255,0.05);
   }
@@ -1021,30 +1286,43 @@
   
   .footer-content {
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-    gap: 40px;
-    margin-bottom: 50px;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 50px;
+    margin-bottom: 60px;
   }
   
   @media (max-width: 768px) {
     .footer-content {
       grid-template-columns: 1fr;
-      gap: 30px;
+      gap: 40px;
     }
     
     .intro-content {
       grid-template-columns: 1fr;
-      gap: 40px;
+      gap: 50px;
+    }
+    
+    .form-row {
+      grid-template-columns: 1fr;
+      gap: 20px;
+    }
+    
+    .join-content h2 {
+      font-size: 3rem;
+    }
+    
+    .section-title {
+      font-size: 2.8rem;
     }
   }
   
   .footer-column h3 {
-    margin-bottom: 25px;
+    margin-bottom: 30px;
     color: var(--secondary);
-    font-size: 1.5rem;
+    font-size: 1.6rem;
     font-weight: 600;
     position: relative;
-    padding-bottom: 10px;
+    padding-bottom: 15px;
     font-family: 'Montserrat', sans-serif;
   }
   
@@ -1053,9 +1331,10 @@
     position: absolute;
     bottom: 0;
     left: 0;
-    width: 50px;
-    height: 3px;
+    width: 60px;
+    height: 4px;
     background: var(--primary);
+    border-radius: 2px;
   }
   
   .footer-links {
@@ -1063,60 +1342,63 @@
   }
   
   .footer-links li {
-    margin-bottom: 12px;
+    margin-bottom: 15px;
   }
   
   .footer-links a {
     color: #aaa;
-    transition: 0.3s;
-    display: inline-block;
+    transition: all 0.3s ease;
+    display: inline-flex;
+    align-items: center;
+    gap: 10px;
   }
   
   .footer-links a:hover {
     color: var(--secondary);
-    transform: translateX(5px);
+    transform: translateX(10px);
   }
   
   .social-links {
     display: flex;
     gap: 15px;
-    margin-top: 25px;
+    margin-top: 30px;
   }
   
   .social-links a {
     display: flex;
     align-items: center;
     justify-content: center;
-    width: 45px;
-    height: 45px;
+    width: 50px;
+    height: 50px;
     background: rgba(255,255,255,0.1);
-    border-radius: 50%;
-    transition: 0.3s;
+    border-radius: 15px;
+    transition: all 0.3s ease;
+    font-size: 1.2rem;
   }
   
   .social-links a:hover {
     background: var(--secondary);
-    transform: translateY(-5px);
+    transform: translateY(-5px) rotate(5deg);
   }
   
   .footer-bottom {
     text-align: center;
-    padding-top: 30px;
+    padding-top: 40px;
     border-top: 1px solid rgba(255,255,255,0.05);
     font-size: 0.9rem;
     color: #777;
   }
   
-  /* Scroll to top button */
+  /* Scroll to top button - Modern Design */
   .scroll-top {
     position: fixed;
-    bottom: 30px;
-    right: 30px;
-    width: 50px;
-    height: 50px;
-    background: var(--primary);
+    bottom: 40px;
+    right: 40px;
+    width: 60px;
+    height: 60px;
+    background: var(--gradient);
     color: white;
-    border-radius: 50%;
+    border-radius: 20px;
     display: flex;
     align-items: center;
     justify-content: center;
@@ -1124,8 +1406,9 @@
     z-index: 999;
     opacity: 0;
     visibility: hidden;
-    transition: all 0.3s ease;
-    box-shadow: 0 5px 15px rgba(26, 75, 140, 0.3);
+    transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+    box-shadow: 0 10px 30px rgba(26, 75, 140, 0.3);
+    font-size: 1.2rem;
   }
   
   .scroll-top.visible {
@@ -1135,12 +1418,128 @@
   
   .scroll-top:hover {
     background: var(--accent);
-    transform: translateY(-5px);
-    box-shadow: 0 8px 20px rgba(139, 0, 0, 0.3);
+    transform: translateY(-10px) rotate(360deg);
+    box-shadow: 0 15px 40px rgba(139, 0, 0, 0.3);
   }
 </style>
 </head>
 <body>
+
+<!-- Modal for Audition Form -->
+<div class="modal" id="auditionModal">
+  <div class="modal-content">
+    <div class="close-modal" id="closeModal">&times;</div>
+    
+    <div class="modal-header">
+      <h2>Join Proclaimers</h2>
+      <p>Audition for the Drama Ministry Team</p>
+    </div>
+    
+    <div class="modal-body">
+      <!-- Custom Form Section -->
+      <div id="customForm">
+        <h3 style="color: var(--primary); margin-bottom: 30px; text-align: center; font-family: 'Montserrat', sans-serif; font-size: 2rem;">Proclaimers Audition Application</h3>
+        
+        <form id="auditionApplicationForm">
+          <div class="form-row">
+            <div class="form-group">
+              <label for="firstName">First Name *</label>
+              <input type="text" id="firstName" name="firstName" required>
+            </div>
+            
+            <div class="form-group">
+              <label for="lastName">Last Name *</label>
+              <input type="text" id="lastName" name="lastName" required>
+            </div>
+          </div>
+          
+          <div class="form-row">
+            <div class="form-group">
+              <label for="email">Email Address *</label>
+              <input type="email" id="email" name="email" required>
+            </div>
+            
+            <div class="form-group">
+              <label for="phone">Phone Number *</label>
+              <input type="tel" id="phone" name="phone" required>
+            </div>
+          </div>
+          
+          <div class="form-row">
+            <div class="form-group">
+              <label for="age">Age *</label>
+              <input type="number" id="age" name="age" min="16" max="65" required>
+            </div>
+            
+            <div class="form-group">
+              <label for="experience">Years of Experience</label>
+              <select id="experience" name="experience">
+                <option value="none">No experience</option>
+                <option value="beginner">Beginner (1-2 years)</option>
+                <option value="intermediate">Intermediate (3-5 years)</option>
+                <option value="advanced">Advanced (5+ years)</option>
+              </select>
+            </div>
+          </div>
+          
+          <div class="form-group">
+            <label for="talentArea">Area of Interest *</label>
+            <select id="talentArea" name="talentArea" required>
+              <option value="">Select your area of interest</option>
+              <option value="acting">Acting / Performance</option>
+              <option value="writing">Script Writing</option>
+              <option value="directing">Directing</option>
+              <option value="production">Production / Technical</option>
+              <option value="music">Music / Sound</option>
+              <option value="costume">Costume / Makeup</option>
+              <option value="multiple">Multiple Areas</option>
+            </select>
+          </div>
+          
+          <div class="form-group">
+            <label for="whyJoin">Why do you want to join Proclaimers? *</label>
+            <textarea id="whyJoin" name="whyJoin" rows="4" placeholder="Share your passion for drama ministry and your faith journey..." required></textarea>
+          </div>
+          
+          <div class="form-group">
+            <label for="availability">Availability for Rehearsals *</label>
+            <textarea id="availability" name="availability" rows="3" placeholder="Which days/times are you typically available?" required></textarea>
+          </div>
+          
+          <button type="submit" class="submit-btn">Submit Application</button>
+        </form>
+        
+        <p style="text-align: center; margin-top: 25px; color: #666; font-size: 0.95rem;">
+          We'll contact you within 48 hours to schedule your audition.
+        </p>
+      </div>
+      
+      <!-- Google Form Integration Section -->
+      <div class="google-form-container">
+        <h3>Alternative: Use Google Form</h3>
+        <p>You can also submit your application through our Google Form. Add your Google Form embed code or link below:</p>
+        
+        <div class="google-form-placeholder">
+          <div id="googleFormPlaceholder">
+            <i class="fab fa-google" style="font-size: 3rem; color: var(--primary); margin-bottom: 20px;"></i>
+            <p style="color: #666; margin-bottom: 20px; font-size: 1.1rem;">Add your Google Form embed code here</p>
+            <p style="color: #888; font-size: 0.9rem; line-height: 1.6;">
+              <strong>To embed your Google Form:</strong><br>
+              1. Open your Google Form in Google Drive<br>
+              2. Click the "Send" button<br>
+              3. Click the embed icon (&lt;&gt;)<br>
+              4. Copy the embed HTML code<br>
+              5. Paste it in this section
+            </p>
+            <div style="background: #f0f0f0; padding: 20px; border-radius: 10px; margin-top: 20px; font-family: monospace; font-size: 0.9rem;">
+              &lt;iframe src="https://docs.google.com/forms/d/e/.../viewform?embedded=true" width="100%" height="600" frameborder="0" marginheight="0" marginwidth="0"&gt;Loading...&lt;/iframe&gt;
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
 
 <!-- Scroll to Top Button -->
 <div class="scroll-top" id="scrollTop">
@@ -1174,7 +1573,7 @@
             <a href="teen-church.html">Teen Church</a>
             <a href="kids-church.html">Kids Church</a>
             <a href="marriage-counselling.html">Marriage & Counselling</a>
-            <a href="spac-uk.html">SPAC UK</a>
+            <!-- SPAC UK removed -->
             <a href="spac-nxtion.html">SPAC Nxtion</a>
             <a href="spac-us.html">SPAC US</a>
           </div>
@@ -1194,12 +1593,15 @@
     Your browser does not support the video tag.
   </video>
   <div class="hero-overlay"></div>
-  <div class="spotlight"></div>
+  <div class="spotlight-container">
+    <div class="spotlight"></div>
+  </div>
   <div class="hero-content">
     <h1 class="proclaimers-title">PROCLAIMERS</h1>
     <h2 class="proclaimers-subtitle">Drama Ministry & Christian Film Productions</h2>
-    <p class="proclaimers-tagline">Where faith meets creativity, and stories transform hearts. Through drama and film, we proclaim God's truth to a generation in need of hope, redemption, and purpose.</p>
-    <a href="#films" class="btn">Watch Our Films 🎬</a>
+    <p class="proclaimers-tagline glass-effect">Where faith meets creativity, and stories transform hearts. Through drama and film, we proclaim God's truth to a generation in need of hope, redemption, and purpose.</p>
+    <!-- UPDATED: Changed button to link to YouTube -->
+    <a href="https://youtube.com/c/SPACProclaimers" target="_blank" class="btn">Watch on YouTube <i class="fab fa-youtube"></i></a>
   </div>
 </section>
 
@@ -1222,13 +1624,13 @@
   </div>
 </section>
 
-<!-- Film Productions Section -->
+<!-- Film Productions Section - UPDATED: No click functionality -->
 <section class="films-section" id="films">
   <div class="container">
     <h2 class="section-title">Our Film Productions</h2>
     <div class="film-slider">
       <div class="film-track" id="filmTrack">
-        <div class="film-card" onclick="openFilmDetails('redeemed-youth')">
+        <div class="film-card">
           <div class="film-poster">
             <img src="film-redeemed-youth.jpg" alt="Redeemed Youth Film">
             <div class="film-overlay">
@@ -1245,7 +1647,7 @@
           </div>
         </div>
         
-        <div class="film-card" onclick="openFilmDetails('crossroads')">
+        <div class="film-card">
           <div class="film-poster">
             <img src="film-crossroads.jpg" alt="Crossroads Film">
             <div class="film-overlay">
@@ -1262,7 +1664,7 @@
           </div>
         </div>
         
-        <div class="film-card" onclick="openFilmDetails('silent-scream')">
+        <div class="film-card">
           <div class="film-poster">
             <img src="film-silent-scream.jpg" alt="Silent Scream Film">
             <div class="film-overlay">
@@ -1279,7 +1681,7 @@
           </div>
         </div>
         
-        <div class="film-card" onclick="openFilmDetails('legacy-of-faith')">
+        <div class="film-card">
           <div class="film-poster">
             <img src="film-legacy-of-faith.jpg" alt="Legacy of Faith Film">
             <div class="film-overlay">
@@ -1296,7 +1698,7 @@
           </div>
         </div>
         
-        <div class="film-card" onclick="openFilmDetails('digital-dilemma')">
+        <div class="film-card">
           <div class="film-poster">
             <img src="film-digital-dilemma.jpg" alt="Digital Dilemma Film">
             <div class="film-overlay">
@@ -1312,6 +1714,26 @@
             </div>
           </div>
         </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- YouTube Integration Section -->
+<section class="youtube-section">
+  <div class="container">
+    <h2 class="section-title">Watch Our Latest Production</h2>
+    <div class="youtube-container">
+      <div class="youtube-video">
+        <!-- Replace with your YouTube embed code -->
+        <iframe src="https://www.youtube.com/embed/dQw4w9WgXcQ" title="YouTube video player" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+      </div>
+      <div class="youtube-info">
+        <h3>Subscribe to Our YouTube Channel</h3>
+        <p>Watch our latest films, behind-the-scenes content, and exclusive interviews with the cast and crew. Stay updated with new releases and ministry updates.</p>
+        <a href="https://youtube.com/c/SPACProclaimers" target="_blank" class="btn btn-secondary">
+          <i class="fab fa-youtube"></i> Subscribe Now
+        </a>
       </div>
     </div>
   </div>
@@ -1367,12 +1789,12 @@
   </div>
 </section>
 
-<!-- Upcoming Events Section -->
+<!-- Upcoming Events Section - UPDATED: No click functionality -->
 <section class="events-section">
   <div class="container">
     <h2 class="section-title">Upcoming Shows & Events</h2>
     <div class="events-grid">
-      <div class="event-card" onclick="openEventDetails('easter-drama')">
+      <div class="event-card">
         <div class="event-date">
           <div class="event-day">15</div>
           <div class="event-month">APR</div>
@@ -1387,7 +1809,7 @@
         </div>
       </div>
       
-      <div class="event-card" onclick="openEventDetails('youth-film-festival')">
+      <div class="event-card">
         <div class="event-date">
           <div class="event-day">22</div>
           <div class="event-month">JUN</div>
@@ -1402,7 +1824,7 @@
         </div>
       </div>
       
-      <div class="event-card" onclick="openEventDetails('drama-workshop')">
+      <div class="event-card">
         <div class="event-date">
           <div class="event-day">10</div>
           <div class="event-month">AUG</div>
@@ -1420,13 +1842,13 @@
   </div>
 </section>
 
-<!-- Join CTA Section -->
+<!-- Join CTA Section - UPDATED: Opens modal instead of separate page -->
 <section class="join-section" id="join">
   <div class="container">
     <div class="join-content">
       <h2>TAKE THE STAGE</h2>
       <p>Do you have a passion for acting, filmmaking, writing, or production? Join the Proclaimers Drama Ministry and use your creative gifts to glorify God and impact lives through powerful storytelling.</p>
-      <a href="audition.html" class="btn join-btn">Audition Now 🎭</a>
+      <a href="#" class="btn join-btn" id="openAuditionModal">Audition Now <i class="fas fa-theater-masks"></i></a>
     </div>
   </div>
 </section>
@@ -1438,7 +1860,7 @@
       <h3>Proclaimers Drama</h3>
       <p>Using drama, film, and creative arts to proclaim God's truth, transform culture, and touch hearts with powerful stories of faith, hope, and redemption.</p>
       <div class="social-links">
-        <a href="#"><i class="fab fa-youtube"></i></a>
+        <a href="https://youtube.com/c/SPACProclaimers" target="_blank"><i class="fab fa-youtube"></i></a>
         <a href="#"><i class="fab fa-instagram"></i></a>
         <a href="#"><i class="fab fa-tiktok"></i></a>
         <a href="#"><i class="fab fa-vimeo"></i></a>
@@ -1448,12 +1870,12 @@
     <div class="footer-column">
       <h3>Quick Links</h3>
       <ul class="footer-links">
-        <li><a href="index.html">Home</a></li>
-        <li><a href="about.html">About SPAC</a></li>
-        <li><a href="#films">Our Films</a></li>
-        <li><a href="#teams">Creative Teams</a></li>
-        <li><a href="vanguard.html">Vanguard Youth</a></li>
-        <li><a href="index.html#contact">Contact Us</a></li>
+        <li><a href="index.html"><i class="fas fa-home"></i> Home</a></li>
+        <li><a href="about.html"><i class="fas fa-church"></i> About SPAC</a></li>
+        <li><a href="#films"><i class="fas fa-film"></i> Our Films</a></li>
+        <li><a href="#teams"><i class="fas fa-users"></i> Creative Teams</a></li>
+        <li><a href="vanguard.html"><i class="fas fa-fire"></i> Vanguard Youth</a></li>
+        <li><a href="index.html#contact"><i class="fas fa-envelope"></i> Contact Us</a></li>
       </ul>
     </div>
     <div class="footer-column">
@@ -1462,7 +1884,7 @@
         <li><i class="fas fa-map-marker-alt"></i> SPAC Creative Arts Center</li>
         <li><i class="fas fa-phone"></i> Drama Office: (123) 456-7892</li>
         <li><i class="fas fa-envelope"></i> Email: proclaimers@spacchurch.org</li>
-        <li><i class="fas fa-video"></i> YouTube: SPAC Proclaimers</li>
+        <li><i class="fab fa-youtube"></i> YouTube: SPAC Proclaimers</li>
         <li><i class="fas fa-user"></i> Director: Sister Grace Okon</li>
       </ul>
     </div>
@@ -1524,46 +1946,70 @@ document.addEventListener('click', (e) => {
 
 // Film Slider Navigation
 const filmTrack = document.getElementById('filmTrack');
-let filmScrollPosition = 0;
-const filmScrollAmount = 350;
+let isDragging = false;
+let startX = 0;
+let scrollLeft = 0;
+let autoScrollInterval;
 
-function scrollFilms(direction) {
-  filmScrollPosition += direction * filmScrollAmount;
-  filmTrack.scrollTo({
-    left: filmScrollPosition,
-    behavior: 'smooth'
-  });
-}
-
-// Auto-scroll film slider
-let autoFilmScroll = setInterval(() => {
-  filmScrollPosition += filmScrollAmount;
-  if (filmScrollPosition >= filmTrack.scrollWidth - filmTrack.clientWidth) {
-    filmScrollPosition = 0;
-  }
-  filmTrack.scrollTo({
-    left: filmScrollPosition,
-    behavior: 'smooth'
-  });
-}, 5000);
-
-// Pause auto-scroll on hover
-filmTrack.addEventListener('mouseenter', () => {
-  clearInterval(autoFilmScroll);
+// Make film slider draggable
+filmTrack.addEventListener('mousedown', (e) => {
+  isDragging = true;
+  startX = e.pageX - filmTrack.offsetLeft;
+  scrollLeft = filmTrack.scrollLeft;
+  filmTrack.style.cursor = 'grabbing';
 });
 
 filmTrack.addEventListener('mouseleave', () => {
-  autoFilmScroll = setInterval(() => {
-    filmScrollPosition += filmScrollAmount;
-    if (filmScrollPosition >= filmTrack.scrollWidth - filmTrack.clientWidth) {
-      filmScrollPosition = 0;
-    }
-    filmTrack.scrollTo({
-      left: filmScrollPosition,
-      behavior: 'smooth'
-    });
-  }, 5000);
+  isDragging = false;
+  filmTrack.style.cursor = 'grab';
 });
+
+filmTrack.addEventListener('mouseup', () => {
+  isDragging = false;
+  filmTrack.style.cursor = 'grab';
+});
+
+filmTrack.addEventListener('mousemove', (e) => {
+  if (!isDragging) return;
+  e.preventDefault();
+  const x = e.pageX - filmTrack.offsetLeft;
+  const walk = (x - startX) * 2;
+  filmTrack.scrollLeft = scrollLeft - walk;
+});
+
+// Auto-scroll film slider
+function startAutoScroll() {
+  autoScrollInterval = setInterval(() => {
+    if (!isDragging) {
+      filmTrack.scrollBy({
+        left: 1,
+        behavior: 'smooth'
+      });
+      
+      // Reset to beginning if at end
+      if (filmTrack.scrollLeft >= (filmTrack.scrollWidth - filmTrack.clientWidth - 10)) {
+        setTimeout(() => {
+          filmTrack.scrollTo({
+            left: 0,
+            behavior: 'smooth'
+          });
+        }, 2000);
+      }
+    }
+  }, 30);
+}
+
+// Pause auto-scroll on hover
+filmTrack.addEventListener('mouseenter', () => {
+  clearInterval(autoScrollInterval);
+});
+
+filmTrack.addEventListener('mouseleave', () => {
+  startAutoScroll();
+});
+
+// Start auto-scroll
+startAutoScroll();
 
 // Scroll to top button
 const scrollTopBtn = document.getElementById('scrollTop');
@@ -1583,14 +2029,61 @@ scrollTopBtn.addEventListener('click', () => {
   });
 });
 
-// Film and Event card click functions
-function openFilmDetails(film) {
-  alert(`Opening details for "${film.replace('-', ' ')}". This would navigate to a film details page.`);
-}
+// Modal functionality
+const auditionModal = document.getElementById('auditionModal');
+const openAuditionModalBtn = document.getElementById('openAuditionModal');
+const closeModalBtn = document.getElementById('closeModal');
 
-function openEventDetails(event) {
-  alert(`Opening registration for "${event.replace('-', ' ')}". This would navigate to an event registration page.`);
-}
+// Open modal when "Audition Now" is clicked
+openAuditionModalBtn.addEventListener('click', (e) => {
+  e.preventDefault();
+  auditionModal.classList.add('active');
+  document.body.style.overflow = 'hidden';
+});
+
+// Close modal when close button is clicked
+closeModalBtn.addEventListener('click', () => {
+  auditionModal.classList.remove('active');
+  document.body.style.overflow = 'auto';
+});
+
+// Close modal when clicking outside the modal content
+auditionModal.addEventListener('click', (e) => {
+  if (e.target === auditionModal) {
+    auditionModal.classList.remove('active');
+    document.body.style.overflow = 'auto';
+  }
+});
+
+// Close modal with Escape key
+document.addEventListener('keydown', (e) => {
+  if (e.key === 'Escape' && auditionModal.classList.contains('active')) {
+    auditionModal.classList.remove('active');
+    document.body.style.overflow = 'auto';
+  }
+});
+
+// Form submission handling
+const applicationForm = document.getElementById('auditionApplicationForm');
+
+applicationForm.addEventListener('submit', (e) => {
+  e.preventDefault();
+  
+  // Get form data
+  const formData = new FormData(applicationForm);
+  const formObject = Object.fromEntries(formData);
+  
+  // In a real implementation, you would send this data to your server
+  // For now, we'll just show a success message
+  alert('Thank you for your audition application! We will contact you within 48 hours to schedule your audition.');
+  
+  // Reset form
+  applicationForm.reset();
+  
+  // Close modal
+  auditionModal.classList.remove('active');
+  document.body.style.overflow = 'auto';
+});
 
 // Initialize animations on load
 window.addEventListener('DOMContentLoaded', function() {
@@ -1656,7 +2149,7 @@ document.querySelectorAll('a[href^="#"]').forEach(anchor => {
       const targetElement = document.querySelector(targetId);
       if (targetElement) {
         window.scrollTo({
-          top: targetElement.offsetTop - 80,
+          top: targetElement.offsetTop - 100,
           behavior: 'smooth'
         });
         
@@ -1671,27 +2164,37 @@ document.querySelectorAll('a[href^="#"]').forEach(anchor => {
   });
 });
 
-// Add spotlight effect to hero section
+// Add pulsing animation to join button
+const joinBtn = document.querySelector('.join-btn');
+if (joinBtn) {
+  setInterval(() => {
+    joinBtn.style.transform = 'scale(1.05)';
+    setTimeout(() => {
+      joinBtn.style.transform = 'scale(1)';
+    }, 500);
+  }, 2000);
+}
+
+// Add parallax effect to hero section
+window.addEventListener('scroll', () => {
+  const scrolled = window.pageYOffset;
+  const hero = document.querySelector('.proclaimers-hero');
+  if (hero) {
+    hero.style.transform = `translateY(${scrolled * 0.5}px)`;
+  }
+});
+
+// Add cursor spotlight effect
 document.addEventListener('mousemove', (e) => {
   const spotlight = document.querySelector('.spotlight');
   if (spotlight) {
-    const x = e.clientX / window.innerWidth * 100;
-    const y = e.clientY / window.innerHeight * 100;
+    const x = (e.clientX / window.innerWidth) * 100;
+    const y = (e.clientY / window.innerHeight) * 100;
     spotlight.style.left = `${x}%`;
     spotlight.style.top = `${y}%`;
   }
 });
-
-// Add curtain effect to page load
-window.addEventListener('load', () => {
-  document.body.style.opacity = '0';
-  document.body.style.transition = 'opacity 0.8s ease';
-  
-  setTimeout(() => {
-    document.body.style.opacity = '1';
-  }, 100);
-});
 </script>
 
 </body>
-  </html>
+</html>
