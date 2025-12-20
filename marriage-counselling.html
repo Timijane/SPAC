@@ -2,10 +2,12 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>SPAC Counseling & Marriage Ministry</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, minimum-scale=0.5, user-scalable=yes, viewport-fit=cover">
+    <meta name="theme-color" content="#1a4b8c">
+    <meta name="description" content="SPAC Counseling & Marriage Ministry - Professional Christian counseling for individuals, couples, and families in a confidential, compassionate environment">
+    <title>SPAC Church - Counseling & Marriage Ministry</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&family=Playfair+Display:wght@400;500;600&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&family=Playfair+Display:wght@400;500;600&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
     <style>
         :root {
             --primary: #1a4b8c;
@@ -16,157 +18,127 @@
             --light: #f8f9fa;
             --dark: #2c3e50;
             --gray: #6c757d;
+            --success: #2a9d8f;
+            --warning: #e9c46a;
         }
-        * { margin: 0; padding: 0; box-sizing: border-box; }
+        
+        * { 
+            margin: 0; 
+            padding: 0; 
+            box-sizing: border-box; 
+        }
+        
+        html {
+            font-size: clamp(14px, 1vw, 18px);
+            overflow-x: hidden;
+            width: 100%;
+            max-width: 100vw;
+            -webkit-text-size-adjust: 100%;
+            -moz-text-size-adjust: 100%;
+            -ms-text-size-adjust: 100%;
+        }
+        
         body { 
-            font-family: 'Poppins', sans-serif; 
+            font-family: 'Inter', sans-serif; 
             line-height: 1.7; 
             color: #333; 
             background: #fff;
-        }
-        .container { width: 100%; max-width: 1200px; margin: 0 auto; padding: 0 20px; }
-
-        /* ====== CALMING HERO SECTION ====== */
-        .counseling-hero {
-            position: relative;
-            height: 80vh;
-            min-height: 600px;
-            display: flex;
-            align-items: center;
-            color: white;
-            overflow: hidden;
-            background: linear-gradient(135deg, rgba(26, 75, 140, 0.9) 0%, rgba(42, 157, 143, 0.85) 100%);
-        }
-        .hero-background {
-            position: absolute;
-            top: 0; left: 0;
-            width: 100%; height: 100%;
-            background-image: url('https://images.unsplash.com/photo-1519208255734-6c1cbfa9e80d?ixlib=rb-4.0.3&auto=format&fit=crop&w=2070&q=80');
-            background-size: cover;
-            background-position: center;
-            z-index: -1;
-        }
-        .hero-overlay {
-            position: absolute;
-            top: 0; left: 0;
-            width: 100%; height: 100%;
-            background: linear-gradient(135deg, rgba(26, 75, 140, 0.85) 0%, rgba(42, 157, 143, 0.8) 100%);
-            z-index: 1;
-        }
-        .hero-content {
-            position: relative;
-            z-index: 2;
-            max-width: 800px;
-            padding: 40px;
-        }
-        .hero-subtitle {
-            font-size: 1.2rem;
-            font-weight: 500;
-            color: var(--secondary);
-            margin-bottom: 15px;
-            text-transform: uppercase;
-            letter-spacing: 2px;
-        }
-        .hero-title {
-            font-family: 'Playfair Display', serif;
-            font-size: 4rem;
-            font-weight: 600;
-            line-height: 1.1;
-            margin-bottom: 25px;
-            color: white;
-        }
-        .hero-text {
-            font-size: 1.3rem;
-            font-weight: 300;
-            margin-bottom: 40px;
-            opacity: 0.95;
-            max-width: 600px;
-        }
-        .hero-buttons {
-            display: flex;
-            gap: 20px;
-            flex-wrap: wrap;
-        }
-        .btn-primary, .btn-secondary {
-            display: inline-flex;
-            align-items: center;
-            gap: 10px;
-            padding: 18px 35px;
-            border-radius: 50px;
-            font-weight: 600;
-            font-size: 1.1rem;
-            text-decoration: none;
-            transition: all 0.3s ease;
-            cursor: pointer;
-            border: none;
-        }
-        .btn-primary {
-            background: var(--secondary);
-            color: var(--dark);
-            box-shadow: 0 10px 30px rgba(212, 175, 55, 0.3);
-        }
-        .btn-primary:hover {
-            transform: translateY(-5px);
-            box-shadow: 0 15px 40px rgba(212, 175, 55, 0.4);
-        }
-        .btn-secondary {
-            background: transparent;
-            color: white;
-            border: 2px solid rgba(255,255,255,0.3);
-        }
-        .btn-secondary:hover {
-            background: rgba(255,255,255,0.1);
-            border-color: white;
-            transform: translateY(-3px);
-        }
-        .confidentiality-badge {
-            display: inline-flex;
-            align-items: center;
-            gap: 10px;
-            background: rgba(255,255,255,0.1);
-            backdrop-filter: blur(10px);
-            padding: 12px 25px;
-            border-radius: 30px;
-            margin-top: 40px;
-            color: white;
-            font-size: 0.9rem;
-        }
-
-        /* ====== HEADER ====== */
-        header {
-            position: fixed;
-            top: 0;
+            overflow-x: hidden;
             width: 100%;
-            background: rgba(255, 255, 255, 0.98);
-            box-shadow: 0 5px 30px rgba(0,0,0,0.08);
-            z-index: 1000;
-            transition: all 0.3s ease;
-            backdrop-filter: blur(10px);
+            max-width: 100vw;
         }
+        
+        .container { 
+            width: min(100% - clamp(1rem, 5vw, 3rem), 1200px); 
+            margin: 0 auto; 
+            padding: 0 clamp(0.5rem, 3vw, 1.5rem);
+        }
+        
+        /* ====== MODERN HEADER ====== */
+        header {
+            background: white;
+            box-shadow: 0 3px 20px rgba(0, 0, 0, 0.08);
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+            padding: 8px 0;
+            transition: all 0.3s ease;
+            width: 100%;
+            backdrop-filter: blur(10px);
+            -webkit-backdrop-filter: blur(10px);
+        }
+        
         .header-container {
             display: flex;
             justify-content: space-between;
             align-items: center;
-            padding: 15px 0;
+            padding: 0 clamp(1rem, 3vw, 2rem);
+            width: 100%;
+            max-width: 1200px;
+            margin: 0 auto;
         }
-        .logo a {
+        
+        .logo {
             display: flex;
             align-items: center;
-            text-decoration: none;
-            color: var(--primary);
-            font-weight: 700;
-            font-size: 1.8rem;
         }
-        .logo i { color: var(--teal); margin-right: 10px; }
-        .nav-links { display: flex; gap: 30px; }
-        .nav-links a {
-            text-decoration: none;
+        
+        .logo-frame {
+            width: clamp(50px, 6vw, 70px);
+            height: clamp(50px, 6vw, 70px);
+            border-radius: 50%;
+            background: white;
+            border: 3px solid var(--primary);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-right: clamp(0.75rem, 1.5vw, 1rem);
+            overflow: hidden;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+        }
+        
+        .logo-frame img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+        
+        .logo-text {
+            font-family: 'Poppins', sans-serif;
+            font-size: clamp(1.2rem, 2.5vw, 1.6rem);
+            font-weight: 700;
+            color: var(--primary);
+            letter-spacing: -0.5px;
+        }
+        
+        /* Navigation */
+        .nav-container {
+            display: flex;
+            align-items: center;
+            justify-content: flex-end;
+            width: 100%;
+        }
+        
+        .nav-menu {
+            display: flex;
+            list-style: none;
+        }
+        
+        .nav-menu li {
+            margin-left: clamp(1rem, 2vw, 1.875rem);
+            position: relative;
+        }
+        
+        .nav-menu a {
             color: var(--dark);
             font-weight: 500;
+            font-size: clamp(0.875rem, 1vw, 0.9375rem);
+            transition: all 0.3s ease;
+            padding: 8px 0;
             position: relative;
-            padding: 5px 0;
         }
-        .nav-links a:after {
+        
+        .nav-menu a::after {
             content: '';
             position: absolute;
             bottom: 0;
@@ -176,75 +148,354 @@
             background: var(--teal);
             transition: width 0.3s ease;
         }
-        .nav-links a:hover:after { width: 100%; }
+        
+        .nav-menu a:hover::after {
+            width: 100%;
+        }
+        
         .nav-cta {
             background: var(--teal);
             color: white;
-            padding: 10px 25px;
+            padding: 0.75rem 1.75rem;
             border-radius: 30px;
             text-decoration: none;
             font-weight: 600;
             transition: all 0.3s ease;
+            margin-left: 2rem;
+            font-size: 0.875rem;
         }
+        
         .nav-cta:hover {
             background: var(--primary);
             transform: translateY(-3px);
+            box-shadow: 0 10px 25px rgba(26, 75, 140, 0.3);
         }
-        .mobile-menu-btn { display: none; }
-
+        
+        /* Mobile Menu */
+        .hamburger {
+            display: none;
+            cursor: pointer;
+            width: 44px;
+            height: 44px;
+            position: relative;
+            z-index: 1001;
+            margin-left: auto;
+            background: var(--primary);
+            border-radius: 5px;
+            padding: 8px;
+        }
+        
+        .hamburger span {
+            display: block;
+            position: absolute;
+            height: 3px;
+            width: 24px;
+            background: white;
+            border-radius: 3px;
+            opacity: 1;
+            left: 8px;
+            transform: rotate(0deg);
+            transition: .25s ease-in-out;
+        }
+        
+        .hamburger span:nth-child(1) { top: 12px; }
+        .hamburger span:nth-child(2) { top: 18.5px; }
+        .hamburger span:nth-child(3) { top: 25px; }
+        
+        .hamburger.active span:nth-child(1) {
+            top: 18.5px;
+            transform: rotate(45deg);
+        }
+        
+        .hamburger.active span:nth-child(2) {
+            opacity: 0;
+            left: -30px;
+        }
+        
+        .hamburger.active span:nth-child(3) {
+            top: 18.5px;
+            transform: rotate(-45deg);
+        }
+        
+        @media (max-width: 992px) {
+            .nav-menu {
+                position: fixed;
+                top: 0;
+                right: -50%;
+                width: min(85%, 400px);
+                height: 100vh;
+                background: rgba(255, 255, 255, 0.98);
+                backdrop-filter: blur(10px);
+                -webkit-backdrop-filter: blur(10px);
+                flex-direction: column;
+                justify-content: flex-start;
+                align-items: flex-start;
+                padding: 100px 30px 30px;
+                transition: right 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+                box-shadow: -10px 0 30px rgba(0,0,0,0.15);
+                z-index: 1000;
+                overflow-y: auto;
+            }
+            
+            .nav-menu.active {
+                right: 0;
+            }
+            
+            .nav-menu li {
+                margin: 0 0 25px 0;
+                width: 100%;
+                opacity: 0;
+                transform: translateX(20px);
+                transition: all 0.3s ease;
+            }
+            
+            .nav-menu.active li {
+                opacity: 1;
+                transform: translateX(0);
+            }
+            
+            .nav-menu li:nth-child(1) { transition-delay: 0.1s; }
+            .nav-menu li:nth-child(2) { transition-delay: 0.2s; }
+            .nav-menu li:nth-child(3) { transition-delay: 0.3s; }
+            .nav-menu li:nth-child(4) { transition-delay: 0.4s; }
+            .nav-menu li:nth-child(5) { transition-delay: 0.5s; }
+            .nav-menu li:nth-child(6) { transition-delay: 0.6s; }
+            
+            .nav-menu a {
+                font-size: 1.125rem;
+                display: block;
+                padding: 12px 0;
+                width: 100%;
+                border-bottom: 1px solid rgba(0,0,0,0.05);
+                color: var(--dark);
+            }
+            
+            .nav-cta {
+                margin: 20px 0 0 0;
+                display: block;
+                text-align: center;
+                width: 100%;
+            }
+            
+            .hamburger {
+                display: block;
+            }
+        }
+        
+        @media (max-width: 576px) {
+            .nav-menu {
+                width: min(90%, 350px);
+                right: -100%;
+            }
+            
+            .logo-text {
+                font-size: clamp(1rem, 4vw, 1.25rem);
+            }
+            
+            .logo-frame {
+                width: clamp(45px, 8vw, 50px);
+                height: clamp(45px, 8vw, 50px);
+            }
+        }
+        
+        /* ====== MODERN HERO SECTION ====== */
+        .counseling-hero {
+            position: relative;
+            height: 85vh;
+            min-height: 700px;
+            display: flex;
+            align-items: center;
+            color: white;
+            overflow: hidden;
+            background: linear-gradient(135deg, rgba(26, 75, 140, 0.95) 0%, rgba(42, 157, 143, 0.92) 100%);
+            margin-top: 0;
+        }
+        
+        .hero-background {
+            position: absolute;
+            top: 0; left: 0;
+            width: 100%; height: 100%;
+            background-image: url('https://images.unsplash.com/photo-1519208255734-6c1cbfa9e80d?ixlib=rb-4.0.3&auto=format&fit=crop&w=2070&q=80');
+            background-size: cover;
+            background-position: center;
+            z-index: -1;
+            filter: brightness(0.7);
+        }
+        
+        .hero-content {
+            position: relative;
+            z-index: 2;
+            max-width: 800px;
+            padding: 40px;
+            animation: fadeInUp 0.8s ease-out;
+        }
+        
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+        
+        .hero-subtitle {
+            font-size: 1.1rem;
+            font-weight: 600;
+            color: var(--secondary);
+            margin-bottom: 15px;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+        }
+        
+        .hero-title {
+            font-family: 'Playfair Display', serif;
+            font-size: clamp(3rem, 6vw, 4.5rem);
+            font-weight: 600;
+            line-height: 1.1;
+            margin-bottom: 25px;
+            color: white;
+        }
+        
+        .hero-text {
+            font-size: clamp(1.1rem, 2vw, 1.3rem);
+            font-weight: 300;
+            margin-bottom: 40px;
+            opacity: 0.95;
+            max-width: 600px;
+            line-height: 1.8;
+        }
+        
+        .hero-buttons {
+            display: flex;
+            gap: 15px;
+            flex-wrap: wrap;
+            margin-bottom: 40px;
+        }
+        
+        .btn-primary, .btn-secondary {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            padding: 14px 28px;
+            border-radius: 50px;
+            font-weight: 600;
+            font-size: 0.95rem;
+            text-decoration: none;
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+            cursor: pointer;
+            border: none;
+        }
+        
+        .btn-primary {
+            background: var(--secondary);
+            color: var(--dark);
+            box-shadow: 0 10px 30px rgba(212, 175, 55, 0.3);
+        }
+        
+        .btn-primary:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 15px 40px rgba(212, 175, 55, 0.4);
+            background: #e6b830;
+        }
+        
+        .btn-secondary {
+            background: transparent;
+            color: white;
+            border: 2px solid rgba(255,255,255,0.3);
+        }
+        
+        .btn-secondary:hover {
+            background: rgba(255,255,255,0.1);
+            border-color: white;
+            transform: translateY(-3px);
+        }
+        
+        .confidentiality-badge {
+            display: inline-flex;
+            align-items: center;
+            gap: 12px;
+            background: rgba(255,255,255,0.15);
+            backdrop-filter: blur(10px);
+            padding: 14px 28px;
+            border-radius: 30px;
+            color: white;
+            font-size: 0.9rem;
+            font-weight: 500;
+            margin-top: 20px;
+            border: 1px solid rgba(255,255,255,0.2);
+        }
+        
         /* ====== CONTENT SECTIONS ====== */
         .section {
-            padding: 100px 0;
+            padding: clamp(5rem, 10vw, 8rem) 0;
         }
+        
         .section-title {
             font-family: 'Playfair Display', serif;
-            font-size: 3rem;
+            font-size: clamp(2.5rem, 5vw, 3.5rem);
             font-weight: 600;
             color: var(--primary);
             margin-bottom: 20px;
             text-align: center;
+            line-height: 1.2;
         }
+        
         .section-subtitle {
             text-align: center;
-            font-size: 1.2rem;
+            font-size: clamp(1rem, 2vw, 1.2rem);
             color: var(--gray);
             max-width: 800px;
             margin: 0 auto 60px;
             font-weight: 300;
+            line-height: 1.8;
         }
-        .section-light { background: #f8f9fa; }
-        .section-accent { background: linear-gradient(135deg, #f8f9fa 0%, #e8f4f8 100%); }
-
+        
+        .section-light { 
+            background: linear-gradient(180deg, #ffffff 0%, #f8f9fa 100%); 
+        }
+        
+        .section-accent { 
+            background: linear-gradient(135deg, rgba(42, 157, 143, 0.03) 0%, rgba(212, 175, 55, 0.03) 100%); 
+        }
+        
         /* Services Overview */
         .services-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-            gap: 40px;
+            grid-template-columns: repeat(auto-fit, minmax(min(300px, 100%), 1fr));
+            gap: clamp(1.5rem, 3vw, 2.5rem);
             margin-top: 60px;
         }
+        
         .service-card {
             background: white;
             border-radius: 20px;
-            padding: 40px 30px;
+            padding: clamp(2rem, 4vw, 2.5rem);
             box-shadow: 0 15px 40px rgba(0,0,0,0.08);
-            transition: all 0.3s ease;
+            transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
             text-align: center;
             position: relative;
             overflow: hidden;
+            border: 1px solid rgba(0, 0, 0, 0.05);
         }
+        
         .service-card:hover {
-            transform: translateY(-15px);
+            transform: translateY(-12px);
             box-shadow: 0 25px 60px rgba(0,0,0,0.12);
         }
+        
         .service-card:before {
             content: '';
             position: absolute;
             top: 0;
             left: 0;
             width: 100%;
-            height: 5px;
+            height: 4px;
             background: linear-gradient(90deg, var(--teal), var(--secondary));
         }
+        
         .service-icon {
             width: 80px;
             height: 80px;
@@ -256,96 +507,140 @@
             margin: 0 auto 25px;
             color: var(--teal);
             font-size: 2rem;
+            transition: all 0.3s ease;
         }
+        
+        .service-card:hover .service-icon {
+            background: var(--teal);
+            color: white;
+            transform: scale(1.1);
+        }
+        
         .service-title {
-            font-size: 1.5rem;
+            font-size: clamp(1.3rem, 2.5vw, 1.5rem);
             color: var(--dark);
             margin-bottom: 15px;
+            font-weight: 600;
         }
+        
         .service-desc {
             color: #666;
             margin-bottom: 25px;
-            font-size: 1rem;
+            font-size: clamp(0.9rem, 1.5vw, 1rem);
             line-height: 1.7;
         }
-
+        
         /* Marriage Counseling Special Section */
         .marriage-section {
             background: linear-gradient(135deg, rgba(155, 93, 229, 0.05) 0%, rgba(212, 175, 55, 0.05) 100%);
             border-radius: 30px;
-            padding: 80px;
-            margin: 80px 0;
+            padding: clamp(3rem, 8vw, 5rem);
+            margin: clamp(3rem, 8vw, 5rem) 0;
             position: relative;
             overflow: hidden;
+            border: 1px solid rgba(155, 93, 229, 0.1);
         }
+        
         .marriage-content {
             display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 60px;
+            grid-template-columns: repeat(auto-fit, minmax(min(300px, 100%), 1fr));
+            gap: clamp(2rem, 5vw, 4rem);
             align-items: center;
         }
+        
         .marriage-text h3 {
-            font-size: 2.5rem;
+            font-family: 'Playfair Display', serif;
+            font-size: clamp(2rem, 4vw, 3rem);
             color: var(--dark);
             margin-bottom: 25px;
             line-height: 1.3;
         }
+        
+        .marriage-text p {
+            font-size: clamp(1rem, 1.5vw, 1.125rem);
+            color: #555;
+            margin-bottom: clamp(1rem, 2.5vw, 1.5rem);
+            line-height: 1.8;
+        }
+        
         .marriage-features {
             list-style: none;
-            margin-top: 30px;
+            margin-top: clamp(2rem, 5vw, 3rem);
         }
+        
         .marriage-features li {
-            margin-bottom: 15px;
+            margin-bottom: clamp(1rem, 2vw, 1.25rem);
             display: flex;
-            align-items: center;
+            align-items: flex-start;
         }
+        
         .marriage-features i {
             color: var(--secondary);
-            margin-right: 15px;
-            font-size: 1.2rem;
+            margin-right: clamp(1rem, 2vw, 1.25rem);
+            font-size: clamp(1.25rem, 2vw, 1.5rem);
+            margin-top: 0.25rem;
+            flex-shrink: 0;
         }
+        
+        .marriage-features strong {
+            color: var(--primary);
+            display: block;
+            margin-bottom: 0.25rem;
+            font-size: clamp(1rem, 1.5vw, 1.125rem);
+        }
+        
         .marriage-image {
             border-radius: 20px;
             overflow: hidden;
             box-shadow: 0 25px 60px rgba(0,0,0,0.15);
-            height: 400px;
+            height: clamp(300px, 50vw, 500px);
+            position: relative;
         }
+        
         .marriage-image img {
             width: 100%;
             height: 100%;
             object-fit: cover;
-            transition: transform 0.5s ease;
+            transition: transform 0.7s ease;
         }
-        .marriage-image:hover img { transform: scale(1.05); }
-
+        
+        .marriage-image:hover img { 
+            transform: scale(1.05); 
+        }
+        
         /* Counseling Process */
         .process-container {
             max-width: 1000px;
             margin: 60px auto 0;
         }
+        
         .process-steps {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-            gap: 30px;
+            grid-template-columns: repeat(auto-fit, minmax(min(250px, 100%), 1fr));
+            gap: clamp(1.5rem, 3vw, 2rem);
             position: relative;
         }
+        
         .process-step {
             background: white;
             border-radius: 20px;
-            padding: 40px 30px;
+            padding: clamp(2rem, 4vw, 2.5rem);
             text-align: center;
             box-shadow: 0 15px 40px rgba(0,0,0,0.08);
             position: relative;
-            transition: all 0.3s ease;
+            transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+            border: 1px solid rgba(0, 0, 0, 0.05);
         }
+        
         .process-step:hover {
             transform: translateY(-10px);
             box-shadow: 0 25px 50px rgba(0,0,0,0.12);
         }
+        
         .step-number {
             width: 60px;
             height: 60px;
-            background: var(--teal);
+            background: linear-gradient(135deg, var(--teal), #2a9d8f);
             color: white;
             border-radius: 50%;
             display: flex;
@@ -354,36 +649,50 @@
             font-size: 1.5rem;
             font-weight: 600;
             margin: 0 auto 25px;
+            box-shadow: 0 10px 25px rgba(42, 157, 143, 0.3);
         }
+        
         .step-title {
-            font-size: 1.3rem;
+            font-size: clamp(1.2rem, 2.5vw, 1.4rem);
             color: var(--dark);
             margin-bottom: 15px;
+            font-weight: 600;
         }
-
-        /* Counselors Team */
+        
+        .step-desc {
+            color: #666;
+            font-size: clamp(0.9rem, 1.5vw, 1rem);
+            line-height: 1.7;
+        }
+        
+        /* Counselors Team - Updated Names */
         .counselors-container {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-            gap: 40px;
+            grid-template-columns: repeat(auto-fit, minmax(min(300px, 100%), 1fr));
+            gap: clamp(1.5rem, 3vw, 2.5rem);
             margin-top: 60px;
         }
+        
         .counselor-card {
             background: white;
             border-radius: 20px;
             overflow: hidden;
             box-shadow: 0 15px 40px rgba(0,0,0,0.08);
-            transition: all 0.3s ease;
+            transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+            border: 1px solid rgba(0, 0, 0, 0.05);
         }
+        
         .counselor-card:hover {
             transform: translateY(-15px);
             box-shadow: 0 25px 60px rgba(0,0,0,0.12);
         }
+        
         .counselor-header {
-            padding: 40px 30px 20px;
+            padding: clamp(2rem, 4vw, 2.5rem) clamp(1.5rem, 3vw, 2rem) 1.5rem;
             background: linear-gradient(135deg, #f8f9fa 0%, #e9ecef 100%);
             text-align: center;
         }
+        
         .counselor-img {
             width: 150px;
             height: 150px;
@@ -393,43 +702,74 @@
             border: 5px solid white;
             box-shadow: 0 10px 30px rgba(0,0,0,0.1);
         }
+        
         .counselor-img img {
             width: 100%;
             height: 100%;
             object-fit: cover;
+            transition: transform 0.5s ease;
         }
+        
+        .counselor-card:hover .counselor-img img {
+            transform: scale(1.1);
+        }
+        
         .counselor-name {
-            font-size: 1.5rem;
+            font-size: clamp(1.3rem, 2.5vw, 1.5rem);
             color: var(--dark);
             margin-bottom: 10px;
+            font-weight: 600;
         }
+        
         .counselor-role {
             color: var(--teal);
             font-weight: 600;
-            margin-bottom: 10px;
+            margin-bottom: 8px;
+            font-size: clamp(0.9rem, 1.5vw, 1rem);
         }
+        
+        .counselor-credentials {
+            color: var(--gray);
+            font-size: 0.85rem;
+            margin-bottom: 15px;
+        }
+        
         .counselor-content {
-            padding: 30px;
+            padding: clamp(1.5rem, 3vw, 2rem);
         }
+        
+        .counselor-content p {
+            color: #666;
+            margin-bottom: 20px;
+            font-size: clamp(0.9rem, 1.5vw, 1rem);
+            line-height: 1.7;
+        }
+        
         .counselor-specialties {
             list-style: none;
+            margin-top: 20px;
         }
+        
         .counselor-specialties li {
-            margin-bottom: 10px;
+            margin-bottom: 12px;
             display: flex;
-            align-items: center;
+            align-items: flex-start;
         }
+        
         .counselor-specialties i {
             color: var(--secondary);
-            margin-right: 10px;
+            margin-right: 12px;
             font-size: 0.9rem;
+            margin-top: 0.25rem;
+            flex-shrink: 0;
         }
-
+        
         /* FAQ Section */
         .faq-container {
             max-width: 900px;
             margin: 60px auto 0;
         }
+        
         .faq-item {
             background: white;
             border-radius: 15px;
@@ -437,10 +777,13 @@
             overflow: hidden;
             box-shadow: 0 10px 30px rgba(0,0,0,0.05);
             transition: all 0.3s ease;
+            border: 1px solid rgba(0, 0, 0, 0.05);
         }
+        
         .faq-item.active {
             box-shadow: 0 15px 40px rgba(0,0,0,0.1);
         }
+        
         .faq-question {
             padding: 25px 30px;
             cursor: pointer;
@@ -449,15 +792,24 @@
             align-items: center;
             font-weight: 600;
             color: var(--dark);
-            font-size: 1.1rem;
+            font-size: clamp(1rem, 1.5vw, 1.1rem);
+            transition: all 0.3s ease;
         }
+        
+        .faq-question:hover {
+            background: rgba(42, 157, 143, 0.05);
+        }
+        
         .faq-question i {
             color: var(--teal);
             transition: transform 0.3s ease;
+            font-size: 1.2rem;
         }
+        
         .faq-item.active .faq-question i {
             transform: rotate(180deg);
         }
+        
         .faq-answer {
             padding: 0 30px;
             max-height: 0;
@@ -465,12 +817,14 @@
             transition: all 0.3s ease;
             color: #666;
             line-height: 1.7;
+            font-size: clamp(0.9rem, 1.5vw, 1rem);
         }
+        
         .faq-item.active .faq-answer {
             padding: 0 30px 25px;
             max-height: 500px;
         }
-
+        
         /* Appointment Form */
         .appointment-container {
             max-width: 900px;
@@ -479,224 +833,381 @@
             border-radius: 25px;
             overflow: hidden;
             box-shadow: 0 25px 60px rgba(0,0,0,0.1);
+            border: 1px solid rgba(0, 0, 0, 0.05);
         }
+        
         .appointment-header {
             background: linear-gradient(135deg, var(--primary) 0%, #2c3e80 100%);
             color: white;
-            padding: 40px;
+            padding: clamp(2rem, 4vw, 2.5rem);
             text-align: center;
         }
-        .appointment-form {
-            padding: 50px;
+        
+        .appointment-header h3 {
+            font-size: clamp(1.8rem, 3vw, 2.2rem);
+            margin-bottom: 10px;
+            font-weight: 600;
         }
+        
+        .appointment-form {
+            padding: clamp(2rem, 4vw, 3rem);
+        }
+        
         .form-row {
             display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 30px;
-            margin-bottom: 30px;
+            grid-template-columns: repeat(auto-fit, minmax(min(250px, 100%), 1fr));
+            gap: clamp(1rem, 2vw, 1.5rem);
+            margin-bottom: clamp(1.5rem, 3vw, 2rem);
         }
+        
         .form-group {
-            margin-bottom: 25px;
+            margin-bottom: clamp(1.25rem, 2.5vw, 1.5rem);
         }
+        
         .form-group label {
             display: block;
             margin-bottom: 10px;
             font-weight: 500;
             color: var(--dark);
+            font-size: clamp(0.875rem, 1.5vw, 1rem);
         }
+        
         .form-group input, .form-group select, .form-group textarea {
             width: 100%;
-            padding: 15px;
+            padding: clamp(0.75rem, 1.5vw, 1rem) clamp(1rem, 2vw, 1.25rem);
             border: 2px solid #eaeaea;
             border-radius: 10px;
-            font-family: 'Poppins', sans-serif;
-            font-size: 1rem;
+            font-family: 'Inter', sans-serif;
+            font-size: clamp(0.875rem, 1.5vw, 1rem);
             transition: all 0.3s ease;
         }
+        
         .form-group input:focus, .form-group select:focus, .form-group textarea:focus {
             outline: none;
             border-color: var(--teal);
             box-shadow: 0 0 0 3px rgba(42, 157, 143, 0.1);
         }
+        
         .privacy-notice {
-            background: #f8f9fa;
+            background: rgba(42, 157, 143, 0.05);
             padding: 20px;
             border-radius: 10px;
             margin: 30px 0;
-            font-size: 0.9rem;
+            font-size: clamp(0.85rem, 1.5vw, 0.9rem);
             color: #666;
             border-left: 4px solid var(--teal);
         }
+        
         .submit-btn {
             display: block;
             width: 100%;
             background: linear-gradient(135deg, var(--teal) 0%, #2a9d8f 100%);
             color: white;
             border: none;
-            padding: 20px;
-            font-size: 1.2rem;
+            padding: clamp(1rem, 2vw, 1.25rem);
+            font-size: clamp(1rem, 1.5vw, 1.1rem);
             font-weight: 600;
             border-radius: 15px;
             cursor: pointer;
             transition: all 0.3s ease;
             margin-top: 40px;
+            box-shadow: 0 10px 30px rgba(42, 157, 143, 0.3);
         }
+        
         .submit-btn:hover {
             transform: translateY(-5px);
-            box-shadow: 0 15px 40px rgba(42, 157, 143, 0.3);
+            box-shadow: 0 15px 40px rgba(42, 157, 143, 0.4);
+            background: linear-gradient(135deg, #249082 0%, #2a9d8f 100%);
         }
-
-        /* Emergency Resources */
+        
+        /* Emergency Resources - Updated with single number */
         .emergency-container {
             background: linear-gradient(135deg, #fff5f5 0%, #ffecec 100%);
             border-radius: 20px;
-            padding: 50px;
-            margin-top: 80px;
+            padding: clamp(3rem, 6vw, 4rem);
+            margin-top: clamp(3rem, 8vw, 5rem);
             border: 2px solid #ffcccc;
             text-align: center;
         }
+        
         .emergency-title {
             color: var(--accent);
-            font-size: 2rem;
+            font-size: clamp(1.8rem, 3vw, 2.2rem);
             margin-bottom: 20px;
+            font-weight: 600;
         }
-        .emergency-links {
-            display: flex;
-            justify-content: center;
-            gap: 30px;
-            flex-wrap: wrap;
-            margin-top: 30px;
+        
+        .emergency-subtitle {
+            color: #666;
+            margin-bottom: 30px;
+            font-size: clamp(1rem, 1.5vw, 1.1rem);
+            max-width: 600px;
+            margin-left: auto;
+            margin-right: auto;
         }
-        .emergency-link {
+        
+        .emergency-number {
             display: inline-flex;
             align-items: center;
-            gap: 10px;
+            gap: 15px;
             background: white;
-            padding: 15px 25px;
-            border-radius: 10px;
+            padding: 20px 40px;
+            border-radius: 15px;
             text-decoration: none;
-            color: var(--dark);
-            font-weight: 600;
-            box-shadow: 0 10px 30px rgba(0,0,0,0.08);
+            color: var(--accent);
+            font-weight: 700;
+            font-size: clamp(1.5rem, 3vw, 2rem);
+            box-shadow: 0 15px 40px rgba(139, 0, 0, 0.15);
             transition: all 0.3s ease;
+            margin-top: 20px;
+            border: 2px solid #ffcccc;
         }
-        .emergency-link:hover {
+        
+        .emergency-number:hover {
             transform: translateY(-5px);
-            box-shadow: 0 15px 40px rgba(0,0,0,0.12);
+            box-shadow: 0 20px 50px rgba(139, 0, 0, 0.2);
+            background: var(--accent);
+            color: white;
         }
-
+        
+        .emergency-number i {
+            font-size: clamp(1.5rem, 3vw, 2rem);
+        }
+        
+        .emergency-note {
+            margin-top: 25px;
+            color: #666;
+            font-size: 0.9rem;
+            font-style: italic;
+        }
+        
         /* Footer */
         footer {
             background: var(--dark);
             color: white;
-            padding: 80px 0 40px;
+            padding: clamp(4rem, 10vw, 6rem) 0 clamp(1.5rem, 4vw, 2rem);
+            position: relative;
+            width: 100%;
+            overflow: hidden;
         }
+        
+        footer:before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 5px;
+            background: linear-gradient(90deg, var(--teal), var(--secondary), var(--primary));
+        }
+        
         .footer-content {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-            gap: 50px;
-            margin-bottom: 60px;
+            grid-template-columns: repeat(auto-fit, minmax(min(250px, 100%), 1fr));
+            gap: clamp(1.5rem, 4vw, 3rem);
+            margin-bottom: clamp(2rem, 5vw, 3rem);
         }
+        
         .footer-column h3 {
+            margin-bottom: clamp(1rem, 2.5vw, 1.5rem);
             color: var(--secondary);
-            margin-bottom: 25px;
-            font-size: 1.5rem;
+            font-size: clamp(1.25rem, 2vw, 1.5rem);
+            font-weight: 600;
+            position: relative;
+            padding-bottom: 0.625rem;
         }
-        .footer-links { list-style: none; }
-        .footer-links li { margin-bottom: 12px; }
+        
+        .footer-column h3:after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 50px;
+            height: 3px;
+            background: var(--teal);
+        }
+        
+        .footer-column p {
+            color: rgba(255, 255, 255, 0.8);
+            line-height: 1.7;
+            margin-bottom: 20px;
+            font-size: clamp(0.875rem, 1.5vw, 1rem);
+        }
+        
+        .footer-links { 
+            list-style: none; 
+        }
+        
+        .footer-links li { 
+            margin-bottom: 12px; 
+        }
+        
         .footer-links a {
-            color: rgba(255,255,255,0.7);
+            color: rgba(255, 255, 255, 0.8);
             text-decoration: none;
             transition: all 0.3s ease;
+            display: inline-block;
+            font-size: clamp(0.875rem, 1.5vw, 1rem);
         }
+        
         .footer-links a:hover { 
             color: var(--teal);
-            padding-left: 5px;
+            transform: translateX(5px);
         }
+        
         .social-links {
             display: flex;
-            gap: 15px;
+            gap: 12px;
             margin-top: 25px;
         }
+        
         .social-links a {
             display: flex;
             align-items: center;
             justify-content: center;
             width: 45px;
             height: 45px;
-            background: rgba(255,255,255,0.1);
+            background: rgba(255, 255, 255, 0.1);
             border-radius: 50%;
             color: white;
-            font-size: 1.2rem;
+            font-size: 1.1rem;
             transition: all 0.3s ease;
         }
+        
         .social-links a:hover {
             background: var(--teal);
             transform: translateY(-5px);
         }
+        
         .footer-bottom {
             text-align: center;
-            padding-top: 40px;
-            border-top: 1px solid rgba(255,255,255,0.1);
-            color: rgba(255,255,255,0.5);
-            font-size: 0.9rem;
+            padding-top: clamp(1.5rem, 4vw, 2rem);
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+            font-size: clamp(0.75rem, 1.5vw, 0.9rem);
+            color: rgba(255, 255, 255, 0.6);
         }
-
+        
+        .footer-bottom a {
+            color: rgba(255, 255, 255, 0.8);
+            transition: color 0.3s ease;
+        }
+        
+        .footer-bottom a:hover {
+            color: var(--secondary);
+        }
+        
         /* Responsive */
         @media (max-width: 992px) {
-            .hero-title { font-size: 3rem; }
-            .hero-text { font-size: 1.1rem; }
-            .marriage-content { grid-template-columns: 1fr; }
-            .nav-links { display: none; }
-            .mobile-menu-btn {
-                display: block;
-                background: none;
-                border: none;
-                font-size: 1.8rem;
-                color: var(--primary);
-                cursor: pointer;
+            .marriage-section {
+                padding: clamp(2rem, 5vw, 3rem);
+                margin: clamp(2rem, 5vw, 3rem) 0;
             }
-            .section { padding: 80px 0; }
-            .section-title { font-size: 2.5rem; }
-            .form-row { grid-template-columns: 1fr; }
-            .marriage-section { padding: 50px 30px; }
+            
+            .counseling-hero {
+                height: 80vh;
+                min-height: 600px;
+            }
+            
+            .hero-content {
+                padding: 30px;
+            }
+            
+            .hero-title {
+                font-size: clamp(2.5rem, 5vw, 3.5rem);
+            }
         }
+        
         @media (max-width: 768px) {
-            .hero-title { font-size: 2.5rem; }
-            .hero-buttons { flex-direction: column; align-items: flex-start; }
-            .btn-primary, .btn-secondary { width: 100%; text-align: center; justify-content: center; }
-            .section-title { font-size: 2.2rem; }
-            .services-grid { grid-template-columns: 1fr; }
-            .emergency-links { flex-direction: column; }
+            .counseling-hero {
+                height: 75vh;
+                min-height: 500px;
+            }
+            
+            .hero-buttons {
+                flex-direction: column;
+                align-items: flex-start;
+            }
+            
+            .btn-primary, .btn-secondary {
+                width: 100%;
+                justify-content: center;
+            }
+            
+            .hero-text {
+                font-size: 1.1rem;
+            }
+            
+            .section-title {
+                font-size: clamp(2rem, 5vw, 2.5rem);
+            }
+            
+            .emergency-number {
+                padding: 15px 30px;
+                font-size: 1.3rem;
+            }
+        }
+        
+        @media (max-width: 480px) {
+            .counseling-hero {
+                height: 70vh;
+                min-height: 450px;
+            }
+            
+            .hero-content {
+                padding: 20px;
+            }
+            
+            .hero-title {
+                font-size: 2.2rem;
+            }
+            
+            .confidentiality-badge {
+                padding: 12px 20px;
+                font-size: 0.8rem;
+            }
+        }
+        
+        /* Animation on scroll */
+        .fade-in {
+            opacity: 0;
+            transform: translateY(30px);
+            transition: opacity 0.6s ease, transform 0.6s ease;
+        }
+        
+        .fade-in.visible {
+            opacity: 1;
+            transform: translateY(0);
         }
     </style>
 </head>
 <body>
     <!-- Header -->
-    <header>
-        <div class="container header-container">
+    <header class="glass-effect">
+        <div class="header-container">
             <div class="logo">
-                <a href="index.html"><i class="fas fa-hands-helping"></i> SPAC COUNSELING</a>
-            </div>
-            <nav>
-                <div class="nav-links">
-                    <a href="#services">Services</a>
-                    <a href="#marriage">Marriage</a>
-                    <a href="#process">Process</a>
-                    <a href="#counselors">Counselors</a>
-                    <a href="#faq">FAQ</a>
-                    <a href="#appointment">Appointment</a>
+                <div class="logo-frame">
+                    <img src="spac-logo.jpg" alt="SPAC Logo">
                 </div>
+                <span class="logo-text">SPAC CHURCH</span>
+            </div>
+            <div class="nav-container">
+                <ul class="nav-menu">
+                    <li><a href="index.html">Home</a></li>
+                    <li><a href="#services">Services</a></li>
+                    <li><a href="#marriage">Marriage</a></li>
+                    <li><a href="#process">Process</a></li>
+                    <li><a href="#counselors">Counselors</a></li>
+                    <li><a href="#faq">FAQ</a></li>
+                </ul>
                 <a href="#appointment" class="nav-cta">Schedule Session</a>
-                <button class="mobile-menu-btn"><i class="fas fa-bars"></i></button>
-            </nav>
+                <div class="hamburger"><span></span><span></span><span></span></div>
+            </div>
         </div>
     </header>
 
     <!-- Hero Section -->
     <section class="counseling-hero" id="home">
         <div class="hero-background"></div>
-        <div class="hero-overlay"></div>
         
         <div class="hero-content">
             <div class="hero-subtitle">Professional & Confidential</div>
@@ -722,35 +1233,35 @@
     <!-- Services Overview -->
     <section class="section" id="services">
         <div class="container">
-            <h2 class="section-title">Our Counseling Services</h2>
-            <p class="section-subtitle">We offer comprehensive counseling services for individuals, couples, and families from a Christian perspective.</p>
+            <h2 class="section-title fade-in">Our Counseling Services</h2>
+            <p class="section-subtitle fade-in">We offer comprehensive counseling services for individuals, couples, and families from a Christian perspective.</p>
             
             <div class="services-grid">
-                <div class="service-card">
+                <div class="service-card fade-in">
                     <div class="service-icon">
                         <i class="fas fa-heart"></i>
                     </div>
                     <h3 class="service-title">Marriage & Couples Counseling</h3>
                     <p class="service-desc">Strengthen your marriage, improve communication, resolve conflicts, and rebuild trust with biblical principles for lasting relationships.</p>
-                    <a href="#marriage" class="btn-secondary" style="padding: 12px 25px;">Learn More</a>
+                    <a href="#marriage" class="btn-secondary" style="padding: 12px 25px; font-size: 0.875rem;">Learn More</a>
                 </div>
                 
-                <div class="service-card">
+                <div class="service-card fade-in">
                     <div class="service-icon">
                         <i class="fas fa-user"></i>
                     </div>
                     <h3 class="service-title">Individual Counseling</h3>
                     <p class="service-desc">Address anxiety, depression, grief, trauma, life transitions, and spiritual questions in a safe, supportive environment.</p>
-                    <a href="#appointment" class="btn-secondary" style="padding: 12px 25px;">Schedule Session</a>
+                    <a href="#appointment" class="btn-secondary" style="padding: 12px 25px; font-size: 0.875rem;">Schedule Session</a>
                 </div>
                 
-                <div class="service-card">
+                <div class="service-card fade-in">
                     <div class="service-icon">
                         <i class="fas fa-home"></i>
                     </div>
                     <h3 class="service-title">Family Counseling</h3>
                     <p class="service-desc">Navigate family conflicts, parenting challenges, blended family dynamics, and generational issues with biblical wisdom.</p>
-                    <a href="#appointment" class="btn-secondary" style="padding: 12px 25px;">Schedule Session</a>
+                    <a href="#appointment" class="btn-secondary" style="padding: 12px 25px; font-size: 0.875rem;">Schedule Session</a>
                 </div>
             </div>
         </div>
@@ -761,11 +1272,11 @@
         <div class="container">
             <div class="marriage-content">
                 <div class="marriage-text">
-                    <h3>Strengthening Marriages God's Way</h3>
-                    <p>Marriage is a sacred covenant designed by God, yet even the strongest marriages face challenges. Our marriage counseling combines biblical principles with proven therapeutic techniques to help couples build lasting, fulfilling relationships.</p>
-                    <p>Whether you're preparing for marriage, facing communication breakdowns, recovering from infidelity, or simply wanting to strengthen your bond, our trained counselors provide practical tools grounded in Scripture.</p>
+                    <h3 class="fade-in">Strengthening Marriages God's Way</h3>
+                    <p class="fade-in">Marriage is a sacred covenant designed by God, yet even the strongest marriages face challenges. Our marriage counseling combines biblical principles with proven therapeutic techniques to help couples build lasting, fulfilling relationships.</p>
+                    <p class="fade-in">Whether you're preparing for marriage, facing communication breakdowns, recovering from infidelity, or simply wanting to strengthen your bond, our trained counselors provide practical tools grounded in Scripture.</p>
                     
-                    <ul class="marriage-features">
+                    <ul class="marriage-features fade-in">
                         <li><i class="fas fa-check-circle"></i> <strong>Pre-Marital Counseling</strong>: Build a strong foundation before saying "I do"</li>
                         <li><i class="fas fa-check-circle"></i> <strong>Conflict Resolution</strong>: Learn healthy ways to navigate disagreements</li>
                         <li><i class="fas fa-check-circle"></i> <strong>Intimacy Restoration</strong>: Rebuild emotional and physical connection</li>
@@ -773,12 +1284,12 @@
                         <li><i class="fas fa-check-circle"></i> <strong>Parenting Alignment</strong>: Develop unified parenting approaches</li>
                     </ul>
                     
-                    <a href="#appointment" class="btn-primary" style="margin-top: 30px;">
+                    <a href="#appointment" class="btn-primary fade-in" style="margin-top: 30px; padding: 14px 28px;">
                         <i class="fas fa-heart"></i> Schedule Marriage Counseling
                     </a>
                 </div>
                 
-                <div class="marriage-image">
+                <div class="marriage-image fade-in">
                     <img src="https://images.unsplash.com/photo-1519208255734-6c1cbfa9e80d?ixlib=rb-4.0.3&auto=format&fit=crop&w=2070&q=80" alt="Married couple counseling">
                 </div>
             </div>
@@ -788,52 +1299,52 @@
     <!-- Counseling Process -->
     <section class="section section-light" id="process">
         <div class="container">
-            <h2 class="section-title">Our Counseling Process</h2>
-            <p class="section-subtitle">We follow a structured yet flexible approach to ensure you receive the care and support you need.</p>
+            <h2 class="section-title fade-in">Our Counseling Process</h2>
+            <p class="section-subtitle fade-in">We follow a structured yet flexible approach to ensure you receive the care and support you need.</p>
             
             <div class="process-container">
                 <div class="process-steps">
-                    <div class="process-step">
+                    <div class="process-step fade-in">
                         <div class="step-number">1</div>
                         <h4 class="step-title">Initial Assessment</h4>
-                        <p>We begin with a confidential assessment to understand your unique situation, concerns, and goals for counseling.</p>
+                        <p class="step-desc">We begin with a confidential assessment to understand your unique situation, concerns, and goals for counseling.</p>
                     </div>
                     
-                    <div class="process-step">
+                    <div class="process-step fade-in">
                         <div class="step-number">2</div>
                         <h4 class="step-title">Personalized Plan</h4>
-                        <p>Your counselor develops a customized plan integrating biblical wisdom and therapeutic approaches.</p>
+                        <p class="step-desc">Your counselor develops a customized plan integrating biblical wisdom and therapeutic approaches.</p>
                     </div>
                     
-                    <div class="process-step">
+                    <div class="process-step fade-in">
                         <div class="step-number">3</div>
                         <h4 class="step-title">Regular Sessions</h4>
-                        <p>Weekly or bi-weekly sessions provide consistent support and tools for growth and healing.</p>
+                        <p class="step-desc">Weekly or bi-weekly sessions provide consistent support and tools for growth and healing.</p>
                     </div>
                     
-                    <div class="process-step">
+                    <div class="process-step fade-in">
                         <div class="step-number">4</div>
                         <h4 class="step-title">Progress & Growth</h4>
-                        <p>Regular check-ins ensure progress toward your goals and adjustment of strategies as needed.</p>
+                        <p class="step-desc">Regular check-ins ensure progress toward your goals and adjustment of strategies as needed.</p>
                     </div>
                 </div>
             </div>
         </div>
     </section>
 
-    <!-- Counselors Team -->
+    <!-- Counselors Team - Updated Names & Images -->
     <section class="section" id="counselors">
         <div class="container">
-            <h2 class="section-title">Meet Our Counselors</h2>
-            <p class="section-subtitle">Our team includes licensed professionals and trained pastoral counselors who integrate faith with therapeutic expertise.</p>
+            <h2 class="section-title fade-in">Meet Our Counselors</h2>
+            <p class="section-subtitle fade-in">Our team includes licensed professionals and trained pastoral counselors who integrate faith with therapeutic expertise.</p>
             
             <div class="counselors-container">
-                <div class="counselor-card">
+                <div class="counselor-card fade-in">
                     <div class="counselor-header">
                         <div class="counselor-img">
-                            <img src="https://images.unsplash.com/photo-1560250097-0b93528c311a?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" alt="Dr. Michael Thompson">
+                            <img src="count1.jpg" alt="Dr. Jekayin">
                         </div>
-                        <h3 class="counselor-name">Dr. Michael Thompson</h3>
+                        <h3 class="counselor-name">Dr. Jekayin</h3>
                         <div class="counselor-role">Licensed Marriage & Family Therapist</div>
                         <div class="counselor-credentials">PhD, LMFT | 15+ years experience</div>
                     </div>
@@ -848,32 +1359,32 @@
                     </div>
                 </div>
                 
-                <div class="counselor-card">
+                <div class="counselor-card fade-in">
                     <div class="counselor-header">
                         <div class="counselor-img">
-                            <img src="https://images.unsplash.com/photo-1580489944761-15a19d654956?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" alt="Sarah Johnson">
+                            <img src="count2.jpg" alt="Prof. Bolarinwa">
                         </div>
-                        <h3 class="counselor-name">Sarah Johnson, LCSW</h3>
-                        <div class="counselor-role">Clinical Social Worker</div>
-                        <div class="counselor-credentials">LCSW, MDiv | 12+ years experience</div>
+                        <h3 class="counselor-name">Prof. Bolarinwa</h3>
+                        <div class="counselor-role">Clinical Psychologist</div>
+                        <div class="counselor-credentials">PhD, Clinical Psychology | 12+ years experience</div>
                     </div>
                     <div class="counselor-content">
-                        <p>Focuses on anxiety, depression, trauma, and women's issues. Integrates cognitive-behavioral therapy with spiritual formation.</p>
+                        <p>Focuses on anxiety, depression, trauma, and stress management. Integrates cognitive-behavioral therapy with spiritual formation.</p>
                         <ul class="counselor-specialties">
                             <li><i class="fas fa-check"></i> Anxiety & Depression</li>
                             <li><i class="fas fa-check"></i> Trauma Recovery</li>
-                            <li><i class="fas fa-check"></i> Women's Issues</li>
+                            <li><i class="fas fa-check"></i> Stress Management</li>
                             <li><i class="fas fa-check"></i> Grief & Loss</li>
                         </ul>
                     </div>
                 </div>
                 
-                <div class="counselor-card">
+                <div class="counselor-card fade-in">
                     <div class="counselor-header">
                         <div class="counselor-img">
-                            <img src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" alt="Pastor David Chen">
+                            <img src="count3.jpg" alt="Therapist Omolanwa">
                         </div>
-                        <h3 class="counselor-name">Pastor David Chen</h3>
+                        <h3 class="counselor-name">Therapist Omolanwa</h3>
                         <div class="counselor-role">Pastoral Counselor</div>
                         <div class="counselor-credentials">MA Biblical Counseling | 8+ years experience</div>
                     </div>
@@ -894,11 +1405,11 @@
     <!-- FAQ Section -->
     <section class="section section-light" id="faq">
         <div class="container">
-            <h2 class="section-title">Frequently Asked Questions</h2>
-            <p class="section-subtitle">Common questions about our counseling services and process.</p>
+            <h2 class="section-title fade-in">Frequently Asked Questions</h2>
+            <p class="section-subtitle fade-in">Common questions about our counseling services and process.</p>
             
             <div class="faq-container">
-                <div class="faq-item">
+                <div class="faq-item fade-in">
                     <div class="faq-question">
                         Is counseling really confidential?
                         <i class="fas fa-chevron-down"></i>
@@ -908,7 +1419,7 @@
                     </div>
                 </div>
                 
-                <div class="faq-item">
+                <div class="faq-item fade-in">
                     <div class="faq-question">
                         How does Christian counseling differ from secular counseling?
                         <i class="fas fa-chevron-down"></i>
@@ -918,7 +1429,7 @@
                     </div>
                 </div>
                 
-                <div class="faq-item">
+                <div class="faq-item fade-in">
                     <div class="faq-question">
                         How long does counseling typically last?
                         <i class="fas fa-chevron-down"></i>
@@ -928,7 +1439,7 @@
                     </div>
                 </div>
                 
-                <div class="faq-item">
+                <div class="faq-item fade-in">
                     <div class="faq-question">
                         What if my spouse won't come to marriage counseling?
                         <i class="fas fa-chevron-down"></i>
@@ -938,7 +1449,7 @@
                     </div>
                 </div>
                 
-                <div class="faq-item">
+                <div class="faq-item fade-in">
                     <div class="faq-question">
                         Do you accept insurance?
                         <i class="fas fa-chevron-down"></i>
@@ -954,41 +1465,41 @@
     <!-- Appointment Form -->
     <section class="section" id="appointment">
         <div class="container">
-            <h2 class="section-title">Schedule a Counseling Session</h2>
-            <p class="section-subtitle">Take the first step toward healing and restoration. We'll contact you within 24 hours to confirm your appointment.</p>
+            <h2 class="section-title fade-in">Schedule a Counseling Session</h2>
+            <p class="section-subtitle fade-in">Take the first step toward healing and restoration. We'll contact you within 24 hours to confirm your appointment.</p>
             
-            <div class="appointment-container">
+            <div class="appointment-container fade-in">
                 <div class="appointment-header">
                     <h3>Request an Appointment</h3>
                     <p>Complete this form and our counseling coordinator will contact you to schedule your first session.</p>
                 </div>
                 
-                <form class="appointment-form">
+                <form class="appointment-form" id="appointmentForm">
                     <div class="form-row">
                         <div class="form-group">
                             <label for="firstName">First Name *</label>
-                            <input type="text" id="firstName" required>
+                            <input type="text" id="firstName" name="firstName" required>
                         </div>
                         <div class="form-group">
                             <label for="lastName">Last Name *</label>
-                            <input type="text" id="lastName" required>
+                            <input type="text" id="lastName" name="lastName" required>
                         </div>
                     </div>
                     
                     <div class="form-row">
                         <div class="form-group">
                             <label for="email">Email Address *</label>
-                            <input type="email" id="email" required>
+                            <input type="email" id="email" name="email" required>
                         </div>
                         <div class="form-group">
                             <label for="phone">Phone Number *</label>
-                            <input type="tel" id="phone" required>
+                            <input type="tel" id="phone" name="phone" required>
                         </div>
                     </div>
                     
                     <div class="form-group">
                         <label for="counselingType">Type of Counseling Needed *</label>
-                        <select id="counselingType" required>
+                        <select id="counselingType" name="counselingType" required>
                             <option value="">Select One</option>
                             <option value="marriage">Marriage/Couples Counseling</option>
                             <option value="individual">Individual Counseling</option>
@@ -1003,17 +1514,17 @@
                     
                     <div class="form-group">
                         <label for="preferredCounselor">Preferred Counselor (Optional)</label>
-                        <select id="preferredCounselor">
+                        <select id="preferredCounselor" name="preferredCounselor">
                             <option value="">No Preference</option>
-                            <option value="michael">Dr. Michael Thompson (Marriage/Family)</option>
-                            <option value="sarah">Sarah Johnson, LCSW (Individual/Women)</option>
-                            <option value="david">Pastor David Chen (Spiritual/Men)</option>
+                            <option value="dr-jekayin">Dr. Jekayin (Marriage/Family)</option>
+                            <option value="prof-bolarinwa">Prof. Bolarinwa (Individual/Psychology)</option>
+                            <option value="therapist-omolanwa">Therapist Omolanwa (Spiritual/Men)</option>
                         </select>
                     </div>
                     
                     <div class="form-group">
                         <label for="availability">Preferred Days/Times *</label>
-                        <select id="availability" required>
+                        <select id="availability" name="availability" required>
                             <option value="">Select Availability</option>
                             <option value="weekday-morning">Weekday Mornings (9am-12pm)</option>
                             <option value="weekday-afternoon">Weekday Afternoons (1pm-4pm)</option>
@@ -1024,7 +1535,7 @@
                     
                     <div class="form-group">
                         <label for="concern">Brief Description of Concern *</label>
-                        <textarea id="concern" rows="4" required placeholder="Please briefly describe what you'd like to address in counseling (all information is confidential)"></textarea>
+                        <textarea id="concern" name="concern" rows="4" required placeholder="Please briefly describe what you'd like to address in counseling (all information is confidential)"></textarea>
                     </div>
                     
                     <div class="privacy-notice">
@@ -1039,27 +1550,19 @@
         </div>
     </section>
 
-    <!-- Emergency Resources -->
+    <!-- Emergency Resources - Updated with single number -->
     <section class="section">
         <div class="container">
-            <div class="emergency-container">
+            <div class="emergency-container fade-in">
                 <h3 class="emergency-title">Need Immediate Help?</h3>
-                <p>If you or someone you know is in crisis, please contact these emergency resources immediately:</p>
+                <p class="emergency-subtitle">If you or someone you know is in crisis, please contact our emergency counseling line immediately. We're here for you 24/7.</p>
                 
-                <div class="emergency-links">
-                    <a href="tel:988" class="emergency-link">
-                        <i class="fas fa-phone-alt" style="color: var(--accent);"></i>
-                        National Suicide Prevention Lifeline: 988
-                    </a>
-                    <a href="tel:8007997233" class="emergency-link">
-                        <i class="fas fa-shield-alt" style="color: var(--accent);"></i>
-                        Domestic Violence Hotline: 800-799-7233
-                    </a>
-                    <a href="tel:911" class="emergency-link">
-                        <i class="fas fa-ambulance" style="color: var(--accent);"></i>
-                        Emergency Services: 911
-                    </a>
-                </div>
+                <a href="tel:09056658964" class="emergency-number">
+                    <i class="fas fa-phone-alt"></i>
+                    0905 665 8964
+                </a>
+                
+                <p class="emergency-note">Available 24/7 for immediate crisis support and emergency counseling</p>
             </div>
         </div>
     </section>
@@ -1072,10 +1575,10 @@
                     <h3>SPAC COUNSELING</h3>
                     <p>A ministry of SPAC Church providing biblically-based counseling for individuals, couples, and families in a safe, confidential environment.</p>
                     <div class="social-links">
-                        <a href="#"><i class="fab fa-facebook-f"></i></a>
-                        <a href="#"><i class="fab fa-instagram"></i></a>
-                        <a href="#"><i class="fab fa-youtube"></i></a>
-                        <a href="#"><i class="fab fa-linkedin-in"></i></a>
+                        <a href="#" aria-label="Facebook"><i class="fab fa-facebook-f"></i></a>
+                        <a href="#" aria-label="Instagram"><i class="fab fa-instagram"></i></a>
+                        <a href="#" aria-label="YouTube"><i class="fab fa-youtube"></i></a>
+                        <a href="#" aria-label="LinkedIn"><i class="fab fa-linkedin-in"></i></a>
                     </div>
                 </div>
                 
@@ -1104,26 +1607,53 @@
             </div>
             
             <div class="footer-bottom">
-                &copy; 2024 SPAC Counseling Ministry. A ministry of SPAC Church. | 
-                <a href="#" style="color: rgba(255,255,255,0.7);">Privacy Policy</a> | 
-                <a href="#" style="color: rgba(255,255,255,0.7);">Counselor Ethics</a>
+                &copy; 2025 SPAC Counseling Ministry. A ministry of SPAC Church. | 
+                <a href="#">Privacy Policy</a> | 
+                <a href="#">Counselor Ethics</a>
             </div>
         </div>
     </footer>
 
     <script>
-        // Mobile Menu Toggle
-        const mobileMenuBtn = document.querySelector('.mobile-menu-btn');
-        const navLinks = document.querySelector('.nav-links');
-        
-        mobileMenuBtn.addEventListener('click', function() {
-            navLinks.style.display = navLinks.style.display === 'flex' ? 'none' : 'flex';
-            mobileMenuBtn.innerHTML = navLinks.style.display === 'flex' 
-                ? '<i class="fas fa-times"></i>' 
-                : '<i class="fas fa-bars"></i>';
+        // ====== HAMBURGER MENU FUNCTIONALITY ======
+        const hamburger = document.querySelector('.hamburger');
+        const navMenu = document.querySelector('.nav-menu');
+        const navLinks = document.querySelectorAll('.nav-menu a');
+
+        hamburger.addEventListener('click', () => {
+            hamburger.classList.toggle('active');
+            navMenu.classList.toggle('active');
+            
+            if (navMenu.classList.contains('active')) {
+                document.body.style.overflow = 'hidden';
+            } else {
+                document.body.style.overflow = 'auto';
+            }
         });
 
-        // FAQ Accordion
+        // Close mobile menu when clicking a link
+        navLinks.forEach(link => {
+            link.addEventListener('click', () => {
+                if (window.innerWidth <= 992) {
+                    hamburger.classList.remove('active');
+                    navMenu.classList.remove('active');
+                    document.body.style.overflow = 'auto';
+                }
+            });
+        });
+
+        // Close menu when clicking outside on mobile
+        document.addEventListener('click', (e) => {
+            if (window.innerWidth <= 992 && navMenu.classList.contains('active')) {
+                if (!e.target.closest('.nav-menu') && !e.target.closest('.hamburger')) {
+                    hamburger.classList.remove('active');
+                    navMenu.classList.remove('active');
+                    document.body.style.overflow = 'auto';
+                }
+            }
+        });
+
+        // ====== FAQ ACCORDION ======
         document.querySelectorAll('.faq-question').forEach(question => {
             question.addEventListener('click', function() {
                 const item = this.parentElement;
@@ -1131,8 +1661,8 @@
             });
         });
 
-        // Form Submission
-        document.querySelector('.appointment-form').addEventListener('submit', function(e) {
+        // ====== FORM SUBMISSION ======
+        document.getElementById('appointmentForm').addEventListener('submit', function(e) {
             e.preventDefault();
             
             // Basic validation
@@ -1149,79 +1679,138 @@
             });
             
             if (valid) {
-                // Show success message
-                alert('Thank you for your appointment request! Our counseling coordinator will contact you within 24 hours to schedule your session. All information is confidential.');
-                this.reset();
+                // Show success message with modern animation
+                const submitBtn = this.querySelector('.submit-btn');
+                const originalText = submitBtn.innerHTML;
                 
-                // Scroll to top
-                window.scrollTo({
-                    top: 0,
-                    behavior: 'smooth'
-                });
+                submitBtn.innerHTML = '<i class="fas fa-spinner fa-spin"></i> Processing...';
+                submitBtn.disabled = true;
+                
+                setTimeout(() => {
+                    alert('Thank you for your appointment request! Our counseling coordinator will contact you within 24 hours to schedule your session. All information is confidential.');
+                    this.reset();
+                    
+                    submitBtn.innerHTML = originalText;
+                    submitBtn.disabled = false;
+                    
+                    // Scroll to top smoothly
+                    window.scrollTo({
+                        top: 0,
+                        behavior: 'smooth'
+                    });
+                }, 1500);
             } else {
                 alert('Please fill in all required fields marked with *.');
             }
         });
 
-        // Smooth Scrolling for Navigation
+        // ====== SMOOTH SCROLLING ======
         document.querySelectorAll('a[href^="#"]').forEach(anchor => {
             anchor.addEventListener('click', function(e) {
-                if(this.getAttribute('href') === '#') return;
+                if (this.getAttribute('href') === '#') return;
                 
                 e.preventDefault();
                 const targetId = this.getAttribute('href');
-                if(targetId === '#') return;
-                
-                const targetElement = document.querySelector(targetId);
-                if(targetElement) {
+                if (targetId === '#home') {
                     window.scrollTo({
-                        top: targetElement.offsetTop - 80,
+                        top: 0,
                         behavior: 'smooth'
                     });
-                    
-                    // Close mobile menu if open
-                    if(window.innerWidth <= 992 && navLinks.style.display === 'flex') {
-                        navLinks.style.display = 'none';
-                        mobileMenuBtn.innerHTML = '<i class="fas fa-bars"></i>';
+                } else {
+                    const targetElement = document.querySelector(targetId);
+                    if (targetElement) {
+                        window.scrollTo({
+                            top: targetElement.offsetTop - 80,
+                            behavior: 'smooth'
+                        });
                     }
                 }
             });
         });
 
-        // Header Scroll Effect
-        window.addEventListener('scroll', function() {
-            const header = document.querySelector('header');
+        // ====== SCROLL ANIMATIONS ======
+        const fadeElements = document.querySelectorAll('.fade-in');
+        
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('visible');
+                }
+            });
+        }, {
+            threshold: 0.1,
+            rootMargin: '0px 0px -100px 0px'
+        });
+
+        fadeElements.forEach(el => {
+            observer.observe(el);
+        });
+
+        // ====== HEADER SCROLL EFFECT ======
+        const header = document.querySelector('header');
+        window.addEventListener('scroll', () => {
             if (window.scrollY > 100) {
-                header.style.background = 'rgba(255, 255, 255, 0.98)';
-                header.style.boxShadow = '0 5px 30px rgba(0,0,0,0.1)';
+                header.style.boxShadow = '0 5px 30px rgba(0, 0, 0, 0.1)';
+                header.style.padding = '4px 0';
             } else {
-                header.style.background = 'rgba(255, 255, 255, 0.98)';
-                header.style.boxShadow = '0 5px 30px rgba(0,0,0,0.08)';
+                header.style.boxShadow = '0 3px 20px rgba(0, 0, 0, 0.08)';
+                header.style.padding = '8px 0';
             }
         });
 
-        // Animate elements on scroll
-        const observerOptions = {
-            threshold: 0.1,
-            rootMargin: '0px 0px -100px 0px'
-        };
+        // ====== KEYBOARD NAVIGATION ======
+        document.addEventListener('keydown', (e) => {
+            // Escape key to close mobile menu
+            if (e.key === 'Escape' && navMenu.classList.contains('active')) {
+                hamburger.classList.remove('active');
+                navMenu.classList.remove('active');
+                document.body.style.overflow = 'auto';
+            }
+            
+            // Tab key navigation for accessibility
+            if (e.key === 'Tab') {
+                const focusableElements = document.querySelectorAll('a, button, input, select, textarea, [tabindex]');
+                const firstElement = focusableElements[0];
+                const lastElement = focusableElements[focusableElements.length - 1];
+                
+                if (e.shiftKey && document.activeElement === firstElement) {
+                    e.preventDefault();
+                    lastElement.focus();
+                } else if (!e.shiftKey && document.activeElement === lastElement) {
+                    e.preventDefault();
+                    firstElement.focus();
+                }
+            }
+        });
 
-        const observer = new IntersectionObserver((entries) => {
+        // ====== LAZY LOADING FOR IMAGES ======
+        const images = document.querySelectorAll('img');
+        const imageObserver = new IntersectionObserver((entries) => {
             entries.forEach(entry => {
-                if(entry.isIntersecting) {
-                    entry.target.style.opacity = '1';
-                    entry.target.style.transform = 'translateY(0)';
+                if (entry.isIntersecting) {
+                    const img = entry.target;
+                    if (img.dataset.src) {
+                        img.src = img.dataset.src;
+                    }
+                    img.classList.add('loaded');
+                    imageObserver.unobserve(img);
                 }
             });
-        }, observerOptions);
+        });
 
-        // Observe elements to animate
-        document.querySelectorAll('.service-card, .process-step, .counselor-card').forEach(el => {
-            el.style.opacity = '0';
-            el.style.transform = 'translateY(30px)';
-            el.style.transition = 'opacity 0.5s ease, transform 0.5s ease';
-            observer.observe(el);
+        images.forEach(img => {
+            if (!img.src.includes('spac-logo.jpg')) {
+                imageObserver.observe(img);
+            }
+        });
+
+        // ====== CURRENT YEAR UPDATE ======
+        document.addEventListener('DOMContentLoaded', () => {
+            const yearElement = document.querySelector('.footer-bottom');
+            if (yearElement) {
+                yearElement.innerHTML = yearElement.innerHTML.replace('2025', new Date().getFullYear());
+            }
         });
     </script>
 </body>
-</html>
+                                                 </html>
