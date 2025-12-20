@@ -16,9 +16,6 @@
             --dark: #2c3e50;
             --light: #f8f9fa;
             --energy: #6a11cb;
-            --success: #10b981;
-            --glass: rgba(255, 255, 255, 0.1);
-            --glass-border: rgba(255, 255, 255, 0.2);
         }
         
         * {
@@ -35,7 +32,6 @@
             -webkit-text-size-adjust: 100%;
             -moz-text-size-adjust: 100%;
             -ms-text-size-adjust: 100%;
-            scroll-behavior: smooth;
         }
         
         body {
@@ -784,55 +780,55 @@
         }
         
         /* ====== MODAL STYLES ====== */
-        .modal-overlay {
+        .modal {
+            display: none;
             position: fixed;
             top: 0;
             left: 0;
-            right: 0;
-            bottom: 0;
-            background-color: rgba(0, 0, 0, 0.7);
-            backdrop-filter: blur(5px);
-            display: flex;
-            justify-content: center;
-            align-items: center;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.8);
             z-index: 2000;
-            opacity: 0;
-            visibility: hidden;
-            transition: all 0.3s ease;
-        }
-        
-        .modal-overlay.active {
-            opacity: 1;
-            visibility: visible;
-        }
-        
-        .modal {
-            background: white;
-            border-radius: 20px;
-            width: min(90%, 600px);
-            max-height: 90vh;
             overflow-y: auto;
-            box-shadow: 0 30px 80px rgba(0, 0, 0, 0.3);
-            transform: translateY(30px);
-            transition: transform 0.4s ease;
-            position: relative;
+            padding: 20px;
         }
         
-        .modal-overlay.active .modal {
-            transform: translateY(0);
+        .modal-content {
+            background: white;
+            max-width: 600px;
+            margin: 50px auto;
+            border-radius: 20px;
+            overflow: hidden;
+            box-shadow: 0 30px 80px rgba(0, 0, 0, 0.3);
+            animation: modalFadeIn 0.4s ease-out;
+        }
+        
+        @keyframes modalFadeIn {
+            from {
+                opacity: 0;
+                transform: translateY(-30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
         }
         
         .modal-header {
-            background: linear-gradient(135deg, var(--primary), var(--energy));
+            background: var(--primary);
             color: white;
             padding: clamp(1.5rem, 3vw, 2rem);
-            border-radius: 20px 20px 0 0;
-            position: relative;
+            text-align: center;
         }
         
         .modal-header h3 {
             font-size: clamp(1.5rem, 3vw, 2rem);
-            margin: 0;
+            margin-bottom: 0.5rem;
+        }
+        
+        .modal-header p {
+            opacity: 0.9;
+            font-size: clamp(0.875rem, 1.5vw, 1rem);
         }
         
         .close-modal {
@@ -847,147 +843,72 @@
             align-items: center;
             justify-content: center;
             cursor: pointer;
+            font-size: 1.25rem;
             transition: all 0.3s ease;
-            border: none;
-            color: white;
-            font-size: 1.2rem;
         }
         
         .close-modal:hover {
-            background: rgba(255, 255, 255, 0.3);
+            background: var(--accent);
             transform: rotate(90deg);
         }
         
-        .modal-body {
-            padding: clamp(1.5rem, 3vw, 2rem);
+        .registration-form {
+            padding: clamp(2rem, 4vw, 3rem);
         }
         
-        /* ====== FORM STYLES ====== */
         .form-group {
-            margin-bottom: 1.5rem;
+            margin-bottom: clamp(1.25rem, 2.5vw, 1.5rem);
         }
         
         .form-group label {
             display: block;
             margin-bottom: 0.5rem;
-            font-weight: 500;
             color: var(--dark);
+            font-weight: 500;
+            font-size: clamp(0.875rem, 1.5vw, 1rem);
         }
         
-        .form-control {
+        .form-group input,
+        .form-group select,
+        .form-group textarea {
             width: 100%;
-            padding: 0.875rem 1rem;
-            border: 1px solid #ddd;
+            padding: clamp(0.75rem, 1.5vw, 1rem) clamp(1rem, 2vw, 1.25rem);
+            border: 2px solid #e0e0e0;
             border-radius: 10px;
             font-family: 'Poppins', sans-serif;
-            font-size: 1rem;
+            font-size: clamp(0.875rem, 1.5vw, 1rem);
             transition: all 0.3s ease;
-            background: #f8f9fa;
         }
         
-        .form-control:focus {
+        .form-group input:focus,
+        .form-group select:focus,
+        .form-group textarea:focus {
             outline: none;
-            border-color: var(--primary);
-            box-shadow: 0 0 0 3px rgba(26, 75, 140, 0.1);
-            background: white;
+            border-color: var(--secondary);
+            box-shadow: 0 0 0 3px rgba(212, 175, 55, 0.2);
         }
         
         .form-row {
             display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 1rem;
+            grid-template-columns: repeat(auto-fit, minmax(min(200px, 100%), 1fr));
+            gap: clamp(1rem, 2vw, 1.25rem);
         }
         
         .form-actions {
             display: flex;
             gap: 1rem;
+            justify-content: center;
             margin-top: 2rem;
         }
         
-        .form-checkbox {
-            display: flex;
-            align-items: flex-start;
-            gap: 0.75rem;
-        }
-        
-        .form-checkbox input {
-            margin-top: 0.25rem;
-        }
-        
-        .form-checkbox label {
-            font-size: 0.875rem;
-            color: #666;
-            line-height: 1.4;
-        }
-        
-        /* ====== NEW LEADERSHIP SECTION ====== */
-        .leadership-section {
-            background: linear-gradient(135deg, #f8f9fa 0%, #f1f5f9 100%);
-            border-radius: 30px;
-            padding: clamp(3rem, 8vw, 5rem);
-            margin-top: clamp(3rem, 8vw, 5rem);
-        }
-        
-        .leadership-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(min(280px, 100%), 1fr));
-            gap: clamp(1.5rem, 3vw, 2rem);
-            margin-top: clamp(2rem, 5vw, 3rem);
-        }
-        
-        .leader-card {
-            background: white;
-            border-radius: 20px;
-            overflow: hidden;
-            box-shadow: 0 15px 40px rgba(0,0,0,0.08);
-            transition: all 0.3s ease;
-            border: 1px solid rgba(0, 0, 0, 0.05);
-        }
-        
-        .leader-card:hover {
-            transform: translateY(-10px);
-            box-shadow: 0 25px 60px rgba(0,0,0,0.15);
-        }
-        
-        .leader-image {
-            height: 250px;
-            overflow: hidden;
-        }
-        
-        .leader-image img {
-            width: 100%;
-            height: 100%;
-            object-fit: cover;
-            transition: transform 0.5s ease;
-        }
-        
-        .leader-card:hover .leader-image img {
-            transform: scale(1.05);
-        }
-        
-        .leader-info {
-            padding: clamp(1.5rem, 3vw, 2rem);
-            text-align: center;
-        }
-        
-        .leader-name {
-            font-size: 1.375rem;
+        .btn-cancel {
+            background: #f8f9fa;
             color: var(--dark);
-            margin-bottom: 0.5rem;
-            font-weight: 600;
+            border: 2px solid #e0e0e0;
         }
         
-        .leader-role {
-            color: var(--primary);
-            font-weight: 500;
-            margin-bottom: 1rem;
-            font-size: 1rem;
-        }
-        
-        .leader-bio {
-            color: #666;
-            font-size: 0.875rem;
-            line-height: 1.6;
+        .btn-cancel:hover {
+            background: #e9ecef;
         }
         
         /* ====== FOOTER ====== */
@@ -1119,16 +1040,8 @@
                 grid-template-columns: repeat(2, 1fr);
             }
             
-            .form-row {
-                grid-template-columns: 1fr;
-            }
-            
-            .form-actions {
-                flex-direction: column;
-            }
-            
-            .leadership-grid {
-                grid-template-columns: repeat(2, 1fr);
+            .modal-content {
+                margin: 20px auto;
             }
         }
         
@@ -1141,8 +1054,8 @@
                 grid-template-columns: 1fr;
             }
             
-            .leadership-grid {
-                grid-template-columns: 1fr;
+            .form-actions {
+                flex-direction: column;
             }
         }
         
@@ -1167,80 +1080,6 @@
             -webkit-text-fill-color: transparent;
             background-clip: text;
         }
-        
-        .btn-success {
-            background: var(--success);
-        }
-        
-        .btn-success:hover {
-            background: #0da271;
-        }
-        
-        /* ====== LOADING ANIMATION ====== */
-        .loading {
-            display: inline-block;
-            width: 20px;
-            height: 20px;
-            border: 3px solid rgba(255,255,255,.3);
-            border-radius: 50%;
-            border-top-color: white;
-            animation: spin 1s ease-in-out infinite;
-        }
-        
-        @keyframes spin {
-            to { transform: rotate(360deg); }
-        }
-        
-        /* ====== NEW 2025 STYLING ELEMENTS ====== */
-        .sticky-cta {
-            position: fixed;
-            bottom: 2rem;
-            right: 2rem;
-            background: var(--secondary);
-            color: var(--dark);
-            padding: 1rem 1.5rem;
-            border-radius: 50px;
-            font-weight: 600;
-            box-shadow: 0 10px 30px rgba(212, 175, 55, 0.4);
-            z-index: 999;
-            cursor: pointer;
-            transition: all 0.3s ease;
-            display: flex;
-            align-items: center;
-            gap: 0.5rem;
-        }
-        
-        .sticky-cta:hover {
-            transform: translateY(-5px);
-            box-shadow: 0 15px 40px rgba(212, 175, 55, 0.6);
-        }
-        
-        .stats-container {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-            gap: 2rem;
-            margin-top: 3rem;
-        }
-        
-        .stat-card {
-            text-align: center;
-            padding: 2rem;
-            background: white;
-            border-radius: 15px;
-            box-shadow: 0 10px 30px rgba(0,0,0,0.08);
-        }
-        
-        .stat-number {
-            font-size: 3rem;
-            font-weight: 700;
-            color: var(--primary);
-            margin-bottom: 0.5rem;
-        }
-        
-        .stat-label {
-            color: #666;
-            font-size: 1rem;
-        }
     </style>
 </head>
 <body>
@@ -1261,7 +1100,7 @@
                         <div class="dropdown-content">
                             <a href="#about">About Us</a>
                             <a href="#events">Events</a>
-                            <a href="#leadership">Leadership</a>
+                            <a href="#gallery">Gallery</a>
                         </div>
                     </li>
                     <li><a href="#gallery">Gallery</a></li>
@@ -1290,7 +1129,6 @@
             <div class="hero-cta-container">
                 <a href="#events" class="btn-primary">Upcoming Events</a>
                 <a href="#connect" class="btn-secondary">Plan Your Visit</a>
-                <button class="btn-primary open-registration-modal" style="background: var(--success);">Register Now</button>
             </div>
         </div>
         
@@ -1357,26 +1195,7 @@
                         </li>
                     </ul>
                     
-                    <div class="stats-container">
-                        <div class="stat-card">
-                            <div class="stat-number">200+</div>
-                            <div class="stat-label">Teens Connected</div>
-                        </div>
-                        <div class="stat-card">
-                            <div class="stat-number">15</div>
-                            <div class="stat-label">Small Groups</div>
-                        </div>
-                        <div class="stat-card">
-                            <div class="stat-number">52</div>
-                            <div class="stat-label">Events Yearly</div>
-                        </div>
-                        <div class="stat-card">
-                            <div class="stat-number">10</div>
-                            <div class="stat-label">Trained Leaders</div>
-                        </div>
-                    </div>
-                    
-                    <button class="btn open-registration-modal" style="margin-top: 2rem;">Get Connected</button>
+                    <a href="#connect" class="btn" style="margin-top: 2rem;">Get Connected</a>
                 </div>
                 
                 <div class="about-image hover-lift">
@@ -1401,7 +1220,7 @@
                         <span class="event-date">Every Sunday • 5:00 PM</span>
                         <h3 class="event-title">Sunday Night Live</h3>
                         <p class="event-desc">Our weekly worship experience with live music, engaging messages, and hang time. The main event!</p>
-                        <button class="btn-secondary open-registration-modal" style="padding: 0.75rem 1.5rem; font-size: 0.875rem;">Register</button>
+                        <a href="#" class="btn-secondary" style="padding: 0.75rem 1.5rem; font-size: 0.875rem;">Details</a>
                     </div>
                 </div>
                 
@@ -1413,7 +1232,7 @@
                         <span class="event-date">Wednesdays • 7:00 PM</span>
                         <h3 class="event-title">Life Groups</h3>
                         <p class="event-desc">Gender and grade-based small groups for deeper connection, discussion, and discipleship.</p>
-                        <button class="btn-secondary open-registration-modal" style="padding: 0.75rem 1.5rem; font-size: 0.875rem;">Join a Group</button>
+                        <a href="#" class="btn-secondary" style="padding: 0.75rem 1.5rem; font-size: 0.875rem;">Find Your Group</a>
                     </div>
                 </div>
                 
@@ -1425,52 +1244,7 @@
                         <span class="event-date">June 15-20 • Register Now</span>
                         <h3 class="event-title">Summer Camp 2025</h3>
                         <p class="event-desc">A week of epic adventure, powerful worship, and life-changing encounters with God.</p>
-                        <button class="btn-secondary open-registration-modal" style="padding: 0.75rem 1.5rem; font-size: 0.875rem;">Register Now</button>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- Leadership Section -->
-    <section class="section section-accent" id="leadership">
-        <div class="container">
-            <h2 class="section-title">MEET OUR TEAM</h2>
-            <p class="section-subtitle">Passionate leaders dedicated to guiding and mentoring the next generation.</p>
-            
-            <div class="leadership-section">
-                <div class="leadership-grid">
-                    <div class="leader-card hover-lift">
-                        <div class="leader-image">
-                            <img src="leader1.jpg" alt="Youth Pastor">
-                        </div>
-                        <div class="leader-info">
-                            <h3 class="leader-name">Pastor Mike Johnson</h3>
-                            <p class="leader-role">Youth Pastor</p>
-                            <p class="leader-bio">10+ years in youth ministry. Passionate about helping teens discover their identity in Christ.</p>
-                        </div>
-                    </div>
-                    
-                    <div class="leader-card hover-lift">
-                        <div class="leader-image">
-                            <img src="leader2.jpg" alt="Worship Director">
-                        </div>
-                        <div class="leader-info">
-                            <h3 class="leader-name">Sarah Williams</h3>
-                            <p class="leader-role">Worship Director</p>
-                            <p class="leader-bio">Creates spaces where teens can encounter God through music and creative expression.</p>
-                        </div>
-                    </div>
-                    
-                    <div class="leader-card hover-lift">
-                        <div class="leader-image">
-                            <img src="leader3.jpg" alt="Small Groups Coordinator">
-                        </div>
-                        <div class="leader-info">
-                            <h3 class="leader-name">David Chen</h3>
-                            <p class="leader-role">Small Groups Coordinator</p>
-                            <p class="leader-bio">Oversees our life groups and ensures every teen finds a place to belong.</p>
-                        </div>
+                        <a href="#!" class="btn-primary open-registration" style="padding: 0.75rem 1.5rem; font-size: 0.875rem;">Register Now</a>
                     </div>
                 </div>
             </div>
@@ -1509,7 +1283,7 @@
     </section>
 
     <!-- Connect Section -->
-    <section class="section" id="connect">
+    <section class="section section-accent" id="connect">
         <div class="container">
             <h2 class="section-title">GET CONNECTED</h2>
             <p class="section-subtitle">Your first step to joining the SPAC Teens family.</p>
@@ -1534,8 +1308,8 @@
                 </div>
                 
                 <div style="text-align: center;">
-                    <button class="btn open-registration-modal" style="margin-right: 1rem; margin-bottom: 1rem;">Register Now</button>
-                    <a href="#" class="btn-secondary">Contact Our Team</a>
+                    <a href="#!" class="btn open-registration" style="margin-right: 1rem; margin-bottom: 1rem;">Register for Events</a>
+                    <a href="#!" class="btn-secondary" id="contactTeamBtn">Contact Our Team</a>
                 </div>
             </div>
         </div>
@@ -1561,9 +1335,9 @@
                     <ul class="footer-links">
                         <li><a href="#about">About Us</a></li>
                         <li><a href="#events">Events Calendar</a></li>
-                        <li><a href="#leadership">Our Team</a></li>
+                        <li><a href="#gallery">Gallery</a></li>
                         <li><a href="#connect">Plan a Visit</a></li>
-                        <li><a href="#">Parent Resources</a></li>
+                        <li><a href="#!">Parent Resources</a></li>
                     </ul>
                 </div>
                 
@@ -1579,99 +1353,136 @@
             </div>
             
             <div class="footer-bottom">
-                &copy; 2025 SPAC Teen Church. A ministry of SPAC Church. | <a href="#">Parental Consent Form</a> | <a href="#">Safety Policies</a>
+                &copy; 2025 SPAC Teen Church. A ministry of SPAC Church. | <a href="#!">Parental Consent Form</a> | <a href="#!">Safety Policies</a>
             </div>
         </div>
     </footer>
 
     <!-- Registration Modal -->
-    <div class="modal-overlay" id="registrationModal">
-        <div class="modal">
+    <div class="modal" id="registrationModal">
+        <div class="modal-content">
             <div class="modal-header">
-                <h3>Register for SPAC Teens</h3>
-                <button class="close-modal" id="closeModal">&times;</button>
+                <div class="close-modal">&times;</div>
+                <h3>Register for SPAC Teen Church</h3>
+                <p>Fill out the form below to register for events or join our teen community</p>
             </div>
-            <div class="modal-body">
-                <form id="registrationForm">
-                    <div class="form-row">
-                        <div class="form-group">
-                            <label for="firstName">First Name *</label>
-                            <input type="text" id="firstName" class="form-control" required>
-                        </div>
-                        <div class="form-group">
-                            <label for="lastName">Last Name *</label>
-                            <input type="text" id="lastName" class="form-control" required>
-                        </div>
-                    </div>
-                    
-                    <div class="form-row">
-                        <div class="form-group">
-                            <label for="email">Email Address *</label>
-                            <input type="email" id="email" class="form-control" required>
-                        </div>
-                        <div class="form-group">
-                            <label for="phone">Phone Number</label>
-                            <input type="tel" id="phone" class="form-control">
-                        </div>
-                    </div>
-                    
-                    <div class="form-row">
-                        <div class="form-group">
-                            <label for="grade">Grade Level *</label>
-                            <select id="grade" class="form-control" required>
-                                <option value="">Select Grade</option>
-                                <option value="7">7th Grade</option>
-                                <option value="8">8th Grade</option>
-                                <option value="9">9th Grade</option>
-                                <option value="10">10th Grade</option>
-                                <option value="11">11th Grade</option>
-                                <option value="12">12th Grade</option>
-                            </select>
-                        </div>
-                        <div class="form-group">
-                            <label for="event">Event Interested In *</label>
-                            <select id="event" class="form-control" required>
-                                <option value="">Select Event</option>
-                                <option value="sunday-night">Sunday Night Live</option>
-                                <option value="small-groups">Small Groups</option>
-                                <option value="summer-camp">Summer Camp 2025</option>
-                                <option value="first-time-visit">First Time Visit</option>
-                                <option value="other">Other</option>
-                            </select>
-                        </div>
-                    </div>
-                    
+            <form class="registration-form" id="registrationForm">
+                <div class="form-row">
                     <div class="form-group">
-                        <label for="message">Additional Information</label>
-                        <textarea id="message" class="form-control" rows="3" placeholder="Any questions or special considerations?"></textarea>
+                        <label for="firstName">First Name *</label>
+                        <input type="text" id="firstName" name="firstName" required>
                     </div>
-                    
                     <div class="form-group">
-                        <div class="form-checkbox">
-                            <input type="checkbox" id="parentalConsent" required>
-                            <label for="parentalConsent">I confirm that I am over 13 years old or have parental consent to register</label>
-                        </div>
+                        <label for="lastName">Last Name *</label>
+                        <input type="text" id="lastName" name="lastName" required>
                     </div>
-                    
+                </div>
+                
+                <div class="form-row">
                     <div class="form-group">
-                        <div class="form-checkbox">
-                            <input type="checkbox" id="updates" checked>
-                            <label for="updates">Receive updates about events and activities</label>
-                        </div>
+                        <label for="email">Email Address *</label>
+                        <input type="email" id="email" name="email" required>
                     </div>
-                    
-                    <div class="form-actions">
-                        <button type="submit" class="btn btn-success" style="flex: 1;">Submit Registration</button>
-                        <button type="button" class="btn-secondary close-modal" style="flex: 1;">Cancel</button>
+                    <div class="form-group">
+                        <label for="phone">Phone Number</label>
+                        <input type="tel" id="phone" name="phone">
                     </div>
-                </form>
-            </div>
+                </div>
+                
+                <div class="form-row">
+                    <div class="form-group">
+                        <label for="grade">Grade (2024-2025)</label>
+                        <select id="grade" name="grade">
+                            <option value="">Select Grade</option>
+                            <option value="7">7th Grade</option>
+                            <option value="8">8th Grade</option>
+                            <option value="9">9th Grade</option>
+                            <option value="10">10th Grade</option>
+                            <option value="11">11th Grade</option>
+                            <option value="12">12th Grade</option>
+                            <option value="college">College</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label for="age">Age</label>
+                        <input type="number" id="age" name="age" min="13" max="18">
+                    </div>
+                </div>
+                
+                <div class="form-group">
+                    <label for="event">Event/Program *</label>
+                    <select id="event" name="event" required>
+                        <option value="">Select an Event</option>
+                        <option value="sunday-night">Sunday Night Live (Weekly)</option>
+                        <option value="life-groups">Life Groups (Wednesdays)</option>
+                        <option value="summer-camp">Summer Camp 2025</option>
+                        <option value="first-time-visitor">First Time Visitor</option>
+                        <option value="general-info">General Information/Updates</option>
+                    </select>
+                </div>
+                
+                <div class="form-group">
+                    <label for="parentName">Parent/Guardian Name</label>
+                    <input type="text" id="parentName" name="parentName">
+                </div>
+                
+                <div class="form-group">
+                    <label for="questions">Questions or Special Requests</label>
+                    <textarea id="questions" name="questions" rows="3" placeholder="Any allergies, medical conditions, or other information we should know?"></textarea>
+                </div>
+                
+                <div class="form-actions">
+                    <button type="submit" class="btn">Submit Registration</button>
+                    <button type="button" class="btn btn-cancel close-modal">Cancel</button>
+                </div>
+            </form>
         </div>
     </div>
 
-    <!-- Sticky CTA -->
-    <div class="sticky-cta open-registration-modal">
-        <i class="fas fa-user-plus"></i> Register Now
+    <!-- Contact Modal -->
+    <div class="modal" id="contactModal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <div class="close-modal">&times;</div>
+                <h3>Contact Our Team</h3>
+                <p>Get in touch with our teen ministry leaders</p>
+            </div>
+            <form class="registration-form" id="contactForm">
+                <div class="form-row">
+                    <div class="form-group">
+                        <label for="contactName">Your Name *</label>
+                        <input type="text" id="contactName" name="contactName" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="contactEmail">Email Address *</label>
+                        <input type="email" id="contactEmail" name="contactEmail" required>
+                    </div>
+                </div>
+                
+                <div class="form-group">
+                    <label for="subject">Subject</label>
+                    <select id="subject" name="subject">
+                        <option value="">Select a Topic</option>
+                        <option value="general">General Inquiry</option>
+                        <option value="visit">Planning a Visit</option>
+                        <option value="volunteer">Volunteer Opportunities</option>
+                        <option value="parent">Parent Questions</option>
+                        <option value="prayer">Prayer Request</option>
+                        <option value="other">Other</option>
+                    </select>
+                </div>
+                
+                <div class="form-group">
+                    <label for="message">Message *</label>
+                    <textarea id="message" name="message" rows="4" required placeholder="How can we help you?"></textarea>
+                </div>
+                
+                <div class="form-actions">
+                    <button type="submit" class="btn">Send Message</button>
+                    <button type="button" class="btn btn-cancel close-modal">Cancel</button>
+                </div>
+            </form>
+        </div>
     </div>
 
     <script>
@@ -1814,97 +1625,66 @@
 
         // ====== MODAL FUNCTIONALITY ======
         const registrationModal = document.getElementById('registrationModal');
-        const openModalButtons = document.querySelectorAll('.open-registration-modal');
-        const closeModalButtons = document.querySelectorAll('.close-modal');
+        const contactModal = document.getElementById('contactModal');
+        const openRegistrationBtns = document.querySelectorAll('.open-registration');
+        const contactTeamBtn = document.getElementById('contactTeamBtn');
+        const closeModalBtns = document.querySelectorAll('.close-modal');
         const registrationForm = document.getElementById('registrationForm');
+        const contactForm = document.getElementById('contactForm');
 
-        // Open modal
-        openModalButtons.forEach(button => {
-            button.addEventListener('click', () => {
-                registrationModal.classList.add('active');
+        // Open registration modal
+        openRegistrationBtns.forEach(btn => {
+            btn.addEventListener('click', (e) => {
+                e.preventDefault();
+                registrationModal.style.display = 'block';
                 document.body.style.overflow = 'hidden';
             });
         });
 
-        // Close modal
-        closeModalButtons.forEach(button => {
-            button.addEventListener('click', () => {
-                registrationModal.classList.remove('active');
+        // Open contact modal
+        contactTeamBtn.addEventListener('click', (e) => {
+            e.preventDefault();
+            contactModal.style.display = 'block';
+            document.body.style.overflow = 'hidden';
+        });
+
+        // Close modals
+        closeModalBtns.forEach(btn => {
+            btn.addEventListener('click', () => {
+                registrationModal.style.display = 'none';
+                contactModal.style.display = 'none';
                 document.body.style.overflow = 'auto';
             });
         });
 
         // Close modal when clicking outside
-        registrationModal.addEventListener('click', (e) => {
+        window.addEventListener('click', (e) => {
             if (e.target === registrationModal) {
-                registrationModal.classList.remove('active');
+                registrationModal.style.display = 'none';
+                document.body.style.overflow = 'auto';
+            }
+            if (e.target === contactModal) {
+                contactModal.style.display = 'none';
                 document.body.style.overflow = 'auto';
             }
         });
 
-        // Form submission
+        // Form submission handlers
         registrationForm.addEventListener('submit', (e) => {
             e.preventDefault();
-            
-            // Get form data
-            const formData = {
-                firstName: document.getElementById('firstName').value,
-                lastName: document.getElementById('lastName').value,
-                email: document.getElementById('email').value,
-                phone: document.getElementById('phone').value,
-                grade: document.getElementById('grade').value,
-                event: document.getElementById('event').value,
-                message: document.getElementById('message').value,
-                updates: document.getElementById('updates').checked
-            };
-            
-            // Show loading state
-            const submitButton = registrationForm.querySelector('button[type="submit"]');
-            const originalText = submitButton.textContent;
-            submitButton.innerHTML = '<div class="loading"></div> Processing...';
-            submitButton.disabled = true;
-            
-            // Simulate form submission (replace with actual API call)
-            setTimeout(() => {
-                // Show success message
-                const modalBody = document.querySelector('.modal-body');
-                modalBody.innerHTML = `
-                    <div style="text-align: center; padding: 2rem;">
-                        <i class="fas fa-check-circle" style="font-size: 4rem; color: var(--success); margin-bottom: 1.5rem;"></i>
-                        <h3 style="color: var(--primary); margin-bottom: 1rem;">Registration Successful!</h3>
-                        <p style="color: #555; margin-bottom: 2rem;">Thank you for registering! We've sent a confirmation email to ${formData.email}. Our team will contact you within 24 hours with more details.</p>
-                        <button class="btn close-modal">Close</button>
-                    </div>
-                `;
-                
-                // Add event listener to the new close button
-                modalBody.querySelector('.close-modal').addEventListener('click', () => {
-                    registrationModal.classList.remove('active');
-                    document.body.style.overflow = 'auto';
-                    // Reset form
-                    setTimeout(() => {
-                        modalBody.innerHTML = registrationForm.outerHTML;
-                        setupFormListeners();
-                    }, 300);
-                });
-            }, 1500);
+            alert('Thank you for registering! We\'ll be in touch soon with more details.');
+            registrationModal.style.display = 'none';
+            document.body.style.overflow = 'auto';
+            registrationForm.reset();
         });
 
-        function setupFormListeners() {
-            // Re-attach form submission listener
-            const newForm = document.getElementById('registrationForm');
-            if (newForm) {
-                newForm.addEventListener('submit', registrationForm.addEventListener);
-            }
-            
-            // Re-attach close modal listeners
-            document.querySelectorAll('.close-modal').forEach(button => {
-                button.addEventListener('click', () => {
-                    registrationModal.classList.remove('active');
-                    document.body.style.overflow = 'auto';
-                });
-            });
-        }
+        contactForm.addEventListener('submit', (e) => {
+            e.preventDefault();
+            alert('Thank you for your message! Our team will get back to you within 24-48 hours.');
+            contactModal.style.display = 'none';
+            document.body.style.overflow = 'auto';
+            contactForm.reset();
+        });
 
         // ====== SMOOTH SCROLLING ======
         document.querySelectorAll('a[href^="#"]').forEach(anchor => {
@@ -1953,7 +1733,7 @@
         }, observerOptions);
 
         // Observe elements to animate
-        document.querySelectorAll('.event-card, .leader-card, .gallery-item, .connect-container, .stat-card').forEach(el => {
+        document.querySelectorAll('.event-card, .gallery-item, .connect-container').forEach(el => {
             el.style.opacity = '0';
             el.style.transform = 'translateY(30px)';
             el.style.transition = 'opacity 0.5s ease, transform 0.5s ease';
@@ -1964,30 +1744,38 @@
         const header = document.querySelector('header');
         window.addEventListener('scroll', () => {
             if (window.scrollY > 100) {
-                header.style.boxShadow = '0 5px 30px rgba(0, 0, 0, 0.15)';
-                header.style.padding = '5px 0';
+                header.style.boxShadow = '0 5px 30px rgba(0, 0, 0, 0.1)';
+                header.style.padding = '4px 0';
             } else {
                 header.style.boxShadow = '0 3px 20px rgba(0, 0, 0, 0.08)';
                 header.style.padding = '8px 0';
             }
         });
 
-        // ====== STICKY CTA SCROLL EFFECT ======
-        const stickyCTA = document.querySelector('.sticky-cta');
-        window.addEventListener('scroll', () => {
-            if (window.scrollY > 500) {
-                stickyCTA.style.opacity = '1';
-                stickyCTA.style.transform = 'translateY(0)';
-            } else {
-                stickyCTA.style.opacity = '0';
-                stickyCTA.style.transform = 'translateY(20px)';
-            }
+        // ====== LAZY LOADING FOR IMAGES ======
+        const lazyImages = document.querySelectorAll('img:not([src="spac-logo.jpg"])');
+        const imageObserver = new IntersectionObserver((entries, observer) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    const img = entry.target;
+                    if (img.dataset.src) {
+                        img.src = img.dataset.src;
+                    }
+                    img.classList.add('loaded');
+                    observer.unobserve(img);
+                }
+            });
         });
 
-        // Initialize sticky CTA
-        stickyCTA.style.opacity = '0';
-        stickyCTA.style.transform = 'translateY(20px)';
-        stickyCTA.style.transition = 'opacity 0.3s ease, transform 0.3s ease';
+        lazyImages.forEach(img => {
+            if (img.complete) {
+                img.classList.add('loaded');
+            } else {
+                img.addEventListener('load', () => {
+                    img.classList.add('loaded');
+                });
+            }
+        });
 
         // ====== KEYBOARD NAVIGATION ======
         document.addEventListener('keydown', (e) => {
@@ -2000,15 +1788,19 @@
                 resetInterval();
             }
             
-            // Escape key to close mobile menu or modal
+            // Escape key to close modals and mobile menu
             if (e.key === 'Escape') {
+                if (registrationModal.style.display === 'block') {
+                    registrationModal.style.display = 'none';
+                    document.body.style.overflow = 'auto';
+                }
+                if (contactModal.style.display === 'block') {
+                    contactModal.style.display = 'none';
+                    document.body.style.overflow = 'auto';
+                }
                 if (navMenu.classList.contains('active')) {
                     hamburger.classList.remove('active');
                     navMenu.classList.remove('active');
-                    document.body.style.overflow = 'auto';
-                }
-                if (registrationModal.classList.contains('active')) {
-                    registrationModal.classList.remove('active');
                     document.body.style.overflow = 'auto';
                 }
             }
@@ -2016,24 +1808,8 @@
 
         // ====== INITIALIZE ON LOAD ======
         window.addEventListener('load', () => {
-            // Add loaded class to body for transitions
-            document.body.classList.add('loaded');
-            
-            // Initialize stats counter animation
-            const statNumbers = document.querySelectorAll('.stat-number');
-            statNumbers.forEach(stat => {
-                const target = parseInt(stat.textContent);
-                let current = 0;
-                const increment = target / 50;
-                const timer = setInterval(() => {
-                    current += increment;
-                    if (current >= target) {
-                        current = target;
-                        clearInterval(timer);
-                    }
-                    stat.textContent = Math.floor(current) + (stat.textContent.includes('+') ? '+' : '');
-                }, 30);
-            });
+            // Initialize lazy loading
+            lazyImages.forEach(img => imageObserver.observe(img));
         });
     </script>
 </body>
