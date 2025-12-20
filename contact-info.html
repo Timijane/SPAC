@@ -87,7 +87,7 @@
             -webkit-backdrop-filter: blur(10px);
         }
         
-        /* ====== HEADER ====== */
+        /* ====== HEADER - FIXED ====== */
         header {
             background: white;
             box-shadow: 0 3px 20px rgba(0, 0, 0, 0.08);
@@ -97,6 +97,7 @@
             padding: 8px 0;
             transition: all 0.3s ease;
             width: 100%;
+            height: 80px;
         }
         
         .header-container {
@@ -107,28 +108,29 @@
             width: 100%;
             max-width: 1200px;
             margin: 0 auto;
+            height: 100%;
         }
         
+        /* Logo - Professional positioning */
         .logo {
             display: flex;
             align-items: center;
-            position: absolute;
-            left: 50%;
-            transform: translateX(-50%);
+            z-index: 1002; /* Above mobile menu */
         }
         
         .logo-frame {
-            width: clamp(70px, 8vw, 100px);
-            height: clamp(70px, 8vw, 100px);
+            width: clamp(60px, 8vw, 70px);
+            height: clamp(60px, 8vw, 70px);
             border-radius: 50%;
             background: white;
             border: 4px solid var(--primary);
             display: flex;
             align-items: center;
             justify-content: center;
-            margin-right: clamp(1rem, 2vw, 1.25rem);
+            margin-right: clamp(0.75rem, 2vw, 1.25rem);
             overflow: hidden;
             box-shadow: 0 6px 20px rgba(0, 0, 0, 0.15);
+            flex-shrink: 0;
         }
         
         .logo-frame img {
@@ -139,112 +141,126 @@
         
         .logo-text {
             font-family: 'Lobster', cursive;
-            font-size: clamp(1.5rem, 4vw, 2.625rem);
+            font-size: clamp(1.25rem, 4vw, 2rem);
             font-weight: 400;
             color: var(--primary);
-            letter-spacing: 1.5px;
+            letter-spacing: 1px;
             line-height: 1;
-            text-align: center;
             white-space: nowrap;
         }
         
+        /* Navigation Container */
         .nav-container {
             display: flex;
             align-items: center;
             justify-content: flex-end;
             width: 100%;
+            gap: 20px;
         }
         
-        @media (min-width: 993px) {
-            .nav-menu {
-                display: flex;
-                list-style: none;
-            }
-            
-            .nav-menu li {
-                margin-left: clamp(1rem, 2vw, 1.875rem);
-                position: relative;
-            }
-            
-            .nav-menu a {
-                color: var(--dark);
-                font-weight: 500;
-                font-size: clamp(0.875rem, 1vw, 0.9375rem);
-                transition: all 0.3s ease;
-                padding: 8px 0;
-                position: relative;
-            }
-            
-            .nav-menu a::after {
-                content: '';
-                position: absolute;
-                bottom: 0;
-                left: 0;
-                width: 0;
-                height: 2px;
-                background: var(--secondary);
-                transition: width 0.3s ease;
-            }
-            
-            .nav-menu a:hover::after {
-                width: 100%;
-            }
+        /* Desktop Navigation */
+        .nav-menu {
+            display: flex;
+            list-style: none;
+            margin: 0;
+            padding: 0;
         }
         
-        /* Mobile Menu */
-        .hamburger {
+        .nav-menu li {
+            margin-left: clamp(1rem, 2vw, 1.875rem);
+            position: relative;
+        }
+        
+        .nav-menu a {
+            color: var(--dark);
+            font-weight: 500;
+            font-size: clamp(0.875rem, 1vw, 0.9375rem);
+            transition: all 0.3s ease;
+            padding: 8px 0;
+            position: relative;
+        }
+        
+        .nav-menu a::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 0;
+            height: 2px;
+            background: var(--secondary);
+            transition: width 0.3s ease;
+        }
+        
+        .nav-menu a:hover::after {
+            width: 100%;
+        }
+        
+        /* Mobile Menu Toggle Button */
+        .menu-toggle {
             display: none;
             cursor: pointer;
             width: 44px;
             height: 44px;
             position: relative;
             z-index: 1001;
-            margin-left: auto;
             background: var(--primary);
-            border-radius: 5px;
+            border-radius: 8px;
             padding: 8px;
+            border: none;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            transition: all 0.3s ease;
         }
         
-        .hamburger span {
+        .menu-toggle:hover {
+            background: var(--accent);
+        }
+        
+        .menu-toggle span {
             display: block;
-            position: absolute;
             height: 3px;
             width: 24px;
             background: white;
             border-radius: 3px;
             opacity: 1;
-            left: 8px;
             transform: rotate(0deg);
             transition: .25s ease-in-out;
+            margin: 3px 0;
         }
         
-        .hamburger span:nth-child(1) { top: 12px; }
-        .hamburger span:nth-child(2) { top: 18.5px; }
-        .hamburger span:nth-child(3) { top: 25px; }
-        
-        .hamburger.active span:nth-child(1) {
-            top: 18.5px;
-            transform: rotate(45deg);
+        .menu-toggle.active span:nth-child(1) {
+            transform: rotate(45deg) translate(5px, 5px);
         }
         
-        .hamburger.active span:nth-child(2) {
+        .menu-toggle.active span:nth-child(2) {
             opacity: 0;
-            left: -30px;
         }
         
-        .hamburger.active span:nth-child(3) {
-            top: 18.5px;
-            transform: rotate(-45deg);
+        .menu-toggle.active span:nth-child(3) {
+            transform: rotate(-45deg) translate(7px, -6px);
         }
         
+        /* Mobile Navigation */
         @media (max-width: 992px) {
+            /* Show mobile menu toggle */
+            .menu-toggle {
+                display: flex;
+            }
+            
+            /* Hide desktop navigation */
             .nav-menu {
+                display: none;
+            }
+            
+            /* Mobile navigation menu */
+            .mobile-nav {
                 position: fixed;
                 top: 0;
-                right: -50%;
+                right: -100%;
                 width: min(85%, 400px);
                 height: 100vh;
-                background: rgba(255, 255, 255, 0.98);
+                background: white;
                 backdrop-filter: blur(10px);
                 -webkit-backdrop-filter: blur(10px);
                 flex-direction: column;
@@ -257,55 +273,62 @@
                 overflow-y: auto;
             }
             
-            .nav-menu.active {
+            .mobile-nav.active {
                 right: 0;
             }
             
-            .nav-menu li {
-                margin: 0 0 25px 0;
+            .mobile-nav ul {
+                list-style: none;
+                width: 100%;
+            }
+            
+            .mobile-nav li {
+                margin: 0 0 20px 0;
                 width: 100%;
                 opacity: 0;
                 transform: translateX(20px);
                 transition: all 0.3s ease;
             }
             
-            .nav-menu.active li {
+            .mobile-nav.active li {
                 opacity: 1;
                 transform: translateX(0);
             }
             
-            .nav-menu li:nth-child(1) { transition-delay: 0.1s; }
-            .nav-menu li:nth-child(2) { transition-delay: 0.2s; }
-            .nav-menu li:nth-child(3) { transition-delay: 0.3s; }
-            .nav-menu li:nth-child(4) { transition-delay: 0.4s; }
-            .nav-menu li:nth-child(5) { transition-delay: 0.5s; }
+            .mobile-nav li:nth-child(1) { transition-delay: 0.1s; }
+            .mobile-nav li:nth-child(2) { transition-delay: 0.2s; }
+            .mobile-nav li:nth-child(3) { transition-delay: 0.3s; }
+            .mobile-nav li:nth-child(4) { transition-delay: 0.4s; }
+            .mobile-nav li:nth-child(5) { transition-delay: 0.5s; }
             
-            .nav-menu a {
+            .mobile-nav a {
                 font-size: 1.125rem;
                 display: block;
                 padding: 12px 0;
                 width: 100%;
                 border-bottom: 1px solid rgba(0,0,0,0.05);
                 color: var(--dark);
+                font-weight: 500;
             }
             
-            .hamburger {
-                display: block;
+            .mobile-nav a:hover {
+                color: var(--primary);
             }
             
-            .logo {
-                position: static;
-                transform: none;
-                margin-right: auto;
+            body.menu-open {
+                overflow: hidden;
             }
             
-            .logo-text {
-                font-size: clamp(1.25rem, 5vw, 1.875rem);
-            }
-            
-            .logo-frame {
-                width: clamp(60px, 8vw, 70px);
-                height: clamp(60px, 8vw, 70px);
+            body.menu-open::before {
+                content: '';
+                position: fixed;
+                top: 0;
+                left: 0;
+                width: 100%;
+                height: 100%;
+                background: rgba(0, 0, 0, 0.5);
+                z-index: 999;
+                pointer-events: none;
             }
         }
         
@@ -322,7 +345,7 @@
             background: linear-gradient(135deg, rgba(139, 0, 0, 0.85) 0%, rgba(26, 75, 140, 0.9) 100%), url('contact-hero.jpg');
             background-size: cover;
             background-position: center;
-            padding: 120px 0 60px;
+            padding: 140px 0 60px;
         }
         
         .hero-overlay {
@@ -788,9 +811,24 @@
                     <li><a href="#contact-form">Contact Form</a></li>
                     <li><a href="#emergency">Emergency</a></li>
                 </ul>
-                <div class="hamburger"><span></span><span></span><span></span></div>
+                <button class="menu-toggle" id="menuToggle" aria-label="Toggle menu">
+                    <span></span>
+                    <span></span>
+                    <span></span>
+                </button>
             </div>
         </div>
+        
+        <!-- Mobile Navigation Menu -->
+        <nav class="mobile-nav" id="mobileNav">
+            <ul>
+                <li><a href="index.html">Home</a></li>
+                <li><a href="locations.html">Locations</a></li>
+                <li><a href="join.html">Join Us</a></li>
+                <li><a href="#contact-form">Contact Form</a></li>
+                <li><a href="#emergency">Emergency</a></li>
+            </ul>
+        </nav>
     </header>
 
     <!-- Hero Section -->
@@ -1050,134 +1088,174 @@
     </footer>
 
     <script>
-        // Mobile Menu Toggle
-        const hamburger = document.querySelector('.hamburger');
-        const navMenu = document.querySelector('.nav-menu');
+        // Mobile menu functions
+        const menuToggle = document.getElementById('menuToggle');
+        const mobileNav = document.getElementById('mobileNav');
+        const body = document.body;
         
-        hamburger.addEventListener('click', () => {
-            hamburger.classList.toggle('active');
-            navMenu.classList.toggle('active');
-            
-            if (navMenu.classList.contains('active')) {
-                document.body.style.overflow = 'hidden';
+        function openMobileMenu() {
+            menuToggle.classList.add('active');
+            mobileNav.classList.add('active');
+            body.classList.add('menu-open');
+        }
+        
+        function closeMobileMenu() {
+            menuToggle.classList.remove('active');
+            mobileNav.classList.remove('active');
+            body.classList.remove('menu-open');
+        }
+        
+        function toggleMobileMenu() {
+            if (mobileNav.classList.contains('active')) {
+                closeMobileMenu();
             } else {
-                document.body.style.overflow = 'auto';
+                openMobileMenu();
             }
-        });
+        }
         
-        // Close menu when clicking outside on mobile
-        document.addEventListener('click', (e) => {
-            if (window.innerWidth <= 992 && navMenu.classList.contains('active')) {
-                if (!e.target.closest('.nav-menu') && !e.target.closest('.hamburger')) {
-                    hamburger.classList.remove('active');
-                    navMenu.classList.remove('active');
-                    document.body.style.overflow = 'auto';
+        // Setup event listeners
+        function setupEventListeners() {
+            // Mobile menu toggle
+            menuToggle.addEventListener('click', toggleMobileMenu);
+            
+            // Close mobile menu when clicking links
+            document.querySelectorAll('.mobile-nav a').forEach(link => {
+                link.addEventListener('click', () => {
+                    closeMobileMenu();
+                });
+            });
+            
+            // Close mobile menu when clicking outside
+            document.addEventListener('click', (e) => {
+                if (mobileNav.classList.contains('active') && 
+                    !e.target.closest('.mobile-nav') && 
+                    !e.target.closest('.menu-toggle')) {
+                    closeMobileMenu();
                 }
-            }
-        });
-        
-        // Smooth scrolling for anchor links
-        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
-            anchor.addEventListener('click', function(e) {
-                if (this.getAttribute('href') === '#') return;
-                
-                e.preventDefault();
-                const targetId = this.getAttribute('href');
-                if (targetId === '#home') {
-                    window.scrollTo({
-                        top: 0,
-                        behavior: 'smooth'
-                    });
-                } else {
-                    const targetElement = document.querySelector(targetId);
-                    if (targetElement) {
+            });
+            
+            // Close mobile menu on escape key
+            document.addEventListener('keydown', (e) => {
+                if (e.key === 'Escape' && mobileNav.classList.contains('active')) {
+                    closeMobileMenu();
+                }
+            });
+            
+            // Smooth scrolling for anchor links
+            document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+                anchor.addEventListener('click', function(e) {
+                    if (this.getAttribute('href') === '#') return;
+                    
+                    e.preventDefault();
+                    const targetId = this.getAttribute('href');
+                    if (targetId === '#home') {
                         window.scrollTo({
-                            top: targetElement.offsetTop - 80,
+                            top: 0,
                             behavior: 'smooth'
                         });
+                    } else {
+                        const targetElement = document.querySelector(targetId);
+                        if (targetElement) {
+                            window.scrollTo({
+                                top: targetElement.offsetTop - 80,
+                                behavior: 'smooth'
+                            });
+                        }
                     }
+                    
+                    // Close mobile menu if open
+                    closeMobileMenu();
+                });
+            });
+            
+            // Scroll to top button
+            const scrollTopBtn = document.getElementById('scrollTop');
+            
+            window.addEventListener('scroll', () => {
+                if (window.scrollY > 300) {
+                    scrollTopBtn.classList.add('visible');
+                } else {
+                    scrollTopBtn.classList.remove('visible');
                 }
             });
-        });
-        
-        // Scroll to top button
-        const scrollTopBtn = document.getElementById('scrollTop');
-        
-        window.addEventListener('scroll', () => {
-            if (window.scrollY > 300) {
-                scrollTopBtn.classList.add('visible');
-            } else {
-                scrollTopBtn.classList.remove('visible');
-            }
-        });
-        
-        scrollTopBtn.addEventListener('click', () => {
-            window.scrollTo({
-                top: 0,
-                behavior: 'smooth'
+            
+            scrollTopBtn.addEventListener('click', () => {
+                window.scrollTo({
+                    top: 0,
+                    behavior: 'smooth'
+                });
             });
-        });
-        
-        // Form Submission
-        document.getElementById('contactForm').addEventListener('submit', function(e) {
-            e.preventDefault();
             
-            // Basic form validation
-            const email = document.getElementById('email').value;
-            if (!email.includes('@')) {
-                alert('Please enter a valid email address');
-                return;
-            }
-            
-            // In a real implementation, you would send this data to a server
-            alert('Thank you for your message! We will contact you within 24-48 hours.');
-            
-            // Reset form
-            this.reset();
-        });
-        
-        // Prayer Form Submission
-        document.getElementById('prayerForm').addEventListener('submit', function(e) {
-            e.preventDefault();
-            
-            // In a real implementation, you would send this data to a server
-            alert('Thank you for sharing your prayer request. Our prayer team will pray for you.');
-            
-            // Reset form
-            this.reset();
-            
-            // Scroll to top
-            window.scrollTo({
-                top: 0,
-                behavior: 'smooth'
+            // Form Submission
+            document.getElementById('contactForm').addEventListener('submit', function(e) {
+                e.preventDefault();
+                
+                // Basic form validation
+                const email = document.getElementById('email').value;
+                if (!email.includes('@')) {
+                    alert('Please enter a valid email address');
+                    return;
+                }
+                
+                // In a real implementation, you would send this data to a server
+                alert('Thank you for your message! We will contact you within 24-48 hours.');
+                
+                // Reset form
+                this.reset();
             });
-        });
-        
-        // Loading animation
-        window.addEventListener('DOMContentLoaded', function() {
-            setTimeout(() => {
-                document.querySelector('.loading').style.opacity = '0';
+            
+            // Prayer Form Submission
+            document.getElementById('prayerForm').addEventListener('submit', function(e) {
+                e.preventDefault();
+                
+                // In a real implementation, you would send this data to a server
+                alert('Thank you for sharing your prayer request. Our prayer team will pray for you.');
+                
+                // Reset form
+                this.reset();
+                
+                // Scroll to top
+                window.scrollTo({
+                    top: 0,
+                    behavior: 'smooth'
+                });
+            });
+            
+            // Loading animation
+            window.addEventListener('DOMContentLoaded', function() {
                 setTimeout(() => {
-                    document.querySelector('.loading').style.display = 'none';
-                }, 300);
-            }, 1000);
-        });
+                    document.querySelector('.loading').style.opacity = '0';
+                    setTimeout(() => {
+                        document.querySelector('.loading').style.display = 'none';
+                    }, 300);
+                }, 1000);
+            });
+            
+            // Header scroll effect
+            window.addEventListener('scroll', () => {
+                const header = document.querySelector('header');
+                if (window.scrollY > 50) {
+                    header.style.boxShadow = '0 3px 20px rgba(0, 0, 0, 0.1)';
+                } else {
+                    header.style.boxShadow = '0 3px 20px rgba(0, 0, 0, 0.08)';
+                }
+            });
+            
+            // Auto-populate phone number
+            document.getElementById('phone').addEventListener('focus', function() {
+                if (!this.value) {
+                    this.value = '09056658964';
+                }
+            });
+        }
         
-        // Header scroll effect
-        window.addEventListener('scroll', () => {
-            const header = document.querySelector('header');
-            if (window.scrollY > 50) {
-                header.style.boxShadow = '0 3px 20px rgba(0, 0, 0, 0.1)';
-            } else {
-                header.style.boxShadow = '0 3px 20px rgba(0, 0, 0, 0.08)';
-            }
-        });
-        
-        // Auto-populate phone number
-        document.getElementById('phone').addEventListener('focus', function() {
-            if (!this.value) {
-                this.value = '09056658964';
-            }
+        // Initialize the page when DOM is loaded
+        document.addEventListener('DOMContentLoaded', function() {
+            setupEventListeners();
+            
+            // Adjust hero padding for fixed header
+            const headerHeight = document.querySelector('header').offsetHeight;
+            document.querySelector('.contact-hero').style.paddingTop = (headerHeight + 60) + 'px';
         });
     </script>
 </body>
