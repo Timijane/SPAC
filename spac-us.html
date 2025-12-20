@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, minimum-scale=0.5, user-scalable=yes, viewport-fit=cover">
     <meta name="theme-color" content="#1a4b8c">
-    <meta name="description" content="SPAC US - The American branch of SPAC Church led by Pastor Dapo Adegboyega. Experience vibrant worship and biblical teaching across the United States.">
+    <meta name="description" content="SPAC US - The American branch of SPAC Church. Experience vibrant worship and biblical teaching across the United States.">
     <title>SPAC US - SPAC Church United States</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <link href="https://fonts.googleapis.com/css2?family=Lobster&family=Poppins:wght@300;400;500;600;700&family=Playfair+Display:wght@400;500;600&display=swap" rel="stylesheet">
@@ -190,9 +190,27 @@
             .nav-menu a:hover::after {
                 width: 100%;
             }
+            
+            .dropdown-content {
+                display: none;
+                position: absolute;
+                background: white;
+                min-width: 200px;
+                box-shadow: 0 15px 30px rgba(0, 0, 0, 0.1);
+                z-index: 1;
+                border-radius: 10px;
+                overflow: hidden;
+                top: 100%;
+                left: 0;
+                padding: 10px 0;
+            }
+            
+            .dropdown:hover .dropdown-content {
+                display: block;
+            }
         }
         
-        /* Mobile Menu */
+        /* ====== UPDATED HAMBURGER MENU (MATCHING MAIN PAGE) ====== */
         .hamburger {
             display: none;
             cursor: pointer;
@@ -243,7 +261,7 @@
                 position: fixed;
                 top: 0;
                 right: -50%;
-                width: min(85%, 400px);
+                width: min(85%, 350px);
                 height: 100vh;
                 background: rgba(255, 255, 255, 0.98);
                 backdrop-filter: blur(10px);
@@ -251,7 +269,7 @@
                 flex-direction: column;
                 justify-content: flex-start;
                 align-items: flex-start;
-                padding: 100px 30px 30px;
+                padding: 100px 25px 25px;
                 transition: right 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
                 box-shadow: -10px 0 30px rgba(0,0,0,0.15);
                 z-index: 1000;
@@ -263,7 +281,7 @@
             }
             
             .nav-menu li {
-                margin: 0 0 25px 0;
+                margin: 0 0 20px 0;
                 width: 100%;
                 opacity: 0;
                 transform: translateX(20px);
@@ -279,11 +297,12 @@
             .nav-menu li:nth-child(2) { transition-delay: 0.2s; }
             .nav-menu li:nth-child(3) { transition-delay: 0.3s; }
             .nav-menu li:nth-child(4) { transition-delay: 0.4s; }
+            .nav-menu li:nth-child(5) { transition-delay: 0.5s; }
             
             .nav-menu a {
-                font-size: 1.125rem;
+                font-size: 1.1rem;
                 display: block;
-                padding: 12px 0;
+                padding: 10px 0;
                 width: 100%;
                 border-bottom: 1px solid rgba(0,0,0,0.05);
                 color: var(--dark);
@@ -300,46 +319,71 @@
             }
             
             .logo-text {
-                font-size: clamp(1.25rem, 5vw, 1.875rem);
+                font-size: clamp(1.1rem, 4vw, 1.5rem);
             }
             
             .logo-frame {
-                width: clamp(60px, 8vw, 70px);
-                height: clamp(60px, 8vw, 70px);
+                width: clamp(45px, 6vw, 55px);
+                height: clamp(45px, 6vw, 55px);
             }
         }
         
-        /* ====== US HERO ====== */
-        .us-hero {
+        /* ====== HERO SLIDER ====== */
+        .hero-slider {
             position: relative;
             height: clamp(400px, 70vh, 600px);
             overflow: hidden;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            text-align: center;
-            color: white;
-            background: linear-gradient(135deg, rgba(0, 40, 104, 0.85) 0%, rgba(191, 10, 48, 0.8) 100%), url('us-church.jpg');
-            background-size: cover;
-            background-position: center;
-            padding: 120px 0 60px;
+            margin-top: 0;
         }
         
-        .hero-overlay {
+        .slide-container {
+            width: 100%;
+            height: 100%;
+            position: relative;
+        }
+        
+        .slide {
             position: absolute;
             top: 0;
             left: 0;
             width: 100%;
             height: 100%;
-            background: rgba(0, 0, 0, 0.15);
+            opacity: 0;
+            transition: opacity 1.5s ease-in-out;
+            background-size: cover;
+            background-position: center;
+            background-repeat: no-repeat;
+        }
+        
+        .slide.active {
+            opacity: 1;
+        }
+        
+        .slide1 { background-image: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), url('us1.jpg'); }
+        .slide2 { background-image: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), url('us2.jpg'); }
+        .slide3 { background-image: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), url('us3.jpg'); }
+        .slide4 { background-image: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), url('us4.jpg'); }
+        
+        .slide-overlay {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(135deg, rgba(0, 40, 104, 0.6) 0%, rgba(191, 10, 48, 0.4) 100%);
             z-index: 1;
         }
         
         .hero-content {
-            max-width: min(90%, 800px);
-            padding: 0 clamp(1rem, 3vw, 2rem);
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            text-align: center;
+            color: white;
             z-index: 2;
-            position: relative;
+            width: 90%;
+            max-width: 800px;
         }
         
         .hero-title {
@@ -357,6 +401,30 @@
             font-weight: 300;
             line-height: 1.8;
             text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.5);
+        }
+        
+        .slider-dots {
+            position: absolute;
+            bottom: 20px;
+            left: 50%;
+            transform: translateX(-50%);
+            display: flex;
+            gap: 10px;
+            z-index: 3;
+        }
+        
+        .dot {
+            width: 12px;
+            height: 12px;
+            border-radius: 50%;
+            background: rgba(255, 255, 255, 0.5);
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+        
+        .dot.active {
+            background: var(--secondary);
+            transform: scale(1.2);
         }
         
         /* ====== MAIN CONTENT SECTIONS ====== */
@@ -593,60 +661,6 @@
             margin-bottom: 20px;
         }
         
-        /* USA Flag Styling */
-        .usa-flag {
-            display: inline-block;
-            width: 30px;
-            height: 20px;
-            background: 
-                linear-gradient(to bottom, 
-                    #bf0a30 0%, #bf0a30 7.69%,
-                    white 7.69%, white 15.38%,
-                    #bf0a30 15.38%, #bf0a30 23.07%,
-                    white 23.07%, white 30.76%,
-                    #bf0a30 30.76%, #bf0a30 38.45%,
-                    white 38.45%, white 46.14%,
-                    #bf0a30 46.14%, #bf0a30 53.83%,
-                    white 53.83%, white 61.52%,
-                    #bf0a30 61.52%, #bf0a30 69.21%,
-                    white 69.21%, white 76.9%,
-                    #bf0a30 76.9%, #bf0a30 84.59%,
-                    white 84.59%, white 92.28%,
-                    #bf0a30 92.28%, #bf0a30 100%),
-                linear-gradient(to right, 
-                    #002868 0%, #002868 40%,
-                    transparent 40%, transparent 100%);
-            margin-right: 10px;
-            vertical-align: middle;
-            border-radius: 2px;
-            position: relative;
-        }
-        
-        .usa-flag:before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 40%;
-            height: 53.84%;
-            background: #002868;
-            border-radius: 2px 0 0 0;
-        }
-        
-        .usa-flag:after {
-            content: '★';
-            position: absolute;
-            top: 2px;
-            left: 2px;
-            color: white;
-            font-size: 8px;
-            width: 100%;
-            height: 100%;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-        }
-        
         /* ====== FOOTER ====== */
         footer {
             background: var(--dark);
@@ -808,6 +822,21 @@
             .contact-grid {
                 grid-template-columns: 1fr;
             }
+            
+            .nav-menu {
+                width: min(90%, 320px);
+                right: -100%;
+            }
+            
+            .logo-text {
+                font-size: clamp(1rem, 3.5vw, 1.2rem);
+            }
+            
+            .logo-frame {
+                width: clamp(40px, 6vw, 50px);
+                height: clamp(40px, 6vw, 50px);
+                margin-right: 0.5rem;
+            }
         }
         
         /* Loading animation */
@@ -861,13 +890,27 @@
         </div>
     </header>
 
-    <!-- Hero Section -->
-    <section class="us-hero" id="main-content">
-        <div class="hero-overlay"></div>
-        <div class="hero-content">
-            <h1 class="hero-title gradient-text">SPAC United States</h1>
-            <p class="hero-subtitle">Expanding the SPAC Church vision across America. Experience vibrant worship, transformative teaching, and genuine community in cities across the United States.</p>
-            <a href="#locations" class="btn">Find a Location Near You</a>
+    <!-- Hero Slider -->
+    <section class="hero-slider" id="main-content">
+        <div class="slide-container">
+            <div class="slide slide1 active"></div>
+            <div class="slide slide2"></div>
+            <div class="slide slide3"></div>
+            <div class="slide slide4"></div>
+            <div class="slide-overlay"></div>
+            
+            <div class="hero-content">
+                <h1 class="hero-title gradient-text">SPAC United States</h1>
+                <p class="hero-subtitle">Expanding the SPAC Church vision across America. Experience vibrant worship, transformative teaching, and genuine community in cities across the United States.</p>
+                <a href="#locations" class="btn">Find a Location Near You</a>
+            </div>
+            
+            <div class="slider-dots">
+                <div class="dot active" data-slide="0"></div>
+                <div class="dot" data-slide="1"></div>
+                <div class="dot" data-slide="2"></div>
+                <div class="dot" data-slide="3"></div>
+            </div>
         </div>
     </section>
 
@@ -949,11 +992,9 @@
                     </div>
                     
                     <div style="display: flex; gap: 15px; flex-wrap: wrap;">
-                        <a href="#services" class="btn">
-                            <i class="fas fa-video"></i> Watch Sermon
-                        </a>
-                        <a href="#contact" class="btn" style="background: var(--usa-red);">
-                            <i class="fas fa-microphone"></i> Invite Pastor Dapo
+                        <!-- UPDATED: Watch Sermon now links to YouTube -->
+                        <a href="https://www.youtube.com/@SPACChurch" target="_blank" class="btn">
+                            <i class="fab fa-youtube"></i> Watch Sermon
                         </a>
                     </div>
                 </div>
@@ -995,8 +1036,9 @@
             
             <div style="text-align: center; margin-top: 50px;">
                 <p style="color: rgba(255,255,255,0.9); margin-bottom: 20px;">All services are also streamed online for our national community</p>
-                <a href="#" class="btn" style="background: var(--usa-red);">
-                    <i class="fas fa-laptop"></i> Join Online Service
+                <!-- UPDATED: Join Online Service now links to YouTube -->
+                <a href="https://www.youtube.com/@SPACChurch/live" target="_blank" class="btn" style="background: var(--usa-red);">
+                    <i class="fab fa-youtube"></i> Join Online Service
                 </a>
             </div>
         </div>
@@ -1054,7 +1096,7 @@
                 <div class="social-links">
                     <a href="#" aria-label="Facebook"><i class="fab fa-facebook-f"></i></a>
                     <a href="#" aria-label="Instagram"><i class="fab fa-instagram"></i></a>
-                    <a href="#" aria-label="YouTube"><i class="fab fa-youtube"></i></a>
+                    <a href="https://www.youtube.com/@SPACChurch" target="_blank" aria-label="YouTube"><i class="fab fa-youtube"></i></a>
                     <a href="#" aria-label="Twitter"><i class="fab fa-twitter"></i></a>
                 </div>
             </div>
@@ -1100,7 +1142,7 @@
     </footer>
 
     <script>
-        // Mobile Menu Toggle
+        // ====== HAMBURGER MENU FUNCTIONALITY (MATCHING MAIN PAGE) ======
         const hamburger = document.querySelector('.hamburger');
         const navMenu = document.querySelector('.nav-menu');
         
@@ -1108,6 +1150,7 @@
             hamburger.classList.toggle('active');
             navMenu.classList.toggle('active');
             
+            // Prevent body scroll when menu is open
             if (navMenu.classList.contains('active')) {
                 document.body.style.overflow = 'hidden';
             } else {
@@ -1126,7 +1169,68 @@
             }
         });
         
-        // Smooth scrolling for anchor links
+        // Close menu when clicking on links (optional)
+        document.querySelectorAll('.nav-menu a').forEach(link => {
+            link.addEventListener('click', () => {
+                if (window.innerWidth <= 992) {
+                    hamburger.classList.remove('active');
+                    navMenu.classList.remove('active');
+                    document.body.style.overflow = 'auto';
+                }
+            });
+        });
+        
+        // ====== HERO SLIDER FUNCTIONALITY ======
+        const slides = document.querySelectorAll('.slide');
+        const dots = document.querySelectorAll('.dot');
+        let currentSlide = 0;
+        let slideInterval;
+        
+        function showSlide(index) {
+            // Hide all slides
+            slides.forEach(slide => slide.classList.remove('active'));
+            dots.forEach(dot => dot.classList.remove('active'));
+            
+            // Show current slide
+            slides[index].classList.add('active');
+            dots[index].classList.add('active');
+            currentSlide = index;
+        }
+        
+        function nextSlide() {
+            let nextIndex = (currentSlide + 1) % slides.length;
+            showSlide(nextIndex);
+        }
+        
+        // Auto-rotate slides every 5 seconds
+        function startSlider() {
+            slideInterval = setInterval(nextSlide, 5000);
+        }
+        
+        // Initialize slider
+        showSlide(0);
+        startSlider();
+        
+        // Add click events to dots
+        dots.forEach((dot, index) => {
+            dot.addEventListener('click', () => {
+                clearInterval(slideInterval);
+                showSlide(index);
+                startSlider();
+            });
+        });
+        
+        // Pause slider on hover
+        const sliderContainer = document.querySelector('.slide-container');
+        sliderContainer.addEventListener('mouseenter', () => {
+            clearInterval(slideInterval);
+        });
+        
+        sliderContainer.addEventListener('mouseleave', () => {
+            startSlider();
+        });
+        
+        // ====== SMOOTH SCROLLING ======
         document.querySelectorAll('a[href^="#"]').forEach(anchor => {
             anchor.addEventListener('click', function(e) {
                 if (this.getAttribute('href') === '#') return;
@@ -1150,7 +1254,7 @@
             });
         });
         
-        // Scroll to top button
+        // ====== SCROLL TO TOP BUTTON ======
         const scrollTopBtn = document.getElementById('scrollTop');
         
         window.addEventListener('scroll', () => {
@@ -1168,7 +1272,7 @@
             });
         });
         
-        // Loading animation
+        // ====== LOADING ANIMATION ======
         window.addEventListener('DOMContentLoaded', function() {
             setTimeout(() => {
                 document.querySelector('.loading').style.opacity = '0';
@@ -1178,7 +1282,7 @@
             }, 1000);
         });
         
-        // Header scroll effect
+        // ====== HEADER SCROLL EFFECT ======
         window.addEventListener('scroll', () => {
             const header = document.querySelector('header');
             if (window.scrollY > 50) {
@@ -1188,17 +1292,21 @@
             }
         });
         
-        // Timezone display
-        function updateTime() {
-            const now = new Date();
-            const options = { timeZone: 'America/New_York', hour12: true, hour: 'numeric', minute: 'numeric' };
-            const easternTime = now.toLocaleTimeString('en-US', options);
-            document.getElementById('easternTime').textContent = easternTime;
-        }
-        
-        // Update time every minute
-        setInterval(updateTime, 60000);
-        updateTime(); // Initial call
+        // ====== IMAGE FALLBACK HANDLING ======
+        // If hero images don't exist, use placeholder gradients
+        const heroImages = ['us1.jpg', 'us2.jpg', 'us3.jpg', 'us4.jpg'];
+        heroImages.forEach((img, index) => {
+            const imgElement = new Image();
+            imgElement.src = img;
+            imgElement.onerror = () => {
+                // If image doesn't exist, use gradient background
+                document.querySelectorAll('.slide')[index].style.backgroundImage = 
+                    `linear-gradient(135deg, 
+                        ${index === 0 ? '#002868' : index === 1 ? '#bf0a30' : index === 2 ? '#1a4b8c' : '#d4af37'}, 
+                        ${index === 0 ? '#1a4b8c' : index === 1 ? '#002868' : index === 2 ? '#d4af37' : '#bf0a30'}
+                    )`;
+            };
+        });
     </script>
 </body>
-  </html>
+    </html>
