@@ -2,10 +2,12 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>SPAC Sermon Library - Listen & Download</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, minimum-scale=0.5, user-scalable=yes, viewport-fit=cover">
+    <meta name="theme-color" content="#1a4b8c">
+    <meta name="description" content="ARISE Conference - A monthly gathering of fire & impartation for youth and young adults at SPAC Church">
+    <title>ARISE Conference - SPAC Church</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&family=Playfair+Display:wght@400;500;600&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&family=Playfair+Display:wght@400;500;600&family=Montserrat:wght@700;800&display=swap" rel="stylesheet">
     <style>
         :root {
             --primary: #1a4b8c;
@@ -13,167 +15,96 @@
             --accent: #8b0000;
             --dark: #2c3e50;
             --light: #f8f9fa;
-            --success: #28a745;
+            --fire: #FF4500;
+            --purple: #6a0dad;
+            --gradient: linear-gradient(135deg, #1a4b8c 0%, #2c3e50 100%);
         }
-        * { margin: 0; padding: 0; box-sizing: border-box; }
-        body { 
-            font-family: 'Poppins', sans-serif; 
-            line-height: 1.6; 
-            color: #333; 
-            background: #fff;
-            padding-bottom: 120px; /* Space for fixed audio player */
+        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
         }
-        .container { width: 100%; max-width: 1200px; margin: 0 auto; padding: 0 20px; }
-
-        /* ====== PERSISTENT AUDIO PLAYER ====== */
-        .audio-player-container {
-            position: fixed;
-            bottom: 0;
-            left: 0;
+        
+        html {
+            font-size: clamp(14px, 1vw, 18px);
+            overflow-x: hidden;
             width: 100%;
+            max-width: 100vw;
+            -webkit-text-size-adjust: 100%;
+            -moz-text-size-adjust: 100%;
+            -ms-text-size-adjust: 100%;
+        }
+        
+        body {
+            font-family: 'Poppins', sans-serif;
+            line-height: 1.7;
+            color: #333;
             background: white;
-            box-shadow: 0 -5px 30px rgba(0,0,0,0.15);
-            z-index: 1000;
-            border-top: 3px solid var(--primary);
-            transition: transform 0.3s ease;
-            padding: 15px 0;
-        }
-        .audio-player-container.minimized {
-            transform: translateY(calc(100% - 60px));
-        }
-        .player-toggle {
-            position: absolute;
-            top: -25px;
-            right: 20px;
-            width: 50px;
-            height: 25px;
-            background: var(--primary);
-            color: white;
-            border: none;
-            border-radius: 10px 10px 0 0;
-            cursor: pointer;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-        }
-        .audio-player {
-            display: grid;
-            grid-template-columns: 80px 1fr auto;
-            gap: 20px;
-            align-items: center;
-            padding: 0 20px;
-        }
-        .player-cover {
-            width: 80px;
-            height: 80px;
-            border-radius: 10px;
-            overflow: hidden;
-            background: var(--light);
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            color: var(--primary);
-            font-size: 2rem;
-        }
-        .player-cover img {
+            overflow-x: hidden;
             width: 100%;
-            height: 100%;
-            object-fit: cover;
+            max-width: 100vw;
+            min-width: 320px;
+            position: relative;
         }
-        .player-info {
-            flex: 1;
+        
+        a {
+            text-decoration: none;
+            color: inherit;
         }
-        .player-title {
-            font-weight: 600;
-            color: var(--dark);
-            margin-bottom: 5px;
-            font-size: 1.1rem;
+        
+        .container {
+            width: min(100% - clamp(1rem, 5vw, 3rem), 1200px);
+            margin: 0 auto;
+            padding: 0 clamp(0.5rem, 3vw, 1.5rem);
         }
-        .player-subtitle {
-            color: #666;
-            font-size: 0.9rem;
-            margin-bottom: 10px;
-        }
-        .player-controls {
-            display: flex;
-            align-items: center;
-            gap: 20px;
-        }
-        .player-btn {
-            width: 45px;
-            height: 45px;
-            border-radius: 50%;
+        
+        .btn {
+            display: inline-block;
             background: var(--primary);
             color: white;
+            padding: clamp(0.75rem, 2vw, 0.875rem) clamp(1.25rem, 3vw, 1.75rem);
             border: none;
+            border-radius: 30px;
             cursor: pointer;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-size: 1.2rem;
             transition: all 0.3s ease;
+            font-weight: 500;
+            letter-spacing: 0.5px;
+            box-shadow: 0 4px 15px rgba(26, 75, 140, 0.2);
+            font-size: clamp(0.875rem, 1.5vw, 1rem);
+            min-height: 44px;
+            min-width: 44px;
         }
-        .player-btn:hover {
+        
+        .btn:hover {
             background: var(--accent);
-            transform: scale(1.1);
+            transform: translateY(-3px);
+            box-shadow: 0 6px 20px rgba(139, 0, 0, 0.25);
         }
-        .player-btn.play-btn { background: var(--success); }
-        .player-btn.download-btn { background: var(--secondary); }
-        .progress-container {
-            grid-column: 1 / -1;
-            margin-top: 10px;
-        }
-        .progress-bar {
-            width: 100%;
-            height: 5px;
-            background: #e0e0e0;
-            border-radius: 3px;
-            overflow: hidden;
-            cursor: pointer;
-        }
-        .progress {
-            height: 100%;
-            background: var(--primary);
-            width: 0%;
-            transition: width 0.1s linear;
-        }
-        .time-display {
-            display: flex;
-            justify-content: space-between;
-            margin-top: 5px;
-            font-size: 0.8rem;
-            color: #666;
-        }
-        .background-notice {
-            background: #f8f9fa;
-            padding: 10px 20px;
-            margin-top: 10px;
-            border-radius: 8px;
-            font-size: 0.9rem;
-            color: var(--dark);
-            text-align: center;
-            border-left: 4px solid var(--secondary);
-        }
-        .background-notice i {
-            color: var(--secondary);
-            margin-right: 8px;
-        }
-
-        /* ====== HEADER ====== */
+        
+        /* ====== HEADER (Matching Sermon Library Page) ====== */
         header {
             background: white;
-            box-shadow: 0 3px 20px rgba(0,0,0,0.08);
+            box-shadow: 0 3px 20px rgba(0, 0, 0, 0.08);
             position: sticky;
             top: 0;
-            z-index: 999;
+            z-index: 1000;
+            padding: 15px 0;
+            transition: all 0.3s ease;
+            width: 100%;
         }
+        
         .header-container {
             display: flex;
             justify-content: space-between;
             align-items: center;
-            padding: 20px 0;
+            padding: 0 clamp(1rem, 3vw, 2rem);
+            width: 100%;
+            max-width: 1200px;
+            margin: 0 auto;
         }
-        .logo a {
+        
+        .logo {
             display: flex;
             align-items: center;
             text-decoration: none;
@@ -181,15 +112,43 @@
             font-weight: 700;
             font-size: 1.8rem;
         }
-        .logo i { color: var(--secondary); margin-right: 10px; }
-        .nav-links { display: flex; gap: 30px; }
+        
+        .logo i {
+            color: var(--secondary);
+            margin-right: 10px;
+            font-size: 1.8rem;
+        }
+        
+        .logo-text {
+            font-weight: 700;
+            color: var(--primary);
+            font-size: clamp(1.25rem, 3vw, 1.8rem);
+        }
+        
+        .nav-container {
+            display: flex;
+            align-items: center;
+            justify-content: flex-end;
+            width: 100%;
+        }
+        
+        .nav-links {
+            display: flex;
+            gap: 30px;
+            list-style: none;
+            margin: 0;
+            padding: 0;
+        }
+        
         .nav-links a {
             text-decoration: none;
             color: var(--dark);
             font-weight: 500;
             position: relative;
             padding: 5px 0;
+            transition: all 0.3s ease;
         }
+        
         .nav-links a:after {
             content: '';
             position: absolute;
@@ -200,7 +159,20 @@
             background: var(--secondary);
             transition: width 0.3s ease;
         }
-        .nav-links a:hover:after { width: 100%; }
+        
+        .nav-links a:hover:after {
+            width: 100%;
+        }
+        
+        .nav-links a.active {
+            color: var(--primary);
+            font-weight: 600;
+        }
+        
+        .nav-links a.active:after {
+            width: 100%;
+        }
+        
         .nav-cta {
             background: var(--primary);
             color: white;
@@ -209,1260 +181,1711 @@
             text-decoration: none;
             font-weight: 600;
             transition: all 0.3s ease;
+            margin-left: 20px;
         }
+        
         .nav-cta:hover {
             background: var(--accent);
             transform: translateY(-3px);
         }
-        .mobile-menu-btn { display: none; }
-
-        /* ====== HERO SECTION ====== */
-        .sermon-hero {
-            background: linear-gradient(135deg, var(--primary) 0%, #2c3e80 100%);
-            color: white;
-            padding: 100px 0;
-            text-align: center;
-            position: relative;
-            overflow: hidden;
+        
+        /* Mobile Menu */
+        .mobile-menu-btn {
+            display: none;
+            background: none;
+            border: none;
+            font-size: 1.8rem;
+            color: var(--primary);
+            cursor: pointer;
+            width: 44px;
+            height: 44px;
+            align-items: center;
+            justify-content: center;
+            z-index: 1001;
         }
-        .hero-wave {
+        
+        @media (max-width: 992px) {
+            .nav-links {
+                display: none;
+                position: fixed;
+                top: 0;
+                right: -100%;
+                width: min(85%, 400px);
+                height: 100vh;
+                background: rgba(255, 255, 255, 0.98);
+                backdrop-filter: blur(10px);
+                -webkit-backdrop-filter: blur(10px);
+                flex-direction: column;
+                justify-content: flex-start;
+                align-items: flex-start;
+                padding: 100px 30px 30px;
+                transition: right 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+                box-shadow: -10px 0 30px rgba(0,0,0,0.15);
+                z-index: 1000;
+                overflow-y: auto;
+                gap: 20px;
+            }
+            
+            .nav-links.active {
+                display: flex;
+                right: 0;
+            }
+            
+            .nav-links li {
+                width: 100%;
+            }
+            
+            .nav-links a {
+                font-size: 1.125rem;
+                display: block;
+                padding: 12px 0;
+                width: 100%;
+                border-bottom: 1px solid rgba(0,0,0,0.05);
+                color: var(--dark);
+            }
+            
+            .nav-cta {
+                margin-left: 0;
+                margin-top: 20px;
+                width: 100%;
+                text-align: center;
+            }
+            
+            .mobile-menu-btn {
+                display: flex;
+            }
+        }
+        
+        @media (max-width: 576px) {
+            .logo-text {
+                font-size: clamp(1rem, 4vw, 1.25rem);
+            }
+            
+            .logo i {
+                font-size: 1.5rem;
+            }
+        }
+        
+        /* ====== UPDATED HERO SECTION ====== */
+        .hero-slider {
+            position: relative;
+            height: clamp(600px, 90vh, 900px);
+            overflow: hidden;
+            background: #000;
+        }
+        
+        .slider-container {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+        }
+        
+        .slide {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            opacity: 0;
+            transition: opacity 1.5s ease-in-out;
+            background-size: cover;
+            background-position: center;
+            background-repeat: no-repeat;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        
+        .slide.active {
+            opacity: 1;
+        }
+        
+        .slide-overlay {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(to bottom, rgba(0,0,0,0.4), rgba(0,0,0,0.7));
+        }
+        
+        .hero-content {
+            position: relative;
+            z-index: 3;
+            height: 100%;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+            color: white;
+            padding: 0 clamp(1rem, 5vw, 3rem);
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+        
+        .hero-main-title {
+            font-family: 'Montserrat', sans-serif;
+            font-size: clamp(2rem, 6vw, 4.5rem);
+            font-weight: 800;
+            margin-bottom: clamp(0.5rem, 2vw, 1rem);
+            background: linear-gradient(to right, #FF4500, #FF8C00, #d4af37);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            text-shadow: 0 10px 30px rgba(0,0,0,0.3);
+            line-height: 1.1;
+        }
+        
+        .hero-subtitle {
+            font-size: clamp(1.125rem, 2.5vw, 1.75rem);
+            font-weight: 300;
+            margin-bottom: clamp(0.5rem, 2vw, 1rem);
+            color: rgba(255,255,255,0.95);
+            font-family: 'Playfair Display', serif;
+            font-style: italic;
+            max-width: 800px;
+        }
+        
+        .hero-verse {
+            font-size: clamp(0.875rem, 1.5vw, 1.125rem);
+            color: var(--secondary);
+            margin-bottom: clamp(1rem, 4vw, 2rem);
+            font-weight: 500;
+            padding: clamp(0.5rem, 1.5vw, 0.75rem) clamp(1rem, 2.5vw, 1.5rem);
+            background: rgba(212, 175, 55, 0.1);
+            border-radius: 10px;
+            display: inline-block;
+            border-left: 3px solid var(--secondary);
+            backdrop-filter: blur(10px);
+        }
+        
+        .slide-content {
+            position: absolute;
+            bottom: clamp(2rem, 6vw, 3rem);
+            left: 0;
+            width: 100%;
+            padding: 0 clamp(1rem, 5vw, 3rem);
+            z-index: 4;
+            opacity: 0;
+            transform: translateY(20px);
+            transition: opacity 0.8s ease, transform 0.8s ease;
+        }
+        
+        .slide.active .slide-content {
+            opacity: 1;
+            transform: translateY(0);
+        }
+        
+        .slide-feature {
+            background: rgba(255, 255, 255, 0.15);
+            backdrop-filter: blur(15px);
+            border-radius: 20px;
+            padding: clamp(1.25rem, 3vw, 1.75rem);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            max-width: 400px;
+            margin: 0 auto;
+            text-align: center;
+        }
+        
+        .slide-feature i {
+            font-size: clamp(2rem, 4vw, 2.5rem);
+            color: var(--secondary);
+            margin-bottom: clamp(0.75rem, 2vw, 1rem);
+        }
+        
+        .slide-feature h3 {
+            font-size: clamp(1.25rem, 2.5vw, 1.75rem);
+            font-weight: 600;
+            margin-bottom: clamp(0.5rem, 1.5vw, 0.75rem);
+            color: white;
+        }
+        
+        .slide-feature p {
+            font-size: clamp(0.875rem, 1.5vw, 1rem);
+            color: rgba(255, 255, 255, 0.85);
+            line-height: 1.6;
+        }
+        
+        .slider-controls {
+            position: absolute;
+            bottom: clamp(1.5rem, 4vw, 2.5rem);
+            left: 50%;
+            transform: translateX(-50%);
+            display: flex;
+            gap: clamp(0.75rem, 2vw, 1rem);
+            z-index: 4;
+        }
+        
+        .slider-dot {
+            width: clamp(10px, 2vw, 12px);
+            height: clamp(10px, 2vw, 12px);
+            border-radius: 50%;
+            background: rgba(255, 255, 255, 0.5);
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+        
+        .slider-dot.active {
+            background: var(--secondary);
+            transform: scale(1.3);
+        }
+        
+        .slider-nav {
+            position: absolute;
+            top: 50%;
+            transform: translateY(-50%);
+            width: 100%;
+            display: flex;
+            justify-content: space-between;
+            padding: 0 clamp(1rem, 3vw, 2rem);
+            z-index: 4;
+        }
+        
+        .nav-arrow {
+            width: clamp(50px, 6vw, 60px);
+            height: clamp(50px, 6vw, 60px);
+            background: rgba(255, 255, 255, 0.2);
+            backdrop-filter: blur(10px);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-size: clamp(1.25rem, 2vw, 1.5rem);
+            cursor: pointer;
+            transition: all 0.3s ease;
+            border: 2px solid rgba(255, 255, 255, 0.3);
+        }
+        
+        .nav-arrow:hover {
+            background: var(--secondary);
+            transform: scale(1.1);
+            border-color: var(--secondary);
+        }
+        
+        /* ====== CONTENT SECTIONS ====== */
+        .section {
+            padding: clamp(4rem, 10vw, 7.5rem) 0;
+            position: relative;
+        }
+        
+        .section-light {
+            background: white;
+        }
+        
+        .section-accent {
+            background: linear-gradient(135deg, rgba(26, 75, 140, 0.05) 0%, rgba(212, 175, 55, 0.05) 100%);
+        }
+        
+        .section-dark {
+            background: var(--dark);
+            color: white;
+        }
+        
+        .section-title {
+            text-align: center;
+            font-family: 'Playfair Display', serif;
+            font-size: clamp(2rem, 5vw, 3.2rem);
+            color: var(--primary);
+            margin-bottom: clamp(1rem, 3vw, 1.25rem);
+            font-weight: 600;
+            position: relative;
+            padding-bottom: clamp(1rem, 2.5vw, 1.25rem);
+        }
+        
+        .section-title:after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 50%;
+            transform: translateX(-50%);
+            width: clamp(80px, 15vw, 100px);
+            height: 4px;
+            background: var(--secondary);
+        }
+        
+        .section-dark .section-title {
+            color: white;
+        }
+        
+        .section-subtitle {
+            text-align: center;
+            font-size: clamp(1rem, 2vw, 1.25rem);
+            max-width: 800px;
+            margin: 0 auto clamp(3rem, 8vw, 5rem);
+            color: #666;
+            font-weight: 300;
+            line-height: 1.8;
+        }
+        
+        .section-dark .section-subtitle {
+            color: rgba(255, 255, 255, 0.85);
+        }
+        
+        /* ====== ABOUT SECTION ====== */
+        .about-content {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(min(300px, 100%), 1fr));
+            gap: clamp(2rem, 5vw, 4rem);
+            align-items: center;
+            margin-top: clamp(2rem, 5vw, 3rem);
+        }
+        
+        .about-text h3 {
+            font-size: clamp(1.75rem, 4vw, 2.5rem);
+            color: var(--accent);
+            margin-bottom: clamp(1rem, 2.5vw, 1.5rem);
+            line-height: 1.3;
+        }
+        
+        .about-text p {
+            font-size: clamp(1rem, 1.5vw, 1.125rem);
+            margin-bottom: clamp(1rem, 2.5vw, 1.5rem);
+            color: #555;
+            line-height: 1.8;
+        }
+        
+        .about-highlights {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(min(250px, 100%), 1fr));
+            gap: clamp(1rem, 2.5vw, 1.5rem);
+            margin-top: clamp(2rem, 5vw, 3rem);
+        }
+        
+        .highlight-box {
+            background: white;
+            padding: clamp(1.5rem, 3vw, 2rem);
+            border-radius: 15px;
+            border-left: 4px solid var(--fire);
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.08);
+            transition: transform 0.3s ease;
+        }
+        
+        .highlight-box:hover {
+            transform: translateY(-10px);
+        }
+        
+        .highlight-box h4 {
+            color: var(--primary);
+            margin-bottom: 0.75rem;
+            font-size: clamp(1.125rem, 2vw, 1.25rem);
+        }
+        
+        .highlight-box p {
+            color: #666;
+            font-size: clamp(0.875rem, 1.5vw, 1rem);
+            line-height: 1.6;
+        }
+        
+        .about-image {
+            position: relative;
+            border-radius: 20px;
+            overflow: hidden;
+            box-shadow: 0 30px 70px rgba(0, 0, 0, 0.1);
+            height: clamp(300px, 50vw, 500px);
+        }
+        
+        .about-image img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.7s ease;
+        }
+        
+        .about-image:hover img {
+            transform: scale(1.05);
+        }
+        
+        .image-overlay {
             position: absolute;
             bottom: 0;
             left: 0;
             width: 100%;
-            height: 100px;
-            background: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 1440 320'%3E%3Cpath fill='%23ffffff' fill-opacity='1' d='M0,96L48,112C96,128,192,160,288,160C384,160,480,128,576,112C672,96,768,96,864,112C960,128,1056,160,1152,160C1248,160,1344,128,1392,112L1440,96L1440,320L1392,320C1344,320,1248,320,1152,320C1056,320,960,320,864,320C768,320,672,320,576,320C480,320,384,320,288,320C192,320,96,320,48,320L0,320Z'%3E%3C/path%3E%3C/svg%3E");
-            background-size: cover;
+            padding: clamp(1.5rem, 3vw, 2rem);
+            background: linear-gradient(transparent, rgba(0, 0, 0, 0.8));
+            color: white;
         }
-        .hero-content {
-            position: relative;
-            z-index: 2;
-            max-width: 800px;
-            margin: 0 auto;
+        
+        .image-overlay h4 {
+            font-size: clamp(1.125rem, 2vw, 1.5rem);
+            margin-bottom: 0.5rem;
         }
-        .hero-title {
-            font-family: 'Playfair Display', serif;
-            font-size: 4rem;
-            font-weight: 600;
-            margin-bottom: 20px;
-        }
-        .hero-subtitle {
-            font-size: 1.3rem;
+        
+        .image-overlay p {
+            font-size: clamp(0.875rem, 1.5vw, 1rem);
             opacity: 0.9;
-            margin-bottom: 40px;
-            font-weight: 300;
         }
-        .hero-stats {
-            display: flex;
-            justify-content: center;
-            gap: 50px;
-            margin-top: 60px;
-            flex-wrap: wrap;
+        
+        /* ====== SCHEDULE SECTION ====== */
+        .schedule-container {
+            max-width: 900px;
+            margin: clamp(2rem, 5vw, 3rem) auto 0;
+            position: relative;
         }
-        .stat-item {
-            text-align: center;
+        
+        .timeline {
+            position: relative;
+            padding-left: clamp(2rem, 4vw, 3rem);
         }
-        .stat-number {
-            font-size: 2.5rem;
-            font-weight: 700;
-            color: var(--secondary);
-            margin-bottom: 5px;
+        
+        .timeline:before {
+            content: '';
+            position: absolute;
+            left: 0;
+            top: 0;
+            bottom: 0;
+            width: 3px;
+            background: linear-gradient(to bottom, var(--primary), var(--accent));
+            border-radius: 3px;
         }
-        .stat-label {
-            font-size: 0.9rem;
-            opacity: 0.8;
-            text-transform: uppercase;
-            letter-spacing: 1px;
-        }
-
-        /* ====== CONTENT SECTIONS ====== */
-        .section {
-            padding: 80px 0;
-        }
-        .section-title {
-            font-family: 'Playfair Display', serif;
-            font-size: 2.8rem;
-            color: var(--primary);
-            margin-bottom: 20px;
-            text-align: center;
-        }
-        .section-subtitle {
-            text-align: center;
-            color: #666;
-            font-size: 1.1rem;
-            max-width: 700px;
-            margin: 0 auto 50px;
-        }
-
-        /* Filters */
-        .filters-container {
-            background: #f8f9fa;
-            padding: 30px;
+        
+        .timeline-item {
+            position: relative;
+            margin-bottom: clamp(2rem, 4vw, 2.5rem);
+            background: white;
             border-radius: 15px;
-            margin-bottom: 50px;
+            padding: clamp(1.5rem, 3vw, 2rem);
+            box-shadow: 0 15px 40px rgba(0, 0, 0, 0.08);
+            border-left: 5px solid var(--primary);
+            transition: transform 0.3s ease;
         }
-        .filter-row {
+        
+        .timeline-item:hover {
+            transform: translateX(10px);
+        }
+        
+        .timeline-item:before {
+            content: '';
+            position: absolute;
+            left: -clamp(1.5rem, 3vw, 2rem);
+            top: clamp(1.5rem, 3vw, 2rem);
+            width: clamp(20px, 3vw, 25px);
+            height: clamp(20px, 3vw, 25px);
+            border-radius: 50%;
+            background: var(--primary);
+            border: 5px solid white;
+            box-shadow: 0 0 0 3px var(--primary);
+        }
+        
+        .timeline-time {
+            font-size: clamp(1rem, 1.5vw, 1.125rem);
+            font-weight: 600;
+            color: var(--primary);
+            margin-bottom: 0.75rem;
             display: flex;
-            gap: 20px;
-            flex-wrap: wrap;
-            margin-bottom: 20px;
+            align-items: center;
+            gap: 0.5rem;
         }
-        .filter-group {
-            flex: 1;
-            min-width: 200px;
+        
+        .timeline-time i {
+            color: var(--secondary);
         }
-        .filter-group label {
+        
+        .timeline-title {
+            font-size: clamp(1.25rem, 2.5vw, 1.5rem);
+            color: var(--dark);
+            margin-bottom: clamp(0.75rem, 1.5vw, 1rem);
+        }
+        
+        .timeline-desc {
+            color: #666;
+            font-size: clamp(0.875rem, 1.5vw, 1rem);
+            line-height: 1.7;
+        }
+        
+        /* ====== PASTOR SECTION ====== */
+        .pastor-section {
+            background: linear-gradient(135deg, rgba(26, 75, 140, 0.1) 0%, rgba(212, 175, 55, 0.1) 100%);
+            border-radius: 30px;
+            padding: clamp(2rem, 5vw, 4rem);
+            margin-top: clamp(3rem, 8vw, 5rem);
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .pastor-content {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(min(300px, 100%), 1fr));
+            gap: clamp(2rem, 5vw, 4rem);
+            align-items: center;
+        }
+        
+        .pastor-image {
+            position: relative;
+            border-radius: 20px;
+            overflow: hidden;
+            box-shadow: 0 20px 50px rgba(0, 0, 0, 0.1);
+            height: clamp(300px, 50vw, 400px);
+        }
+        
+        .pastor-image img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+        
+        .pastor-title {
+            color: var(--secondary);
+            font-size: clamp(0.875rem, 1.5vw, 1rem);
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            margin-bottom: 0.75rem;
+        }
+        
+        .pastor-name {
+            font-size: clamp(2rem, 4vw, 2.8rem);
+            font-weight: 700;
+            color: var(--primary);
+            margin-bottom: clamp(1rem, 2.5vw, 1.5rem);
+            font-family: 'Montserrat', sans-serif;
+        }
+        
+        .pastor-bio {
+            font-size: clamp(1rem, 1.5vw, 1.125rem);
+            line-height: 1.8;
+            color: #555;
+            margin-bottom: clamp(1rem, 2.5vw, 1.5rem);
+        }
+        
+        .pastor-quote {
+            font-style: italic;
+            font-size: clamp(1.125rem, 2vw, 1.5rem);
+            color: var(--accent);
+            padding-left: clamp(1rem, 2.5vw, 1.5rem);
+            border-left: 4px solid var(--fire);
+            margin-top: clamp(1.5rem, 4vw, 2.5rem);
+            line-height: 1.7;
+        }
+        
+        /* ====== UPDATED TESTIMONIALS ====== */
+        .testimonials-container {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(min(280px, 100%), 1fr));
+            gap: clamp(1.5rem, 3vw, 2rem);
+            margin-top: clamp(2rem, 5vw, 3rem);
+        }
+        
+        .testimonial-card {
+            background: white;
+            border-radius: 20px;
+            padding: clamp(1.5rem, 3vw, 2rem);
+            box-shadow: 0 15px 40px rgba(0, 0, 0, 0.08);
+            position: relative;
+            transition: all 0.3s ease;
+            border: 1px solid rgba(0, 0, 0, 0.05);
+        }
+        
+        .testimonial-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 25px 60px rgba(0, 0, 0, 0.12);
+        }
+        
+        .testimonial-text {
+            font-size: clamp(0.875rem, 1.5vw, 1rem);
+            font-style: italic;
+            margin-bottom: clamp(1.5rem, 3vw, 2rem);
+            color: #555;
+            line-height: 1.8;
+        }
+        
+        .testimonial-author {
+            display: flex;
+            align-items: center;
+        }
+        
+        .author-avatar {
+            width: clamp(50px, 6vw, 60px);
+            height: clamp(50px, 6vw, 60px);
+            border-radius: 50%;
+            background: linear-gradient(135deg, var(--primary), var(--secondary));
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-right: clamp(1rem, 2vw, 1.25rem);
+            border: 3px solid var(--secondary);
+            color: white;
+            font-weight: bold;
+            font-size: clamp(1.25rem, 2vw, 1.5rem);
+        }
+        
+        .author-info h4 {
+            color: var(--primary);
+            margin-bottom: 0.25rem;
+            font-size: clamp(1rem, 1.5vw, 1.125rem);
+        }
+        
+        .author-info p {
+            color: #666;
+            font-size: clamp(0.75rem, 1.5vw, 0.875rem);
+        }
+        
+        .quote-icon {
+            position: absolute;
+            top: clamp(1.5rem, 3vw, 2rem);
+            right: clamp(1.5rem, 3vw, 2rem);
+            color: rgba(212, 175, 55, 0.2);
+            font-size: clamp(2rem, 4vw, 3rem);
+        }
+        
+        /* ====== REGISTRATION ====== */
+        .registration-container {
+            max-width: 900px;
+            margin: clamp(2rem, 5vw, 3rem) auto 0;
+            background: white;
+            border-radius: 25px;
+            overflow: hidden;
+            box-shadow: 0 30px 70px rgba(0, 0, 0, 0.08);
+        }
+        
+        .reg-header {
+            background: linear-gradient(to right, var(--primary), var(--accent));
+            color: white;
+            padding: clamp(2rem, 4vw, 3rem);
+            text-align: center;
+        }
+        
+        .reg-header h3 {
+            font-size: clamp(1.75rem, 4vw, 2.5rem);
+            margin-bottom: 0.75rem;
+        }
+        
+        .reg-header p {
+            font-size: clamp(1rem, 1.5vw, 1.125rem);
+            opacity: 0.9;
+        }
+        
+        .reg-form {
+            padding: clamp(2rem, 4vw, 3rem);
+        }
+        
+        .form-row {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(min(250px, 100%), 1fr));
+            gap: clamp(1rem, 2.5vw, 1.5rem);
+            margin-bottom: clamp(1rem, 2.5vw, 1.5rem);
+        }
+        
+        .form-group {
+            margin-bottom: clamp(1rem, 2.5vw, 1.5rem);
+        }
+        
+        .form-group label {
             display: block;
-            margin-bottom: 10px;
+            margin-bottom: 0.5rem;
             font-weight: 500;
             color: var(--dark);
         }
-        .filter-group select, .filter-group input {
+        
+        .form-group input,
+        .form-group select,
+        .form-group textarea {
             width: 100%;
-            padding: 12px;
-            border: 2px solid #e0e0e0;
-            border-radius: 8px;
+            padding: clamp(0.75rem, 1.5vw, 1rem);
+            border: 2px solid #eaeaea;
+            border-radius: 10px;
             font-family: 'Poppins', sans-serif;
-            font-size: 1rem;
+            font-size: clamp(0.875rem, 1.5vw, 1rem);
             transition: all 0.3s ease;
         }
-        .filter-group select:focus, .filter-group input:focus {
+        
+        .form-group input:focus,
+        .form-group select:focus,
+        .form-group textarea:focus {
             outline: none;
             border-color: var(--primary);
             box-shadow: 0 0 0 3px rgba(26, 75, 140, 0.1);
         }
-        .search-box {
-            position: relative;
-        }
-        .search-box input {
-            padding-left: 45px;
-        }
-        .search-box i {
-            position: absolute;
-            left: 15px;
-            top: 50%;
-            transform: translateY(-50%);
-            color: #666;
-        }
-
-        /* Sermon Grid */
-        .sermon-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fill, minmax(350px, 1fr));
-            gap: 30px;
-        }
-        .sermon-card {
-            background: white;
-            border-radius: 15px;
-            overflow: hidden;
-            box-shadow: 0 10px 30px rgba(0,0,0,0.08);
-            transition: all 0.3s ease;
-            position: relative;
-        }
-        .sermon-card:hover {
-            transform: translateY(-10px);
-            box-shadow: 0 20px 50px rgba(0,0,0,0.15);
-        }
-        .sermon-card.featured {
-            border: 3px solid var(--secondary);
-        }
-        .sermon-header {
-            padding: 25px;
-            background: linear-gradient(135deg, #f8f9fa 0%, #e9ecef 100%);
-            position: relative;
-        }
-        .sermon-series {
-            display: inline-block;
-            background: var(--primary);
+        
+        .submit-btn {
+            display: block;
+            width: 100%;
+            background: linear-gradient(to right, var(--primary), var(--accent));
             color: white;
-            padding: 5px 15px;
-            border-radius: 20px;
-            font-size: 0.8rem;
-            font-weight: 600;
-            margin-bottom: 15px;
-        }
-        .sermon-title {
-            font-size: 1.5rem;
-            color: var(--dark);
-            margin-bottom: 10px;
-            line-height: 1.4;
-        }
-        .sermon-meta {
-            display: flex;
-            gap: 15px;
-            color: #666;
-            font-size: 0.9rem;
-            margin-bottom: 15px;
-        }
-        .sermon-meta i {
-            color: var(--secondary);
-            margin-right: 5px;
-        }
-        .sermon-description {
-            color: #666;
-            margin-bottom: 20px;
-            font-size: 0.95rem;
-            line-height: 1.6;
-        }
-        .sermon-tags {
-            display: flex;
-            flex-wrap: wrap;
-            gap: 8px;
-            margin-top: 15px;
-        }
-        .tag {
-            background: rgba(26, 75, 140, 0.1);
-            color: var(--primary);
-            padding: 5px 12px;
-            border-radius: 15px;
-            font-size: 0.8rem;
-            font-weight: 500;
-        }
-        .sermon-actions {
-            display: flex;
-            padding: 20px;
-            border-top: 1px solid #f0f0f0;
-            gap: 10px;
-        }
-        .action-btn {
-            flex: 1;
-            padding: 12px;
-            border-radius: 8px;
             border: none;
-            font-family: 'Poppins', sans-serif;
+            padding: clamp(1rem, 2vw, 1.25rem);
+            font-size: clamp(1rem, 1.5vw, 1.125rem);
             font-weight: 600;
+            border-radius: 15px;
             cursor: pointer;
             transition: all 0.3s ease;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            gap: 8px;
+            margin-top: clamp(2rem, 4vw, 2.5rem);
+            box-shadow: 0 10px 30px rgba(26, 75, 140, 0.2);
         }
-        .play-btn {
-            background: var(--primary);
-            color: white;
+        
+        .submit-btn:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 15px 40px rgba(26, 75, 140, 0.3);
         }
-        .play-btn:hover {
-            background: var(--accent);
-            transform: translateY(-3px);
-        }
-        .download-btn {
-            background: #f8f9fa;
-            color: var(--dark);
-            border: 2px solid #e0e0e0;
-        }
-        .download-btn:hover {
-            background: var(--secondary);
-            color: var(--dark);
-            border-color: var(--secondary);
-            transform: translateY(-3px);
-        }
-
-        /* Featured Series */
-        .series-container {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-            gap: 30px;
-            margin-top: 50px;
-        }
-        .series-card {
-            background: white;
-            border-radius: 15px;
-            overflow: hidden;
-            box-shadow: 0 15px 40px rgba(0,0,0,0.08);
-            transition: all 0.3s ease;
-        }
-        .series-card:hover {
-            transform: translateY(-10px);
-            box-shadow: 0 25px 60px rgba(0,0,0,0.12);
-        }
-        .series-image {
-            height: 200px;
-            overflow: hidden;
-        }
-        .series-image img {
-            width: 100%;
-            height: 100%;
-            object-fit: cover;
-            transition: transform 0.5s ease;
-        }
-        .series-card:hover .series-image img {
-            transform: scale(1.05);
-        }
-        .series-content {
-            padding: 25px;
-        }
-        .series-title {
-            font-size: 1.5rem;
-            color: var(--dark);
-            margin-bottom: 10px;
-        }
-        .series-count {
-            color: var(--secondary);
-            font-weight: 600;
-            margin-bottom: 15px;
-        }
-        .series-desc {
-            color: #666;
-            margin-bottom: 20px;
-            font-size: 0.95rem;
-        }
-
-        /* Download Stats */
-        .stats-container {
-            background: linear-gradient(135deg, var(--primary) 0%, #2c3e80 100%);
-            color: white;
-            padding: 60px;
-            border-radius: 20px;
-            margin-top: 80px;
-        }
-        .stats-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-            gap: 40px;
-            text-align: center;
-        }
-        .stat-box i {
-            font-size: 3rem;
-            margin-bottom: 20px;
-            color: var(--secondary);
-        }
-        .stat-box h3 {
-            font-size: 2.5rem;
-            margin-bottom: 10px;
-            font-weight: 700;
-        }
-        .stat-box p {
-            opacity: 0.9;
-            font-size: 1rem;
-        }
-
-        /* Footer */
+        
+        /* ====== FOOTER ====== */
         footer {
             background: var(--dark);
             color: white;
-            padding: 80px 0 40px;
-            margin-top: 100px;
+            padding: clamp(3rem, 8vw, 5rem) 0 clamp(1.5rem, 4vw, 2rem);
+            position: relative;
+            width: 100%;
+            overflow: hidden;
         }
+        
+        footer:before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 5px;
+            background: linear-gradient(90deg, var(--primary), var(--secondary), var(--accent));
+        }
+        
         .footer-content {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-            gap: 50px;
-            margin-bottom: 60px;
+            grid-template-columns: repeat(auto-fit, minmax(min(250px, 100%), 1fr));
+            gap: clamp(1.5rem, 4vw, 2.5rem);
+            margin-bottom: clamp(2rem, 5vw, 3rem);
         }
+        
         .footer-column h3 {
+            margin-bottom: clamp(1rem, 2.5vw, 1.5rem);
             color: var(--secondary);
-            margin-bottom: 25px;
-            font-size: 1.5rem;
+            font-size: clamp(1.25rem, 2vw, 1.5rem);
+            font-weight: 600;
+            position: relative;
+            padding-bottom: 0.625rem;
         }
-        .footer-links { list-style: none; }
-        .footer-links li { margin-bottom: 12px; }
+        
+        .footer-column h3:after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 50px;
+            height: 3px;
+            background: var(--primary);
+        }
+        
+        .footer-links {
+            list-style: none;
+        }
+        
+        .footer-links li {
+            margin-bottom: 0.75rem;
+        }
+        
         .footer-links a {
-            color: rgba(255,255,255,0.7);
-            text-decoration: none;
+            color: rgba(255, 255, 255, 0.8);
             transition: all 0.3s ease;
+            display: inline-block;
         }
-        .footer-links a:hover { 
+        
+        .footer-links a:hover {
             color: var(--secondary);
-            padding-left: 5px;
+            transform: translateX(5px);
         }
+        
         .social-links {
             display: flex;
-            gap: 15px;
-            margin-top: 25px;
+            gap: clamp(0.75rem, 2vw, 1rem);
+            margin-top: clamp(1rem, 2.5vw, 1.5rem);
         }
+        
         .social-links a {
             display: flex;
             align-items: center;
             justify-content: center;
-            width: 45px;
-            height: 45px;
-            background: rgba(255,255,255,0.1);
+            width: clamp(40px, 5vw, 45px);
+            height: clamp(40px, 5vw, 45px);
+            background: rgba(255, 255, 255, 0.1);
             border-radius: 50%;
             color: white;
-            font-size: 1.2rem;
             transition: all 0.3s ease;
         }
+        
         .social-links a:hover {
             background: var(--secondary);
             transform: translateY(-5px);
         }
+        
         .footer-bottom {
             text-align: center;
-            padding-top: 40px;
-            border-top: 1px solid rgba(255,255,255,0.1);
-            color: rgba(255,255,255,0.5);
-            font-size: 0.9rem;
+            padding-top: clamp(1rem, 2.5vw, 1.875rem);
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+            font-size: clamp(0.75rem, 1.5vw, 0.9rem);
+            color: rgba(255, 255, 255, 0.6);
         }
-
-        /* Responsive */
-        @media (max-width: 992px) {
-            .hero-title { font-size: 3rem; }
-            .audio-player { grid-template-columns: 60px 1fr auto; }
-            .player-cover { width: 60px; height: 60px; }
-            .nav-links { display: none; }
-            .mobile-menu-btn {
-                display: block;
-                background: none;
-                border: none;
-                font-size: 1.8rem;
-                color: var(--primary);
-                cursor: pointer;
-            }
-            .section { padding: 60px 0; }
-            .section-title { font-size: 2.3rem; }
+        
+        .footer-bottom a {
+            color: rgba(255, 255, 255, 0.8);
+            transition: color 0.3s ease;
         }
+        
+        .footer-bottom a:hover {
+            color: var(--secondary);
+        }
+        
+        /* ====== PREACHERS SECTION ====== */
+        .preachers-section {
+            background: white;
+            border-radius: 30px;
+            padding: clamp(3rem, 8vw, 5rem);
+            margin-top: clamp(3rem, 8vw, 5rem);
+            box-shadow: 0 20px 60px rgba(0,0,0,0.08);
+        }
+        
+        .preachers-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(min(280px, 100%), 1fr));
+            gap: clamp(1.5rem, 3vw, 2rem);
+            margin-top: clamp(2rem, 5vw, 3rem);
+        }
+        
+        .preacher-card {
+            background: #f8f9fa;
+            border-radius: 20px;
+            padding: clamp(1.5rem, 3vw, 2rem);
+            text-align: center;
+            transition: all 0.3s ease;
+            border: 2px solid transparent;
+        }
+        
+        .preacher-card:hover {
+            transform: translateY(-10px);
+            border-color: var(--secondary);
+            box-shadow: 0 20px 40px rgba(0,0,0,0.1);
+        }
+        
+        .preacher-icon {
+            width: 80px;
+            height: 80px;
+            border-radius: 50%;
+            background: linear-gradient(135deg, var(--primary), var(--accent));
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 0 auto 1.5rem;
+            color: white;
+            font-size: 2rem;
+        }
+        
+        .preacher-name {
+            font-size: clamp(1.25rem, 2vw, 1.5rem);
+            color: var(--primary);
+            margin-bottom: 0.5rem;
+            font-weight: 600;
+        }
+        
+        .preacher-title {
+            color: var(--secondary);
+            font-weight: 500;
+            margin-bottom: 1rem;
+            font-size: 1rem;
+        }
+        
+        .preacher-description {
+            color: #666;
+            font-size: 0.875rem;
+            line-height: 1.6;
+        }
+        
+        /* Responsive Adjustments */
         @media (max-width: 768px) {
-            .hero-title { font-size: 2.5rem; }
-            .hero-subtitle { font-size: 1.1rem; }
-            .hero-stats { gap: 30px; }
-            .sermon-grid { grid-template-columns: 1fr; }
-            .audio-player { grid-template-columns: 1fr; gap: 15px; }
-            .player-controls { justify-content: center; }
-            .filter-row { flex-direction: column; }
+            .about-content {
+                grid-template-columns: 1fr;
+            }
+            
+            .pastor-content {
+                grid-template-columns: 1fr;
+            }
+            
+            .slider-nav {
+                display: none;
+            }
+            
+            .hero-main-title {
+                margin-top: 2rem;
+            }
+            
+            .preachers-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+        
+        @media (max-width: 480px) {
+            .form-row {
+                grid-template-columns: 1fr;
+            }
+            
+            .testimonial-author {
+                flex-direction: column;
+                text-align: center;
+            }
+            
+            .author-avatar {
+                margin-right: 0;
+                margin-bottom: 1rem;
+            }
         }
     </style>
 </head>
 <body>
-    <!-- Persistent Audio Player -->
-    <div class="audio-player-container" id="audioPlayerContainer">
-        <button class="player-toggle" id="playerToggle">
-            <i class="fas fa-chevron-up"></i>
-        </button>
-        
-        <div class="audio-player" id="audioPlayer">
-            <div class="player-cover" id="playerCover">
-                <i class="fas fa-bible"></i>
-            </div>
-            
-            <div class="player-info">
-                <div class="player-title" id="playerTitle">No Sermon Selected</div>
-                <div class="player-subtitle" id="playerSubtitle">Select a sermon to begin listening</div>
-            </div>
-            
-            <div class="player-controls">
-                <button class="player-btn prev-btn" id="prevBtn" title="Previous">
-                    <i class="fas fa-step-backward"></i>
-                </button>
-                <button class="player-btn play-btn" id="playBtn" title="Play">
-                    <i class="fas fa-play"></i>
-                </button>
-                <button class="player-btn next-btn" id="nextBtn" title="Next">
-                    <i class="fas fa-step-forward"></i>
-                </button>
-                <button class="player-btn download-btn" id="playerDownloadBtn" title="Download">
-                    <i class="fas fa-download"></i>
-                </button>
-            </div>
-            
-            <div class="progress-container">
-                <div class="progress-bar" id="progressBar">
-                    <div class="progress" id="progress"></div>
-                </div>
-                <div class="time-display">
-                    <span id="currentTime">0:00</span>
-                    <span id="duration">0:00</span>
-                </div>
-            </div>
-        </div>
-        
-        <div class="background-notice" id="backgroundNotice">
-            <i class="fas fa-info-circle"></i>
-            Audio will continue playing in background. Download available for offline listening.
-        </div>
-    </div>
-
     <!-- Header -->
     <header>
         <div class="container header-container">
-            <div class="logo">
-                <a href="index.html"><i class="fas fa-church"></i> SPAC SERMONS</a>
+            <a href="index.html" class="logo">
+                <i class="fas fa-church"></i>
+                <span class="logo-text">SPAC CHURCH</span>
+            </a>
+            <div class="nav-container">
+                <ul class="nav-links">
+                    <li><a href="index.html">Home</a></li>
+                    <li><a href="arise-conference.html" class="active">ARISE Conference</a></li>
+                    <li><a href="#about">About</a></li>
+                    <li><a href="#schedule">Schedule</a></li>
+                    <li><a href="#preachers">Preachers</a></li>
+                    <li><a href="#testimonials">Testimonials</a></li>
+                    <li><a href="#register">Register</a></li>
+                </ul>
+                <a href="#register" class="nav-cta">Register Now</a>
+                <button class="mobile-menu-btn" id="mobileMenuBtn">
+                    <i class="fas fa-bars"></i>
+                </button>
             </div>
-            <nav>
-                <div class="nav-links">
-                    <a href="#series">Series</a>
-                    <a href="#topics">Topics</a>
-                    <a href="#speakers">Speakers</a>
-                    <a href="#popular">Popular</a>
-                    <a href="#download">Download</a>
-                </div>
-                <a href="#subscribe" class="nav-cta">Subscribe</a>
-                <button class="mobile-menu-btn"><i class="fas fa-bars"></i></button>
-            </nav>
         </div>
     </header>
 
-    <!-- Hero Section -->
-    <section class="sermon-hero">
+    <!-- Hero Slider -->
+    <section class="hero-slider" id="home">
+        <div class="slider-container" id="sliderContainer">
+            <!-- Slides will be added here by JavaScript -->
+        </div>
+        
+        <!-- Static Hero Content (Always Visible) -->
         <div class="hero-content">
-            <h1 class="hero-title">SPAC Sermon Library</h1>
-            <p class="hero-subtitle">Listen, download, and take God's Word with you everywhere. Background playback supported.</p>
+            <h1 class="hero-main-title">ARISE CONFERENCE</h1>
+            <p class="hero-subtitle">A Monthly Gathering of Fire & Impartation</p>
+            <div class="hero-verse">"Arise, shine, for your light has come, and the glory of the LORD rises upon you." - Isaiah 60:1</div>
+        </div>
+        
+        <!-- Slide-specific content will be added by JavaScript -->
+        
+        <div class="slider-controls" id="sliderDots">
+            <!-- Dots will be added by JavaScript -->
+        </div>
+        
+        <div class="slider-nav">
+            <div class="nav-arrow" id="prevSlide">
+                <i class="fas fa-chevron-left"></i>
+            </div>
+            <div class="nav-arrow" id="nextSlide">
+                <i class="fas fa-chevron-right"></i>
+            </div>
+        </div>
+    </section>
+
+    <!-- About Section -->
+    <section class="section section-light" id="about">
+        <div class="container">
+            <h2 class="section-title">THE ARISE MOVEMENT</h2>
+            <p class="section-subtitle">More than an event—it's a monthly encounter designed to awaken a generation.</p>
             
-            <div class="hero-stats">
-                <div class="stat-item">
-                    <div class="stat-number" id="totalSermons">250+</div>
-                    <div class="stat-label">Sermons</div>
+            <div class="about-content">
+                <div class="about-text">
+                    <h3 style="color: var(--accent);">Awakening a Generation to Purpose</h3>
+                    <p>The ARISE Conference was birthed from a burden to see young people awakened to their divine purpose and equipped with spiritual fire for the end-time harvest.</p>
+                    <p>Each first Saturday of the month, we gather not just for another church program, but for a divine appointment—a time where heaven meets earth in the lives of young people.</p>
+                    <p>This is where destinies are clarified, spiritual gifts are activated, and a generation arises to take its place in God's kingdom agenda.</p>
+                    
+                    <div class="about-highlights">
+                        <div class="highlight-box">
+                            <h4>Prophetic Atmosphere</h4>
+                            <p>Encounter God's voice through prophetic ministry and words of knowledge.</p>
+                        </div>
+                        <div class="highlight-box">
+                            <h4>Fire Impartation</h4>
+                            <p>Receive tangible spiritual impartation for ministry and marketplace impact.</p>
+                        </div>
+                        <div class="highlight-box">
+                            <h4>Strategic Prayer</h4>
+                            <p>Engage in targeted prayer sessions that break barriers and release destiny.</p>
+                        </div>
+                        <div class="highlight-box">
+                            <h4>Kingdom Networking</h4>
+                            <p>Connect with like-minded young people pursuing God's purpose.</p>
+                        </div>
+                    </div>
                 </div>
-                <div class="stat-item">
-                    <div class="stat-number" id="totalHours">500+</div>
-                    <div class="stat-label">Hours of Teaching</div>
-                </div>
-                <div class="stat-item">
-                    <div class="stat-number" id="totalDownloads">50K+</div>
-                    <div class="stat-label">Downloads</div>
+                
+                <div class="about-image">
+                    <img src="py.jpg" alt="Pastor Yomi">
+                    <div class="image-overlay">
+                        <h4>Hosted by Pastor Yomi Okewunmi</h4>
+                        <p>Dynamic minister with apostolic and prophetic mantle</p>
+                    </div>
                 </div>
             </div>
         </div>
-        <div class="hero-wave"></div>
     </section>
 
-    <!-- Main Content -->
-    <div class="container">
-        <!-- Filters -->
-        <section class="section">
-            <div class="filters-container">
-                <h3 style="color: var(--primary); margin-bottom: 25px;">Find Your Sermon</h3>
-                <div class="filter-row">
-                    <div class="filter-group">
-                        <label for="topicFilter"><i class="fas fa-tag"></i> Topic</label>
-                        <select id="topicFilter">
-                            <option value="">All Topics</option>
-                            <option value="faith">Faith</option>
-                            <option value="prayer">Prayer</option>
-                            <option value="healing">Healing</option>
-                            <option value="relationships">Relationships</option>
-                            <option value="finance">Finance</option>
-                            <option value="prophetic">Prophetic</option>
-                            <option value="salvation">Salvation</option>
-                            <option value="holyspirit">Holy Spirit</option>
-                        </select>
+    <!-- Schedule Section -->
+    <section class="section section-accent" id="schedule">
+        <div class="container">
+            <h2 class="section-title">MONTHLY GATHERING SCHEDULE</h2>
+            <p class="section-subtitle">A typical ARISE Conference flow. Times may vary as we follow the Spirit's leading.</p>
+            
+            <div class="schedule-container">
+                <div class="timeline">
+                    <div class="timeline-item">
+                        <div class="timeline-time"><i class="fas fa-clock"></i> 6:30 PM - Arrival & Fellowship</div>
+                        <h3 class="timeline-title">Welcome & Connection</h3>
+                        <p class="timeline-desc">Arrive early for pre-service fellowship, prayer, and connecting with other young believers.</p>
                     </div>
-                    <div class="filter-group">
-                        <label for="speakerFilter"><i class="fas fa-user"></i> Speaker</label>
-                        <select id="speakerFilter">
-                            <option value="">All Speakers</option>
-                            <option value="pastor-john">Pastor John</option>
-                            <option value="pastor-yomi">Pastor Yomi</option>
-                            <option value="pastor-sarah">Pastor Sarah</option>
-                            <option value="guest">Guest Speakers</option>
-                        </select>
+                    <div class="timeline-item">
+                        <div class="timeline-time"><i class="fas fa-clock"></i> 7:00 PM - Opening Session</div>
+                        <h3 class="timeline-title">Worship & Praise</h3>
+                        <p class="timeline-desc">High-energy worship led by the ARISE worship team. Creating an atmosphere for encounter.</p>
                     </div>
-                    <div class="filter-group">
-                        <label for="seriesFilter"><i class="fas fa-layer-group"></i> Series</label>
-                        <select id="seriesFilter">
-                            <option value="">All Series</option>
-                            <option value="authentic">Authentic</option>
-                            <option value="arise">Arise</option>
-                            <option value="foundations">Foundations</option>
-                            <option value="kingdom">Kingdom Living</option>
-                        </select>
+                    <div class="timeline-item">
+                        <div class="timeline-time"><i class="fas fa-clock"></i> 7:45 PM - Word & Impartation</div>
+                        <h3 class="timeline-title">Teaching Session</h3>
+                        <p class="timeline-desc">Powerful, relevant teaching from our anointed ministers. Focused on activation and application.</p>
                     </div>
-                </div>
-                <div class="filter-row">
-                    <div class="filter-group search-box">
-                        <label for="searchInput"><i class="fas fa-search"></i> Search Sermons</label>
-                        <input type="text" id="searchInput" placeholder="Search by title, keyword, or scripture...">
-                        <i class="fas fa-search"></i>
+                    <div class="timeline-item">
+                        <div class="timeline-time"><i class="fas fa-clock"></i> 8:30 PM - Fire Tunnel</div>
+                        <h3 class="timeline-title">Ministry & Impartation Time</h3>
+                        <p class="timeline-desc">The highlight of the night. Personal prayer, prophetic ministry, and impartation of spiritual gifts.</p>
                     </div>
-                    <div class="filter-group">
-                        <label for="sortFilter"><i class="fas fa-sort"></i> Sort By</label>
-                        <select id="sortFilter">
-                            <option value="newest">Newest First</option>
-                            <option value="oldest">Oldest First</option>
-                            <option value="popular">Most Popular</option>
-                            <option value="duration">Duration</option>
-                        </select>
+                    <div class="timeline-item">
+                        <div class="timeline-time"><i class="fas fa-clock"></i> 9:15 PM - Altar Response</div>
+                        <h3 class="timeline-title">Commitment & Commissioning</h3>
+                        <p class="timeline-desc">Response time for salvation, healing, and dedication. Commissioning for the month ahead.</p>
                     </div>
                 </div>
             </div>
-
-            <!-- Sermon Grid -->
-            <h2 class="section-title">Recent Sermons</h2>
-            <p class="section-subtitle">Click play to listen or download for offline listening</p>
             
-            <div class="sermon-grid" id="sermonGrid">
-                <!-- Sermon cards will be generated by JavaScript -->
+            <div style="text-align: center; margin-top: clamp(3rem, 6vw, 4rem);">
+                <a href="#register" class="btn" style="font-size: clamp(1rem, 2vw, 1.125rem); padding: clamp(1rem, 2vw, 1.125rem) clamp(2rem, 4vw, 2.5rem);">Save Your Spot for Next Month</a>
             </div>
-        </section>
+        </div>
+    </section>
 
-        <!-- Featured Series -->
-        <section class="section" id="series">
-            <h2 class="section-title">Featured Series</h2>
-            <p class="section-subtitle">Complete teaching series for deep study</p>
+    <!-- Preachers Section -->
+    <section class="section section-light" id="preachers">
+        <div class="container">
+            <h2 class="section-title">OUR ANOINTED PREACHERS</h2>
+            <p class="section-subtitle">Seasoned ministers of God with diverse anointings and kingdom assignments.</p>
             
-            <div class="series-container">
-                <div class="series-card">
-                    <div class="series-image">
-                        <img src="https://images.unsplash.com/photo-1511671782779-c97d3d27a1d4?ixlib=rb-4.0.3&auto=format&fit=crop&w=2070&q=80" alt="Authentic Series">
+            <div class="preachers-section">
+                <div class="preachers-grid">
+                    <div class="preacher-card">
+                        <div class="preacher-icon">
+                            <i class="fas fa-fire"></i>
+                        </div>
+                        <h3 class="preacher-name">Prophet Samuel Adegboyega</h3>
+                        <div class="preacher-title">Prophetic Ministry</div>
+                        <p class="preacher-description">Carries a strong prophetic mantle with accurate words of knowledge and direction. Known for igniting fire in the hearts of young people.</p>
                     </div>
-                    <div class="series-content">
-                        <h3 class="series-title">Authentic</h3>
-                        <div class="series-count">8 sermons • 6 hours</div>
-                        <p class="series-desc">Discovering authentic faith in a digital world. A series about being real with God and others.</p>
-                        <button class="action-btn play-btn" data-series="authentic">
-                            <i class="fas fa-play-circle"></i> Play Series
-                        </button>
+                    
+                    <div class="preacher-card">
+                        <div class="preacher-icon">
+                            <i class="fas fa-hands-praying"></i>
+                        </div>
+                        <h3 class="preacher-name">Pastor Yomi Okewunmi</h3>
+                        <div class="preacher-title">Host & Youth Apostle</div>
+                        <p class="preacher-description">Visionary behind the ARISE movement. Apostolic teacher with passion for awakening a generation to purpose and power.</p>
+                    </div>
+                    
+                    <div class="preacher-card">
+                        <div class="preacher-icon">
+                            <i class="fas fa-book-bible"></i>
+                        </div>
+                        <h3 class="preacher-name">Pastor Tobi Adegboyega</h3>
+                        <div class="preacher-title">Word Ministry</div>
+                        <p class="preacher-description">Dynamic teacher of God's word with deep revelatory insights. Makes scripture come alive for practical living.</p>
+                    </div>
+                    
+                    <div class="preacher-card">
+                        <div class="preacher-icon">
+                            <i class="fas fa-church"></i>
+                        </div>
+                        <h3 class="preacher-name">Rev'd (Full Name)</h3>
+                        <div class="preacher-title">Revival Ministry</div>
+                        <p class="preacher-description">Carrier of revival fire with emphasis on holiness and consecration. Known for ushering in tangible presence of God.</p>
+                    </div>
+                    
+                    <div class="preacher-card">
+                        <div class="preacher-icon">
+                            <i class="fas fa-heart"></i>
+                        </div>
+                        <h3 class="preacher-name">Pastor Mrs Adegboyega</h3>
+                        <div class="preacher-title">Women & Family Ministry</div>
+                        <p class="preacher-description">Minister with motherly anointing for nurturing and building. Focuses on wholeness, family, and destiny.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Pastor Section -->
+    <section class="section section-accent" id="pastor">
+        <div class="container">
+            <h2 class="section-title">MEET OUR HOST</h2>
+            <p class="section-subtitle">The visionary behind the ARISE Conference movement.</p>
+            
+            <div class="pastor-section">
+                <div class="pastor-content">
+                    <div class="pastor-image">
+                        <img src="py.jpg" alt="Pastor Yomi Okewunmi">
+                    </div>
+                    <div class="pastor-info">
+                        <div class="pastor-title">Visionary & Host</div>
+                        <h2 class="pastor-name">Pastor Yomi Okewunmi</h2>
+                        <p class="pastor-bio">A dynamic minister with years of experience in youth and young adult ministry, Pastor Yomi carries a unique apostolic and prophetic mantle for awakening a generation. His passion is to see young people encounter God in transformative ways and step into their divine assignments.</p>
+                        <p class="pastor-bio">With a background in theology and practical ministry, Pastor Yomi combines deep biblical insight with relatable application for today's youth. He serves as the Youth and Young Adult Pastor at SPAC Church and travels nationally speaking at youth conferences and leadership summits.</p>
+                        
+                        <div class="pastor-quote">
+                            "My assignment is to sound the alarm for this generation to ARISE from slumber and take their place in God's end-time agenda."
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Testimonials -->
+    <section class="section section-light" id="testimonials">
+        <div class="container">
+            <h2 class="section-title">LIVES TRANSFORMED</h2>
+            <p class="section-subtitle">Hear from those who have experienced the ARISE Conference.</p>
+            
+            <div class="testimonials-container">
+                <div class="testimonial-card">
+                    <div class="quote-icon"><i class="fas fa-quote-right"></i></div>
+                    <p class="testimonial-text">"At ARISE, I received a clear word about my calling. That night changed everything. I left with clarity and fire that I'm still carrying today. The prayer impartation was tangible and life-changing."</p>
+                    <div class="testimonial-author">
+                        <div class="author-avatar">TA</div>
+                        <div class="author-info">
+                            <h4>Temitope Arulogun</h4>
+                            <p>University Student</p>
+                        </div>
                     </div>
                 </div>
                 
-                <div class="series-card">
-                    <div class="series-image">
-                        <img src="https://images.unsplash.com/photo-1545235617-9465d2a55698?ixlib=rb-4.0.3&auto=format&fit=crop&w=2080&q=80" alt="Arise Series">
-                    </div>
-                    <div class="series-content">
-                        <h3 class="series-title">Arise</h3>
-                        <div class="series-count">6 sermons • 4.5 hours</div>
-                        <p class="series-desc">Awakening to your purpose and calling. Based on Isaiah 60:1.</p>
-                        <button class="action-btn play-btn" data-series="arise">
-                            <i class="fas fa-play-circle"></i> Play Series
-                        </button>
+                <div class="testimonial-card">
+                    <div class="quote-icon"><i class="fas fa-quote-right"></i></div>
+                    <p class="testimonial-text">"The atmosphere at ARISE is unlike any other. Every month, I leave refreshed, empowered, and equipped to face the challenges of life. The youth and young adult focus makes it so relevant."</p>
+                    <div class="testimonial-author">
+                        <div class="author-avatar">TI</div>
+                        <div class="author-info">
+                            <h4>Timileyin</h4>
+                            <p>Young Professional</p>
+                        </div>
                     </div>
                 </div>
                 
-                <div class="series-card">
-                    <div class="series-image">
-                        <img src="https://images.unsplash.com/photo-1504052434569-70ad71a13e01?ixlib=rb-4.0.3&auto=format&fit=crop&w=2080&q=80" alt="Foundations Series">
+                <div class="testimonial-card">
+                    <div class="quote-icon"><i class="fas fa-quote-right"></i></div>
+                    <p class="testimonial-text">"First Saturday of every month has become my divine appointment. I was struggling with direction until I attended ARISE. The prophetic word I received gave me clarity and the fire to pursue my purpose."</p>
+                    <div class="testimonial-author">
+                        <div class="author-avatar">MI</div>
+                        <div class="author-info">
+                            <h4>Michael</h4>
+                            <p>Business Owner</p>
+                        </div>
                     </div>
-                    <div class="series-content">
-                        <h3 class="series-title">Foundations</h3>
-                        <div class="series-count">12 sermons • 10 hours</div>
-                        <p class="series-desc">Building a solid spiritual foundation for life and ministry.</p>
-                        <button class="action-btn play-btn" data-series="foundations">
-                            <i class="fas fa-play-circle"></i> Play Series
-                        </button>
+                </div>
+                
+                <div class="testimonial-card">
+                    <div class="quote-icon"><i class="fas fa-quote-right"></i></div>
+                    <p class="testimonial-text">"As a young adult, finding a place where I can connect with God and others has been life-changing. ARISE is that place for me. The prayer impartation sessions have transformed my spiritual life."</p>
+                    <div class="testimonial-author">
+                        <div class="author-avatar">FL</div>
+                        <div class="author-info">
+                            <h4>Florence</h4>
+                            <p>Ministry Leader</p>
+                        </div>
                     </div>
                 </div>
             </div>
-        </section>
+        </div>
+    </section>
 
-        <!-- Download Stats -->
-        <section class="stats-container">
-            <div class="stats-grid">
-                <div class="stat-box">
-                    <i class="fas fa-headphones"></i>
-                    <h3 id="monthlyListens">15,842</h3>
-                    <p>Monthly Listens</p>
+    <!-- Registration -->
+    <section class="section section-accent" id="register">
+        <div class="container">
+            <h2 class="section-title">REGISTER FOR NEXT ARISE</h2>
+            <p class="section-subtitle">Join us for the next gathering. Registration is free but required for planning.</p>
+            
+            <div class="registration-container">
+                <div class="reg-header">
+                    <h3>Next ARISE Conference</h3>
+                    <p>First Saturday of Each Month • 7:00 PM • SPAC Main Sanctuary</p>
                 </div>
-                <div class="stat-box">
-                    <i class="fas fa-download"></i>
-                    <h3 id="monthlyDownloads">4,237</h3>
-                    <p>Monthly Downloads</p>
-                </div>
-                <div class="stat-box">
-                    <i class="fas fa-globe"></i>
-                    <h3 id="countries">47</h3>
-                    <p>Countries Reached</p>
-                </div>
-                <div class="stat-box">
-                    <i class="fas fa-clock"></i>
-                    <h3 id="totalListening">25K+</h3>
-                    <p>Hours Listened Monthly</p>
-                </div>
+                
+                <form class="reg-form">
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label for="firstName">First Name *</label>
+                            <input type="text" id="firstName" required placeholder="Enter your first name">
+                        </div>
+                        <div class="form-group">
+                            <label for="lastName">Last Name *</label>
+                            <input type="text" id="lastName" required placeholder="Enter your last name">
+                        </div>
+                    </div>
+                    
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label for="email">Email Address *</label>
+                            <input type="email" id="email" required placeholder="Enter your email">
+                        </div>
+                        <div class="form-group">
+                            <label for="phone">Phone Number</label>
+                            <input type="tel" id="phone" placeholder="Enter your phone number">
+                        </div>
+                    </div>
+                    
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label for="age">Age Group *</label>
+                            <select id="age" required>
+                                <option value="">Select Age Group</option>
+                                <option value="16-19">16-19 years</option>
+                                <option value="20-25">20-25 years</option>
+                                <option value="26-30">26-30 years</option>
+                                <option value="31-35">31-35 years</option>
+                                <option value="35+">35+ years</option>
+                            </select>
+                        </div>
+                        <div class="form-group">
+                            <label for="attendance">First Time Attending? *</label>
+                            <select id="attendance" required>
+                                <option value="">Select</option>
+                                <option value="yes">Yes, first time</option>
+                                <option value="no">No, I've attended before</option>
+                            </select>
+                        </div>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="prayer">Specific Prayer Request (Optional)</label>
+                        <textarea id="prayer" rows="4" placeholder="What would you like prayer for?"></textarea>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="guests">Number of Guests (Including yourself)</label>
+                        <select id="guests">
+                            <option value="1">1 person (just me)</option>
+                            <option value="2">2 people</option>
+                            <option value="3">3 people</option>
+                            <option value="4">4 people</option>
+                            <option value="5">5+ people</option>
+                        </select>
+                    </div>
+                    
+                    <button type="submit" class="submit-btn">Register for Next ARISE Conference</button>
+                </form>
             </div>
-        </section>
-    </div>
+        </div>
+    </section>
 
     <!-- Footer -->
     <footer>
         <div class="container">
             <div class="footer-content">
                 <div class="footer-column">
-                    <h3>SPAC SERMON LIBRARY</h3>
-                    <p>Access hundreds of sermons anytime, anywhere. Background playback supported for continuous listening.</p>
+                    <h3>ARISE CONFERENCE</h3>
+                    <p>A monthly gathering for youth and young adults seeking spiritual awakening, prayer, and impartation. Hosted at SPAC Church.</p>
                     <div class="social-links">
-                        <a href="#"><i class="fab fa-spotify"></i></a>
-                        <a href="#"><i class="fab fa-apple"></i></a>
-                        <a href="#"><i class="fab fa-google-play"></i></a>
-                        <a href="#"><i class="fab fa-youtube"></i></a>
+                        <a href="#" aria-label="Instagram"><i class="fab fa-instagram"></i></a>
+                        <a href="#" aria-label="TikTok"><i class="fab fa-tiktok"></i></a>
+                        <a href="#" aria-label="YouTube"><i class="fab fa-youtube"></i></a>
+                        <a href="#" aria-label="Twitter"><i class="fab fa-twitter"></i></a>
                     </div>
                 </div>
                 
                 <div class="footer-column">
                     <h3>Quick Links</h3>
                     <ul class="footer-links">
-                        <li><a href="#series">Sermon Series</a></li>
-                        <li><a href="#topics">Browse by Topic</a></li>
-                        <li><a href="#speakers">Browse by Speaker</a></li>
-                        <li><a href="#popular">Most Popular</a></li>
-                        <li><a href="#download">Download App</a></li>
-                        <li><a href="#subscribe">Subscribe</a></li>
+                        <li><a href="#about">About ARISE</a></li>
+                        <li><a href="#schedule">Monthly Schedule</a></li>
+                        <li><a href="#preachers">Our Preachers</a></li>
+                        <li><a href="#testimonials">Testimonials</a></li>
+                        <li><a href="#register">Register Now</a></li>
                     </ul>
                 </div>
                 
                 <div class="footer-column">
-                    <h3>Listening Options</h3>
+                    <h3>Contact & Location</h3>
                     <ul class="footer-links">
-                        <li><a href="#"><i class="fas fa-mobile-alt"></i> Mobile App</a></li>
-                        <li><a href="#"><i class="fas fa-podcast"></i> Podcast</a></li>
-                        <li><a href="#"><i class="fas fa-download"></i> Download MP3</a></li>
-                        <li><a href="#"><i class="fas fa-closed-captioning"></i> Transcripts</a></li>
-                        <li><a href="#"><i class="fas fa-book"></i> Study Notes</a></li>
+                        <li><i class="fas fa-calendar-alt"></i> First Saturday Monthly</li>
+                        <li><i class="fas fa-clock"></i> 7:00 PM - 9:30 PM</li>
+                        <li><i class="fas fa-map-marker-alt"></i> SPAC Main Sanctuary</li>
+                        <li><i class="fas fa-envelope"></i> arise@spacchurch.org</li>
+                        <li><i class="fas fa-phone"></i> (123) 456-7890 ext. 456</li>
                     </ul>
                 </div>
             </div>
             
             <div class="footer-bottom">
-                &copy; 2024 SPAC Sermon Library. All sermons are property of SPAC Church. | 
-                <a href="#" style="color: rgba(255,255,255,0.7);">Terms of Use</a> | 
-                <a href="#" style="color: rgba(255,255,255,0.7);">Privacy Policy</a>
+                &copy; 2025 ARISE Conference. A ministry of SPAC Church. | 
+                <a href="#">Watch Previous Sessions</a> | 
+                <a href="#">Prayer Request</a>
             </div>
         </div>
     </footer>
 
     <script>
-        // Sermon Data
-        const sermons = [
+        // ====== MOBILE MENU FUNCTIONALITY ======
+        const mobileMenuBtn = document.getElementById('mobileMenuBtn');
+        const navLinks = document.querySelector('.nav-links');
+        const navCTA = document.querySelector('.nav-cta');
+
+        mobileMenuBtn.addEventListener('click', () => {
+            navLinks.classList.toggle('active');
+            mobileMenuBtn.innerHTML = navLinks.classList.contains('active') 
+                ? '<i class="fas fa-times"></i>' 
+                : '<i class="fas fa-bars"></i>';
+            
+            if (navLinks.classList.contains('active')) {
+                document.body.style.overflow = 'hidden';
+                // Move CTA button into mobile menu if not already there
+                if (window.innerWidth <= 992 && !navLinks.contains(navCTA)) {
+                    const li = document.createElement('li');
+                    li.appendChild(navCTA.cloneNode(true));
+                    navLinks.appendChild(li);
+                    navCTA.style.display = 'none';
+                }
+            } else {
+                document.body.style.overflow = 'auto';
+                // Restore CTA button to original position
+                if (window.innerWidth <= 992) {
+                    const originalCTA = document.querySelector('.nav-cta');
+                    if (!originalCTA.parentNode.classList.contains('nav-container')) {
+                        originalCTA.remove();
+                        navCTA.style.display = 'block';
+                    }
+                }
+            }
+        });
+
+        // Close menu when clicking outside on mobile
+        document.addEventListener('click', (e) => {
+            if (window.innerWidth <= 992 && navLinks.classList.contains('active')) {
+                if (!e.target.closest('.nav-links') && !e.target.closest('.mobile-menu-btn')) {
+                    navLinks.classList.remove('active');
+                    mobileMenuBtn.innerHTML = '<i class="fas fa-bars"></i>';
+                    document.body.style.overflow = 'auto';
+                    
+                    // Restore CTA button
+                    const originalCTA = document.querySelector('.nav-cta');
+                    if (!originalCTA.parentNode.classList.contains('nav-container')) {
+                        originalCTA.remove();
+                        navCTA.style.display = 'block';
+                    }
+                }
+            }
+        });
+
+        // ====== UPDATED HERO SLIDER FUNCTIONALITY ======
+        const sliderContainer = document.getElementById('sliderContainer');
+        const sliderDots = document.getElementById('sliderDots');
+        const prevSlideBtn = document.getElementById('prevSlide');
+        const nextSlideBtn = document.getElementById('nextSlide');
+
+        // Array of slide data
+        const slides = [
+            {
+                id: 0,
+                bgImage: 'arise1.jpg',
+                alt: 'ARISE Conference Worship',
+                feature: {
+                    icon: 'fas fa-calendar-alt',
+                    title: 'First Saturday',
+                    description: 'Every first Saturday of the month. Join us for a powerful time of prayer, worship, and impartation.'
+                }
+            },
             {
                 id: 1,
-                title: "The Power of Authentic Prayer",
-                speaker: "Pastor Yomi",
-                series: "Authentic",
-                date: "2024-02-18",
-                duration: "45:22",
-                description: "Discover how to move from ritual to relationship in your prayer life. Learn the keys to prayers that move mountains.",
-                tags: ["prayer", "faith", "relationship"],
-                audioUrl: "https://www.soundhelix.com/examples/mp3/SoundHelix-Song-1.mp3",
-                downloads: 1245,
-                plays: 3567,
-                featured: true
+                bgImage: 'arise2.jpg',
+                alt: 'ARISE Conference Youth Gathering',
+                feature: {
+                    icon: 'fas fa-users',
+                    title: 'Youth & Young Adults',
+                    description: 'A gathering specifically designed for young people ages 16-35 seeking spiritual awakening.'
+                }
             },
             {
                 id: 2,
-                title: "Arise and Shine in Dark Times",
-                speaker: "Pastor John",
-                series: "Arise",
-                date: "2024-02-11",
-                duration: "52:18",
-                description: "Isaiah 60:1 comes alive as we explore what it means to arise when everything around us seems dark.",
-                tags: ["prophetic", "hope", "calling"],
-                audioUrl: "https://www.soundhelix.com/examples/mp3/SoundHelix-Song-2.mp3",
-                downloads: 987,
-                plays: 2843,
-                featured: true
+                bgImage: 'arise3.jpg',
+                alt: 'ARISE Conference Prayer Session',
+                feature: {
+                    icon: 'fas fa-praying-hands',
+                    title: 'Prayer Impartation',
+                    description: 'Experience deep prayer, prophetic ministry, and tangible impartation of spiritual gifts.'
+                }
             },
             {
                 id: 3,
-                title: "Financial Breakthrough God's Way",
-                speaker: "Pastor Sarah",
-                series: "Kingdom",
-                date: "2024-02-04",
-                duration: "38:45",
-                description: "Biblical principles for financial freedom and prosperity. God's economy vs. the world's system.",
-                tags: ["finance", "breakthrough", "stewardship"],
-                audioUrl: "https://www.soundhelix.com/examples/mp3/SoundHelix-Song-3.mp3",
-                downloads: 1567,
-                plays: 4231,
-                featured: false
-            },
-            {
-                id: 4,
-                title: "Healing for the Brokenhearted",
-                speaker: "Pastor Yomi",
-                series: "Foundations",
-                date: "2024-01-28",
-                duration: "41:33",
-                description: "God's prescription for emotional healing and restoration. Finding wholeness after loss and disappointment.",
-                tags: ["healing", "emotional", "restoration"],
-                audioUrl: "https://www.soundhelix.com/examples/mp3/SoundHelix-Song-4.mp3",
-                downloads: 892,
-                plays: 2678,
-                featured: false
-            },
-            {
-                id: 5,
-                title: "The Holy Spirit as Your Helper",
-                speaker: "Guest Speaker",
-                series: "Foundations",
-                date: "2024-01-21",
-                duration: "49:12",
-                description: "Understanding the person and work of the Holy Spirit in the life of a believer.",
-                tags: ["holyspirit", "guidance", "power"],
-                audioUrl: "https://www.soundhelix.com/examples/mp3/SoundHelix-Song-5.mp3",
-                downloads: 743,
-                plays: 1987,
-                featured: false
-            },
-            {
-                id: 6,
-                title: "Building Godly Relationships",
-                speaker: "Pastor Sarah",
-                series: "Authentic",
-                date: "2024-01-14",
-                duration: "36:45",
-                description: "Principles for healthy friendships, marriage, and family relationships from a biblical perspective.",
-                tags: ["relationships", "family", "marriage"],
-                audioUrl: "https://www.soundhelix.com/examples/mp3/SoundHelix-Song-6.mp3",
-                downloads: 1034,
-                plays: 3124,
-                featured: true
+                bgImage: 'arise4.jpg',
+                alt: 'ARISE Conference Fire Impartation',
+                feature: {
+                    icon: 'fas fa-fire',
+                    title: 'Fire Encounter',
+                    description: 'Experience the fire of God that transforms, empowers, and sends you out with purpose.'
+                }
             }
         ];
 
-        // Audio Player State
-        let currentAudio = new Audio();
-        let isPlaying = false;
-        let currentSermonIndex = 0;
-        let currentPlaylist = [];
-        let updateInterval;
+        let currentSlide = 0;
+        let slideInterval;
 
-        // DOM Elements
-        const audioPlayerContainer = document.getElementById('audioPlayerContainer');
-        const playerToggle = document.getElementById('playerToggle');
-        const playerTitle = document.getElementById('playerTitle');
-        const playerSubtitle = document.getElementById('playerSubtitle');
-        const playerCover = document.getElementById('playerCover');
-        const playBtn = document.getElementById('playBtn');
-        const prevBtn = document.getElementById('prevBtn');
-        const nextBtn = document.getElementById('nextBtn');
-        const playerDownloadBtn = document.getElementById('playerDownloadBtn');
-        const progress = document.getElementById('progress');
-        const progressBar = document.getElementById('progressBar');
-        const currentTimeEl = document.getElementById('currentTime');
-        const durationEl = document.getElementById('duration');
-        const sermonGrid = document.getElementById('sermonGrid');
-
-        // Initialize
-        document.addEventListener('DOMContentLoaded', function() {
-            renderSermonGrid();
-            setupAudioPlayer();
-            setupEventListeners();
-            setupBackgroundPlayback();
-        });
-
-        // Render Sermon Grid
-        function renderSermonGrid() {
-            sermonGrid.innerHTML = '';
-            
-            sermons.forEach((sermon, index) => {
-                const card = document.createElement('div');
-                card.className = `sermon-card ${sermon.featured ? 'featured' : ''}`;
-                card.innerHTML = `
-                    <div class="sermon-header">
-                        <span class="sermon-series">${sermon.series}</span>
-                        <h3 class="sermon-title">${sermon.title}</h3>
-                        <div class="sermon-meta">
-                            <span><i class="fas fa-user"></i> ${sermon.speaker}</span>
-                            <span><i class="fas fa-calendar"></i> ${formatDate(sermon.date)}</span>
-                            <span><i class="fas fa-clock"></i> ${sermon.duration}</span>
-                        </div>
-                        <p class="sermon-description">${sermon.description}</p>
-                        <div class="sermon-tags">
-                            ${sermon.tags.map(tag => `<span class="tag">${tag}</span>`).join('')}
-                        </div>
-                    </div>
-                    <div class="sermon-actions">
-                        <button class="action-btn play-btn" data-index="${index}">
-                            <i class="fas fa-play"></i> Play Now
-                        </button>
-                        <button class="action-btn download-btn" data-url="${sermon.audioUrl}" data-title="${sermon.title}">
-                            <i class="fas fa-download"></i> Download MP3
-                        </button>
-                    </div>
-                    <div style="padding: 0 25px 15px; font-size: 0.8rem; color: #666; display: flex; justify-content: space-between;">
-                        <span><i class="fas fa-play-circle"></i> ${sermon.plays.toLocaleString()} plays</span>
-                        <span><i class="fas fa-download"></i> ${sermon.downloads.toLocaleString()} downloads</span>
+        // Initialize slides and dots
+        function initSlider() {
+            slides.forEach((slide, index) => {
+                // Create slide element with background image
+                const slideElement = document.createElement('div');
+                slideElement.className = `slide ${index === 0 ? 'active' : ''}`;
+                slideElement.style.backgroundImage = `url('${slide.bgImage}')`;
+                slideElement.dataset.id = slide.id;
+                
+                // Create overlay
+                const overlay = document.createElement('div');
+                overlay.className = 'slide-overlay';
+                slideElement.appendChild(overlay);
+                
+                // Create slide content (feature card)
+                const slideContent = document.createElement('div');
+                slideContent.className = 'slide-content';
+                if (index === 0) slideContent.classList.add('active');
+                
+                const featureHTML = `
+                    <div class="slide-feature">
+                        <i class="${slide.feature.icon}"></i>
+                        <h3>${slide.feature.title}</h3>
+                        <p>${slide.feature.description}</p>
                     </div>
                 `;
-                sermonGrid.appendChild(card);
-            });
-        }
-
-        // Setup Audio Player
-        function setupAudioPlayer() {
-            currentAudio.addEventListener('loadedmetadata', function() {
-                durationEl.textContent = formatTime(currentAudio.duration);
-            });
-
-            currentAudio.addEventListener('timeupdate', function() {
-                if (currentAudio.duration) {
-                    const percent = (currentAudio.currentTime / currentAudio.duration) * 100;
-                    progress.style.width = `${percent}%`;
-                    currentTimeEl.textContent = formatTime(currentAudio.currentTime);
-                }
-            });
-
-            currentAudio.addEventListener('ended', function() {
-                playNext();
-            });
-
-            // Setup progress bar click
-            progressBar.addEventListener('click', function(e) {
-                const clickPosition = e.offsetX;
-                const progressBarWidth = this.offsetWidth;
-                const clickPercentage = clickPosition / progressBarWidth;
+                slideContent.innerHTML = featureHTML;
+                slideElement.appendChild(slideContent);
                 
-                if (currentAudio.duration) {
-                    currentAudio.currentTime = clickPercentage * currentAudio.duration;
-                }
+                sliderContainer.appendChild(slideElement);
+                
+                // Create dot
+                const dot = document.createElement('div');
+                dot.className = `slider-dot ${index === 0 ? 'active' : ''}`;
+                dot.dataset.index = index;
+                dot.addEventListener('click', () => goToSlide(index));
+                sliderDots.appendChild(dot);
             });
         }
 
-        // Play Sermon
-        function playSermon(sermonIndex) {
-            const sermon = sermons[sermonIndex];
+        // Go to specific slide
+        function goToSlide(index) {
+            const allSlides = document.querySelectorAll('.slide');
+            const allContents = document.querySelectorAll('.slide-content');
+            const allDots = document.querySelectorAll('.slider-dot');
             
-            // Update player UI
-            playerTitle.textContent = sermon.title;
-            playerSubtitle.textContent = `${sermon.speaker} • ${sermon.series}`;
+            // Hide current slide and content
+            allSlides[currentSlide].classList.remove('active');
+            allContents[currentSlide].classList.remove('active');
+            allDots[currentSlide].classList.remove('active');
             
-            // Update current sermon index and playlist
-            currentSermonIndex = sermonIndex;
-            currentPlaylist = [...sermons];
+            currentSlide = index;
             
-            // Set audio source
-            currentAudio.src = sermon.audioUrl;
+            // Show new slide and content
+            allSlides[currentSlide].classList.add('active');
+            allContents[currentSlide].classList.add('active');
+            allDots[currentSlide].classList.add('active');
             
-            // Play audio
-            currentAudio.play()
-                .then(() => {
-                    isPlaying = true;
-                    updatePlayButton();
-                    startProgressUpdate();
-                })
-                .catch(error => {
-                    console.error('Error playing audio:', error);
-                    alert('Error playing audio. Please try again.');
-                });
-            
-            // Show player if minimized
-            audioPlayerContainer.classList.remove('minimized');
+            resetInterval();
         }
 
-        // Play/Pause Toggle
-        function togglePlayPause() {
-            if (currentAudio.src) {
-                if (isPlaying) {
-                    currentAudio.pause();
+        // Next slide
+        function nextSlide() {
+            const nextIndex = (currentSlide + 1) % slides.length;
+            goToSlide(nextIndex);
+        }
+
+        // Previous slide
+        function prevSlide() {
+            const prevIndex = (currentSlide - 1 + slides.length) % slides.length;
+            goToSlide(prevIndex);
+        }
+
+        // Start auto-slide
+        function startInterval() {
+            slideInterval = setInterval(nextSlide, 5000); // Change every 5 seconds
+        }
+
+        // Reset interval
+        function resetInterval() {
+            clearInterval(slideInterval);
+            startInterval();
+        }
+
+        // Initialize slider
+        initSlider();
+        startInterval();
+
+        // Event listeners for navigation
+        prevSlideBtn.addEventListener('click', () => {
+            prevSlide();
+            resetInterval();
+        });
+
+        nextSlideBtn.addEventListener('click', () => {
+            nextSlide();
+            resetInterval();
+        });
+
+        // Pause on hover
+        sliderContainer.addEventListener('mouseenter', () => {
+            clearInterval(slideInterval);
+        });
+
+        sliderContainer.addEventListener('mouseleave', () => {
+            resetInterval();
+        });
+
+        // ====== SMOOTH SCROLLING ======
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function(e) {
+                if (this.getAttribute('href') === '#') return;
+                
+                e.preventDefault();
+                const targetId = this.getAttribute('href');
+                if (targetId === '#home') {
+                    window.scrollTo({
+                        top: 0,
+                        behavior: 'smooth'
+                    });
                 } else {
-                    currentAudio.play();
-                }
-                isPlaying = !isPlaying;
-                updatePlayButton();
-            } else if (sermons.length > 0) {
-                // If no audio is loaded, play the first sermon
-                playSermon(0);
-            }
-        }
-
-        // Play Next
-        function playNext() {
-            if (currentPlaylist.length > 0) {
-                const nextIndex = (currentSermonIndex + 1) % currentPlaylist.length;
-                playSermon(nextIndex);
-            }
-        }
-
-        // Play Previous
-        function playPrev() {
-            if (currentPlaylist.length > 0) {
-                const prevIndex = (currentSermonIndex - 1 + currentPlaylist.length) % currentPlaylist.length;
-                playSermon(prevIndex);
-            }
-        }
-
-        // Update Play Button
-        function updatePlayButton() {
-            const icon = playBtn.querySelector('i');
-            if (isPlaying) {
-                icon.className = 'fas fa-pause';
-                playBtn.title = 'Pause';
-            } else {
-                icon.className = 'fas fa-play';
-                playBtn.title = 'Play';
-            }
-        }
-
-        // Start Progress Update Interval
-        function startProgressUpdate() {
-            if (updateInterval) clearInterval(updateInterval);
-            
-            updateInterval = setInterval(() => {
-                if (currentAudio.duration && !isNaN(currentAudio.duration)) {
-                    const percent = (currentAudio.currentTime / currentAudio.duration) * 100;
-                    progress.style.width = `${percent}%`;
-                    currentTimeEl.textContent = formatTime(currentAudio.currentTime);
-                }
-            }, 500);
-        }
-
-        // Format Time (seconds to MM:SS)
-        function formatTime(seconds) {
-            if (isNaN(seconds)) return '0:00';
-            
-            const mins = Math.floor(seconds / 60);
-            const secs = Math.floor(seconds % 60);
-            return `${mins}:${secs.toString().padStart(2, '0')}`;
-        }
-
-        // Format Date
-        function formatDate(dateString) {
-            const options = { year: 'numeric', month: 'long', day: 'numeric' };
-            return new Date(dateString).toLocaleDateString('en-US', options);
-        }
-
-        // Setup Event Listeners
-        function setupEventListeners() {
-            // Play button
-            playBtn.addEventListener('click', togglePlayPause);
-            
-            // Next/Previous buttons
-            nextBtn.addEventListener('click', playNext);
-            prevBtn.addEventListener('click', playPrev);
-            
-            // Player toggle
-            playerToggle.addEventListener('click', function() {
-                audioPlayerContainer.classList.toggle('minimized');
-                const icon = this.querySelector('i');
-                icon.className = audioPlayerContainer.classList.contains('minimized') 
-                    ? 'fas fa-chevron-down' 
-                    : 'fas fa-chevron-up';
-            });
-            
-            // Download button
-            playerDownloadBtn.addEventListener('click', function() {
-                if (currentAudio.src) {
-                    const sermon = sermons[currentSermonIndex];
-                    downloadAudio(sermon.audioUrl, `${sermon.title}.mp3`);
-                }
-            });
-            
-            // Play buttons in sermon cards
-            document.addEventListener('click', function(e) {
-                if (e.target.closest('.play-btn')) {
-                    const playBtn = e.target.closest('.play-btn');
-                    if (playBtn.dataset.index) {
-                        const sermonIndex = parseInt(playBtn.dataset.index);
-                        playSermon(sermonIndex);
-                    } else if (playBtn.dataset.series) {
-                        // Play series
-                        const series = playBtn.dataset.series;
-                        const seriesSermons = sermons.filter(s => s.series.toLowerCase() === series);
-                        if (seriesSermons.length > 0) {
-                            currentPlaylist = seriesSermons;
-                            playSermon(0);
-                        }
+                    const targetElement = document.querySelector(targetId);
+                    if (targetElement) {
+                        window.scrollTo({
+                            top: targetElement.offsetTop - 80,
+                            behavior: 'smooth'
+                        });
                     }
                 }
                 
-                // Download buttons
-                if (e.target.closest('.download-btn')) {
-                    const downloadBtn = e.target.closest('.download-btn');
-                    const url = downloadBtn.dataset.url;
-                    const title = downloadBtn.dataset.title;
-                    downloadAudio(url, `${title}.mp3`);
+                // Close mobile menu if open
+                if (navLinks.classList.contains('active')) {
+                    navLinks.classList.remove('active');
+                    mobileMenuBtn.innerHTML = '<i class="fas fa-bars"></i>';
+                    document.body.style.overflow = 'auto';
+                    
+                    // Restore CTA button
+                    const originalCTA = document.querySelector('.nav-cta');
+                    if (!originalCTA.parentNode.classList.contains('nav-container')) {
+                        originalCTA.remove();
+                        navCTA.style.display = 'block';
+                    }
                 }
             });
+        });
+
+        // ====== FORM SUBMISSION ======
+        document.querySelector('.reg-form').addEventListener('submit', function(e) {
+            e.preventDefault();
             
-            // Filters
-            const filters = ['topicFilter', 'speakerFilter', 'seriesFilter', 'searchInput', 'sortFilter'];
-            filters.forEach(filterId => {
-                const element = document.getElementById(filterId);
-                if (element) {
-                    element.addEventListener('change', filterSermons);
+            // Get form values
+            const firstName = document.getElementById('firstName').value;
+            const email = document.getElementById('email').value;
+            
+            // Simulate form submission
+            const submitBtn = this.querySelector('.submit-btn');
+            const originalText = submitBtn.textContent;
+            submitBtn.textContent = 'Registering...';
+            submitBtn.disabled = true;
+            
+            setTimeout(() => {
+                alert(`Thank you ${firstName}! You have successfully registered for the next ARISE Conference. A confirmation email has been sent to ${email}.`);
+                this.reset();
+                submitBtn.textContent = originalText;
+                submitBtn.disabled = false;
+            }, 1500);
+        });
+
+        // ====== ANIMATION ON SCROLL ======
+        const observerOptions = {
+            threshold: 0.1,
+            rootMargin: '0px 0px -100px 0px'
+        };
+
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.style.opacity = '1';
+                    entry.target.style.transform = 'translateY(0)';
                 }
             });
-            
-            // Search input
-            const searchInput = document.getElementById('searchInput');
-            if (searchInput) {
-                searchInput.addEventListener('input', filterSermons);
-            }
-        }
+        }, observerOptions);
 
-        // Filter Sermons
-        function filterSermons() {
-            const topic = document.getElementById('topicFilter').value;
-            const speaker = document.getElementById('speakerFilter').value;
-            const series = document.getElementById('seriesFilter').value;
-            const search = document.getElementById('searchInput').value.toLowerCase();
-            const sort = document.getElementById('sortFilter').value;
-            
-            let filtered = [...sermons];
-            
-            // Apply filters
-            if (topic) {
-                filtered = filtered.filter(s => s.tags.includes(topic));
-            }
-            
-            if (speaker) {
-                filtered = filtered.filter(s => s.speaker.toLowerCase().includes(speaker.toLowerCase()));
-            }
-            
-            if (series) {
-                filtered = filtered.filter(s => s.series.toLowerCase() === series.toLowerCase());
-            }
-            
-            if (search) {
-                filtered = filtered.filter(s => 
-                    s.title.toLowerCase().includes(search) ||
-                    s.description.toLowerCase().includes(search) ||
-                    s.tags.some(tag => tag.toLowerCase().includes(search))
-                );
-            }
-            
-            // Apply sorting
-            switch(sort) {
-                case 'newest':
-                    filtered.sort((a, b) => new Date(b.date) - new Date(a.date));
-                    break;
-                case 'oldest':
-                    filtered.sort((a, b) => new Date(a.date) - new Date(b.date));
-                    break;
-                case 'popular':
-                    filtered.sort((a, b) => b.plays - a.plays);
-                    break;
-                case 'duration':
-                    filtered.sort((a, b) => {
-                        const aTime = parseDuration(a.duration);
-                        const bTime = parseDuration(b.duration);
-                        return bTime - aTime;
-                    });
-                    break;
-            }
-            
-            // Re-render grid
-            renderFilteredSermons(filtered);
-        }
+        // Observe elements to animate
+        document.querySelectorAll('.timeline-item, .testimonial-card, .highlight-box, .preacher-card').forEach(el => {
+            el.style.opacity = '0';
+            el.style.transform = 'translateY(30px)';
+            el.style.transition = 'opacity 0.5s ease, transform 0.5s ease';
+            observer.observe(el);
+        });
 
-        // Parse duration string to seconds
-        function parseDuration(duration) {
-            const parts = duration.split(':');
-            if (parts.length === 2) {
-                return parseInt(parts[0]) * 60 + parseInt(parts[1]);
+        // ====== HEADER SCROLL EFFECT ======
+        const header = document.querySelector('header');
+        window.addEventListener('scroll', () => {
+            if (window.scrollY > 100) {
+                header.style.boxShadow = '0 5px 30px rgba(0, 0, 0, 0.15)';
+                header.style.padding = '10px 0';
+            } else {
+                header.style.boxShadow = '0 3px 20px rgba(0, 0, 0, 0.08)';
+                header.style.padding = '15px 0';
             }
-            return 0;
-        }
+        });
 
-        // Render Filtered Sermons
-        function renderFilteredSermons(filteredSermons) {
-            sermonGrid.innerHTML = '';
-            
-            if (filteredSermons.length === 0) {
-                sermonGrid.innerHTML = `
-                    <div style="grid-column: 1 / -1; text-align: center; padding: 60px; background: #f8f9fa; border-radius: 15px;">
-                        <i class="fas fa-search" style="font-size: 3rem; color: #ccc; margin-bottom: 20px;"></i>
-                        <h3 style="color: #666; margin-bottom: 10px;">No sermons found</h3>
-                        <p style="color: #888;">Try different search terms or filters</p>
-                    </div>
-                `;
-                return;
-            }
-            
-            filteredSermons.forEach((sermon, index) => {
-                const card = document.createElement('div');
-                card.className = `sermon-card ${sermon.featured ? 'featured' : ''}`;
-                card.innerHTML = `
-                    <div class="sermon-header">
-                        <span class="sermon-series">${sermon.series}</span>
-                        <h3 class="sermon-title">${sermon.title}</h3>
-                        <div class="sermon-meta">
-                            <span><i class="fas fa-user"></i> ${sermon.speaker}</span>
-                            <span><i class="fas fa-calendar"></i> ${formatDate(sermon.date)}</span>
-                            <span><i class="fas fa-clock"></i> ${sermon.duration}</span>
-                        </div>
-                        <p class="sermon-description">${sermon.description}</p>
-                        <div class="sermon-tags">
-                            ${sermon.tags.map(tag => `<span class="tag">${tag}</span>`).join('')}
-                        </div>
-                    </div>
-                    <div class="sermon-actions">
-                        <button class="action-btn play-btn" data-index="${sermons.indexOf(sermon)}">
-                            <i class="fas fa-play"></i> Play Now
-                        </button>
-                        <button class="action-btn download-btn" data-url="${sermon.audioUrl}" data-title="${sermon.title}">
-                            <i class="fas fa-download"></i> Download MP3
-                        </button>
-                    </div>
-                `;
-                sermonGrid.appendChild(card);
-            });
-        }
-
-        // Download Audio
-        function downloadAudio(url, filename) {
-            const link = document.createElement('a');
-            link.href = url;
-            link.download = filename;
-            document.body.appendChild(link);
-            link.click();
-            document.body.removeChild(link);
-            
-            // Update download count (in a real app, this would be a server call)
-            alert(`Downloading: ${filename}\n\nIn a production app, this would trigger an actual download and update download statistics.`);
-        }
-
-        // Setup Background Playback (Service Worker for true background)
-        function setupBackgroundPlayback() {
-            // Register Service Worker for background playback (simplified)
-            if ('serviceWorker' in navigator) {
-                navigator.serviceWorker.register('/sw.js').catch(error => {
-                    console.log('Service Worker registration failed:', error);
-                });
+        // ====== PROFESSIONAL TOUCH: KEYBOARD NAVIGATION ======
+        document.addEventListener('keydown', (e) => {
+            // Arrow keys for slider navigation
+            if (e.key === 'ArrowLeft') {
+                prevSlide();
+                resetInterval();
+            } else if (e.key === 'ArrowRight') {
+                nextSlide();
+                resetInterval();
             }
             
-            // Setup visibility change to handle tab switching
-            document.addEventListener('visibilitychange', function() {
-                if (document.hidden && isPlaying) {
-                    console.log('Audio continues playing in background');
+            // Escape key to close mobile menu
+            if (e.key === 'Escape' && navLinks.classList.contains('active')) {
+                navLinks.classList.remove('active');
+                mobileMenuBtn.innerHTML = '<i class="fas fa-bars"></i>';
+                document.body.style.overflow = 'auto';
+                
+                // Restore CTA button
+                const originalCTA = document.querySelector('.nav-cta');
+                if (!originalCTA.parentNode.classList.contains('nav-container')) {
+                    originalCTA.remove();
+                    navCTA.style.display = 'block';
                 }
-            });
-            
-            // Setup beforeunload to warn about background playback
-            window.addEventListener('beforeunload', function(e) {
-                if (isPlaying) {
-                    // In a real app, you might want to save playback position
-                    console.log('Audio will continue playing in background');
-                }
-            });
-        }
+            }
+        });
 
-        // Mobile Menu Toggle
-        const mobileMenuBtn = document.querySelector('.mobile-menu-btn');
-        const navLinks = document.querySelector('.nav-links');
-        
-        if (mobileMenuBtn) {
-            mobileMenuBtn.addEventListener('click', function() {
-                navLinks.style.display = navLinks.style.display === 'flex' ? 'none' : 'flex';
-                mobileMenuBtn.innerHTML = navLinks.style.display === 'flex' 
-                    ? '<i class="fas fa-times"></i>' 
-                    : '<i class="fas fa-bars"></i>';
-            });
-        }
-
-        // Update stats with animation
-        function animateStats() {
-            const stats = [
-                { id: 'monthlyListens', target: 15842 },
-                { id: 'monthlyDownloads', target: 4237 },
-                { id: 'countries', target: 47 },
-                { id: 'totalListening', target: 25000 }
-            ];
-            
-            stats.forEach(stat => {
-                const element = document.getElementById(stat.id);
-                if (element) {
-                    animateValue(element, 0, stat.target, 2000);
+        // ====== RESIZE HANDLER ======
+        window.addEventListener('resize', () => {
+            if (window.innerWidth > 992) {
+                // Ensure CTA button is in correct position on desktop
+                const originalCTA = document.querySelector('.nav-cta');
+                if (!originalCTA.parentNode.classList.contains('nav-container')) {
+                    originalCTA.remove();
+                    navCTA.style.display = 'block';
                 }
-            });
-        }
-        
-        // Animate number counting
-        function animateValue(element, start, end, duration) {
-            let startTimestamp = null;
-            const step = (timestamp) => {
-                if (!startTimestamp) startTimestamp = timestamp;
-                const progress = Math.min((timestamp - startTimestamp) / duration, 1);
-                const value = Math.floor(progress * (end - start) + start);
-                element.textContent = value.toLocaleString();
-                if (progress < 1) {
-                    window.requestAnimationFrame(step);
-                }
-            };
-            window.requestAnimationFrame(step);
-        }
-        
-        // Start stat animation
-        setTimeout(animateStats, 1000);
+                navLinks.classList.remove('active');
+                mobileMenuBtn.innerHTML = '<i class="fas fa-bars"></i>';
+                document.body.style.overflow = 'auto';
+            }
+        });
     </script>
 </body>
-</html>
+    </html>
