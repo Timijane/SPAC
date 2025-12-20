@@ -333,7 +333,7 @@
             }
         }
         
-        /* ====== PROFESSIONAL HERO SLIDER ====== */
+        /* ====== UPDATED HERO SECTION ====== */
         .hero-slider {
             position: relative;
             height: clamp(600px, 90vh, 900px);
@@ -360,6 +360,9 @@
             background-size: cover;
             background-position: center;
             background-repeat: no-repeat;
+            display: flex;
+            align-items: center;
+            justify-content: center;
         }
         
         .slide.active {
@@ -372,7 +375,7 @@
             left: 0;
             width: 100%;
             height: 100%;
-            background: linear-gradient(to bottom, rgba(0,0,0,0.3), rgba(0,0,0,0.7));
+            background: linear-gradient(to bottom, rgba(0,0,0,0.4), rgba(0,0,0,0.7));
         }
         
         .hero-content {
@@ -392,23 +395,23 @@
         
         .hero-main-title {
             font-family: 'Montserrat', sans-serif;
-            font-size: clamp(3rem, 8vw, 6rem);
+            font-size: clamp(2rem, 6vw, 4.5rem);
             font-weight: 800;
-            margin-bottom: clamp(1rem, 3vw, 1.5rem);
+            margin-bottom: clamp(0.5rem, 2vw, 1rem);
             background: linear-gradient(to right, #FF4500, #FF8C00, #d4af37);
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
             background-clip: text;
             text-transform: uppercase;
-            letter-spacing: 2px;
+            letter-spacing: 1px;
             text-shadow: 0 10px 30px rgba(0,0,0,0.3);
-            line-height: 1;
+            line-height: 1.1;
         }
         
         .hero-subtitle {
-            font-size: clamp(1.25rem, 3vw, 2rem);
+            font-size: clamp(1.125rem, 2.5vw, 1.75rem);
             font-weight: 300;
-            margin-bottom: clamp(1.5rem, 4vw, 2rem);
+            margin-bottom: clamp(0.5rem, 2vw, 1rem);
             color: rgba(255,255,255,0.95);
             font-family: 'Playfair Display', serif;
             font-style: italic;
@@ -416,60 +419,60 @@
         }
         
         .hero-verse {
-            font-size: clamp(1rem, 2vw, 1.25rem);
+            font-size: clamp(0.875rem, 1.5vw, 1.125rem);
             color: var(--secondary);
-            margin-bottom: clamp(2rem, 6vw, 3rem);
+            margin-bottom: clamp(1rem, 4vw, 2rem);
             font-weight: 500;
-            padding: clamp(0.75rem, 2vw, 1rem) clamp(1.5rem, 3vw, 2rem);
+            padding: clamp(0.5rem, 1.5vw, 0.75rem) clamp(1rem, 2.5vw, 1.5rem);
             background: rgba(212, 175, 55, 0.1);
-            border-radius: 15px;
+            border-radius: 10px;
             display: inline-block;
-            border-left: 4px solid var(--secondary);
+            border-left: 3px solid var(--secondary);
             backdrop-filter: blur(10px);
         }
         
-        .hero-cards {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(min(280px, 100%), 1fr));
-            gap: clamp(1rem, 3vw, 1.5rem);
-            max-width: 1000px;
+        .slide-content {
+            position: absolute;
+            bottom: clamp(2rem, 6vw, 3rem);
+            left: 0;
             width: 100%;
-            margin-top: clamp(2rem, 5vw, 3rem);
+            padding: 0 clamp(1rem, 5vw, 3rem);
+            z-index: 4;
+            opacity: 0;
+            transform: translateY(20px);
+            transition: opacity 0.8s ease, transform 0.8s ease;
         }
         
-        .hero-card {
-            background: rgba(255, 255, 255, 0.1);
+        .slide.active .slide-content {
+            opacity: 1;
+            transform: translateY(0);
+        }
+        
+        .slide-feature {
+            background: rgba(255, 255, 255, 0.15);
             backdrop-filter: blur(15px);
             border-radius: 20px;
-            padding: clamp(1.5rem, 3vw, 2rem);
+            padding: clamp(1.25rem, 3vw, 1.75rem);
             border: 1px solid rgba(255, 255, 255, 0.2);
-            transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+            max-width: 400px;
+            margin: 0 auto;
             text-align: center;
-            position: relative;
-            overflow: hidden;
         }
         
-        .hero-card:hover {
-            transform: translateY(-15px);
-            background: rgba(255, 255, 255, 0.15);
-            border-color: rgba(212, 175, 55, 0.5);
-            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.3);
-        }
-        
-        .hero-card i {
+        .slide-feature i {
             font-size: clamp(2rem, 4vw, 2.5rem);
             color: var(--secondary);
-            margin-bottom: clamp(1rem, 2vw, 1.25rem);
+            margin-bottom: clamp(0.75rem, 2vw, 1rem);
         }
         
-        .hero-card h3 {
-            font-size: clamp(1.125rem, 2vw, 1.5rem);
+        .slide-feature h3 {
+            font-size: clamp(1.25rem, 2.5vw, 1.75rem);
             font-weight: 600;
-            margin-bottom: clamp(0.75rem, 1.5vw, 1rem);
+            margin-bottom: clamp(0.5rem, 1.5vw, 0.75rem);
             color: white;
         }
         
-        .hero-card p {
+        .slide-feature p {
             font-size: clamp(0.875rem, 1.5vw, 1rem);
             color: rgba(255, 255, 255, 0.85);
             line-height: 1.6;
@@ -826,10 +829,10 @@
             line-height: 1.7;
         }
         
-        /* ====== TESTIMONIALS ====== */
+        /* ====== UPDATED TESTIMONIALS ====== */
         .testimonials-container {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(min(300px, 100%), 1fr));
+            grid-template-columns: repeat(auto-fit, minmax(min(280px, 100%), 1fr));
             gap: clamp(1.5rem, 3vw, 2rem);
             margin-top: clamp(2rem, 5vw, 3rem);
         }
@@ -862,19 +865,19 @@
             align-items: center;
         }
         
-        .author-img {
+        .author-avatar {
             width: clamp(50px, 6vw, 60px);
             height: clamp(50px, 6vw, 60px);
             border-radius: 50%;
-            overflow: hidden;
+            background: linear-gradient(135deg, var(--primary), var(--secondary));
+            display: flex;
+            align-items: center;
+            justify-content: center;
             margin-right: clamp(1rem, 2vw, 1.25rem);
             border: 3px solid var(--secondary);
-        }
-        
-        .author-img img {
-            width: 100%;
-            height: 100%;
-            object-fit: cover;
+            color: white;
+            font-weight: bold;
+            font-size: clamp(1.25rem, 2vw, 1.5rem);
         }
         
         .author-info h4 {
@@ -1126,15 +1129,25 @@
             .slider-nav {
                 display: none;
             }
+            
+            .hero-main-title {
+                margin-top: 2rem;
+            }
         }
         
         @media (max-width: 480px) {
-            .hero-cards {
+            .form-row {
                 grid-template-columns: 1fr;
             }
             
-            .form-row {
-                grid-template-columns: 1fr;
+            .testimonial-author {
+                flex-direction: column;
+                text-align: center;
+            }
+            
+            .author-avatar {
+                margin-right: 0;
+                margin-bottom: 1rem;
             }
         }
     </style>
@@ -1174,29 +1187,14 @@
             <!-- Slides will be added here by JavaScript -->
         </div>
         
+        <!-- Static Hero Content (Always Visible) -->
         <div class="hero-content">
             <h1 class="hero-main-title">ARISE CONFERENCE</h1>
             <p class="hero-subtitle">A Monthly Gathering of Fire & Impartation</p>
             <div class="hero-verse">"Arise, shine, for your light has come, and the glory of the LORD rises upon you." - Isaiah 60:1</div>
-            
-            <div class="hero-cards">
-                <div class="hero-card hover-lift">
-                    <i class="fas fa-calendar-alt"></i>
-                    <h3>First Saturday Monthly</h3>
-                    <p>Every first Saturday of the month. Join us for a powerful time of prayer, worship, and impartation.</p>
-                </div>
-                <div class="hero-card hover-lift">
-                    <i class="fas fa-users"></i>
-                    <h3>Youth & Young Adults</h3>
-                    <p>A gathering specifically designed for young people ages 16-35 seeking spiritual awakening.</p>
-                </div>
-                <div class="hero-card hover-lift">
-                    <i class="fas fa-praying-hands"></i>
-                    <h3>Prayer & Impartation</h3>
-                    <p>Experience deep prayer, prophetic ministry, and tangible impartation of spiritual gifts.</p>
-                </div>
-            </div>
         </div>
+        
+        <!-- Slide-specific content will be added by JavaScript -->
         
         <div class="slider-controls" id="sliderDots">
             <!-- Dots will be added by JavaScript -->
@@ -1246,7 +1244,7 @@
                 </div>
                 
                 <div class="about-image hover-lift">
-                    <img src="yomi.jpg" alt="Pastor Yomi">
+                    <img src="py.jpg" alt="Pastor Yomi">
                     <div class="image-overlay">
                         <h4>Hosted by Pastor Yomi</h4>
                         <p>Dynamic minister with apostolic and prophetic mantle</p>
@@ -1307,7 +1305,7 @@
             <div class="pastor-section hover-lift">
                 <div class="pastor-content">
                     <div class="pastor-image">
-                        <img src="yomi.jpg" alt="Pastor Yomi">
+                        <img src="py.jpg" alt="Pastor Yomi">
                     </div>
                     <div class="pastor-info">
                         <div class="pastor-title">Visionary & Host</div>
@@ -1333,13 +1331,11 @@
             <div class="testimonials-container">
                 <div class="testimonial-card hover-lift">
                     <div class="quote-icon"><i class="fas fa-quote-right"></i></div>
-                    <p class="testimonial-text">"At ARISE, I received a clear word about my calling. That night changed everything. I left with clarity and fire that I'm still carrying today."</p>
+                    <p class="testimonial-text">"At ARISE, I received a clear word about my calling. That night changed everything. I left with clarity and fire that I'm still carrying today. The prayer impartation was tangible and life-changing."</p>
                     <div class="testimonial-author">
-                        <div class="author-img">
-                            <img src="https://images.unsplash.com/photo-1494790108755-2616b786d49?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" alt="Sarah">
-                        </div>
+                        <div class="author-avatar">TA</div>
                         <div class="author-info">
-                            <h4>Sarah M.</h4>
+                            <h4>Temitope Arulogun</h4>
                             <p>University Student</p>
                         </div>
                     </div>
@@ -1347,13 +1343,11 @@
                 
                 <div class="testimonial-card hover-lift">
                     <div class="quote-icon"><i class="fas fa-quote-right"></i></div>
-                    <p class="testimonial-text">"The prayer impartation was tangible. For the first time, I prayed in tongues and felt a new level of spiritual authority. ARISE is not just another meeting."</p>
+                    <p class="testimonial-text">"The atmosphere at ARISE is unlike any other. Every month, I leave refreshed, empowered, and equipped to face the challenges of life. The youth and young adult focus makes it so relevant."</p>
                     <div class="testimonial-author">
-                        <div class="author-img">
-                            <img src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" alt="David">
-                        </div>
+                        <div class="author-avatar">TI</div>
                         <div class="author-info">
-                            <h4>David T.</h4>
+                            <h4>Timileyin</h4>
                             <p>Young Professional</p>
                         </div>
                     </div>
@@ -1361,13 +1355,23 @@
                 
                 <div class="testimonial-card hover-lift">
                     <div class="quote-icon"><i class="fas fa-quote-right"></i></div>
-                    <p class="testimonial-text">"I was struggling with direction in my life. At ARISE, during the ministry time, I had a vision that clarified my next steps. This conference is supernatural."</p>
+                    <p class="testimonial-text">"First Saturday of every month has become my divine appointment. I was struggling with direction until I attended ARISE. The prophetic word I received gave me clarity and the fire to pursue my purpose."</p>
                     <div class="testimonial-author">
-                        <div class="author-img">
-                            <img src="https://images.unsplash.com/photo-1517841905240-472988babdf9?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" alt="Jennifer">
-                        </div>
+                        <div class="author-avatar">MI</div>
                         <div class="author-info">
-                            <h4>Jennifer L.</h4>
+                            <h4>Michael</h4>
+                            <p>Business Owner</p>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="testimonial-card hover-lift">
+                    <div class="quote-icon"><i class="fas fa-quote-right"></i></div>
+                    <p class="testimonial-text">"As a young adult, finding a place where I can connect with God and others has been life-changing. ARISE is that place for me. The prayer impartation sessions have transformed my spiritual life."</p>
+                    <div class="testimonial-author">
+                        <div class="author-avatar">FL</div>
+                        <div class="author-info">
+                            <h4>Florence</h4>
                             <p>Ministry Leader</p>
                         </div>
                     </div>
@@ -1540,18 +1544,54 @@
             }
         });
 
-        // ====== HERO SLIDER FUNCTIONALITY ======
+        // ====== UPDATED HERO SLIDER FUNCTIONALITY ======
         const sliderContainer = document.getElementById('sliderContainer');
         const sliderDots = document.getElementById('sliderDots');
         const prevSlideBtn = document.getElementById('prevSlide');
         const nextSlideBtn = document.getElementById('nextSlide');
 
-        // Array of slide images (using arise1.jpg, arise2.jpg, etc.)
+        // Array of slide data
         const slides = [
-            { src: 'arise1.jpg', alt: 'ARISE Conference Worship' },
-            { src: 'arise2.jpg', alt: 'ARISE Conference Youth Gathering' },
-            { src: 'arise3.jpg', alt: 'ARISE Conference Prayer Session' },
-            { src: 'arise4.jpg', alt: 'ARISE Conference Fire Impartation' }
+            {
+                id: 0,
+                bgImage: 'arise1.jpg',
+                alt: 'ARISE Conference Worship',
+                feature: {
+                    icon: 'fas fa-calendar-alt',
+                    title: 'First Saturday',
+                    description: 'Every first Saturday of the month. Join us for a powerful time of prayer, worship, and impartation.'
+                }
+            },
+            {
+                id: 1,
+                bgImage: 'arise2.jpg',
+                alt: 'ARISE Conference Youth Gathering',
+                feature: {
+                    icon: 'fas fa-users',
+                    title: 'Youth & Young Adults',
+                    description: 'A gathering specifically designed for young people ages 16-35 seeking spiritual awakening.'
+                }
+            },
+            {
+                id: 2,
+                bgImage: 'arise3.jpg',
+                alt: 'ARISE Conference Prayer Session',
+                feature: {
+                    icon: 'fas fa-praying-hands',
+                    title: 'Prayer Impartation',
+                    description: 'Experience deep prayer, prophetic ministry, and tangible impartation of spiritual gifts.'
+                }
+            },
+            {
+                id: 3,
+                bgImage: 'arise4.jpg',
+                alt: 'ARISE Conference Fire Impartation',
+                feature: {
+                    icon: 'fas fa-fire',
+                    title: 'Fire Encounter',
+                    description: 'Experience the fire of God that transforms, empowers, and sends you out with purpose.'
+                }
+            }
         ];
 
         let currentSlide = 0;
@@ -1560,15 +1600,31 @@
         // Initialize slides and dots
         function initSlider() {
             slides.forEach((slide, index) => {
-                // Create slide element
+                // Create slide element with background image
                 const slideElement = document.createElement('div');
                 slideElement.className = `slide ${index === 0 ? 'active' : ''}`;
-                slideElement.style.backgroundImage = `url('${slide.src}')`;
+                slideElement.style.backgroundImage = `url('${slide.bgImage}')`;
+                slideElement.dataset.id = slide.id;
                 
                 // Create overlay
                 const overlay = document.createElement('div');
                 overlay.className = 'slide-overlay';
                 slideElement.appendChild(overlay);
+                
+                // Create slide content (feature card)
+                const slideContent = document.createElement('div');
+                slideContent.className = 'slide-content';
+                if (index === 0) slideContent.classList.add('active');
+                
+                const featureHTML = `
+                    <div class="slide-feature hover-lift">
+                        <i class="${slide.feature.icon}"></i>
+                        <h3>${slide.feature.title}</h3>
+                        <p>${slide.feature.description}</p>
+                    </div>
+                `;
+                slideContent.innerHTML = featureHTML;
+                slideElement.appendChild(slideContent);
                 
                 sliderContainer.appendChild(slideElement);
                 
@@ -1584,14 +1640,19 @@
         // Go to specific slide
         function goToSlide(index) {
             const allSlides = document.querySelectorAll('.slide');
+            const allContents = document.querySelectorAll('.slide-content');
             const allDots = document.querySelectorAll('.slider-dot');
             
+            // Hide current slide and content
             allSlides[currentSlide].classList.remove('active');
+            allContents[currentSlide].classList.remove('active');
             allDots[currentSlide].classList.remove('active');
             
             currentSlide = index;
             
+            // Show new slide and content
             allSlides[currentSlide].classList.add('active');
+            allContents[currentSlide].classList.add('active');
             allDots[currentSlide].classList.add('active');
             
             resetInterval();
@@ -1713,7 +1774,7 @@
         }, observerOptions);
 
         // Observe elements to animate
-        document.querySelectorAll('.hero-card, .timeline-item, .testimonial-card, .highlight-box').forEach(el => {
+        document.querySelectorAll('.timeline-item, .testimonial-card, .highlight-box').forEach(el => {
             el.style.opacity = '0';
             el.style.transform = 'translateY(30px)';
             el.style.transition = 'opacity 0.5s ease, transform 0.5s ease';
