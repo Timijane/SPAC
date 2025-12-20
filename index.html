@@ -610,24 +610,42 @@
     75% { transform: translateX(5px); }
   }
   
+  @keyframes float {
+    0%, 100% { transform: translateY(0); }
+    50% { transform: translateY(-10px); }
+  }
+  
+  @keyframes sparkle {
+    0%, 100% { opacity: 0.7; }
+    50% { opacity: 1; text-shadow: 0 0 10px rgba(255, 255, 255, 0.8); }
+  }
+  
   .circle-button.bounce {
-    animation: bounce var(--animation-time, 3s) ease-in-out infinite;
+    animation: bounce var(--animation-time, 2s) ease-in-out infinite;
   }
   
   .circle-button.pulse {
-    animation: pulse var(--animation-time, 4s) ease-in-out infinite;
+    animation: pulse var(--animation-time, 1.5s) ease-in-out infinite;
   }
   
   .circle-button.rotate i {
-    animation: rotate var(--animation-time, 5s) linear infinite;
+    animation: rotate var(--animation-time, 8s) linear infinite;
   }
   
   .circle-button.glow {
-    animation: glow var(--animation-time, 3s) ease-in-out infinite;
+    animation: glow var(--animation-time, 2s) ease-in-out infinite;
   }
   
   .circle-button.shake {
-    animation: shake var(--animation-time, 2s) ease-in-out infinite;
+    animation: shake var(--animation-time, 1s) ease-in-out infinite;
+  }
+  
+  .circle-button.float {
+    animation: float var(--animation-time, 3s) ease-in-out infinite;
+  }
+  
+  .circle-button.sparkle i {
+    animation: sparkle var(--animation-time, 1.5s) ease-in-out infinite;
   }
   
   .circle-button.hover-active {
@@ -640,7 +658,7 @@
     border-radius: 50%;
     background: rgba(255, 255, 255, 0.7);
     transform: scale(0);
-    animation: ripple-animation 1s linear;
+    animation: ripple-animation 0.8s linear;
     pointer-events: none;
   }
   
@@ -653,8 +671,8 @@
   
   .circle-button.clicked {
     animation: none !important;
-    transform: scale(0.9);
-    transition: transform 0.3s ease;
+    transform: scale(0.95);
+    transition: transform 0.2s ease;
   }
   
   @media (max-width: 768px) {
@@ -720,12 +738,6 @@
     width: 100%;
     height: auto;
     filter: drop-shadow(0 10px 20px rgba(0,0,0,0.1));
-  }
-  
-  @keyframes float {
-    0% { transform: translateY(0px); }
-    50% { transform: translateY(-20px); }
-    100% { transform: translateY(0px); }
   }
   
   .we-are-spac {
@@ -845,6 +857,7 @@
     cursor: pointer;
     position: relative;
     transform-origin: center;
+    will-change: transform, opacity;
   }
   
   .picture-card:before {
@@ -1037,6 +1050,91 @@
     grid-template-columns: repeat(auto-fill, minmax(min(280px, 100%), 1fr));
     gap: clamp(1rem, 3vw, 2rem);
     margin-top: clamp(2rem, 5vw, 3.75rem);
+  }
+  
+  /* ====== MODAL FOR GALLERY POPUP ====== */
+  .modal {
+    display: none;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.9);
+    z-index: 2000;
+    justify-content: center;
+    align-items: center;
+    opacity: 0;
+    transition: opacity 0.3s ease;
+  }
+  
+  .modal.active {
+    display: flex;
+    opacity: 1;
+  }
+  
+  .modal-content {
+    background: white;
+    border-radius: 20px;
+    max-width: min(90%, 800px);
+    width: 90%;
+    overflow: hidden;
+    transform: scale(0.9);
+    transition: transform 0.3s ease;
+  }
+  
+  .modal.active .modal-content {
+    transform: scale(1);
+  }
+  
+  .modal-image {
+    width: 100%;
+    height: 400px;
+    object-fit: cover;
+  }
+  
+  .modal-caption {
+    padding: clamp(1.5rem, 4vw, 2rem);
+    text-align: center;
+  }
+  
+  .modal-caption h3 {
+    color: var(--primary);
+    font-size: clamp(1.5rem, 3vw, 2rem);
+    margin-bottom: 1rem;
+  }
+  
+  .modal-caption p {
+    color: #555;
+    line-height: 1.6;
+    font-size: clamp(1rem, 1.5vw, 1.2rem);
+  }
+  
+  .close-modal {
+    position: absolute;
+    top: 20px;
+    right: 30px;
+    color: white;
+    font-size: 40px;
+    cursor: pointer;
+    z-index: 2001;
+    transition: transform 0.3s ease;
+  }
+  
+  .close-modal:hover {
+    transform: scale(1.1);
+  }
+  
+  @media (max-width: 768px) {
+    .modal-image {
+      height: 300px;
+    }
+    
+    .close-modal {
+      top: 10px;
+      right: 20px;
+      font-size: 30px;
+    }
   }
   
   /* Footer */
@@ -1297,6 +1395,18 @@
 <!-- Skip to main content link -->
 <a href="#main-content" class="skip-to-main">Skip to main content</a>
 
+<!-- Modal for Gallery Popup -->
+<div class="modal" id="galleryModal">
+  <span class="close-modal">&times;</span>
+  <div class="modal-content">
+    <img class="modal-image" src="" alt="">
+    <div class="modal-caption">
+      <h3 id="modalTitle"></h3>
+      <p id="modalDescription"></p>
+    </div>
+  </div>
+</div>
+
 <!-- Scroll to Top Button -->
 <div class="scroll-top" id="scrollTop">
   <i class="fas fa-chevron-up"></i>
@@ -1328,7 +1438,6 @@
             <a href="teen-church.html">Teen Church</a>
             <a href="kids-church.html">Kids Church</a>
             <a href="marriage-counselling.html">Marriage & Counselling</a>
-            <a href="spac-uk.html">SPAC UK</a>
             <a href="spac-nxtion.html">SPAC Nxtion</a>
             <a href="spac-us.html">SPAC US</a>
           </div>
@@ -1464,11 +1573,7 @@
         <img src="marriage-counselling.png" alt="Marriage & Counselling" loading="lazy">
         <h3>Marriage & Counselling</h3>
       </div>
-      <!-- New Ministry Pictures Added -->
-      <div class="picture-card hover-lift" onclick="openPage('spac-uk.html')">
-        <img src="spac-uk.jpg" alt="SPAC UK" loading="lazy">
-        <h3>SPAC UK</h3>
-      </div>
+      <!-- Removed SPAC UK and updated other ministries -->
       <div class="picture-card hover-lift" onclick="openPage('spac-nxtion.html')">
         <img src="spac-nxtion.jpg" alt="SPAC Nxtion" loading="lazy">
         <h3>SPAC Nxtion</h3>
@@ -1483,19 +1588,19 @@
     <div class="insta-slider glass-effect">
       <h3 class="insta-title gradient-text">Our Programs Gallery</h3>
       <div class="insta-track">
-        <div class="insta-slide hover-lift" onclick="openPage('program1.html')">
+        <div class="insta-slide hover-lift" onclick="openGalleryModal('program1.jpg', 'Sunday Worship Service', 'Join us every Sunday for uplifting worship and inspirational messages that will transform your life. Our services are filled with powerful worship, relevant teaching, and a welcoming community.')">
           <img src="program1.jpg" alt="Program 1" loading="lazy">
         </div>
-        <div class="insta-slide hover-lift" onclick="openPage('program2.html')">
+        <div class="insta-slide hover-lift" onclick="openGalleryModal('program2.jpg', 'Youth Empowerment Night', 'Monthly gatherings for young people featuring dynamic speakers, worship, and fellowship. A safe space for youth to grow in faith and connect with peers.')">
           <img src="program2.jpg" alt="Program 2" loading="lazy">
         </div>
-        <div class="insta-slide hover-lift" onclick="openPage('program3.html')">
+        <div class="insta-slide hover-lift" onclick="openGalleryModal('program3.jpg', 'Community Outreach', 'Monthly community service projects where we demonstrate God\'s love through practical acts of kindness and support to our neighbors.')">
           <img src="program3.jpg" alt="Program 3" loading="lazy">
         </div>
-        <div class="insta-slide hover-lift" onclick="openPage('program4.html')">
+        <div class="insta-slide hover-lift" onclick="openGalleryModal('program4.jpg', 'Prayer & Fasting Conference', 'Annual spiritual retreat focused on deepening our prayer lives and seeking God\'s direction for the coming year.')">
           <img src="program4.jpg" alt="Program 4" loading="lazy">
         </div>
-        <div class="insta-slide hover-lift" onclick="openPage('program5.html')">
+        <div class="insta-slide hover-lift" onclick="openGalleryModal('program5.jpg', 'Family Fun Day', 'Quarterly event for families to connect, play, and grow together in a Christ-centered environment. Games, food, and fellowship for all ages.')">
           <img src="program5.jpg" alt="Program 5" loading="lazy">
         </div>
       </div>
@@ -1520,9 +1625,10 @@
         <img src="transport.png" alt="Transport Information" loading="lazy">
         <h3>Transport Information</h3>
       </div>
-      <div class="picture-card hover-lift" onclick="openPage('bible-study.html')">
-        <img src="bible-study.png" alt="Join Bible Study Group" loading="lazy">
-        <h3>Join Bible Study Group</h3>
+      <!-- Changed from Bible Study to Library -->
+      <div class="picture-card hover-lift" onclick="openPage('library.html')">
+        <img src="library.png" alt="Church Library" loading="lazy">
+        <h3>Library</h3>
       </div>
       <div class="picture-card hover-lift" onclick="openPage('contact-info.html')">
         <img src="contact-info.png" alt="Contact Information" loading="lazy">
@@ -1583,7 +1689,7 @@ window.addEventListener('scroll', () => {
   }
 });
 
-// 2. HAMBURGER MENU - ONLY X CLOSES THE MENU
+// HAMBURGER MENU
 const hamburger = document.querySelector('.hamburger');
 const navMenu = document.querySelector('.nav-menu');
 const dropdowns = document.querySelectorAll('.dropdown');
@@ -1600,10 +1706,7 @@ hamburger.addEventListener('click', () => {
   }
 });
 
-// REMOVED: The code that closes menu when clicking links
-// Now menu stays open when clicking links, only X closes it
-
-// Dropdown menu on mobile - still works but doesn't close main menu
+// Dropdown menu on mobile
 dropdowns.forEach(dropdown => {
   const trigger = dropdown.querySelector('a');
   trigger.addEventListener('click', (e) => {
@@ -1636,196 +1739,213 @@ window.addEventListener('scroll', function() {
   }
 });
 
-// 7. FASTER VIDEO LOADING
-const heroVideo = document.querySelector('.hero-video');
-
-// Preload video immediately
-window.addEventListener('DOMContentLoaded', function() {
-  // Force immediate video load
-  heroVideo.load();
+// ====== DYNAMIC EFFECTS FOR FIRST THREE CIRCLE BUTTONS ======
+function initializeDynamicButtons() {
+  const buttons = document.querySelectorAll('.circle-button.dynamic');
   
-  // Set video to lowest quality for faster loading, then switch to higher
-  heroVideo.currentTime = 0;
+  // Clear existing animations
+  buttons.forEach(btn => {
+    btn.style.animation = 'none';
+    btn.querySelector('i').style.animation = 'none';
+  });
   
-  // Try to play immediately
-  setTimeout(() => {
-    const playPromise = heroVideo.play();
-    if (playPromise !== undefined) {
-      playPromise.then(() => {
-        console.log('Video playing successfully');
-      }).catch(error => {
-        console.log('Video autoplay may be blocked:', error);
-        // Add play button if autoplay fails
-        addVideoPlayButton();
-      });
+  // Assign dynamic effects with faster animations
+  const effects = [
+    { name: 'bounce', time: '2s' },
+    { name: 'pulse', time: '1.5s' },
+    { name: 'float', time: '3s' }
+  ];
+  
+  const iconEffects = [
+    { name: 'rotate', time: '8s' },
+    { name: 'sparkle', time: '1.5s' },
+    { name: 'sparkle', time: '1.8s' }
+  ];
+  
+  buttons.forEach((button, index) => {
+    // Button animation
+    const effect = effects[index % effects.length];
+    button.style.setProperty('--animation-time', effect.time);
+    
+    // Remove previous animation classes
+    ['bounce', 'pulse', 'rotate', 'glow', 'shake', 'float'].forEach(cls => {
+      button.classList.remove(cls);
+    });
+    
+    // Add new animation
+    button.classList.add(effect.name);
+    
+    // Icon animation
+    const iconEffect = iconEffects[index % iconEffects.length];
+    const icon = button.querySelector('i');
+    icon.style.animation = 'none';
+    
+    // Apply icon animation
+    if (iconEffect.name === 'rotate') {
+      icon.style.animation = `rotate ${iconEffect.time} linear infinite`;
+    } else if (iconEffect.name === 'sparkle') {
+      icon.style.animation = `sparkle ${iconEffect.time} ease-in-out infinite`;
     }
-  }, 100);
+    
+    // Enhanced hover effects
+    button.addEventListener('mouseenter', function() {
+      this.style.transform = 'scale(1.15) rotate(5deg)';
+      this.style.zIndex = '10';
+    });
+    
+    button.addEventListener('mouseleave', function() {
+      this.style.transform = '';
+      this.style.zIndex = '';
+    });
+    
+    // Click effect
+    button.addEventListener('click', function(e) {
+      createRipple(e, this);
+      // Quick pulse effect on click
+      this.style.animation = 'none';
+      setTimeout(() => {
+        this.classList.add(effect.name);
+      }, 10);
+    });
+  });
+}
+
+// ====== GALLERY MODAL FUNCTIONS ======
+function openGalleryModal(imageSrc, title, description) {
+  const modal = document.getElementById('galleryModal');
+  const modalImage = modal.querySelector('.modal-image');
+  const modalTitle = document.getElementById('modalTitle');
+  const modalDescription = document.getElementById('modalDescription');
   
-  // Add event listener for when video metadata is loaded
-  heroVideo.addEventListener('loadedmetadata', function() {
-    this.currentTime = 0;
+  modalImage.src = imageSrc;
+  modalTitle.textContent = title;
+  modalDescription.textContent = description;
+  
+  modal.classList.add('active');
+  document.body.style.overflow = 'hidden';
+}
+
+function closeGalleryModal() {
+  const modal = document.getElementById('galleryModal');
+  modal.classList.remove('active');
+  document.body.style.overflow = 'auto';
+}
+
+// Close modal when clicking X or outside
+document.querySelector('.close-modal').addEventListener('click', closeGalleryModal);
+document.getElementById('galleryModal').addEventListener('click', function(e) {
+  if (e.target === this) {
+    closeGalleryModal();
+  }
+});
+
+// Close modal with Escape key
+document.addEventListener('keydown', function(e) {
+  if (e.key === 'Escape') {
+    closeGalleryModal();
+  }
+});
+
+// Create ripple effect
+function createRipple(event, element) {
+  const ripple = document.createElement('span');
+  const rect = element.getBoundingClientRect();
+  const size = Math.max(rect.width, rect.height);
+  const x = event.clientX - rect.left - size / 2;
+  const y = event.clientY - rect.top - size / 2;
+  
+  ripple.style.width = ripple.style.height = size + 'px';
+  ripple.style.left = x + 'px';
+  ripple.style.top = y + 'px';
+  ripple.classList.add('ripple');
+  
+  // Remove existing ripples
+  const existingRipples = element.querySelectorAll('.ripple');
+  existingRipples.forEach(r => r.remove());
+  
+  element.appendChild(ripple);
+  
+  // Remove ripple after animation
+  setTimeout(() => {
+    ripple.remove();
+  }, 800);
+}
+
+// ====== SMOOTHER SCROLLING AND ANIMATIONS ======
+let lastScrollY = 0;
+let ticking = false;
+
+function updateScroll() {
+  // Picture cards animation with requestAnimationFrame
+  const pictureCards = document.querySelectorAll('.picture-card:not(.visible)');
+  const windowHeight = window.innerHeight;
+  
+  pictureCards.forEach(card => {
+    const cardTop = card.getBoundingClientRect().top;
+    
+    if (cardTop < windowHeight - 100) {
+      card.classList.add('visible');
+    }
   });
   
-  // Add event listener for when video can play through
-  heroVideo.addEventListener('canplaythrough', function() {
-    console.log('Video can play through without buffering');
-  });
+  // Smooth parallax effect for hero
+  const hero = document.querySelector('.hero');
+  if (hero) {
+    const scrolled = window.pageYOffset;
+    const rate = scrolled * -0.5;
+    hero.style.transform = `translate3d(0, ${rate}px, 0)`;
+  }
   
-  // Initialize picture cards with random directional animations
-  initializePictureCards();
+  lastScrollY = window.scrollY;
+  ticking = false;
+}
+
+function requestTick() {
+  if (!ticking) {
+    requestAnimationFrame(updateScroll);
+    ticking = true;
+  }
+}
+
+// Optimized scroll event listener
+window.addEventListener('scroll', requestTick, { passive: true });
+
+// Initialize on load
+window.addEventListener('DOMContentLoaded', function() {
+  // Preload video
+  const heroVideo = document.querySelector('.hero-video');
+  if (heroVideo) heroVideo.load();
   
   // Initialize dynamic buttons
   initializeDynamicButtons();
   
-  // Hide loading animation
-  setTimeout(() => {
-    document.querySelector('.loading').style.opacity = '0';
-    setTimeout(() => {
-      document.querySelector('.loading').style.display = 'none';
-    }, 300);
-  }, 1000);
-});
-
-// ====== DYNAMIC EFFECTS FOR FIRST THREE CIRCLE BUTTONS ======
-function initializeDynamicButtons() {
-    const buttons = document.querySelectorAll('.circle-button.dynamic');
-    
-    // Remove existing animations
-    buttons.forEach(btn => {
-        btn.classList.remove('bounce', 'pulse', 'rotate', 'glow', 'shake');
-    });
-    
-    // SURPRISE EFFECT: Assign random dynamic effects to each button
-    const effects = ['bounce', 'pulse', 'rotate', 'glow', 'shake'];
-    const timings = ['2s', '3s', '4s', '5s'];
-    
-    buttons.forEach((button, index) => {
-        // Add initial animation class
-        const randomEffect = effects[Math.floor(Math.random() * effects.length)];
-        const randomTiming = timings[Math.floor(Math.random() * timings.length)];
-        
-        button.style.setProperty('--animation-time', randomTiming);
-        
-        // Clear previous animation classes
-        effects.forEach(effect => button.classList.remove(effect));
-        
-        // Add new animation class
-        button.classList.add(randomEffect);
-        
-        // Add hover effect
-        button.addEventListener('mouseenter', function() {
-            this.classList.add('hover-active');
-        });
-        
-        button.addEventListener('mouseleave', function() {
-            this.classList.remove('hover-active');
-        });
-        
-        // Add click ripple effect
-        button.addEventListener('click', function(e) {
-            createRipple(e, this);
-        });
-    });
-}
-
-// Create ripple effect on click
-function createRipple(event, element) {
-    const ripple = document.createElement('span');
-    const rect = element.getBoundingClientRect();
-    const size = Math.max(rect.width, rect.height);
-    const x = event.clientX - rect.left - size / 2;
-    const y = event.clientY - rect.top - size / 2;
-    
-    ripple.style.width = ripple.style.height = size + 'px';
-    ripple.style.left = x + 'px';
-    ripple.style.top = y + 'px';
-    ripple.classList.add('ripple');
-    
-    // Remove existing ripples
-    const existingRipples = element.querySelectorAll('.ripple');
-    existingRipples.forEach(r => r.remove());
-    
-    element.appendChild(ripple);
-    
-    // Remove ripple after animation
-    setTimeout(() => {
-        ripple.remove();
-    }, 1000);
-}
-
-// Dynamic prayer content
-const dynamicPrayers = [
-    "Lord, grant us wisdom in these challenging times...",
-    "Heavenly Father, bless our church with unity and love...",
-    "God of all comfort, be with those who are suffering today...",
-    "Lord Jesus, guide our leaders with Your divine wisdom...",
-    "Holy Spirit, fill our hearts with peace that surpasses understanding..."
-];
-
-// Dynamic testimonies
-const dynamicTestimonies = [
-    "God healed me from a long-term illness!",
-    "I found peace in Christ after years of searching...",
-    "Financial breakthrough after faithful giving!",
-    "Restored marriage through God's grace...",
-    "Delivered from addiction - 2 years clean!"
-];
-
-// Update button text dynamically
-function updateButtonContent() {
-    const prayerBtn = document.getElementById('prayer-button');
-    const testimonyBtn = document.getElementById('testimony-button');
-    
-    if(prayerBtn) {
-        const randomPrayer = dynamicPrayers[Math.floor(Math.random() * dynamicPrayers.length)];
-        prayerBtn.setAttribute('title', randomPrayer);
-    }
-    
-    if(testimonyBtn) {
-        const randomTestimony = dynamicTestimonies[Math.floor(Math.random() * dynamicTestimonies.length)];
-        testimonyBtn.setAttribute('title', randomTestimony);
-    }
-}
-
-// Call when page loads
-document.addEventListener('DOMContentLoaded', function() {
-    updateButtonContent();
-    
-    // Update content every 30 seconds
-    setInterval(updateButtonContent, 30000);
-});
-
-// Function to add play button if autoplay fails
-function addVideoPlayButton() {
-  const playBtn = document.createElement('div');
-  playBtn.className = 'video-play-btn';
-  playBtn.innerHTML = '<i class="fas fa-play"></i>';
-  playBtn.style.cssText = `
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-    width: 80px;
-    height: 80px;
-    background: rgba(0,0,0,0.7);
-    border-radius: 50%;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    color: white;
-    font-size: 30px;
-    z-index: 4;
-    cursor: pointer;
-    transition: all 0.3s ease;
-  `;
+  // Initialize picture cards with random directional animations
+  const pictureCards = document.querySelectorAll('.picture-card');
+  const animationClasses = [
+    'from-left', 'from-right', 'from-up', 'from-down',
+    'from-diagonal-left', 'from-diagonal-right'
+  ];
   
-  playBtn.addEventListener('click', () => {
-    heroVideo.play();
-    playBtn.style.display = 'none';
+  pictureCards.forEach((card, index) => {
+    const randomClass = animationClasses[index % animationClasses.length];
+    card.classList.add(randomClass);
+    card.style.transitionDelay = `${(index % 6) * 0.1}s`;
   });
   
-  document.querySelector('.hero').appendChild(playBtn);
-}
+  // Initial check for visible elements
+  updateScroll();
+  
+  // Hide loading animation
+  setTimeout(() => {
+    const loading = document.querySelector('.loading');
+    if (loading) {
+      loading.style.opacity = '0';
+      setTimeout(() => {
+        loading.style.display = 'none';
+      }, 300);
+    }
+  }, 1000);
+});
 
 // Scroll to top button
 const scrollTopBtn = document.getElementById('scrollTop');
@@ -1845,169 +1965,130 @@ scrollTopBtn.addEventListener('click', () => {
   });
 });
 
-// Circle button navigation with shape change
+// ====== IMPROVED BUTTON NAVIGATION (NO LOADING) ======
 function navigateToPage(page, element) {
-  // Special handling for dynamic buttons
+  // For dynamic buttons - no loading spinner
   if(['new-button', 'prayer-button', 'testimony-button'].includes(element.id)) {
+    createRipple(event, element);
+    
+    // Quick animation before navigation
     element.classList.add('clicked');
+    element.style.transform = 'scale(0.95)';
     
-    // Show loading animation
-    const originalContent = element.innerHTML;
-    element.innerHTML = '<i class="fas fa-spinner fa-spin"></i><h3>Loading...</h3>';
-    
-    // Navigate after animation
+    // Navigate immediately (no delay)
     setTimeout(() => {
       window.location.href = page;
-    }, 800);
+    }, 300);
     
     return false;
   }
   
   // Original behavior for other buttons
   element.classList.add('square');
-  
-  // Navigate after animation
   setTimeout(() => {
     window.location.href = page;
   }, 500);
 }
 
-// Open page for picture cards
 function openPage(page) {
   window.location.href = page;
 }
 
-// ====== ENHANCED PICTURE CARDS INITIALIZATION ======
-function initializePictureCards() {
-  const pictureCards = document.querySelectorAll('.picture-card');
-  const animationClasses = [
-    'from-left',
-    'from-right', 
-    'from-up',
-    'from-down',
-    'from-diagonal-left',
-    'from-diagonal-right'
-  ];
-  
-  // Remove old left/right classes and add random directional animations
-  pictureCards.forEach((card, index) => {
-    // Remove any existing directional classes
-    card.classList.remove('left', 'right');
-    
-    // Add random animation class
-    const randomClass = animationClasses[index % animationClasses.length];
-    card.classList.add(randomClass);
-    
-    // Add staggered delay
-    card.style.transitionDelay = `${(index % 6) * 0.1}s`;
-  });
-}
-
-// Scroll animation for picture cards
-function checkScroll() {
-  const pictureCards = document.querySelectorAll('.picture-card');
-  
-  pictureCards.forEach(card => {
-    const cardTop = card.getBoundingClientRect().top;
-    const windowHeight = window.innerHeight;
-    
-    if (cardTop < windowHeight - 100) {
-      card.classList.add('visible');
-    }
-  });
-}
-
-// Initial check
-window.addEventListener('load', checkScroll);
-
-// Check on scroll
-window.addEventListener('scroll', checkScroll);
-
-// Auto scroll for Instagram-like slider
+// ====== SMOOTH INSTAGRAM SLIDER ======
 const instaTrack = document.querySelector('.insta-track');
-let scrollAmount = 0;
-const slideWidth = 245; // width + gap
-let autoScrollInterval;
-
-function startAutoScroll() {
-  autoScrollInterval = setInterval(() => {
-    scrollAmount += slideWidth;
-    
-    // If scrolled to the end, reset
-    if (scrollAmount >= instaTrack.scrollWidth - instaTrack.clientWidth) {
-      scrollAmount = 0;
-      instaTrack.scrollTo({ left: 0, behavior: 'smooth' });
-    } else {
-      instaTrack.scrollTo({ left: scrollAmount, behavior: 'smooth' });
-    }
-  }, 3500);
+if (instaTrack) {
+  let scrollAmount = 0;
+  const slideWidth = 245;
+  let autoScrollInterval;
+  let isDragging = false;
+  let startX;
+  let scrollLeft;
+  
+  function startAutoScroll() {
+    autoScrollInterval = setInterval(() => {
+      if (!isDragging) {
+        scrollAmount += slideWidth;
+        
+        // Reset if at end
+        if (scrollAmount >= instaTrack.scrollWidth - instaTrack.clientWidth) {
+          scrollAmount = 0;
+          instaTrack.scrollTo({ left: 0, behavior: 'smooth' });
+        } else {
+          instaTrack.scrollTo({ left: scrollAmount, behavior: 'smooth' });
+        }
+      }
+    }, 4000); // Faster auto-scroll
+  }
+  
+  startAutoScroll();
+  
+  // Pause auto-scroll on hover
+  instaTrack.addEventListener('mouseenter', () => {
+    clearInterval(autoScrollInterval);
+  });
+  
+  instaTrack.addEventListener('mouseleave', () => {
+    startAutoScroll();
+  });
+  
+  // Make draggable
+  instaTrack.addEventListener('mousedown', (e) => {
+    isDragging = true;
+    startX = e.pageX - instaTrack.offsetLeft;
+    scrollLeft = instaTrack.scrollLeft;
+    instaTrack.style.cursor = 'grabbing';
+    clearInterval(autoScrollInterval);
+  });
+  
+  instaTrack.addEventListener('mouseleave', () => {
+    isDragging = false;
+    instaTrack.style.cursor = 'grab';
+  });
+  
+  instaTrack.addEventListener('mouseup', () => {
+    isDragging = false;
+    instaTrack.style.cursor = 'grab';
+    startAutoScroll();
+  });
+  
+  instaTrack.addEventListener('mousemove', (e) => {
+    if (!isDragging) return;
+    e.preventDefault();
+    const x = e.pageX - instaTrack.offsetLeft;
+    const walk = (x - startX) * 2;
+    instaTrack.scrollLeft = scrollLeft - walk;
+  });
+  
+  // Touch events for mobile
+  instaTrack.addEventListener('touchstart', (e) => {
+    isDragging = true;
+    startX = e.touches[0].pageX - instaTrack.offsetLeft;
+    scrollLeft = instaTrack.scrollLeft;
+    clearInterval(autoScrollInterval);
+  });
+  
+  instaTrack.addEventListener('touchend', () => {
+    isDragging = false;
+    startAutoScroll();
+  });
+  
+  instaTrack.addEventListener('touchmove', (e) => {
+    if (!isDragging) return;
+    e.preventDefault();
+    const x = e.touches[0].pageX - instaTrack.offsetLeft;
+    const walk = (x - startX) * 2;
+    instaTrack.scrollLeft = scrollLeft - walk;
+  });
 }
 
-// Start auto-scroll for Instagram slider
-startAutoScroll();
-
-// Pause auto-scroll on hover
-instaTrack.addEventListener('mouseenter', () => {
-  clearInterval(autoScrollInterval);
-});
-
-instaTrack.addEventListener('mouseleave', () => {
-  startAutoScroll();
-});
-
-// Make Instagram slider draggable
-let isDown = false;
-let startX;
-let scrollLeft;
-
-instaTrack.addEventListener('mousedown', (e) => {
-  isDown = true;
-  startX = e.pageX - instaTrack.offsetLeft;
-  scrollLeft = instaTrack.scrollLeft;
-});
-
-instaTrack.addEventListener('mouseleave', () => {
-  isDown = false;
-});
-
-instaTrack.addEventListener('mouseup', () => {
-  isDown = false;
-});
-
-instaTrack.addEventListener('mousemove', (e) => {
-  if (!isDown) return;
-  e.preventDefault();
-  const x = e.pageX - instaTrack.offsetLeft;
-  const walk = (x - startX) * 2;
-  instaTrack.scrollLeft = scrollLeft - walk;
-});
-
-// Touch events for mobile
-instaTrack.addEventListener('touchstart', (e) => {
-  isDown = true;
-  startX = e.touches[0].pageX - instaTrack.offsetLeft;
-  scrollLeft = instaTrack.scrollLeft;
-});
-
-instaTrack.addEventListener('touchend', () => {
-  isDown = false;
-});
-
-instaTrack.addEventListener('touchmove', (e) => {
-  if (!isDown) return;
-  e.preventDefault();
-  const x = e.touches[0].pageX - instaTrack.offsetLeft;
-  const walk = (x - startX) * 2;
-  instaTrack.scrollLeft = scrollLeft - walk;
-});
-
-// Add smooth scrolling for anchor links
+// Smooth scrolling for anchor links
 document.querySelectorAll('a[href^="#"]').forEach(anchor => {
   anchor.addEventListener('click', function(e) {
     if (this.getAttribute('href') === '#') return;
     
     e.preventDefault();
     const targetId = this.getAttribute('href');
+    
     if (targetId === '#home') {
       window.scrollTo({
         top: 0,
@@ -2028,77 +2109,15 @@ document.querySelectorAll('a[href^="#"]').forEach(anchor => {
 // Reinitialize on window resize
 window.addEventListener('resize', initializeDynamicButtons);
 
-// Professional touch: Lazy loading images
-const lazyImages = document.querySelectorAll('img[loading="lazy"]');
-const imageObserver = new IntersectionObserver((entries, observer) => {
-  entries.forEach(entry => {
-    if (entry.isIntersecting) {
-      const img = entry.target;
-      img.src = img.dataset.src || img.src;
-      img.classList.add('loaded');
-      observer.unobserve(img);
-    }
-  });
+// Performance optimization: Debounce resize events
+let resizeTimeout;
+window.addEventListener('resize', function() {
+  clearTimeout(resizeTimeout);
+  resizeTimeout = setTimeout(function() {
+    initializeDynamicButtons();
+    updateScroll();
+  }, 250);
 });
-
-lazyImages.forEach(img => {
-  if (img.complete) {
-    img.classList.add('loaded');
-  } else {
-    img.addEventListener('load', () => {
-      img.classList.add('loaded');
-    });
-  }
-  imageObserver.observe(img);
-});
-
-// Professional touch: Network status detection
-window.addEventListener('online', () => {
-  showNotification('You are back online', 'success');
-});
-
-window.addEventListener('offline', () => {
-  showNotification('You are offline. Some features may not work.', 'warning');
-});
-
-function showNotification(message, type) {
-  const notification = document.createElement('div');
-  notification.className = `notification ${type}`;
-  notification.textContent = message;
-  notification.style.cssText = `
-    position: fixed;
-    top: 20px;
-    right: 20px;
-    background: ${type === 'success' ? '#4CAF50' : '#FF9800'};
-    color: white;
-    padding: 1rem;
-    border-radius: 8px;
-    z-index: 9999;
-    animation: slideIn 0.3s ease;
-    max-width: 300px;
-  `;
-  
-  document.body.appendChild(notification);
-  setTimeout(() => {
-    notification.style.animation = 'slideOut 0.3s ease';
-    setTimeout(() => notification.remove(), 300);
-  }, 3000);
-}
-
-// Add notification animation styles
-const style = document.createElement('style');
-style.textContent = `
-  @keyframes slideIn {
-    from { transform: translateX(100%); opacity: 0; }
-    to { transform: translateX(0); opacity: 1; }
-  }
-  
-  @keyframes slideOut {
-    from { transform: translateX(0); opacity: 1; }
-    to { transform: translateX(100%); opacity: 0; }
-  }
-`;
-document.head.appendChild(style);
 </script>
 
 </body>
