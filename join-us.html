@@ -6,7 +6,6 @@
     <title>SPAC Church - Become Part of Our Community</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&family=Playfair+Display:wght@400;500;600&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
     <style>
         :root {
             --primary: #1a4b8c;
@@ -28,7 +27,7 @@
         }
         .container { width: 100%; max-width: 1200px; margin: 0 auto; padding: 0 20px; }
         
-        /* ====== HEADER ====== */
+        /* ====== HEADER - FIXED ====== */
         header {
             position: fixed;
             top: 0;
@@ -37,13 +36,29 @@
             box-shadow: 0 5px 30px rgba(0,0,0,0.08);
             z-index: 1000;
             backdrop-filter: blur(10px);
-            padding: 15px 0;
+            padding: 10px 0;
+            height: 70px;
+            transition: all 0.3s ease;
         }
+        
         .header-container {
             display: flex;
             justify-content: space-between;
             align-items: center;
+            height: 100%;
+            width: 100%;
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 0 20px;
         }
+        
+        /* Logo */
+        .logo {
+            display: flex;
+            align-items: center;
+            z-index: 1002;
+        }
+        
         .logo a {
             display: flex;
             align-items: center;
@@ -53,26 +68,48 @@
             font-size: 1.8rem;
             gap: 10px;
         }
-        .logo i { color: var(--accent); }
+        
+        .logo i { 
+            color: var(--accent); 
+            font-size: 2rem;
+        }
+        
+        /* Navigation Container */
         .nav-container {
             display: flex;
             align-items: center;
-            gap: 30px;
+            justify-content: flex-end;
+            width: 100%;
+            gap: 20px;
         }
-        .nav-links { 
-            display: flex; 
-            gap: 30px; 
+        
+        /* Desktop Navigation */
+        .nav-menu {
+            display: flex;
             list-style: none;
+            margin: 0;
+            padding: 0;
         }
-        .nav-links a {
+        
+        .nav-menu li {
+            margin-left: 25px;
+            position: relative;
+        }
+        
+        .nav-menu a {
             text-decoration: none;
             color: var(--dark);
             font-weight: 500;
+            font-size: 1rem;
+            transition: all 0.3s ease;
+            padding: 8px 0;
             position: relative;
-            padding: 5px 0;
-            transition: color 0.3s ease;
+            display: flex;
+            align-items: center;
+            gap: 8px;
         }
-        .nav-links a:after {
+        
+        .nav-menu a::after {
             content: '';
             position: absolute;
             bottom: 0;
@@ -82,8 +119,16 @@
             background: var(--secondary);
             transition: width 0.3s ease;
         }
-        .nav-links a:hover:after { width: 100%; }
-        .nav-links a:hover { color: var(--primary); }
+        
+        .nav-menu a:hover::after {
+            width: 100%;
+        }
+        
+        .nav-menu a:hover { 
+            color: var(--primary); 
+        }
+        
+        /* CTA Button */
         .nav-cta {
             background: var(--primary);
             color: white;
@@ -95,20 +140,179 @@
             display: inline-flex;
             align-items: center;
             gap: 8px;
+            white-space: nowrap;
         }
+        
         .nav-cta:hover {
             background: var(--accent);
             transform: translateY(-3px);
             box-shadow: 0 10px 20px rgba(139, 0, 0, 0.2);
         }
-        .mobile-menu-btn { 
-            display: none; 
-            background: none;
-            border: none;
-            font-size: 1.5rem;
-            color: var(--primary);
+        
+        /* Mobile Menu Toggle Button */
+        .menu-toggle {
+            display: none;
             cursor: pointer;
-            padding: 5px;
+            width: 44px;
+            height: 44px;
+            position: relative;
+            z-index: 1001;
+            background: var(--primary);
+            border-radius: 8px;
+            padding: 8px;
+            border: none;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            transition: all 0.3s ease;
+        }
+        
+        .menu-toggle:hover {
+            background: var(--accent);
+        }
+        
+        .menu-toggle span {
+            display: block;
+            height: 3px;
+            width: 24px;
+            background: white;
+            border-radius: 3px;
+            opacity: 1;
+            transform: rotate(0deg);
+            transition: .25s ease-in-out;
+            margin: 3px 0;
+        }
+        
+        .menu-toggle.active span:nth-child(1) {
+            transform: rotate(45deg) translate(5px, 5px);
+        }
+        
+        .menu-toggle.active span:nth-child(2) {
+            opacity: 0;
+        }
+        
+        .menu-toggle.active span:nth-child(3) {
+            transform: rotate(-45deg) translate(7px, -6px);
+        }
+        
+        /* Mobile Navigation */
+        @media (max-width: 992px) {
+            /* Show mobile menu toggle */
+            .menu-toggle {
+                display: flex;
+            }
+            
+            /* Hide desktop navigation */
+            .nav-menu, .nav-cta {
+                display: none;
+            }
+            
+            /* Mobile navigation menu */
+            .mobile-nav {
+                position: fixed;
+                top: 0;
+                right: -100%;
+                width: min(85%, 400px);
+                height: 100vh;
+                background: white;
+                backdrop-filter: blur(10px);
+                -webkit-backdrop-filter: blur(10px);
+                flex-direction: column;
+                justify-content: flex-start;
+                align-items: flex-start;
+                padding: 100px 30px 30px;
+                transition: right 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+                box-shadow: -10px 0 30px rgba(0,0,0,0.15);
+                z-index: 1000;
+                overflow-y: auto;
+            }
+            
+            .mobile-nav.active {
+                right: 0;
+            }
+            
+            .mobile-nav ul {
+                list-style: none;
+                width: 100%;
+            }
+            
+            .mobile-nav li {
+                margin: 0 0 20px 0;
+                width: 100%;
+                opacity: 0;
+                transform: translateX(20px);
+                transition: all 0.3s ease;
+            }
+            
+            .mobile-nav.active li {
+                opacity: 1;
+                transform: translateX(0);
+            }
+            
+            .mobile-nav li:nth-child(1) { transition-delay: 0.1s; }
+            .mobile-nav li:nth-child(2) { transition-delay: 0.2s; }
+            .mobile-nav li:nth-child(3) { transition-delay: 0.3s; }
+            .mobile-nav li:nth-child(4) { transition-delay: 0.4s; }
+            
+            .mobile-nav a {
+                font-size: 1.125rem;
+                display: block;
+                padding: 12px 0;
+                width: 100%;
+                border-bottom: 1px solid rgba(0,0,0,0.05);
+                color: var(--dark);
+                font-weight: 500;
+                display: flex;
+                align-items: center;
+                gap: 10px;
+            }
+            
+            .mobile-nav a:hover {
+                color: var(--primary);
+            }
+            
+            /* Mobile CTA */
+            .mobile-cta {
+                margin-top: 30px;
+                padding-top: 20px;
+                border-top: 1px solid rgba(0,0,0,0.05);
+                width: 100%;
+            }
+            
+            .mobile-cta a {
+                display: inline-flex;
+                align-items: center;
+                justify-content: center;
+                width: 100%;
+                background: var(--primary);
+                color: white;
+                padding: 15px;
+                border-radius: 10px;
+                text-decoration: none;
+                font-weight: 600;
+                gap: 10px;
+                transition: all 0.3s ease;
+            }
+            
+            .mobile-cta a:hover {
+                background: var(--accent);
+            }
+            
+            body.menu-open {
+                overflow: hidden;
+            }
+            
+            body.menu-open::before {
+                content: '';
+                position: fixed;
+                top: 0;
+                left: 0;
+                width: 100%;
+                height: 100%;
+                background: rgba(0, 0, 0, 0.5);
+                z-index: 999;
+                pointer-events: none;
+            }
         }
         
         /* ====== HERO SECTION ====== */
@@ -118,7 +322,7 @@
             background-position: center;
             background-attachment: fixed;
             color: white;
-            padding: 180px 0 100px;
+            padding: 140px 0 80px;
             text-align: center;
             position: relative;
             overflow: hidden;
@@ -182,7 +386,7 @@
         
         /* ====== MAIN CONTENT ====== */
         .section {
-            padding: 100px 0;
+            padding: 80px 0;
         }
         .section-title {
             font-family: 'Playfair Display', serif;
@@ -632,25 +836,7 @@
         @media (max-width: 992px) {
             .hero-title { font-size: 3rem; }
             .reg-content { grid-template-columns: 1fr; }
-            .nav-links { 
-                display: none; 
-                position: fixed;
-                top: 80px;
-                left: 0;
-                width: 100%;
-                background: white;
-                padding: 20px;
-                box-shadow: 0 10px 30px rgba(0,0,0,0.1);
-                flex-direction: column;
-                text-align: center;
-            }
-            .nav-links.active {
-                display: flex;
-            }
-            .mobile-menu-btn {
-                display: block;
-            }
-            .section { padding: 80px 0; }
+            .section { padding: 60px 0; }
             .section-title { font-size: 2.5rem; }
             .online-registration { padding: 50px 30px; }
             .cta-title { font-size: 2.5rem; }
@@ -685,7 +871,7 @@
                 </a>
             </div>
             <div class="nav-container">
-                <ul class="nav-links">
+                <ul class="nav-menu">
                     <li><a href="#online"><i class="fas fa-globe"></i> Online</a></li>
                     <li><a href="#branches"><i class="fas fa-map-marker-alt"></i> Branches</a></li>
                     <li><a href="#features"><i class="fas fa-star"></i> Features</a></li>
@@ -694,11 +880,29 @@
                 <a href="locations-branches.html" class="nav-cta">
                     <i class="fas fa-map-marked-alt"></i> Visit Our Branch
                 </a>
-                <button class="mobile-menu-btn">
-                    <i class="fas fa-bars"></i>
+                <button class="menu-toggle" id="menuToggle" aria-label="Toggle menu">
+                    <span></span>
+                    <span></span>
+                    <span></span>
                 </button>
             </div>
         </div>
+        
+        <!-- Mobile Navigation Menu -->
+        <nav class="mobile-nav" id="mobileNav">
+            <ul>
+                <li><a href="#online"><i class="fas fa-globe"></i> Online</a></li>
+                <li><a href="#branches"><i class="fas fa-map-marker-alt"></i> Branches</a></li>
+                <li><a href="#features"><i class="fas fa-star"></i> Features</a></li>
+                <li><a href="#next"><i class="fas fa-stairs"></i> Next Steps</a></li>
+            </ul>
+            
+            <div class="mobile-cta">
+                <a href="locations-branches.html">
+                    <i class="fas fa-map-marked-alt"></i> Visit Our Branch
+                </a>
+            </div>
+        </nav>
     </header>
 
     <!-- Hero Section -->
@@ -992,142 +1196,175 @@
     </footer>
 
     <script>
-        // Mobile Menu Toggle
-        const mobileMenuBtn = document.querySelector('.mobile-menu-btn');
-        const navLinks = document.querySelector('.nav-links');
-        const menuIcon = mobileMenuBtn.querySelector('i');
+        // Mobile menu functions
+        const menuToggle = document.getElementById('menuToggle');
+        const mobileNav = document.getElementById('mobileNav');
+        const body = document.body;
         
-        mobileMenuBtn.addEventListener('click', function() {
-            navLinks.classList.toggle('active');
-            if (navLinks.classList.contains('active')) {
-                menuIcon.classList.remove('fa-bars');
-                menuIcon.classList.add('fa-times');
+        function openMobileMenu() {
+            menuToggle.classList.add('active');
+            mobileNav.classList.add('active');
+            body.classList.add('menu-open');
+        }
+        
+        function closeMobileMenu() {
+            menuToggle.classList.remove('active');
+            mobileNav.classList.remove('active');
+            body.classList.remove('menu-open');
+        }
+        
+        function toggleMobileMenu() {
+            if (mobileNav.classList.contains('active')) {
+                closeMobileMenu();
             } else {
-                menuIcon.classList.remove('fa-times');
-                menuIcon.classList.add('fa-bars');
+                openMobileMenu();
             }
-        });
-
-        // Close menu when clicking outside on mobile
-        document.addEventListener('click', (event) => {
-            const isClickInside = navLinks.contains(event.target) || mobileMenuBtn.contains(event.target);
-            if (!isClickInside && window.innerWidth <= 992) {
-                navLinks.classList.remove('active');
-                menuIcon.classList.remove('fa-times');
-                menuIcon.classList.add('fa-bars');
-            }
-        });
-
-        // Form Submission with Modern Validation
-        document.getElementById('registrationForm').addEventListener('submit', function(e) {
-            e.preventDefault();
+        }
+        
+        // Setup event listeners
+        function setupEventListeners() {
+            // Mobile menu toggle
+            menuToggle.addEventListener('click', toggleMobileMenu);
             
-            const form = this;
-            const requiredFields = form.querySelectorAll('[required]');
-            let isValid = true;
+            // Close mobile menu when clicking links
+            document.querySelectorAll('.mobile-nav a').forEach(link => {
+                link.addEventListener('click', () => {
+                    closeMobileMenu();
+                });
+            });
             
-            // Add modern validation feedback
-            requiredFields.forEach(field => {
-                field.classList.remove('error');
-                if (!field.value.trim()) {
-                    isValid = false;
-                    field.classList.add('error');
-                    field.style.borderColor = 'var(--accent)';
-                } else {
-                    field.style.borderColor = '#eaeaea';
+            // Close mobile menu when clicking outside
+            document.addEventListener('click', (e) => {
+                if (mobileNav.classList.contains('active') && 
+                    !e.target.closest('.mobile-nav') && 
+                    !e.target.closest('.menu-toggle')) {
+                    closeMobileMenu();
                 }
             });
             
-            if (isValid) {
-                // Show success animation
-                const submitBtn = form.querySelector('.submit-btn');
-                const originalText = submitBtn.innerHTML;
-                
-                submitBtn.innerHTML = '<i class="fas fa-spinner fa-spin"></i> Processing...';
-                submitBtn.disabled = true;
-                
-                // Simulate API call
-                setTimeout(() => {
-                    // Show success modal (could be replaced with actual modal)
-                    alert('🎉 Welcome to SPAC Church!\n\nThank you for registering. Our welcome team will contact you within 24 hours to schedule your personal welcome call and send your digital welcome kit.');
+            // Close mobile menu on escape key
+            document.addEventListener('keydown', (e) => {
+                if (e.key === 'Escape' && mobileNav.classList.contains('active')) {
+                    closeMobileMenu();
+                }
+            });
+            
+            // Smooth scrolling for anchor links
+            document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+                anchor.addEventListener('click', function(e) {
+                    const href = this.getAttribute('href');
                     
-                    // Reset form
-                    form.reset();
-                    submitBtn.innerHTML = originalText;
-                    submitBtn.disabled = false;
+                    if (href === '#' || href.startsWith('http')) return;
                     
-                    // Confetti effect (simple version)
-                    const confetti = document.createElement('div');
-                    confetti.innerHTML = '🎉';
-                    confetti.style.position = 'fixed';
-                    confetti.style.top = '50%';
-                    confetti.style.left = '50%';
-                    confetti.style.fontSize = '3rem';
-                    confetti.style.transform = 'translate(-50%, -50%)';
-                    confetti.style.zIndex = '10000';
-                    document.body.appendChild(confetti);
+                    e.preventDefault();
+                    const targetId = href;
+                    const targetElement = document.querySelector(targetId);
                     
-                    setTimeout(() => {
-                        confetti.remove();
-                    }, 2000);
-                    
-                }, 1500);
-            } else {
-                // Shake animation for error
-                form.classList.add('shake');
-                setTimeout(() => form.classList.remove('shake'), 500);
-                alert('Please fill in all required fields marked with *.');
-            }
-        });
-
-        // Smooth Scrolling with offset
-        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
-            anchor.addEventListener('click', function(e) {
-                const href = this.getAttribute('href');
-                
-                if (href === '#' || href.startsWith('http')) return;
-                
-                e.preventDefault();
-                const targetId = href;
-                const targetElement = document.querySelector(targetId);
-                
-                if (targetElement) {
-                    window.scrollTo({
-                        top: targetElement.offsetTop - 80,
-                        behavior: 'smooth'
-                    });
-                    
-                    // Close mobile menu if open
-                    if (window.innerWidth <= 992 && navLinks.classList.contains('active')) {
-                        navLinks.classList.remove('active');
-                        menuIcon.classList.remove('fa-times');
-                        menuIcon.classList.add('fa-bars');
+                    if (targetElement) {
+                        window.scrollTo({
+                            top: targetElement.offsetTop - 70,
+                            behavior: 'smooth'
+                        });
+                        
+                        // Close mobile menu if open
+                        closeMobileMenu();
                     }
+                });
+            });
+            
+            // Sticky Header with Glass Effect
+            window.addEventListener('scroll', function() {
+                const header = document.querySelector('header');
+                if (window.scrollY > 50) {
+                    header.style.background = 'rgba(255, 255, 255, 0.95)';
+                    header.style.backdropFilter = 'blur(20px)';
+                    header.style.boxShadow = '0 5px 30px rgba(0,0,0,0.1)';
+                } else {
+                    header.style.background = 'rgba(255, 255, 255, 0.98)';
+                    header.style.backdropFilter = 'blur(10px)';
+                    header.style.boxShadow = '0 5px 30px rgba(0,0,0,0.08)';
                 }
             });
+            
+            // Branch location select redirect
+            document.getElementById('location').addEventListener('change', function() {
+                if (this.value === 'locations-branches.html') {
+                    window.location.href = 'locations-branches.html';
+                }
+            });
+            
+            // Form Submission
+            document.getElementById('registrationForm').addEventListener('submit', function(e) {
+                e.preventDefault();
+                
+                const form = this;
+                const requiredFields = form.querySelectorAll('[required]');
+                let isValid = true;
+                
+                // Add modern validation feedback
+                requiredFields.forEach(field => {
+                    field.classList.remove('error');
+                    if (!field.value.trim()) {
+                        isValid = false;
+                        field.classList.add('error');
+                        field.style.borderColor = 'var(--accent)';
+                    } else {
+                        field.style.borderColor = '#eaeaea';
+                    }
+                });
+                
+                if (isValid) {
+                    // Show success animation
+                    const submitBtn = form.querySelector('.submit-btn');
+                    const originalText = submitBtn.innerHTML;
+                    
+                    submitBtn.innerHTML = '<i class="fas fa-spinner fa-spin"></i> Processing...';
+                    submitBtn.disabled = true;
+                    
+                    // Simulate API call
+                    setTimeout(() => {
+                        // Show success modal (could be replaced with actual modal)
+                        alert('🎉 Welcome to SPAC Church!\n\nThank you for registering. Our welcome team will contact you within 24 hours to schedule your personal welcome call and send your digital welcome kit.');
+                        
+                        // Reset form
+                        form.reset();
+                        submitBtn.innerHTML = originalText;
+                        submitBtn.disabled = false;
+                        
+                        // Confetti effect (simple version)
+                        const confetti = document.createElement('div');
+                        confetti.innerHTML = '🎉';
+                        confetti.style.position = 'fixed';
+                        confetti.style.top = '50%';
+                        confetti.style.left = '50%';
+                        confetti.style.fontSize = '3rem';
+                        confetti.style.transform = 'translate(-50%, -50%)';
+                        confetti.style.zIndex = '10000';
+                        document.body.appendChild(confetti);
+                        
+                        setTimeout(() => {
+                            confetti.remove();
+                        }, 2000);
+                        
+                    }, 1500);
+                } else {
+                    // Shake animation for error
+                    form.classList.add('shake');
+                    setTimeout(() => form.classList.remove('shake'), 500);
+                    alert('Please fill in all required fields marked with *.');
+                }
+            });
+        }
+        
+        // Initialize the page when DOM is loaded
+        document.addEventListener('DOMContentLoaded', function() {
+            setupEventListeners();
+            
+            // Adjust hero padding for fixed header
+            const headerHeight = document.querySelector('header').offsetHeight;
+            document.querySelector('.join-hero').style.paddingTop = (headerHeight + 60) + 'px';
         });
-
-        // Sticky Header with Glass Effect
-        window.addEventListener('scroll', function() {
-            const header = document.querySelector('header');
-            if (window.scrollY > 50) {
-                header.style.background = 'rgba(255, 255, 255, 0.95)';
-                header.style.backdropFilter = 'blur(20px)';
-                header.style.boxShadow = '0 5px 30px rgba(0,0,0,0.1)';
-            } else {
-                header.style.background = 'rgba(255, 255, 255, 0.98)';
-                header.style.backdropFilter = 'blur(10px)';
-                header.style.boxShadow = '0 5px 30px rgba(0,0,0,0.08)';
-            }
-        });
-
-        // Branch location select redirect
-        document.getElementById('location').addEventListener('change', function() {
-            if (this.value === 'locations-branches.html') {
-                window.location.href = 'locations-branches.html';
-            }
-        });
-
+        
         // Add CSS for shake animation
         const style = document.createElement('style');
         style.textContent = `
