@@ -112,10 +112,11 @@
             align-items: center;
         }
         
+        /* CHANGED: More rounded logo */
         .logo-frame {
             width: clamp(50px, 6vw, 70px);
             height: clamp(50px, 6vw, 70px);
-            border-radius: 50%;
+            border-radius: 50%; /* Made more round */
             background: white;
             border: 3px solid var(--uk-blue);
             display: flex;
@@ -130,6 +131,7 @@
             width: 100%;
             height: 100%;
             object-fit: cover;
+            border-radius: 50%; /* Added to make image round */
         }
         
         .logo-text {
@@ -336,13 +338,14 @@
             opacity: 1;
         }
         
+        /* CHANGED: Lighter blue overlay for hero section */
         .hero-overlay {
             position: absolute;
             top: 0;
             left: 0;
             width: 100%;
             height: 100%;
-            background: linear-gradient(135deg, rgba(1, 33, 105, 0.85) 0%, rgba(26, 75, 140, 0.9) 100%);
+            background: linear-gradient(135deg, rgba(1, 33, 105, 0.5) 0%, rgba(26, 75, 140, 0.6) 100%);
             z-index: 2;
         }
         
@@ -566,21 +569,29 @@
             font-weight: 600;
         }
         
-        /* Service Times */
+        /* CHANGED: Service Times with background image */
         .service-times {
-            background: var(--uk-blue);
+            background: linear-gradient(135deg, rgba(1, 33, 105, 0.85) 0%, rgba(26, 75, 140, 0.9) 100%), url('uk6.jpg');
+            background-size: cover;
+            background-position: center;
+            background-repeat: no-repeat;
             color: white;
             padding: clamp(3rem, 8vw, 5rem) 0;
             margin-top: 60px;
             border-radius: 20px;
+            position: relative;
         }
         
         .service-times .section-title {
             color: white;
+            position: relative;
+            z-index: 2;
         }
         
         .service-times .section-subtitle {
             color: rgba(255,255,255,0.9);
+            position: relative;
+            z-index: 2;
         }
         
         .times-grid {
@@ -588,10 +599,12 @@
             grid-template-columns: repeat(auto-fit, minmax(min(250px, 100%), 1fr));
             gap: clamp(1.5rem, 3vw, 2rem);
             margin-top: 40px;
+            position: relative;
+            z-index: 2;
         }
         
         .time-card {
-            background: rgba(255,255,255,0.1);
+            background: rgba(255,255,255,0.15);
             backdrop-filter: blur(10px);
             padding: clamp(1.5rem, 3vw, 2rem);
             border-radius: 15px;
@@ -601,7 +614,7 @@
         }
         
         .time-card:hover {
-            background: rgba(255,255,255,0.2);
+            background: rgba(255,255,255,0.25);
             transform: translateY(-10px);
         }
         
@@ -621,6 +634,26 @@
             font-size: 1.1rem;
             opacity: 0.9;
             line-height: 1.6;
+        }
+        
+        /* ADDED: Leadership Class Image Section */
+        .leadership-image-section {
+            margin: 40px 0;
+            border-radius: 20px;
+            overflow: hidden;
+            box-shadow: 0 25px 60px rgba(0,0,0,0.1);
+            height: 300px;
+        }
+        
+        .leadership-image-section img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.8s ease;
+        }
+        
+        .leadership-image-section:hover img {
+            transform: scale(1.05);
         }
         
         /* Leadership Class Section */
@@ -893,6 +926,10 @@
             .slider-nav {
                 display: none;
             }
+            
+            .leadership-image-section {
+                height: 250px;
+            }
         }
         
         @media (max-width: 768px) {
@@ -902,6 +939,10 @@
             
             .nxtion-hero {
                 height: clamp(350px, 60vh, 500px);
+            }
+            
+            .leadership-image-section {
+                height: 200px;
             }
         }
         
@@ -1115,6 +1156,11 @@
         <div class="container">
             <h2 class="section-title gradient-text fade-in">Leadership Development Class</h2>
             <p class="section-subtitle fade-in">Equipping the next generation of leaders for Kingdom impact in the UK and beyond</p>
+            
+            <!-- ADDED: Leadership image uk5 -->
+            <div class="leadership-image-section fade-in">
+                <img src="uk5.jpg" alt="Leadership Class at SPAC Nxtion UK" loading="lazy">
+            </div>
             
             <div class="leadership-section fade-in">
                 <div class="leadership-content">
