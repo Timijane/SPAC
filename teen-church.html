@@ -413,6 +413,17 @@
             color: white;
         }
         
+        /* H1 set to 4 words as requested */
+        .hero-title-4 {
+            font-family: 'Playfair Display', serif;
+            font-size: clamp(2.5rem, 6vw, 4.5rem);
+            font-weight: 700;
+            line-height: 1.1;
+            margin-bottom: clamp(1rem, 3vw, 1.5rem);
+            text-shadow: 2px 2px 10px rgba(0,0,0,0.3);
+            color: white;
+        }
+        
         .hero-subtitle {
             font-size: clamp(1.125rem, 2.5vw, 1.5rem);
             font-weight: 300;
@@ -641,73 +652,7 @@
             transform: scale(1.05);
         }
         
-        /* ====== EVENTS SECTION ====== */
-        .events-container {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(min(300px, 100%), 1fr));
-            gap: clamp(1.5rem, 3vw, 2rem);
-            margin-top: clamp(2rem, 5vw, 3rem);
-        }
-        
-        .event-card {
-            background: white;
-            border-radius: 20px;
-            overflow: hidden;
-            box-shadow: 0 15px 40px rgba(0,0,0,0.08);
-            transition: all 0.3s ease;
-            border: 1px solid rgba(0, 0, 0, 0.05);
-        }
-        
-        .event-card:hover {
-            transform: translateY(-15px);
-            box-shadow: 0 25px 60px rgba(0,0,0,0.15);
-        }
-        
-        .event-image {
-            height: clamp(150px, 25vw, 220px);
-            overflow: hidden;
-        }
-        
-        .event-image img {
-            width: 100%;
-            height: 100%;
-            object-fit: cover;
-            transition: transform 0.5s ease;
-        }
-        
-        .event-card:hover .event-image img {
-            transform: scale(1.1);
-        }
-        
-        .event-content {
-            padding: clamp(1.5rem, 3vw, 2rem);
-        }
-        
-        .event-date {
-            display: inline-block;
-            background: var(--energy);
-            color: white;
-            padding: clamp(0.375rem, 1vw, 0.5rem) clamp(1rem, 2vw, 1.25rem);
-            border-radius: 50px;
-            font-size: clamp(0.75rem, 1.5vw, 0.875rem);
-            font-weight: 600;
-            margin-bottom: clamp(0.75rem, 1.5vw, 1rem);
-        }
-        
-        .event-title {
-            font-size: clamp(1.25rem, 2.5vw, 1.5rem);
-            color: var(--dark);
-            margin-bottom: clamp(0.75rem, 1.5vw, 1rem);
-        }
-        
-        .event-desc {
-            color: #666;
-            margin-bottom: clamp(1rem, 2vw, 1.25rem);
-            font-size: clamp(0.875rem, 1.5vw, 1rem);
-            line-height: 1.6;
-        }
-        
-        /* ====== GALLERY SECTION ====== */
+        /* ====== GALLERY SECTION (REDUCED TO 3 IMAGES) ====== */
         .gallery-section {
             background: linear-gradient(135deg, rgba(26, 75, 140, 0.1) 0%, rgba(212, 175, 55, 0.1) 100%);
             border-radius: 30px;
@@ -717,8 +662,8 @@
         
         .gallery-container {
             display: grid;
-            grid-template-columns: repeat(auto-fill, minmax(min(250px, 100%), 1fr));
-            gap: clamp(1rem, 2.5vw, 1.5rem);
+            grid-template-columns: repeat(auto-fill, minmax(min(300px, 100%), 1fr));
+            gap: clamp(1.5rem, 3vw, 2rem);
             margin-top: clamp(2rem, 5vw, 3rem);
         }
         
@@ -727,7 +672,7 @@
             overflow: hidden;
             box-shadow: 0 15px 40px rgba(0,0,0,0.1);
             transition: all 0.3s ease;
-            height: clamp(200px, 30vw, 250px);
+            height: clamp(250px, 35vw, 300px);
         }
         
         .gallery-item:hover {
@@ -1099,7 +1044,6 @@
                     <li class="dropdown"><a href="#about">About <i class="fas fa-chevron-down"></i></a>
                         <div class="dropdown-content">
                             <a href="#about">About Us</a>
-                            <a href="#events">Events</a>
                             <a href="#gallery">Gallery</a>
                         </div>
                     </li>
@@ -1121,13 +1065,14 @@
         
         <div class="hero-content">
             <span class="hero-tag">Ages 13-18</span>
-            <h1 class="hero-title">FIND YOUR FIRE.<br>FIND YOUR FAMILY.</h1>
+            <!-- H1 set to 4 words as requested -->
+            <h1 class="hero-title-4">Find Fire. Find Family.</h1>
             <p class="hero-subtitle">
                 A space where teens can be real, grow in faith, and build lifelong friendships. 
                 We're about discovering purpose, having fun, and encountering God in relevant ways.
             </p>
             <div class="hero-cta-container">
-                <a href="#events" class="btn-primary">Upcoming Events</a>
+                <a href="#gallery" class="btn-primary">View Gallery</a>
                 <a href="#connect" class="btn-secondary">Plan Your Visit</a>
             </div>
         </div>
@@ -1205,53 +1150,7 @@
         </div>
     </section>
 
-    <!-- Events Section -->
-    <section class="section section-dark" id="events">
-        <div class="container">
-            <h2 class="section-title">WHAT'S HAPPENING</h2>
-            <p class="section-subtitle">Weekly gatherings, special events, and service opportunities.</p>
-            
-            <div class="events-container">
-                <div class="event-card hover-lift">
-                    <div class="event-image">
-                        <img src="teens2.jpg" alt="Sunday Night Live">
-                    </div>
-                    <div class="event-content">
-                        <span class="event-date">Every Sunday • 5:00 PM</span>
-                        <h3 class="event-title">Sunday Night Live</h3>
-                        <p class="event-desc">Our weekly worship experience with live music, engaging messages, and hang time. The main event!</p>
-                        <a href="#" class="btn-secondary" style="padding: 0.75rem 1.5rem; font-size: 0.875rem;">Details</a>
-                    </div>
-                </div>
-                
-                <div class="event-card hover-lift">
-                    <div class="event-image">
-                        <img src="teens3.jpg" alt="Small Groups">
-                    </div>
-                    <div class="event-content">
-                        <span class="event-date">Wednesdays • 7:00 PM</span>
-                        <h3 class="event-title">Life Groups</h3>
-                        <p class="event-desc">Gender and grade-based small groups for deeper connection, discussion, and discipleship.</p>
-                        <a href="#" class="btn-secondary" style="padding: 0.75rem 1.5rem; font-size: 0.875rem;">Find Your Group</a>
-                    </div>
-                </div>
-                
-                <div class="event-card hover-lift">
-                    <div class="event-image">
-                        <img src="teens4.jpg" alt="Summer Camp">
-                    </div>
-                    <div class="event-content">
-                        <span class="event-date">June 15-20 • Register Now</span>
-                        <h3 class="event-title">Summer Camp 2025</h3>
-                        <p class="event-desc">A week of epic adventure, powerful worship, and life-changing encounters with God.</p>
-                        <a href="#!" class="btn-primary open-registration" style="padding: 0.75rem 1.5rem; font-size: 0.875rem;">Register Now</a>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- Gallery Section -->
+    <!-- Gallery Section (Reduced to 3 images) -->
     <section class="section section-light" id="gallery">
         <div class="container">
             <h2 class="section-title">MEMORIES & MOMENTS</h2>
@@ -1259,23 +1158,15 @@
             
             <div class="gallery-section">
                 <div class="gallery-container">
+                    <!-- Only 3 images as requested -->
                     <div class="gallery-item hover-lift">
-                        <img src="teens2.jpg" alt="Teen Church Gathering">
+                        <img src="teens1.jpg" alt="Teen Church Worship">
                     </div>
                     <div class="gallery-item hover-lift">
-                        <img src="teens3.jpg" alt="Worship Night">
+                        <img src="teens2.jpg" alt="Community Gathering">
                     </div>
                     <div class="gallery-item hover-lift">
-                        <img src="teens4.jpg" alt="Small Groups">
-                    </div>
-                    <div class="gallery-item hover-lift">
-                        <img src="teens5.jpg" alt="Outreach Event">
-                    </div>
-                    <div class="gallery-item hover-lift">
-                        <img src="teens6.jpg" alt="Summer Camp">
-                    </div>
-                    <div class="gallery-item hover-lift">
-                        <img src="teens1.jpg" alt="Community Building">
+                        <img src="teens3.jpg" alt="Youth Activities">
                     </div>
                 </div>
             </div>
@@ -1334,7 +1225,6 @@
                     <h3>Quick Links</h3>
                     <ul class="footer-links">
                         <li><a href="#about">About Us</a></li>
-                        <li><a href="#events">Events Calendar</a></li>
                         <li><a href="#gallery">Gallery</a></li>
                         <li><a href="#connect">Plan a Visit</a></li>
                         <li><a href="#!">Parent Resources</a></li>
@@ -1530,12 +1420,28 @@
         const prevSlideBtn = document.getElementById('prevSlide');
         const nextSlideBtn = document.getElementById('nextSlide');
 
-        // Array of slide images (teen1.jpg to teen4.jpg)
+        // Array of slide images with named hero images
         const slides = [
-            { src: 'teen1.jpg', alt: 'SPAC Teen Church Worship' },
-            { src: 'teen2.jpg', alt: 'Teen Church Community' },
-            { src: 'teen3.jpg', alt: 'Youth Gathering' },
-            { src: 'teen4.jpg', alt: 'Teen Ministry Activities' }
+            { 
+                src: 'teen-worship.jpg', 
+                alt: 'Teen Worship Experience',
+                name: 'Worship Together'
+            },
+            { 
+                src: 'teen-community.jpg', 
+                alt: 'Teen Community Building',
+                name: 'Build Community'
+            },
+            { 
+                src: 'teen-fun.jpg', 
+                alt: 'Teen Fun Activities',
+                name: 'Have Fun'
+            },
+            { 
+                src: 'teen-growth.jpg', 
+                alt: 'Teen Spiritual Growth',
+                name: 'Grow Spiritually'
+            }
         ];
 
         let currentSlide = 0;
@@ -1548,6 +1454,7 @@
                 const slideElement = document.createElement('div');
                 slideElement.className = `slide ${index === 0 ? 'active' : ''}`;
                 slideElement.style.backgroundImage = `url('${slide.src}')`;
+                slideElement.setAttribute('data-name', slide.name);
                 
                 sliderContainer.appendChild(slideElement);
                 
@@ -1590,7 +1497,7 @@
 
         // Start auto-slide
         function startInterval() {
-            slideInterval = setInterval(nextSlide, 5000); // Change every 5 seconds
+            slideInterval = setInterval(nextSlide, 5000);
         }
 
         // Reset interval
@@ -1733,7 +1640,7 @@
         }, observerOptions);
 
         // Observe elements to animate
-        document.querySelectorAll('.event-card, .gallery-item, .connect-container').forEach(el => {
+        document.querySelectorAll('.gallery-item, .connect-container').forEach(el => {
             el.style.opacity = '0';
             el.style.transform = 'translateY(30px)';
             el.style.transition = 'opacity 0.5s ease, transform 0.5s ease';
@@ -1813,4 +1720,4 @@
         });
     </script>
 </body>
-    </html>
+            </html>
