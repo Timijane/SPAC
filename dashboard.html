@@ -6,171 +6,106 @@
     <title>Portal | SPAC Ecosystem</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
     <style>
         @import url('https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;600;800&display=swap');
         
+        :root {
+            --bg: #020617; --panel: rgba(255, 255, 255, 0.03); --text: #f8fafc; --sub: #94a3b8;
+        }
+        .light-mode {
+            --bg: #f8fafc; --panel: rgba(0, 0, 0, 0.03); --text: #0f172a; --sub: #64748b;
+        }
+
         body {
-            background-color: #020617;
-            background-image: radial-gradient(at 0% 0%, rgba(30, 58, 138, 0.15) 0, transparent 50%), 
-                              radial-gradient(at 100% 100%, rgba(139, 92, 246, 0.1) 0, transparent 50%);
+            background-color: var(--bg);
+            color: var(--text);
             font-family: 'Plus Jakarta Sans', sans-serif;
-            color: #f8fafc;
-            min-height: 100vh;
+            transition: background 0.3s ease, color 0.3s ease;
         }
 
-        .glass-panel {
-            background: rgba(255, 255, 255, 0.03);
-            backdrop-filter: blur(12px);
-            border: 1px solid rgba(255, 255, 255, 0.08);
-        }
-
-        .bento-card {
-            background: rgba(255, 255, 255, 0.04);
-            border: 1px solid rgba(255, 255, 255, 0.08);
-            border-radius: 28px;
-            transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
-        }
-
-        .bento-card:hover {
-            background: rgba(255, 255, 255, 0.07);
-            border-color: rgba(59, 130, 246, 0.5);
-            transform: translateY(-6px);
-            box-shadow: 0 20px 40px -15px rgba(0, 0, 0, 0.5);
-        }
-
-        .nav-active {
-            background: linear-gradient(90deg, rgba(59, 130, 246, 0.2) 0%, transparent 100%);
-            border-left: 4px solid #3b82f6;
-            color: #3b82f6;
-        }
-
-        #mobile-menu {
-            transition: transform 0.3s ease-in-out;
-        }
+        .glass-panel { background: var(--panel); backdrop-filter: blur(12px); border: 1px solid rgba(128,128,128,0.1); }
+        .bento-card { background: var(--panel); border: 1px solid rgba(128,128,128,0.1); border-radius: 28px; transition: 0.3s; }
+        .bento-card:hover { border-color: #3b82f6; transform: translateY(-4px); }
         
-        .hide-scrollbar::-webkit-scrollbar { display: none; }
+        #announcement-bar {
+            background: linear-gradient(90deg, #3b82f6, #8b5cf6);
+            overflow: hidden;
+            white-space: nowrap;
+        }
+        .scroll-text { display: inline-block; animation: scroll 20s linear infinite; }
+        @keyframes scroll { from { transform: translateX(100%); } to { transform: translateX(-100%); } }
     </style>
 </head>
 <body class="flex overflow-hidden">
 
-    <aside class="hidden lg:flex flex-col w-72 h-screen glass-panel p-8 sticky top-0">
-        <div class="mb-12">
-            <h1 class="text-3xl font-black tracking-tighter text-white">SPAC<span class="text-blue-500">.</span></h1>
-            <p class="text-[10px] uppercase tracking-[0.3em] text-slate-500 font-bold">Leadership Portal</p>
+    <aside class="hidden lg:flex flex-col w-72 h-screen glass-panel p-8">
+        <div class="mb-10">
+            <h1 class="text-3xl font-black">SPAC<span class="text-blue-500">.</span></h1>
         </div>
 
         <nav class="space-y-2 flex-grow">
-            <a href="dashboard.html" class="flex items-center p-4 rounded-xl nav-active group">
-                <i class="fas fa-grid-2 mr-4 opacity-70"></i> Dashboard
-            </a>
-            <a href="profile.html" class="flex items-center p-4 rounded-xl hover:bg-white/5 transition text-slate-400 hover:text-white">
-                <i class="fas fa-user-circle mr-4"></i> My Profile
-            </a>
-            <a href="chat.html" class="flex items-center p-4 rounded-xl hover:bg-white/5 transition text-slate-400 hover:text-white">
-                <i class="fas fa-comment-alt-dots mr-4"></i> Community
-            </a>
-            <a href="ministers.html" class="flex items-center p-4 rounded-xl hover:bg-white/5 transition text-slate-400 hover:text-white">
-                <i class="fas fa-users-viewfinder mr-4"></i> Ministers
-            </a>
-            <a href="control.html" id="admin-link-desktop" class="hidden flex items-center p-4 rounded-xl text-yellow-500/80 hover:text-yellow-400 hover:bg-yellow-500/5 transition">
-                <i class="fas fa-shield-crown mr-4"></i> Admin Control
-            </a>
+            <a href="dashboard.html" class="flex items-center p-4 rounded-xl bg-blue-500/10 text-blue-500 font-bold"><i class="fas fa-th-large mr-4"></i> Dashboard</a>
+            <a href="profile.html" class="flex items-center p-4 rounded-xl hover:bg-white/5 transition"><i class="fas fa-user-circle mr-4"></i> My Profile</a>
+            <a href="chat.html" class="flex items-center p-4 rounded-xl hover:bg-white/5 transition"><i class="fas fa-comments mr-4"></i> Community</a>
+            <a href="ministers.html" class="flex items-center p-4 rounded-xl hover:bg-white/5 transition"><i class="fas fa-users mr-4"></i> Ministers</a>
+            <a href="control.html" id="admin-link" class="hidden flex items-center p-4 rounded-xl text-yellow-500 font-bold"><i class="fas fa-crown mr-4"></i> Control Home</a>
         </nav>
 
-        <button id="logoutBtn" class="flex items-center p-4 text-red-400 hover:bg-red-500/10 rounded-xl transition">
-            <i class="fas fa-power-off mr-4"></i> Sign Out
-        </button>
+        <div class="pt-6 border-t border-gray-500/20">
+            <button onclick="toggleTheme()" class="w-full flex items-center p-4 rounded-xl hover:bg-white/5 transition mb-2">
+                <i id="theme-icon" class="fas fa-moon mr-4"></i> Appearance
+            </button>
+            <button id="logoutBtn" class="w-full flex items-center p-4 text-red-500 hover:bg-red-500/10 rounded-xl transition">
+                <i class="fas fa-power-off mr-4"></i> Logout
+            </button>
+        </div>
     </aside>
 
-    <div id="mobile-menu" class="lg:hidden fixed inset-y-0 left-0 w-72 z-50 glass-panel -translate-x-full flex flex-col p-8">
-        <div class="flex justify-between items-center mb-12">
-            <h1 class="text-2xl font-black">SPAC.</h1>
-            <button onclick="toggleMenu()" class="text-white"><i class="fas fa-times text-xl"></i></button>
+    <main class="flex-1 h-screen overflow-y-auto relative">
+        <div id="announcement-bar" class="py-3 px-6 text-white text-sm font-bold flex items-center">
+            <i class="fas fa-microphone-alt mr-4"></i>
+            <div class="flex-1 overflow-hidden">
+                <span id="announcement-text" class="scroll-text italic text-lg">Waiting for official word from the Altar...</span>
+            </div>
+            <button id="add-ann-btn" class="hidden ml-4 bg-white/20 hover:bg-white/40 px-3 py-1 rounded-md text-xs uppercase">Edit</button>
         </div>
-        <nav class="space-y-4 flex-grow" id="mobile-nav-links">
-            </nav>
-    </div>
 
-    <main class="flex-1 h-screen overflow-y-auto hide-scrollbar">
-        <header class="lg:hidden p-6 flex justify-between items-center border-b border-white/5 sticky top-0 bg-[#020617]/80 backdrop-blur-md z-40">
-            <h1 class="text-xl font-black">SPAC.</h1>
-            <button onclick="toggleMenu()" class="p-2 bg-white/5 rounded-lg">
-                <i class="fas fa-bars text-xl text-blue-500"></i>
-            </button>
-        </header>
-
-        <div class="p-6 lg:p-12 max-w-7xl mx-auto">
-            <div class="flex flex-col md:flex-row justify-between items-start md:items-center mb-12 gap-6">
+        <div class="p-8 lg:p-12 max-w-7xl mx-auto">
+            <header class="flex justify-between items-center mb-12">
                 <div>
-                    <h2 class="text-4xl font-extrabold tracking-tight">Peace be unto you, <span id="userName" class="text-transparent bg-clip-text bg-gradient-to-r from-blue-400 to-purple-400">...</span></h2>
+                    <h2 class="text-4xl font-black tracking-tight">Peace, <span id="userName" class="text-blue-500">...</span></h2>
                     <p class="text-slate-500 mt-2 font-medium" id="currentDate"></p>
                 </div>
-                <div class="flex items-center gap-4 bg-white/5 p-2 pr-6 rounded-full border border-white/5">
-                    <div class="w-12 h-12 rounded-full bg-gradient-to-tr from-blue-600 to-purple-600 flex items-center justify-center font-bold shadow-lg" id="userInitial">?</div>
-                    <div>
-                        <p class="text-sm font-bold" id="userRole">Member</p>
-                        <p class="text-[10px] uppercase tracking-tighter text-blue-400 font-bold" id="userDept">General</p>
-                    </div>
+                <div id="admin-tools" class="hidden">
+                    <button onclick="postAnnouncement()" class="bg-blue-600 hover:bg-blue-500 text-white px-6 py-3 rounded-2xl font-bold shadow-lg shadow-blue-500/20">
+                        <i class="fas fa-plus mr-2"></i> New Broadcast
+                    </button>
                 </div>
-            </div>
+            </header>
 
-            <div class="grid grid-cols-1 md:grid-cols-6 gap-6">
-                
-                <div class="bento-card p-8 md:col-span-4 flex flex-col">
-                    <div class="flex justify-between items-center mb-8">
-                        <h3 class="text-xl font-bold flex items-center">
-                            <i class="fas fa-bullhorn text-blue-500 mr-3"></i> Altar Updates
-                        </h3>
-                        <span class="text-xs text-slate-500 bg-white/5 px-3 py-1 rounded-full italic">Updated Today</span>
-                    </div>
-                    <div class="space-y-6 flex-grow">
-                        <div class="p-4 rounded-2xl bg-white/5 border-l-4 border-blue-500">
-                            <p class="text-sm leading-relaxed text-slate-300">Welcome to the new Leadership Portal. Ensure your profile is updated to appear in the directory.</p>
-                        </div>
-                    </div>
-                </div>
-
-                <div class="bento-card p-8 md:col-span-2 flex flex-col items-center justify-center text-center">
-                    <div class="relative mb-6">
-                        <svg class="w-24 h-24">
-                            <circle cx="48" cy="48" r="44" stroke="currentColor" stroke-width="8" fill="transparent" class="text-white/5"></circle>
-                            <circle cx="48" cy="48" r="44" stroke="currentColor" stroke-width="8" fill="transparent" class="text-green-500" stroke-dasharray="276" stroke-dashoffset="0"></circle>
-                        </svg>
-                        <i class="fas fa-check-double absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 text-2xl text-green-500"></i>
-                    </div>
-                    <h3 class="text-lg font-bold">Verified Minister</h3>
-                    <p class="text-xs text-slate-500 mt-2 leading-relaxed">Your credentials have been successfully authenticated.</p>
-                </div>
-
-                <div class="bento-card p-8 md:col-span-3 hover:bg-blue-600/10 transition-colors group">
-                    <div class="flex justify-between items-center mb-6">
-                        <div class="w-12 h-12 rounded-2xl bg-blue-500/20 flex items-center justify-center text-blue-500">
-                            <i class="fas fa-comments text-xl"></i>
-                        </div>
-                        <span class="flex h-3 w-3 relative">
-                            <span class="animate-ping absolute inline-flex h-full w-full rounded-full bg-green-400 opacity-75"></span>
-                            <span class="relative inline-flex rounded-full h-3 w-3 bg-green-500"></span>
-                        </span>
-                    </div>
-                    <h3 class="text-xl font-bold mb-2">Fellowship Chat</h3>
-                    <p class="text-sm text-slate-400 mb-6">Join 50+ ministers in our real-time community hub.</p>
-                    <a href="chat.html" class="inline-flex items-center text-blue-400 font-bold group-hover:translate-x-2 transition-transform">Enter Room <i class="fas fa-arrow-right ml-2 text-xs"></i></a>
-                </div>
-
-                <div class="bento-card p-8 md:col-span-3">
-                    <h3 class="text-xl font-bold mb-6">Service Routine</h3>
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+                <div class="bento-card p-8 md:col-span-2">
+                    <h3 class="text-xl font-bold mb-6">Service Schedule</h3>
                     <div class="grid grid-cols-2 gap-4">
-                        <div class="bg-white/5 p-4 rounded-2xl">
-                            <p class="text-[10px] uppercase font-bold text-slate-500 mb-1">Sunday</p>
-                            <p class="text-sm font-bold">08:00 AM</p>
+                        <div class="p-6 bg-blue-500/5 rounded-3xl border border-blue-500/10">
+                            <p class="text-xs font-black text-blue-500 uppercase mb-2">Celebration Service</p>
+                            <p class="text-2xl font-bold">SUN 08:00 AM</p>
                         </div>
-                        <div class="bg-white/5 p-4 rounded-2xl">
-                            <p class="text-[10px] uppercase font-bold text-slate-500 mb-1">Wednesday</p>
-                            <p class="text-sm font-bold">06:00 PM</p>
+                        <div class="p-6 bg-purple-500/5 rounded-3xl border border-purple-500/10">
+                            <p class="text-xs font-black text-purple-500 uppercase mb-2">Word Encounter</p>
+                            <p class="text-2xl font-bold">WED 06:00 PM</p>
                         </div>
                     </div>
                 </div>
 
+                <div class="bento-card p-8 flex flex-col items-center justify-center text-center">
+                    <div class="w-16 h-16 bg-green-500/20 text-green-500 rounded-full flex items-center justify-center mb-4">
+                        <i class="fas fa-shield-check text-2xl"></i>
+                    </div>
+                    <h4 class="font-bold">Verified</h4>
+                    <p class="text-xs text-slate-500 mt-2">Ministry credentials verified for 2026.</p>
+                </div>
             </div>
         </div>
     </main>
@@ -178,7 +113,7 @@
     <script type="module">
         import { initializeApp } from "https://www.gstatic.com/firebasejs/10.7.1/firebase-app.js";
         import { getAuth, onAuthStateChanged, signOut } from "https://www.gstatic.com/firebasejs/10.7.1/firebase-auth.js";
-        import { getFirestore, doc, getDoc } from "https://www.gstatic.com/firebasejs/10.7.1/firebase-firestore.js";
+        import { getFirestore, doc, getDoc, setDoc, onSnapshot } from "https://www.gstatic.com/firebasejs/10.7.1/firebase-firestore.js";
 
         const firebaseConfig = {
             apiKey: "AIzaSyDJJHdcYziULByZLiNsXfFw9qIO6GkBUYk",
@@ -193,43 +128,54 @@
         const auth = getAuth(app);
         const db = getFirestore(app);
 
-        // UI: Mobile Menu Toggle
-        window.toggleMenu = () => {
-            const menu = document.getElementById('mobile-menu');
-            const isOpen = menu.style.transform === 'translateX(0px)';
-            menu.style.transform = isOpen ? 'translateX(-100%)' : 'translateX(0px)';
+        // 1. Theme Engine
+        window.toggleTheme = () => {
+            document.body.classList.toggle('light-mode');
+            const isLight = document.body.classList.contains('light-mode');
+            localStorage.setItem('theme', isLight ? 'light' : 'dark');
+            document.getElementById('theme-icon').className = isLight ? 'fas fa-sun mr-4' : 'fas fa-moon mr-4';
         };
+        if (localStorage.getItem('theme') === 'light') toggleTheme();
 
-        // UI: Sync Date
-        document.getElementById('currentDate').innerText = new Date().toLocaleDateString('en-US', { 
-            weekday: 'long', year: 'numeric', month: 'long', day: 'numeric' 
+        // 2. Load Real-time Announcement
+        onSnapshot(doc(db, "announcements", "global"), (doc) => {
+            if (doc.exists()) {
+                document.getElementById('announcement-text').innerText = doc.data().text;
+            }
         });
 
-        // Auth & Data
+        // 3. Admin: Post Announcement
+        window.postAnnouncement = async () => {
+            const { value: text } = await Swal.fire({
+                title: 'Broadcast Message',
+                input: 'textarea',
+                inputPlaceholder: 'Enter the church announcement here...',
+                showCancelButton: true,
+                confirmButtonColor: '#3b82f6'
+            });
+            if (text) {
+                await setDoc(doc(db, "announcements", "global"), { text: text, updatedBy: auth.currentUser.email });
+                Swal.fire('Broadcast Live', '', 'success');
+            }
+        };
+
+        // 4. Auth & Admin Checks
         onAuthStateChanged(auth, async (user) => {
             if (user) {
                 const userDoc = await getDoc(doc(db, "users", user.uid));
                 if (userDoc.exists()) {
                     const data = userDoc.data();
                     document.getElementById('userName').innerText = data.fullName.split(' ')[0];
-                    document.getElementById('userRole').innerText = data.role;
-                    document.getElementById('userDept').innerText = data.department;
-                    document.getElementById('userInitial').innerText = data.fullName.charAt(0);
-                    
-                    if(data.isAdmin) {
-                        document.getElementById('admin-link-desktop').classList.remove('hidden');
+                    if (data.isAdmin) {
+                        document.getElementById('admin-link').classList.remove('hidden');
+                        document.getElementById('admin-tools').classList.remove('hidden');
+                        document.getElementById('add-ann-btn').classList.remove('hidden');
                     }
-                } else {
-                    window.location.href = "profile.html";
                 }
-            } else {
-                window.location.href = "login.html";
-            }
+            } else { window.location.href = "login.html"; }
         });
 
-        document.getElementById('logoutBtn').onclick = () => {
-            signOut(auth).then(() => window.location.href = "login.html");
-        };
+        document.getElementById('logoutBtn').onclick = () => signOut(auth).then(() => window.location.href = "login.html");
     </script>
 </body>
 </html>
