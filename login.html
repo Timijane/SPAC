@@ -1,234 +1,138 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8" />
-  <title>Church Access</title>
-
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-
-  <style>
-    body {
-      margin: 0;
-      font-family: system-ui, -apple-system, BlinkMacSystemFont;
-      background: url("space.jpg") center/cover no-repeat fixed;
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      min-height: 100vh;
-    }
-
-    .auth-card {
-      background: #fff;
-      width: 100%;
-      max-width: 400px;
-      padding: 28px;
-      border-radius: 10px;
-      box-shadow: 0 15px 40px rgba(0,0,0,0.25);
-    }
-
-    h2 {
-      margin-bottom: 10px;
-      text-align: center;
-    }
-
-    .subtitle {
-      font-size: 14px;
-      text-align: center;
-      color: #666;
-      margin-bottom: 20px;
-    }
-
-    input {
-      width: 100%;
-      padding: 12px;
-      margin-bottom: 12px;
-      border-radius: 6px;
-      border: 1px solid #ccc;
-      font-size: 14px;
-    }
-
-    .password-wrapper {
-      position: relative;
-    }
-
-    .toggle-eye {
-      position: absolute;
-      right: 12px;
-      top: 12px;
-      cursor: pointer;
-      font-size: 14px;
-    }
-
-    button {
-      width: 100%;
-      padding: 12px;
-      background: #1f2937;
-      color: white;
-      border: none;
-      border-radius: 6px;
-      cursor: pointer;
-      font-size: 15px;
-    }
-
-    button:disabled {
-      opacity: 0.6;
-      cursor: not-allowed;
-    }
-
-    .link {
-      margin-top: 10px;
-      text-align: center;
-      font-size: 14px;
-      cursor: pointer;
-      color: #2563eb;
-    }
-
-    .forgot {
-      font-size: 13px;
-      text-align: right;
-      cursor: pointer;
-      color: #2563eb;
-      margin-bottom: 10px;
-    }
-
-    .message {
-      font-size: 14px;
-      text-align: center;
-      margin-top: 10px;
-      color: #b91c1c;
-    }
-  </style>
-</head>
-
-<body>
-
-<div class="auth-card">
-  <h2 id="formTitle">Login</h2>
-  <div class="subtitle" id="formSubtitle">
-    Authorized pastors and workers only
-  </div>
-
-  <input type="email" id="email" placeholder="Email address" />
-
-  <div class="password-wrapper">
-    <input type="password" id="password" placeholder="Password" />
-    <span class="toggle-eye" onclick="togglePassword()">Show</span>
-  </div>
-
-  <div class="forgot" onclick="resetPassword()">Forgot password?</div>
-
-  <button id="submitBtn" onclick="submitForm()">Continue</button>
-
-  <div class="link" onclick="toggleMode()" id="toggleText">
-    Don’t have an account? Sign up
-  </div>
-
-  <div class="message" id="message"></div>
-</div>
-
-<script type="module">
-  import { initializeApp } from "https://www.gstatic.com/firebasejs/10.7.1/firebase-app.js";
-  import {
-    getAuth,
-    signInWithEmailAndPassword,
-    createUserWithEmailAndPassword,
-    sendPasswordResetEmail
-  } from "https://www.gstatic.com/firebasejs/10.7.1/firebase-auth.js";
-  import {
-    getFirestore,
-    doc,
-    getDoc,
-    setDoc
-  } from "https://www.gstatic.com/firebasejs/10.7.1/firebase-firestore.js";
-
-  const firebaseConfig = {
-    apiKey: "AIzaSyDJJHdcYziULByZLiNsXfFw9qIO6GkBUYk",
-    authDomain: "spac-30f7d.firebaseapp.com",
-    projectId: "spac-30f7d",
-    storageBucket: "spac-30f7d.firebasestorage.app",
-    messagingSenderId: "172917067522",
-    appId: "1:172917067522:web:3701388be5f2d86f7a3c1b",
-    measurementId: "G-DPYY8Z8M1W"
-  };
-
-  const app = initializeApp(firebaseConfig);
-  const auth = getAuth(app);
-  const db = getFirestore(app);
-
-  let isLogin = true;
-
-  window.toggleMode = () => {
-    isLogin = !isLogin;
-    document.getElementById("formTitle").innerText = isLogin ? "Login" : "Create Account";
-    document.getElementById("toggleText").innerText =
-      isLogin ? "Don’t have an account? Sign up" : "Already have an account? Login";
-    document.getElementById("message").innerText = "";
-  };
-
-  window.togglePassword = () => {
-    const p = document.getElementById("password");
-    p.type = p.type === "password" ? "text" : "password";
-  };
-
-  window.resetPassword = async () => {
-    const email = document.getElementById("email").value;
-    if (!email) {
-      showMessage("Enter your email first.");
-      return;
-    }
-    await sendPasswordResetEmail(auth, email);
-    showMessage("Password reset email sent.", false);
-  };
-
-  window.submitForm = async () => {
-    disable(true);
-    const email = emailInput.value;
-    const password = passwordInput.value;
-
-    try {
-      let cred;
-
-      if (isLogin) {
-        cred = await signInWithEmailAndPassword(auth, email, password);
-      } else {
-        const allowedRef = doc(db, "allowedUsers", email);
-        const allowedSnap = await getDoc(allowedRef);
-
-        if (!allowedSnap.exists() || !allowedSnap.data().isActive) {
-          throw new Error("You are not authorized by the church administration.");
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SPAC - Church Portal</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+    <style>
+        body {
+            /* Background image applied globally as requested */
+            background: linear-gradient(rgba(0,0,0,0.6), rgba(0,0,0,0.6)), url('spac.jpg');
+            background-size: cover;
+            background-position: center;
+            background-attachment: fixed;
+            font-family: 'Inter', sans-serif;
         }
+        .glass-card {
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(10px);
+            border-radius: 15px;
+        }
+        .hidden { display: none; }
+    </style>
+</head>
+<body class="min-h-screen flex items-center justify-center p-4">
 
-        cred = await createUserWithEmailAndPassword(auth, email, password);
+    <div id="login-container" class="glass-card w-full max-w-md p-8 shadow-2xl">
+        <h2 class="text-3xl font-bold text-center text-blue-900 mb-6">SPAC LOGIN</h2>
+        <form id="login-form" class="space-y-4">
+            <div>
+                <label class="block text-gray-700 font-semibold">Email Address</label>
+                <input type="email" id="login-email" required class="w-full px-4 py-2 border rounded-lg focus:outline-blue-500">
+            </div>
+            <div class="relative">
+                <label class="block text-gray-700 font-semibold">Password</label>
+                <input type="password" id="login-password" required class="w-full px-4 py-2 border rounded-lg focus:outline-blue-500">
+                <i class="fa fa-eye absolute right-3 top-10 cursor-pointer text-gray-500" onclick="togglePass('login-password')"></i>
+            </div>
+            <p onclick="forgotPassword()" class="text-sm text-blue-600 cursor-pointer hover:underline">Forgot Password?</p>
+            <button type="submit" class="w-full bg-blue-900 text-white py-2 rounded-lg font-bold hover:bg-blue-800 transition">Login</button>
+        </form>
+        <p class="mt-4 text-center text-gray-600">New here? <span onclick="showForm('signup')" class="text-blue-600 font-bold cursor-pointer">Sign Up</span></p>
+    </div>
 
-        await setDoc(doc(db, "users", cred.user.uid), {
-          email,
-          role: allowedSnap.data().role,
-          createdAt: new Date()
+    <div id="signup-container" class="glass-card w-full max-w-md p-8 shadow-2xl hidden">
+        <h2 class="text-3xl font-bold text-center text-blue-900 mb-6">CREATE ACCOUNT</h2>
+        <form id="signup-form" class="space-y-4">
+            <div>
+                <label class="block text-gray-700 font-semibold">Email Address</label>
+                <input type="email" id="signup-email" required class="w-full px-4 py-2 border rounded-lg focus:outline-blue-500">
+            </div>
+            <div class="relative">
+                <label class="block text-gray-700 font-semibold">Create Password</label>
+                <input type="password" id="signup-password" required class="w-full px-4 py-2 border rounded-lg focus:outline-blue-500">
+                <i class="fa fa-eye absolute right-3 top-10 cursor-pointer text-gray-500" onclick="togglePass('signup-password')"></i>
+            </div>
+            <button type="submit" class="w-full bg-green-700 text-white py-2 rounded-lg font-bold hover:bg-green-600 transition">Register</button>
+        </form>
+        <p class="mt-4 text-center text-gray-600">Already have an account? <span onclick="showForm('login')" class="text-blue-600 font-bold cursor-pointer">Login</span></p>
+    </div>
+
+    <script type="module">
+        import { initializeApp } from "https://www.gstatic.com/firebasejs/10.7.1/firebase-app.js";
+        import { getAuth, signInWithEmailAndPassword, createUserWithEmailAndPassword, sendPasswordResetEmail } from "https://www.gstatic.com/firebasejs/10.7.1/firebase-auth.js";
+        import { getFirestore, doc, setDoc } from "https://www.gstatic.com/firebasejs/10.7.1/firebase-firestore.js";
+
+        // Your Config
+        const firebaseConfig = {
+            apiKey: "AIzaSyDJJHdcYziULByZLiNsXfFw9qIO6GkBUYk",
+            authDomain: "spac-30f7d.firebaseapp.com",
+            projectId: "spac-30f7d",
+            storageBucket: "spac-30f7d.firebasestorage.app",
+            messagingSenderId: "172917067522",
+            appId: "1:172917067522:web:3701388be5f2d86f7a3c1b"
+        };
+
+        const app = initializeApp(firebaseConfig);
+        const auth = getAuth(app);
+        const db = getFirestore(app);
+
+        // Toggle Eye Function
+        window.togglePass = (id) => {
+            const input = document.getElementById(id);
+            input.type = input.type === "password" ? "text" : "password";
+        };
+
+        // Switch Forms
+        window.showForm = (type) => {
+            document.getElementById('login-container').classList.toggle('hidden', type === 'signup');
+            document.getElementById('signup-container').classList.toggle('hidden', type === 'login');
+        };
+
+        // SIGN UP LOGIC
+        document.getElementById('signup-form').addEventListener('submit', async (e) => {
+            e.preventDefault();
+            const email = document.getElementById('signup-email').value;
+            const pass = document.getElementById('signup-password').value;
+            try {
+                const userCredential = await createUserWithEmailAndPassword(auth, email, pass);
+                Swal.fire("Success!", "Account created. Please complete your profile.", "success")
+                .then(() => window.location.href = "profile.html"); 
+            } catch (error) {
+                Swal.fire("Error", error.message, "error");
+            }
         });
-      }
 
-      const profileSnap = await getDoc(doc(db, "ministers", cred.user.uid));
-      window.location.href = profileSnap.exists()
-        ? "dashboard.html"
-        : "profile.html";
+        // LOGIN LOGIC
+        document.getElementById('login-form').addEventListener('submit', async (e) => {
+            e.preventDefault();
+            const email = document.getElementById('login-email').value;
+            const pass = document.getElementById('login-password').value;
+            try {
+                await signInWithEmailAndPassword(auth, email, pass);
+                window.location.href = "profile.html"; // Direct to profile as requested
+            } catch (error) {
+                Swal.fire("Login Failed", "Check your credentials", "error");
+            }
+        });
 
-    } catch (err) {
-      showMessage(err.message);
-    }
-
-    disable(false);
-  };
-
-  function disable(state) {
-    submitBtn.disabled = state;
-  }
-
-  function showMessage(msg, error = true) {
-    const el = document.getElementById("message");
-    el.innerText = msg;
-    el.style.color = error ? "#b91c1c" : "#15803d";
-  }
-</script>
-
+        // FORGOT PASSWORD
+        window.forgotPassword = async () => {
+            const { value: email } = await Swal.fire({
+                title: 'Reset Password',
+                input: 'email',
+                inputLabel: 'Enter your church email',
+                showCancelButton: true
+            });
+            if (email) {
+                sendPasswordResetEmail(auth, email)
+                    .then(() => Swal.fire("Email Sent", "Check your inbox for the reset link!", "info"))
+                    .catch(err => Swal.fire("Error", err.message, "error"));
+            }
+        };
+    </script>
 </body>
 </html>
