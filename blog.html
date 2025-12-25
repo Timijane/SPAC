@@ -1,0 +1,188 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Church Blog | SPAC</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+    <script src="https://upload-widget.cloudinary.com/global/all.js" type="text/javascript"></script>
+    
+    <style>
+        body {
+            background: #050a18; /* Deep 2026 Dark Mode */
+            color: #e2e8f0;
+            font-family: 'Plus Jakarta Sans', sans-serif;
+        }
+        .blog-card {
+            background: rgba(255, 255, 255, 0.03);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            border-radius: 24px;
+            overflow: hidden;
+            transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+        }
+        .blog-card:hover {
+            transform: translateY(-10px);
+            border-color: #3b82f6;
+            background: rgba(255, 255, 255, 0.05);
+        }
+        .admin-modal {
+            background: rgba(10, 20, 50, 0.95);
+            backdrop-filter: blur(20px);
+        }
+        .gradient-text {
+            background: linear-gradient(90deg, #60a5fa, #a855f7);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+        .hidden { display: none; }
+    </style>
+</head>
+<body class="p-4 md:p-10">
+
+    <div class="max-w-7xl mx-auto">
+        <header class="flex justify-between items-end mb-16">
+            <div>
+                <h1 class="text-5xl font-black tracking-tighter mb-2">SPAC <span class="gradient-text">INSIGHTS</span></h1>
+                <p class="opacity-50 text-lg">Spiritual nourishment and church updates.</p>
+            </div>
+            
+            <button id="createPostBtn" class="hidden bg-blue-600 hover:bg-blue-500 text-white px-8 py-3 rounded-full font-bold transition flex items-center shadow-lg shadow-blue-900/40">
+                <i class="fas fa-plus mr-2"></i> New Entry
+            </button>
+        </header>
+
+        <div id="blog-grid" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+            <div class="animate-pulse blog-card h-80 bg-white/5"></div>
+            <div class="animate-pulse blog-card h-80 bg-white/5"></div>
+            <div class="animate-pulse blog-card h-80 bg-white/5"></div>
+        </div>
+    </div>
+
+    <div id="postModal" class="fixed inset-0 admin-modal flex items-center justify-center p-4 z-50 hidden">
+        <div class="bg-slate-900 border border-white/10 p-8 rounded-3xl w-full max-w-2xl shadow-2xl">
+            <div class="flex justify-between items-center mb-6">
+                <h2 class="text-2xl font-bold">Compose Post</h2>
+                <button onclick="toggleModal()" class="text-gray-400 hover:text-white"><i class="fas fa-times"></i></button>
+            </div>
+            
+            <form id="blog-form" class="space-y-4">
+                <input type="text" id="postTitle" placeholder="Article Title" required class="w-full bg-white/5 border border-white/10 p-4 rounded-xl focus:outline-blue-500">
+                
+                <div class="flex gap-4">
+                    <button type="button" id="uploadWidget" class="flex-1 bg-white/10 border border-dashed border-white/30 p-4 rounded-xl hover:bg-white/20 transition">
+                        <i class="fas fa-image mr-2"></i> Upload Cover
+                    </button>
+                    <input type="hidden" id="imageUrl">
+                </div>
+
+                <textarea id="postContent" rows="8" placeholder="Share the word..." required class="w-full bg-white/5 border border-white/10 p-4 rounded-xl focus:outline-blue-500"></textarea>
+                
+                <button type="submit" class="w-full bg-blue-600 py-4 rounded-xl font-bold text-lg hover:bg-blue-500 transition">Publish to Church</button>
+            </form>
+        </div>
+    </div>
+
+    <script type="module">
+        import { initializeApp } from "https://www.gstatic.com/firebasejs/10.7.1/firebase-app.js";
+        import { getAuth, onAuthStateChanged } from "https://www.gstatic.com/firebasejs/10.7.1/firebase-auth.js";
+        import { getFirestore, collection, addDoc, getDocs, query, orderBy, doc, getDoc } from "https://www.gstatic.com/firebasejs/10.7.1/firebase-firestore.js";
+
+        const firebaseConfig = {
+            apiKey: "AIzaSyDJJHdcYziULByZLiNsXfFw9qIO6GkBUYk",
+            authDomain: "spac-30f7d.firebaseapp.com",
+            projectId: "spac-30f7d",
+            storageBucket: "spac-30f7d.firebasestorage.app",
+            messagingSenderId: "172917067522",
+            appId: "1:172917067522:web:3701388be5f2d86f7a3c1b"
+        };
+
+        const app = initializeApp(firebaseConfig);
+        const auth = getAuth(app);
+        const db = getFirestore(app);
+
+        let currentUser = null;
+
+        // 1. Check Permissions & Load Posts
+        onAuthStateChanged(auth, async (user) => {
+            if (user) {
+                currentUser = user;
+                const userDoc = await getDoc(doc(db, "users", user.uid));
+                if(userDoc.exists() && userDoc.data().isAdmin) {
+                    document.getElementById('createPostBtn').classList.remove('hidden');
+                }
+                loadPosts();
+            } else {
+                window.location.href = "login.html";
+            }
+        });
+
+        // 2. Cloudinary Upload Logic
+        const myWidget = cloudinary.createUploadWidget({
+            cloudName: 'YOUR_CLOUD_NAME', // Replace with your cloud name
+            uploadPreset: 'YOUR_PRESET'   // Replace with your preset
+        }, (error, result) => { 
+            if (!error && result && result.event === "success") { 
+                document.getElementById('imageUrl').value = result.info.secure_url;
+                Swal.fire("Image Uploaded", "", "success");
+            }
+        });
+
+        document.getElementById("uploadWidget").addEventListener("click", () => myWidget.open(), false);
+
+        // 3. Toggle Modal
+        window.toggleModal = () => document.getElementById('postModal').classList.toggle('hidden');
+        document.getElementById('createPostBtn').onclick = toggleModal;
+
+        // 4. Save Post
+        document.getElementById('blog-form').addEventListener('submit', async (e) => {
+            e.preventDefault();
+            const post = {
+                title: document.getElementById('postTitle').value,
+                content: document.getElementById('postContent').value,
+                image: document.getElementById('imageUrl').value || 'https://via.placeholder.com/800x400',
+                author: currentUser.displayName || 'Church Admin',
+                timestamp: new Date()
+            };
+
+            try {
+                await addDoc(collection(db, "posts"), post);
+                Swal.fire("Published!", "Your post is live.", "success");
+                toggleModal();
+                loadPosts();
+            } catch (err) {
+                Swal.fire("Error", err.message, "error");
+            }
+        });
+
+        // 5. Fetch Posts
+        async function loadPosts() {
+            const q = query(collection(db, "posts"), orderBy("timestamp", "desc"));
+            const querySnapshot = await getDocs(q);
+            const grid = document.getElementById('blog-grid');
+            grid.innerHTML = "";
+
+            querySnapshot.forEach((doc) => {
+                const data = doc.data();
+                const date = data.timestamp.toDate().toLocaleDateString();
+                
+                grid.innerHTML += `
+                    <article class="blog-card">
+                        <img src="${data.image}" class="w-full h-48 object-cover opacity-80" alt="Post Cover">
+                        <div class="p-6">
+                            <span class="text-[10px] uppercase tracking-widest text-blue-400 font-bold">${date}</span>
+                            <h3 class="text-xl font-bold mt-2 mb-3 leading-tight">${data.title}</h3>
+                            <p class="text-sm opacity-60 line-clamp-3 mb-6">${data.content}</p>
+                            <div class="flex justify-between items-center border-t border-white/10 pt-4">
+                                <span class="text-xs font-medium italic">By ${data.author}</span>
+                                <button class="text-blue-400 text-sm font-bold hover:underline">Read More</button>
+                            </div>
+                        </div>
+                    </article>
+                `;
+            });
+        }
+    </script>
+</body>
+</html>
