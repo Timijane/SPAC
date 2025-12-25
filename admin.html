@@ -1,0 +1,153 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Community Chat | SPAC</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <style>
+        body {
+            background: #0a0f1d;
+            height: 100vh;
+            display: flex;
+            flex-direction: column;
+            color: white;
+            font-family: 'Plus Jakarta Sans', sans-serif;
+        }
+        #chat-container {
+            flex: 1;
+            overflow-y: auto;
+            scrollbar-width: thin;
+            scrollbar-color: #1e293b transparent;
+        }
+        .message-bubble {
+            max-width: 80%;
+            backdrop-filter: blur(10px);
+            animation: slideUp 0.3s ease-out;
+        }
+        @keyframes slideUp {
+            from { opacity: 0; transform: translateY(10px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+        .my-message {
+            background: linear-gradient(135deg, #3b82f6, #2563eb);
+            border-radius: 20px 20px 0 20px;
+            align-self: flex-end;
+        }
+        .other-message {
+            background: rgba(255, 255, 255, 0.05);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            border-radius: 20px 20px 20px 0;
+            align-self: flex-start;
+        }
+    </style>
+</head>
+<body>
+
+    <header class="p-6 border-b border-white/10 flex justify-between items-center bg-[#0a0f1d]/80 backdrop-blur-md sticky top-0 z-10">
+        <div>
+            <h1 class="text-xl font-bold flex items-center">
+                <span class="w-3 h-3 bg-green-500 rounded-full mr-3 animate-pulse"></span>
+                Community Chat
+            </h1>
+            <p class="text-xs opacity-50">50+ Members Online</p>
+        </div>
+        <a href="dashboard.html" class="text-sm opacity-60 hover:opacity-100">Exit</a>
+    </header>
+
+    <main id="chat-container" class="p-6 flex flex-col space-y-4">
+        </main>
+
+    <footer class="p-6 bg-[#0a0f1d]">
+        <form id="chat-form" class="max-w-4xl mx-auto flex gap-4">
+            <input type="text" id="msgInput" placeholder="Type a message..." required autocomplete="off"
+                   class="flex-1 bg-white/5 border border-white/10 rounded-2xl px-6 py-4 focus:outline-none focus:ring-2 focus:ring-blue-500 transition">
+            <button type="submit" class="bg-blue-600 hover:bg-blue-500 w-14 h-14 rounded-2xl flex items-center justify-center transition shadow-lg shadow-blue-900/40">
+                <i class="fas fa-paper-plane text-xl"></i>
+            </button>
+        </form>
+    </footer>
+
+    <script type="module">
+        import { initializeApp } from "https://www.gstatic.com/firebasejs/10.7.1/firebase-app.js";
+        import { getAuth, onAuthStateChanged } from "https://www.gstatic.com/firebasejs/10.7.1/firebase-auth.js";
+        import { getFirestore, collection, addDoc, query, orderBy, limit, onSnapshot, serverTimestamp } from "https://www.gstatic.com/firebasejs/10.7.1/firebase-firestore.js";
+
+        const firebaseConfig = {
+            apiKey: "AIzaSyDJJHdcYziULByZLiNsXfFw9qIO6GkBUYk",
+            authDomain: "spac-30f7d.firebaseapp.com",
+            projectId: "spac-30f7d",
+            storageBucket: "spac-30f7d.firebasestorage.app",
+            messagingSenderId: "172917067522",
+            appId: "1:172917067522:web:3701388be5f2d86f7a3c1b"
+        };
+
+        const app = initializeApp(firebaseConfig);
+        const auth = getAuth(app);
+        const db = getFirestore(app);
+
+        let userProfile = null;
+
+        onAuthStateChanged(auth, (user) => {
+            if (user) {
+                userProfile = user;
+                listenForMessages();
+            } else {
+                window.location.href = "login.html";
+            }
+        });
+
+        // 1. Send Message Logic
+        document.getElementById('chat-form').addEventListener('submit', async (e) => {
+            e.preventDefault();
+            const text = document.getElementById('msgInput').value;
+            
+            if (text.trim() === "") return;
+
+            try {
+                await addDoc(collection(db, "messages"), {
+                    text: text,
+                    uid: userProfile.uid,
+                    displayName: userProfile.displayName || "Member",
+                    photoURL: userProfile.photoURL || "",
+                    createdAt: serverTimestamp()
+                });
+                document.getElementById('msgInput').value = "";
+            } catch (err) {
+                console.error("Error sending:", err);
+            }
+        });
+
+        // 2. Listen for Real-Time Messages
+        function listenForMessages() {
+            const q = query(collection(db, "messages"), orderBy("createdAt", "desc"), limit(50));
+            
+            onSnapshot(q, (snapshot) => {
+                const container = document.getElementById('chat-container');
+                const messages = [];
+                
+                snapshot.forEach((doc) => {
+                    messages.push(doc.data());
+                });
+
+                // Reverse to show oldest at top, newest at bottom
+                container.innerHTML = messages.reverse().map(msg => {
+                    const isMe = msg.uid === userProfile.uid;
+                    return `
+                        <div class="flex flex-col ${isMe ? 'items-end' : 'items-start'}">
+                            <span class="text-[10px] opacity-40 mb-1 px-2">${msg.displayName}</span>
+                            <div class="message-bubble p-4 text-sm ${isMe ? 'my-message' : 'other-message'}">
+                                ${msg.text}
+                            </div>
+                        </div>
+                    `;
+                }).join('');
+
+                // Auto-scroll to bottom
+                container.scrollTop = container.scrollHeight;
+            });
+        }
+    </script>
+</body>
+</html>
