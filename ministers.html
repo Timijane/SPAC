@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Our Ministers | SPAC</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <style>
+        body {
+            background: #f8fafc; /* Clean, light professional look for this page */
+            color: #1e293b;
+            font-family: 'Plus Jakarta Sans', sans-serif;
+        }
+        .minister-card {
+            background: white;
+            border: 1px solid #e2e8f0;
+            border-radius: 24px;
+            transition: all 0.3s ease;
+        }
+        .minister-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.05);
+            border-color: #3b82f6;
+        }
+        .badge {
+            background: #eff6ff;
+            color: #1d4ed8;
+            padding: 4px 12px;
+            border-radius: 99px;
+            font-size: 0.75rem;
+            font-weight: 700;
+        }
+    </style>
+</head>
+<body class="p-6 md:p-12">
+
+    <div class="max-w-7xl mx-auto">
+        <header class="text-center mb-16">
+            <h1 class="text-4xl font-black text-slate-900 mb-4">Meet Our Ministers</h1>
+            <p class="text-slate-500 max-w-2xl mx-auto">The dedicated leadership team of SPAC, serving with excellence and spirit.</p>
+            
+            <div class="mt-8 max-w-md mx-auto relative">
+                <i class="fas fa-search absolute left-4 top-1/2 -translate-y-1/2 text-slate-400"></i>
+                <input type="text" id="ministerSearch" placeholder="Search by name or department..." 
+                       class="w-full pl-12 pr-4 py-4 rounded-2xl border border-slate-200 focus:ring-2 focus:ring-blue-500 outline-none transition">
+            </div>
+        </header>
+
+        <div id="minister-grid" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+            <div class="col-span-full text-center py-20 opacity-20">
+                <i class="fas fa-circle-notch animate-spin text-4xl"></i>
+            </div>
+        </div>
+    </div>
+
+    <script type="module">
+        import { initializeApp } from "https://www.gstatic.com/firebasejs/10.7.1/firebase-app.js";
+        import { getFirestore, collection, onSnapshot } from "https://www.gstatic.com/firebasejs/10.7.1/firebase-firestore.js";
+
+        const firebaseConfig = {
+            apiKey: "AIzaSyDJJHdcYziULByZLiNsXfFw9qIO6GkBUYk",
+            authDomain: "spac-30f7d.firebaseapp.com",
+            projectId: "spac-30f7d",
+            storageBucket: "spac-30f7d.firebasestorage.app",
+            messagingSenderId: "172917067522",
+            appId: "1:172917067522:web:3701388be5f2d86f7a3c1b"
+        };
+
+        const app = initializeApp(firebaseConfig);
+        const db = getFirestore(app);
+
+        const grid = document.getElementById('minister-grid');
+        const searchInput = document.getElementById('ministerSearch');
+        let allMinisters = [];
+
+        // Real-time listener: Automatically updates when someone fills the form
+        onSnapshot(collection(db, "ministers"), (snapshot) => {
+            allMinisters = snapshot.docs.map(doc => doc.data());
+            renderMinisters(allMinisters);
+        });
+
+        function renderMinisters(data) {
+            grid.innerHTML = data.length ? "" : "<p class='col-span-full text-center'>No ministers found.</p>";
+            
+            data.forEach(m => {
+                // Birthday logic based on the 'hideYear' checkbox
+                const dobDate = new Date(m.dob);
+                const dobDisplay = m.hideYear 
+                    ? dobDate.toLocaleDateString('en-US', { month: 'long', day: 'numeric' })
+                    : dobDate.toLocaleDateString('en-US', { month: 'long', day: 'numeric', year: 'numeric' });
+
+                grid.innerHTML += `
+                    <div class="minister-card p-8 flex flex-col items-center text-center">
+                        <div class="w-24 h-24 bg-slate-100 rounded-full mb-6 flex items-center justify-center border-4 border-white shadow-lg overflow-hidden">
+                            <i class="fas fa-user text-3xl text-slate-300"></i>
+                        </div>
+                        <span class="badge mb-2">${m.department}</span>
+                        <h3 class="text-xl font-bold text-slate-900">${m.fullName}</h3>
+                        <p class="text-blue-600 font-medium text-sm mb-4">${m.role}</p>
+                        
+                        <div class="w-full border-t border-slate-100 pt-4 mt-2 text-xs text-slate-500 space-y-2">
+                            <p><i class="fas fa-birthday-cake mr-2"></i> ${dobDisplay}</p>
+                            <p><i class="fas fa-graduation-cap mr-2"></i> ${m.academic.university || 'N/A'}</p>
+                        </div>
+
+                        <button onclick="viewFullBio('${m.uid}')" class="mt-6 text-slate-900 font-bold text-sm hover:text-blue-600 transition">
+                            View Biography <i class="fas fa-chevron-right ml-1"></i>
+                        </button>
+                    </div>
+                `;
+            });
+        }
+
+        // Search Filter Logic
+        searchInput.addEventListener('input', (e) => {
+            const term = e.target.value.toLowerCase();
+            const filtered = allMinisters.filter(m => 
+                m.fullName.toLowerCase().includes(term) || 
+                m.department.toLowerCase().includes(term)
+            );
+            renderMinisters(filtered);
+        });
+    </script>
+</body>
+</html>
