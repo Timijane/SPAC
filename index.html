@@ -538,7 +538,6 @@
     padding: 1.25rem;
     position: relative;
     overflow: hidden;
-    will-change: transform;
   }
   
   .circle-button:before {
@@ -585,7 +584,7 @@
     line-height: 1.3;
   }
   
-  /* ====== DYNAMIC BUTTON ANIMATIONS ====== */
+  /* ====== DYNAMIC BUTTON ANIMATIONS - OPTIMIZED ====== */
   @keyframes bounce {
     0%, 100% { transform: translateY(0); }
     50% { transform: translateY(-15px); }
@@ -742,6 +741,12 @@
     filter: drop-shadow(0 10px 20px rgba(0,0,0,0.1));
   }
   
+  @keyframes float {
+    0% { transform: translateY(0px); }
+    50% { transform: translateY(-20px); }
+    100% { transform: translateY(0px); }
+  }
+  
   .we-are-spac {
     font-family: 'Lobster', cursive;
     font-size: clamp(2.5rem, 6vw, 4.5rem);
@@ -765,7 +770,7 @@
     background: var(--secondary);
   }
   
-  /* About Card */
+  /* About Card - OPTIMIZED FOR SMOOTH ANIMATION */
   .about-card-section {
     padding: clamp(3rem, 8vw, 5rem) 0 clamp(5rem, 12vw, 8.75rem);
     background: white;
@@ -782,6 +787,15 @@
     position: relative;
     overflow: hidden;
     border: 1px solid rgba(0,0,0,0.05);
+    opacity: 0;
+    transform: translateY(30px);
+    transition: all 0.6s cubic-bezier(0.165, 0.84, 0.44, 1);
+    will-change: transform, opacity;
+  }
+  
+  .floating-card.animated {
+    opacity: 1;
+    transform: translateY(0);
   }
   
   .floating-card:before {
@@ -815,7 +829,7 @@
     text-align: center;
   }
   
-  /* ====== 2. ENHANCED DYNAMIC PICTURES SECTION ====== */
+  /* ====== 2. ENHANCED DYNAMIC PICTURES SECTION - OPTIMIZED FOR PERFORMANCE ====== */
   .dynamic-pictures {
     padding: clamp(4rem, 10vw, 7.5rem) 0;
     background: linear-gradient(135deg, #f8f9fa 0%, #ffffff 100%);
@@ -854,12 +868,14 @@
     border-radius: 18px;
     overflow: hidden;
     box-shadow: 0 15px 35px rgba(0,0,0,0.08);
-    transition: all 0.5s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+    transition: all 0.4s cubic-bezier(0.165, 0.84, 0.44, 1);
     opacity: 0;
     cursor: pointer;
     position: relative;
     transform-origin: center;
     will-change: transform, opacity;
+    backface-visibility: hidden;
+    -webkit-backface-visibility: hidden;
   }
   
   .picture-card:before {
@@ -880,37 +896,13 @@
   }
   
   .picture-card:hover {
-    transform: translateY(-15px) scale(1.02);
-    box-shadow: 0 25px 50px rgba(0,0,0,0.15);
-  }
-  
-  .picture-card.from-left {
-    transform: translateX(-200px) rotateY(-30deg);
-  }
-  
-  .picture-card.from-right {
-    transform: translateX(200px) rotateY(30deg);
-  }
-  
-  .picture-card.from-up {
-    transform: translateY(-200px) rotateX(-30deg);
-  }
-  
-  .picture-card.from-down {
-    transform: translateY(200px) rotateX(30deg);
-  }
-  
-  .picture-card.from-diagonal-left {
-    transform: translateX(-150px) translateY(150px) rotate(-15deg);
-  }
-  
-  .picture-card.from-diagonal-right {
-    transform: translateX(150px) translateY(150px) rotate(15deg);
+    transform: translateY(-12px) scale(1.02);
+    box-shadow: 0 20px 40px rgba(0,0,0,0.12);
   }
   
   .picture-card.visible {
     opacity: 1;
-    transform: translateX(0) translateY(0) rotate(0) rotateX(0) rotateY(0) !important;
+    transform: translateX(0) translateY(0) rotate(0) !important;
   }
   
   .picture-card img {
@@ -918,6 +910,7 @@
     height: 280px;
     object-fit: cover;
     transition: transform 0.5s ease;
+    will-change: transform;
   }
   
   .picture-card:hover img {
@@ -1388,12 +1381,16 @@
 </style>
 </head>
 <body>
+<!-- Loading animation -->
 <div class="loading"></div>
 
+<!-- Scroll progress indicator -->
 <div class="scroll-progress" id="scrollProgress"></div>
 
+<!-- Skip to main content link -->
 <a href="#main-content" class="skip-to-main">Skip to main content</a>
 
+<!-- Modal for Gallery Popup -->
 <div class="modal" id="galleryModal">
   <span class="close-modal">&times;</span>
   <div class="modal-content">
@@ -1405,6 +1402,7 @@
   </div>
 </div>
 
+<!-- Scroll to Top Button -->
 <div class="scroll-top" id="scrollTop">
   <i class="fas fa-chevron-up"></i>
 </div>
@@ -1439,15 +1437,18 @@
             <a href="spac-us.html">SPAC US</a>
           </div>
         </li>
+        <!-- ADDED MINISTERS LOGIN LINK TO MENU -->
+        <li><a href="ministers-login.html" class="btn" style="padding: 8px 20px; font-size: 0.9rem;">Ministers Login</a></li>
         <li><a href="#contact">Contact</a></li>
-        <li><a href="ministers-login.html" class="ministers-link"><i class="fas fa-user-shield"></i> Ministers Login</a></li>
       </ul>
       <div class="hamburger"><span></span><span></span><span></span></div>
     </div>
   </div>
 </header>
 
+<!-- Hero Section -->
 <section class="hero" id="home" id="main-content">
+  <!-- 7. FASTER VIDEO LOADING WITH OPTIMIZED ATTRIBUTES -->
   <video class="hero-video" autoplay muted loop playsinline preload="auto" poster="hero-poster.jpg">
     <source src="spac001.mp4" type="video/mp4">
     <source src="spac001.webm" type="video/webm">
@@ -1459,6 +1460,7 @@
     <p>We are delighted that you have chosen to visit our website! We welcome you and pray the Word of God delivered from this ministry becomes a testimony. God bless you.</p>
   </div>
   
+  <!-- 5. FASTER & SLANTED SCRIPTURE TICKER -->
   <div class="scripture-ticker">
     <div class="ticker-container">
       <div class="ticker-item"><i class="fas fa-fire"></i> "But you will receive power when the Holy Spirit comes on you..." - Acts 1:8</div>
@@ -1470,6 +1472,7 @@
       <div class="ticker-item"><i class="fas fa-mountain"></i> "I can do all this through him who gives me strength." - Philippians 4:13</div>
       <div class="ticker-item"><i class="fas fa-seedling"></i> "For God has not given us a spirit of fear, but of power and of love and of a sound mind." - 2 Timothy 1:7</div>
       
+      <!-- Duplicate for seamless loop -->
       <div class="ticker-item"><i class="fas fa-fire"></i> "But you will receive power when the Holy Spirit comes on you..." - Acts 1:8</div>
       <div class="ticker-item"><i class="fas fa-cross"></i> "For we walk by faith, not by sight." - 2 Corinthians 5:7</div>
       <div class="ticker-item"><i class="fas fa-heart"></i> "I have come that they may have life, and have it to the full." - John 10:10</div>
@@ -1482,6 +1485,7 @@
   </div>
 </section>
 
+<!-- Circle Buttons Section -->
 <section class="circle-buttons-section" id="quick-links">
   <div class="container">
     <div class="circle-buttons-container">
@@ -1505,6 +1509,7 @@
   </div>
 </section>
 
+<!-- Logo and About Section -->
 <section class="logo-section">
   <div class="container">
     <div class="big-logo">
@@ -1528,18 +1533,11 @@
   </div>
 </section>
 
+<!-- Dynamic Pictures Section -->
 <section class="dynamic-pictures">
   <div class="container">
     <h2 class="section-title gradient-text">Our Ministries & Programs</h2>
     <div class="picture-grid">
-      <div class="picture-card hover-lift" onclick="openPage('ministers.html')">
-        <img src="ministers.jpg" alt="Meet Our Ministers" loading="lazy">
-        <h3>Meet Our Ministers</h3>
-      </div>
-      <div class="picture-card hover-lift" onclick="openPage('blog.html')">
-        <img src="blog.jpg" alt="Church News" loading="lazy">
-        <h3>Church News</h3>
-      </div>
       <div class="picture-card hover-lift" onclick="openPage('vanguard.html')">
         <img src="vanguard.png" alt="Vanguard Youth Ministry" loading="lazy">
         <h3>Vanguard Youth</h3>
@@ -1552,6 +1550,11 @@
         <img src="announcements.jpg" alt="Church Announcements" loading="lazy">
         <h3>Announcements</h3>
       </div>
+      <!-- ADDED MEET OUR MINISTERS CARD -->
+      <div class="picture-card hover-lift" onclick="openPage('ministers.html')">
+        <img src="ministers.jpg" alt="Meet Our Ministers" loading="lazy">
+        <h3>Meet Our Ministers</h3>
+      </div>
       <div class="picture-card large hover-lift" onclick="openPage('teen-church.html')">
         <img src="teen-church.png" alt="Teen Church" loading="lazy">
         <h3>Teen Church</h3>
@@ -1559,6 +1562,11 @@
       <div class="picture-card hover-lift" onclick="openPage('arise-conference.html')">
         <img src="arise-conference.jpg" alt="Arise Conference" loading="lazy">
         <h3>Arise Conference</h3>
+      </div>
+      <!-- ADDED CHURCH NEWS CARD -->
+      <div class="picture-card hover-lift" onclick="openPage('church-news.html')">
+        <img src="blog.jpg" alt="Church News" loading="lazy">
+        <h3>Church News</h3>
       </div>
       <div class="picture-card hover-lift" onclick="openPage('kids-church.html')">
         <img src="kids-church.jpg" alt="Kids Church" loading="lazy">
@@ -1582,6 +1590,7 @@
       </div>
     </div>
     
+    <!-- Instagram-like Program Slider -->
     <div class="insta-slider glass-effect">
       <h3 class="insta-title gradient-text">Our Programs Gallery</h3>
       <div class="insta-track">
@@ -1605,6 +1614,7 @@
   </div>
 </section>
 
+<!-- Location Section -->
 <section class="location-section" id="locations">
   <div class="container">
     <h2 class="section-title gradient-text">SPAC LOCATION AND INFORMATION</h2>
@@ -1621,9 +1631,10 @@
         <img src="transport.png" alt="Transport Information" loading="lazy">
         <h3>Transport Information</h3>
       </div>
-      <div class="picture-card hover-lift" onclick="openPage('library.html')">
-        <img src="library.png" alt="Church Library" loading="lazy">
-        <h3>Library</h3>
+      <!-- Changed from Bible Study to Bookshelf -->
+      <div class="picture-card hover-lift" onclick="openPage('bookshelf.html')">
+        <img src="bookshelf.png" alt="Bookshelf" loading="lazy">
+        <h3>Bookshelf</h3>
       </div>
       <div class="picture-card hover-lift" onclick="openPage('contact-info.html')">
         <img src="contact-info.png" alt="Contact Information" loading="lazy">
@@ -1633,6 +1644,7 @@
   </div>
 </section>
 
+<!-- Footer -->
 <footer id="contact">
   <div class="container footer-content">
     <div class="footer-column">
@@ -1655,7 +1667,6 @@
         <li><a href="#ministries">Ministries</a></li>
         <li><a href="watch-live.html">Watch Live</a></li>
         <li><a href="give.html">Give Online</a></li>
-        <li><a href="ministers-login.html">Ministers Login</a></li>
       </ul>
     </div>
     <div class="footer-column">
@@ -1674,6 +1685,11 @@
 </footer>
 
 <script>
+// ====== OPTIMIZED PERFORMANCE CODE ======
+// Use requestAnimationFrame for smooth animations
+let lastScrollTime = 0;
+let ticking = false;
+
 // Header scroll effect
 const header = document.getElementById('mainHeader');
 window.addEventListener('scroll', () => {
@@ -1693,6 +1709,7 @@ hamburger.addEventListener('click', () => {
   hamburger.classList.toggle('active');
   navMenu.classList.toggle('active');
   
+  // Prevent body scroll when menu is open
   if (navMenu.classList.contains('active')) {
     document.body.style.overflow = 'hidden';
   } else {
@@ -1705,10 +1722,8 @@ dropdowns.forEach(dropdown => {
   const trigger = dropdown.querySelector('a');
   trigger.addEventListener('click', (e) => {
     if (window.innerWidth <= 992) {
-      if (dropdown.classList.contains('dropdown')) {
-         e.preventDefault();
-         dropdown.classList.toggle('active');
-      }
+      e.preventDefault();
+      dropdown.classList.toggle('active');
     }
   });
 });
@@ -1735,15 +1750,17 @@ window.addEventListener('scroll', function() {
   }
 });
 
-// ====== DYNAMIC EFFECTS FOR FIRST THREE CIRCLE BUTTONS ======
+// ====== OPTIMIZED DYNAMIC BUTTONS ======
 function initializeDynamicButtons() {
   const buttons = document.querySelectorAll('.circle-button.dynamic');
   
+  // Clear existing animations
   buttons.forEach(btn => {
     btn.style.animation = 'none';
     btn.querySelector('i').style.animation = 'none';
   });
   
+  // Assign dynamic effects with faster animations
   const effects = [
     { name: 'bounce', time: '2s' },
     { name: 'pulse', time: '1.5s' },
@@ -1757,24 +1774,31 @@ function initializeDynamicButtons() {
   ];
   
   buttons.forEach((button, index) => {
+    // Button animation
     const effect = effects[index % effects.length];
     button.style.setProperty('--animation-time', effect.time);
     
+    // Remove previous animation classes
     ['bounce', 'pulse', 'rotate', 'glow', 'shake', 'float'].forEach(cls => {
       button.classList.remove(cls);
     });
     
+    // Add new animation
     button.classList.add(effect.name);
     
+    // Icon animation
     const iconEffect = iconEffects[index % iconEffects.length];
     const icon = button.querySelector('i');
+    icon.style.animation = 'none';
     
+    // Apply icon animation
     if (iconEffect.name === 'rotate') {
       icon.style.animation = `rotate ${iconEffect.time} linear infinite`;
     } else if (iconEffect.name === 'sparkle') {
       icon.style.animation = `sparkle ${iconEffect.time} ease-in-out infinite`;
     }
     
+    // Enhanced hover effects
     button.addEventListener('mouseenter', function() {
       this.style.transform = 'scale(1.15) rotate(5deg)';
       this.style.zIndex = '10';
@@ -1785,8 +1809,10 @@ function initializeDynamicButtons() {
       this.style.zIndex = '';
     });
     
+    // Click effect
     button.addEventListener('click', function(e) {
       createRipple(e, this);
+      // Quick pulse effect on click
       this.style.animation = 'none';
       setTimeout(() => {
         this.classList.add(effect.name);
@@ -1816,6 +1842,7 @@ function closeGalleryModal() {
   document.body.style.overflow = 'auto';
 }
 
+// Close modal when clicking X or outside
 document.querySelector('.close-modal').addEventListener('click', closeGalleryModal);
 document.getElementById('galleryModal').addEventListener('click', function(e) {
   if (e.target === this) {
@@ -1823,12 +1850,14 @@ document.getElementById('galleryModal').addEventListener('click', function(e) {
   }
 });
 
+// Close modal with Escape key
 document.addEventListener('keydown', function(e) {
   if (e.key === 'Escape') {
     closeGalleryModal();
   }
 });
 
+// Create ripple effect
 function createRipple(event, element) {
   const ripple = document.createElement('span');
   const rect = element.getBoundingClientRect();
@@ -1841,67 +1870,350 @@ function createRipple(event, element) {
   ripple.style.top = y + 'px';
   ripple.classList.add('ripple');
   
+  // Remove existing ripples
   const existingRipples = element.querySelectorAll('.ripple');
   existingRipples.forEach(r => r.remove());
   
   element.appendChild(ripple);
   
+  // Remove ripple after animation
   setTimeout(() => {
     ripple.remove();
   }, 800);
 }
 
-// ====== SMOOTHER SCROLLING AND ANIMATIONS ======
-let ticking = false;
+// ====== SMOOTH WELCOME SECTION ANIMATION ======
+function initializeWelcomeAnimation() {
+  const welcomeCard = document.querySelector('.floating-card');
+  
+  if (!welcomeCard) return;
+  
+  // Create Intersection Observer for welcome card
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        // Random animation direction
+        const directions = [
+          { transform: 'translateX(-100px) scale(0.95)', opacity: 0 },
+          { transform: 'translateX(100px) scale(0.95)', opacity: 0 },
+          { transform: 'translateY(50px) scale(0.95)', opacity: 0 },
+          { transform: 'scale(0.9) rotate(-3deg)', opacity: 0 },
+          { transform: 'scale(0.9) rotate(3deg)', opacity: 0 }
+        ];
+        
+        const randomDirection = directions[Math.floor(Math.random() * directions.length)];
+        
+        // Apply initial transform
+        welcomeCard.style.transform = randomDirection.transform;
+        welcomeCard.style.opacity = '0';
+        
+        // Trigger animation with requestAnimationFrame
+        requestAnimationFrame(() => {
+          setTimeout(() => {
+            welcomeCard.classList.add('animated');
+          }, 50);
+        });
+        
+        // Unobserve after animation
+        observer.unobserve(welcomeCard);
+      }
+    });
+  }, {
+    threshold: 0.1,
+    rootMargin: '50px'
+  });
+  
+  observer.observe(welcomeCard);
+}
 
-function updateScroll() {
+// ====== OPTIMIZED SCROLL ANIMATIONS ======
+function updateScrollAnimations() {
+  // Picture cards animation
   const pictureCards = document.querySelectorAll('.picture-card:not(.visible)');
   const windowHeight = window.innerHeight;
   
   pictureCards.forEach(card => {
     const cardTop = card.getBoundingClientRect().top;
+    
     if (cardTop < windowHeight - 100) {
-      card.classList.add('visible');
+      requestAnimationFrame(() => {
+        card.classList.add('visible');
+      });
     }
   });
   
-  const hero = document.querySelector('.hero');
-  if (hero) {
-    const scrolled = window.pageYOffset;
-    const rate = scrolled * -0.3; // Less aggressive for smoothness
-    hero.style.transform = `translate3d(0, ${rate}px, 0)`;
-  }
+  // Update last scroll time
+  lastScrollTime = Date.now();
   ticking = false;
 }
 
-function requestTick() {
+// Optimized scroll event listener with throttling
+function handleScroll() {
   if (!ticking) {
-    requestAnimationFrame(updateScroll);
+    requestAnimationFrame(updateScrollAnimations);
     ticking = true;
   }
 }
 
-window.addEventListener('scroll', requestTick, { passive: true });
-
-window.addEventListener('DOMContentLoaded', function() {
+// ====== OPTIMIZED INITIALIZATION ======
+document.addEventListener('DOMContentLoaded', function() {
+  // Preload video
   const heroVideo = document.querySelector('.hero-video');
   if (heroVideo) heroVideo.load();
   
+  // Initialize dynamic buttons
   initializeDynamicButtons();
   
+  // Initialize welcome animation
+  initializeWelcomeAnimation();
+  
+  // Initialize picture cards with optimized animations
   const pictureCards = document.querySelectorAll('.picture-card');
-  const animationClasses = ['from-left', 'from-right', 'from-up', 'from-down', 'from-diagonal-left', 'from-diagonal-right'];
+  const animationClasses = [
+    'from-left', 'from-right', 'from-up', 'from-down'
+  ];
   
   pictureCards.forEach((card, index) => {
     const randomClass = animationClasses[index % animationClasses.length];
     card.classList.add(randomClass);
-    card.style.transitionDelay = `${(index % 6) * 0.1}s`;
+    card.style.transitionDelay = `${(index % 8) * 0.05}s`;
   });
   
-  updateScroll();
+  // Initial check for visible elements
+  updateScrollAnimations();
   
+  // Add scroll listener
+  window.addEventListener('scroll', handleScroll, { passive: true });
+  
+  // Hide loading animation
   setTimeout(() => {
     const loading = document.querySelector('.loading');
     if (loading) {
       loading.style.opacity = '0';
       setTimeout(() => {
+        loading.style.display = 'none';
+      }, 300);
+    }
+  }, 1000);
+});
+
+// Scroll to top button
+const scrollTopBtn = document.getElementById('scrollTop');
+
+window.addEventListener('scroll', () => {
+  if (window.scrollY > 300) {
+    scrollTopBtn.classList.add('visible');
+  } else {
+    scrollTopBtn.classList.remove('visible');
+  }
+});
+
+scrollTopBtn.addEventListener('click', () => {
+  window.scrollTo({
+    top: 0,
+    behavior: 'smooth'
+  });
+});
+
+// ====== BUTTON NAVIGATION ======
+function navigateToPage(page, element) {
+  // For dynamic buttons
+  if(['new-button', 'prayer-button', 'testimony-button'].includes(element.id)) {
+    createRipple(event, element);
+    
+    // Quick animation before navigation
+    element.classList.add('clicked');
+    element.style.transform = 'scale(0.95)';
+    
+    // Navigate immediately
+    setTimeout(() => {
+      window.location.href = page;
+    }, 300);
+    
+    return false;
+  }
+  
+  // Original behavior for other buttons
+  element.classList.add('square');
+  setTimeout(() => {
+    window.location.href = page;
+  }, 500);
+}
+
+function openPage(page) {
+  window.location.href = page;
+}
+
+// ====== SMOOTH INSTAGRAM SLIDER ======
+const instaTrack = document.querySelector('.insta-track');
+if (instaTrack) {
+  let scrollAmount = 0;
+  const slideWidth = 245;
+  let autoScrollInterval;
+  let isDragging = false;
+  let startX;
+  let scrollLeft;
+  
+  function startAutoScroll() {
+    autoScrollInterval = setInterval(() => {
+      if (!isDragging) {
+        scrollAmount += slideWidth;
+        
+        // Reset if at end
+        if (scrollAmount >= instaTrack.scrollWidth - instaTrack.clientWidth) {
+          scrollAmount = 0;
+          instaTrack.scrollTo({ left: 0, behavior: 'smooth' });
+        } else {
+          instaTrack.scrollTo({ left: scrollAmount, behavior: 'smooth' });
+        }
+      }
+    }, 4000);
+  }
+  
+  startAutoScroll();
+  
+  // Pause auto-scroll on hover
+  instaTrack.addEventListener('mouseenter', () => {
+    clearInterval(autoScrollInterval);
+  });
+  
+  instaTrack.addEventListener('mouseleave', () => {
+    startAutoScroll();
+  });
+  
+  // Make draggable
+  instaTrack.addEventListener('mousedown', (e) => {
+    isDragging = true;
+    startX = e.pageX - instaTrack.offsetLeft;
+    scrollLeft = instaTrack.scrollLeft;
+    instaTrack.style.cursor = 'grabbing';
+    clearInterval(autoScrollInterval);
+  });
+  
+  instaTrack.addEventListener('mouseleave', () => {
+    isDragging = false;
+    instaTrack.style.cursor = 'grab';
+  });
+  
+  instaTrack.addEventListener('mouseup', () => {
+    isDragging = false;
+    instaTrack.style.cursor = 'grab';
+    startAutoScroll();
+  });
+  
+  instaTrack.addEventListener('mousemove', (e) => {
+    if (!isDragging) return;
+    e.preventDefault();
+    const x = e.pageX - instaTrack.offsetLeft;
+    const walk = (x - startX) * 2;
+    instaTrack.scrollLeft = scrollLeft - walk;
+  });
+  
+  // Touch events for mobile
+  instaTrack.addEventListener('touchstart', (e) => {
+    isDragging = true;
+    startX = e.touches[0].pageX - instaTrack.offsetLeft;
+    scrollLeft = instaTrack.scrollLeft;
+    clearInterval(autoScrollInterval);
+  });
+  
+  instaTrack.addEventListener('touchend', () => {
+    isDragging = false;
+    startAutoScroll();
+  });
+  
+  instaTrack.addEventListener('touchmove', (e) => {
+    if (!isDragging) return;
+    e.preventDefault();
+    const x = e.touches[0].pageX - instaTrack.offsetLeft;
+    const walk = (x - startX) * 2;
+    instaTrack.scrollLeft = scrollLeft - walk;
+  });
+}
+
+// Smooth scrolling for anchor links
+document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+  anchor.addEventListener('click', function(e) {
+    if (this.getAttribute('href') === '#') return;
+    
+    e.preventDefault();
+    const targetId = this.getAttribute('href');
+    
+    if (targetId === '#home') {
+      window.scrollTo({
+        top: 0,
+        behavior: 'smooth'
+      });
+    } else {
+      const targetElement = document.querySelector(targetId);
+      if (targetElement) {
+        window.scrollTo({
+          top: targetElement.offsetTop - 80,
+          behavior: 'smooth'
+        });
+      }
+    }
+  });
+});
+
+// Reinitialize on window resize with debounce
+let resizeTimeout;
+window.addEventListener('resize', function() {
+  clearTimeout(resizeTimeout);
+  resizeTimeout = setTimeout(function() {
+    initializeDynamicButtons();
+    updateScrollAnimations();
+  }, 250);
+});
+
+// Network status detection
+window.addEventListener('online', () => {
+  showNotification('You are back online', 'success');
+});
+
+window.addEventListener('offline', () => {
+  showNotification('You are offline. Some features may not work.', 'warning');
+});
+
+function showNotification(message, type) {
+  const notification = document.createElement('div');
+  notification.className = `notification ${type}`;
+  notification.textContent = message;
+  notification.style.cssText = `
+    position: fixed;
+    top: 20px;
+    right: 20px;
+    background: ${type === 'success' ? '#4CAF50' : '#FF9800'};
+    color: white;
+    padding: 1rem;
+    border-radius: 8px;
+    z-index: 9999;
+    animation: slideIn 0.3s ease;
+    max-width: 300px;
+  `;
+  
+  document.body.appendChild(notification);
+  setTimeout(() => {
+    notification.style.animation = 'slideOut 0.3s ease';
+    setTimeout(() => notification.remove(), 300);
+  }, 3000);
+}
+
+// Add notification animation styles
+const style = document.createElement('style');
+style.textContent = `
+  @keyframes slideIn {
+    from { transform: translateX(100%); opacity: 0; }
+    to { transform: translateX(0); opacity: 1; }
+  }
+  
+  @keyframes slideOut {
+    from { transform: translateX(0); opacity: 1; }
+    to { transform: translateX(100%); opacity: 0; }
+  }
+`;
+document.head.appendChild(style);
+</script>
+
+</body>
+  </html>
