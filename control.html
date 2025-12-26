@@ -3,109 +3,117 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Admin Control | SPAC</title>
+    <title>Command Center | SPAC</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
     <style>
+        @import url('https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;600;800&display=swap');
         body {
-            background: linear-gradient(rgba(10, 20, 50, 0.95), rgba(10, 20, 50, 0.95)), url('spac.jpg');
-            background-size: cover;
-            background-position: center;
-            background-attachment: fixed;
+            background: #020617;
+            background-image: radial-gradient(at 0% 0%, rgba(30, 58, 138, 0.2) 0, transparent 50%);
+            font-family: 'Plus Jakarta Sans', sans-serif;
             color: white;
             min-height: 100vh;
         }
         .admin-card {
-            background: rgba(255, 255, 255, 0.05);
-            backdrop-filter: blur(20px);
-            border: 1px solid rgba(255, 255, 255, 0.1);
+            background: rgba(255, 255, 255, 0.03);
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 255, 255, 0.08);
             border-radius: 24px;
+            transition: transform 0.3s;
         }
-        .user-row {
-            transition: all 0.2s;
-            border-bottom: 1px solid rgba(255,255,255,0.05);
-        }
-        .user-row:hover { background: rgba(255,255,255,0.03); }
-        
-        input, select {
-            background: rgba(255, 255, 255, 0.05) !important;
-            border: 1px solid rgba(255, 255, 255, 0.2) !important;
-            color: white !important;
+        .admin-card:hover { transform: translateY(-5px); border-color: rgba(59, 130, 246, 0.4); }
+        .btn-action {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 10px;
+            padding: 12px;
+            border-radius: 15px;
+            font-weight: bold;
+            transition: 0.2s;
         }
     </style>
 </head>
 <body class="p-4 md:p-10">
 
     <div class="max-w-6xl mx-auto">
-        <header class="flex justify-between items-center mb-10">
+        <header class="flex flex-col md:flex-row justify-between items-start md:items-center mb-12 gap-6">
             <div>
-                <h1 class="text-4xl font-black text-blue-400 tracking-tighter">CONTROL HOME</h1>
-                <p class="opacity-60 uppercase text-xs tracking-widest">Administrative Command Center</p>
+                <h1 class="text-4xl font-black text-white tracking-tighter">CONTROL <span class="text-blue-500">HOME</span></h1>
+                <p class="text-slate-400 text-sm mt-1 uppercase tracking-widest font-bold">SPAC Administrative Command Center</p>
             </div>
-            <a href="dashboard.html" class="bg-white/10 hover:bg-white/20 px-6 py-2 rounded-full transition text-sm">
-                <i class="fas fa-arrow-left mr-2"></i> Back to Dashboard
+            <a href="dashboard.html" class="bg-white/5 hover:bg-white/10 px-6 py-3 rounded-2xl border border-white/10 transition">
+                <i class="fas fa-th-large mr-2 text-blue-500"></i> Return to Dashboard
             </a>
         </header>
 
-        <div class="grid grid-cols-1 lg:grid-cols-3 gap-8">
+        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 mb-12">
             
-            <div class="admin-card p-8 lg:col-span-1 h-fit">
-                <h2 class="text-xl font-bold mb-6 flex items-center">
-                    <i class="fas fa-user-plus mr-3 text-blue-400"></i> Add New Worker
-                </h2>
-                <form id="add-worker-form" class="space-y-4">
-                    <div>
-                        <label class="text-xs opacity-60 uppercase">Email Address</label>
-                        <input type="email" id="workerEmail" required class="w-full p-3 rounded-xl mt-1">
-                    </div>
-                    <div>
-                        <label class="text-xs opacity-60 uppercase">Assign Role</label>
-                        <select id="workerRole" class="w-full p-3 rounded-xl mt-1">
-                            <option value="Worker">Church Worker</option>
-                            <option value="Pastor">Pastor</option>
-                            <option value="HOD">Dept. Leader (HOD)</option>
-                            <option value="Admin">Admin</option>
-                        </select>
-                    </div>
-                    <button type="submit" class="w-full bg-blue-600 hover:bg-blue-500 py-3 rounded-xl font-bold transition shadow-lg shadow-blue-900/20">
-                        Authorize User
-                    </button>
-                </form>
-                <p class="text-[10px] opacity-40 mt-4 leading-relaxed">
-                    Note: This registers the email in the Firestore "Authorized" list. The user must still sign up with this email to claim their account.
-                </p>
+            <div class="admin-card p-6">
+                <div class="w-12 h-12 bg-blue-500/20 rounded-2xl flex items-center justify-center text-blue-500 mb-4">
+                    <i class="fas fa-bullhorn text-xl"></i>
+                </div>
+                <h3 class="text-xl font-bold mb-2">Home Feed</h3>
+                <p class="text-sm text-slate-400 mb-6">Post live announcements to the member dashboard feed.</p>
+                <button onclick="publishAnnouncement()" class="w-full btn-action bg-blue-600 hover:bg-blue-500 text-white shadow-lg shadow-blue-900/40">
+                    <i class="fas fa-paper-plane"></i> Drop Broadcast
+                </button>
             </div>
 
-            <div class="admin-card p-8 lg:col-span-2">
-                <div class="flex justify-between items-center mb-6">
-                    <h2 class="text-xl font-bold">Minister Directory Management</h2>
-                    <span class="bg-blue-500/20 text-blue-400 text-xs px-3 py-1 rounded-full border border-blue-500/30" id="userCount">0 Total</span>
+            <div class="admin-card p-6">
+                <div class="w-12 h-12 bg-purple-500/20 rounded-2xl flex items-center justify-center text-purple-500 mb-4">
+                    <i class="fas fa-pen-nib text-xl"></i>
                 </div>
-                
-                <div class="overflow-x-auto">
-                    <table class="w-full text-left">
-                        <thead>
-                            <tr class="text-xs opacity-40 uppercase border-b border-white/10">
-                                <th class="pb-4 font-medium">Name / Role</th>
-                                <th class="pb-4 font-medium">Department</th>
-                                <th class="pb-4 font-medium">Status</th>
-                                <th class="pb-4 font-medium text-right">Actions</th>
-                            </tr>
-                        </thead>
-                        <tbody id="user-table-body">
-                            </tbody>
-                    </table>
-                </div>
+                <h3 class="text-xl font-bold mb-2">Church Blog</h3>
+                <p class="text-sm text-slate-400 mb-6">Write articles, sermons or news for everyone to see.</p>
+                <button onclick="publishBlog()" class="w-full btn-action bg-purple-600 hover:bg-purple-500 text-white shadow-lg shadow-purple-900/40">
+                    <i class="fas fa-feather-alt"></i> Write Article
+                </button>
             </div>
 
+            <div class="admin-card p-6 border-blue-500/30">
+                <div class="w-12 h-12 bg-green-500/20 rounded-2xl flex items-center justify-center text-green-500 mb-4">
+                    <i class="fas fa-calendar-check text-xl"></i>
+                </div>
+                <h3 class="text-xl font-bold mb-2">Duty Roster</h3>
+                <p class="text-sm text-slate-400 mb-6">Assign specific weekly tasks to church ministers.</p>
+                <button onclick="allocateDuty()" class="w-full btn-action bg-green-600 hover:bg-green-500 text-white shadow-lg shadow-green-900/40">
+                    <i class="fas fa-user-clock"></i> Assign Duty
+                </button>
+            </div>
+
+        </div>
+
+        <div class="admin-card p-8">
+            <div class="flex justify-between items-center mb-8">
+                <h2 class="text-2xl font-bold">Minister Directory</h2>
+                <button onclick="authorizeNewEmail()" class="text-xs bg-blue-500 hover:bg-blue-400 px-4 py-2 rounded-lg font-bold transition">
+                    + Authorize New Worker
+                </button>
+            </div>
+            <div class="overflow-x-auto">
+                <table class="w-full text-left">
+                    <thead class="text-xs text-slate-500 uppercase tracking-widest border-b border-white/5">
+                        <tr>
+                            <th class="pb-4">Minister</th>
+                            <th class="pb-4">Department</th>
+                            <th class="pb-4">Status</th>
+                            <th class="pb-4 text-right">Action</th>
+                        </tr>
+                    </thead>
+                    <tbody id="user-table-body" class="divide-y divide-white/5">
+                        </tbody>
+                </table>
+            </div>
         </div>
     </div>
 
     <script type="module">
         import { initializeApp } from "https://www.gstatic.com/firebasejs/10.7.1/firebase-app.js";
         import { getAuth, onAuthStateChanged } from "https://www.gstatic.com/firebasejs/10.7.1/firebase-auth.js";
-        import { getFirestore, collection, getDocs, doc, updateDoc, setDoc, query, where } from "https://www.gstatic.com/firebasejs/10.7.1/firebase-firestore.js";
+        import { getFirestore, collection, getDocs, doc, setDoc, addDoc, updateDoc, query, orderBy } from "https://www.gstatic.com/firebasejs/10.7.1/firebase-firestore.js";
 
         const firebaseConfig = {
             apiKey: "AIzaSyDJJHdcYziULByZLiNsXfFw9qIO6GkBUYk",
@@ -120,17 +128,17 @@
         const auth = getAuth(app);
         const db = getFirestore(app);
 
-        // 1. SECURITY CHECK: Verify if the user is an Admin
+        let adminUser = null;
+
+        // Security Check
         onAuthStateChanged(auth, async (user) => {
             if (user) {
-                const userDoc = await getDocs(query(collection(db, "users"), where("uid", "==", user.uid)));
-                let isAdmin = false;
-                userDoc.forEach(d => { if(d.data().isAdmin) isAdmin = true; });
-
-                // If not admin, kick back to dashboard
-                if (!isAdmin) {
-                    Swal.fire("Access Denied", "Only Church Admins can access this page.", "error")
-                    .then(() => window.location.href = "dashboard.html");
+                const userSnap = await getDocs(collection(db, "users"));
+                let isAuthorized = false;
+                userSnap.forEach(d => { if(d.id === user.uid && d.data().isAdmin) isAuthorized = true; });
+                
+                if (!isAuthorized) {
+                    window.location.href = "dashboard.html";
                 } else {
                     loadUsers();
                 }
@@ -139,77 +147,128 @@
             }
         });
 
-        // 2. LOAD ALL MINISTERS
+        // 1. BROADCAST ANNOUNCEMENT
+        window.publishAnnouncement = async () => {
+            const { value: text } = await Swal.fire({
+                title: 'Post to Home Feed',
+                input: 'textarea',
+                inputPlaceholder: 'Type your announcement...',
+                confirmButtonColor: '#2563eb'
+            });
+            if (text) {
+                await addDoc(collection(db, "announcements"), {
+                    message: text,
+                    timestamp: new Date(),
+                    adminName: auth.currentUser.email
+                });
+                Swal.fire("Posted!", "Dashboard updated.", "success");
+            }
+        };
+
+        // 2. WRITE BLOG
+        window.publishBlog = async () => {
+            const { value: formValues } = await Swal.fire({
+                title: 'Write New Blog Post',
+                html: `
+                    <input id="blog-title" class="swal2-input w-full" placeholder="Article Title">
+                    <textarea id="blog-body" class="swal2-input w-full h-40" placeholder="Content..."></textarea>
+                    <input id="blog-image" class="swal2-input w-full" placeholder="Image URL (optional)">
+                `,
+                focusConfirm: false,
+                preConfirm: () => [
+                    document.getElementById('blog-title').value,
+                    document.getElementById('blog-body').value,
+                    document.getElementById('blog-image').value
+                ]
+            });
+
+            if (formValues && formValues[0]) {
+                await addDoc(collection(db, "posts"), {
+                    title: formValues[0],
+                    content: formValues[1],
+                    image: formValues[2],
+                    author: "SPAC Admin",
+                    date: new Date().toLocaleDateString()
+                });
+                Swal.fire("Published!", "Visible to everyone.", "success");
+            }
+        };
+
+        // 3. WEEKLY ALLOCATION
+        window.allocateDuty = async () => {
+            const usersSnap = await getDocs(collection(db, "users"));
+            let options = "";
+            usersSnap.forEach(d => {
+                options += `<option value="${d.data().fullName}">${d.data().fullName}</option>`;
+            });
+
+            const { value: dutyValues } = await Swal.fire({
+                title: 'Assign Weekly Duty',
+                html: `
+                    <select id="duty-user" class="swal2-input w-full">${options}</select>
+                    <input id="duty-task" class="swal2-input w-full" placeholder="e.g. Opening Prayer">
+                    <select id="duty-time" class="swal2-input w-full">
+                        <option value="Sunday Service">Sunday Service</option>
+                        <option value="Mid-week Service">Mid-week Service</option>
+                        <option value="Vigil">Vigil</option>
+                    </select>
+                `,
+                preConfirm: () => [
+                    document.getElementById('duty-user').value,
+                    document.getElementById('duty-task').value,
+                    document.getElementById('duty-time').value
+                ]
+            });
+
+            if (dutyValues) {
+                await addDoc(collection(db, "duties"), {
+                    assignee: dutyValues[0],
+                    task: dutyValues[1],
+                    type: dutyValues[2],
+                    status: 'pending',
+                    timestamp: new Date()
+                });
+                Swal.fire("Assigned!", "Minister has been notified on roster.", "success");
+            }
+        };
+
+        // 4. LOAD USERS TABLE
         async function loadUsers() {
-            const querySnapshot = await getDocs(collection(db, "users"));
+            const snap = await getDocs(collection(db, "users"));
             const tbody = document.getElementById('user-table-body');
             tbody.innerHTML = "";
-            document.getElementById('userCount').innerText = `${querySnapshot.size} Total`;
-
-            querySnapshot.forEach((docSnap) => {
-                const user = docSnap.data();
-                const row = `
-                    <tr class="user-row">
-                        <td class="py-4">
-                            <div class="font-bold">${user.fullName || 'New User'}</div>
-                            <div class="text-xs opacity-50">${user.role || 'Member'}</div>
-                        </td>
-                        <td class="py-4 text-sm opacity-80">${user.department || 'N/A'}</td>
-                        <td class="py-4">
-                            <span class="px-2 py-1 rounded text-[10px] ${user.isAdmin ? 'bg-yellow-500/20 text-yellow-500' : 'bg-green-500/20 text-green-500'}">
-                                ${user.isAdmin ? 'ADMIN' : 'MEMBER'}
-                            </span>
-                        </td>
+            snap.forEach(docSnap => {
+                const u = docSnap.data();
+                tbody.innerHTML += `
+                    <tr>
+                        <td class="py-4 font-bold">${u.fullName}</td>
+                        <td class="py-4 text-slate-400 text-sm">${u.department}</td>
+                        <td class="py-4 text-xs font-black ${u.isAdmin ? 'text-yellow-500' : 'text-blue-500'}">${u.isAdmin ? 'ADMIN' : 'WORKER'}</td>
                         <td class="py-4 text-right">
-                            <button onclick="toggleAdmin('${docSnap.id}', ${user.isAdmin})" class="text-blue-400 hover:text-white text-xs">
-                                ${user.isAdmin ? 'Revoke Admin' : 'Make Admin'}
-                            </button>
+                            <button onclick="toggleAdmin('${docSnap.id}', ${u.isAdmin})" class="text-xs hover:underline">Edit Role</button>
                         </td>
                     </tr>
                 `;
-                tbody.innerHTML += row;
             });
         }
 
-        // 3. ADD WORKER (WAY 2 Logic)
-        document.getElementById('add-worker-form').addEventListener('submit', async (e) => {
-            e.preventDefault();
-            const email = document.getElementById('workerEmail').value;
-            const role = document.getElementById('workerRole').value;
+        window.toggleAdmin = async (id, status) => {
+            await updateDoc(doc(db, "users", id), { isAdmin: !status });
+            loadUsers();
+        };
 
-            try {
-                // Pre-authorizing in a special collection
-                await setDoc(doc(db, "authorized_workers", email.toLowerCase()), {
-                    email: email.toLowerCase(),
-                    assignedRole: role,
-                    addedAt: new Date(),
-                    status: 'pending'
-                });
-
-                Swal.fire("Success", `${email} is now authorized as ${role}`, "success");
-                e.target.reset();
-            } catch (err) {
-                Swal.fire("Error", err.message, "error");
-            }
-        });
-
-        // 4. TOGGLE ADMIN STATUS
-        window.toggleAdmin = async (userId, currentStatus) => {
-            const result = await Swal.fire({
-                title: 'Are you sure?',
-                text: "This changes access levels for this user.",
-                icon: 'warning',
-                showCancelButton: true,
-                confirmButtonColor: '#3b82f6'
+        window.authorizeNewEmail = async () => {
+             const { value: email } = await Swal.fire({
+                title: 'Authorize Email',
+                input: 'email',
+                inputPlaceholder: 'Enter worker email'
             });
-
-            if (result.isConfirmed) {
-                await updateDoc(doc(db, "users", userId), {
-                    isAdmin: !currentStatus
-                });
-                loadUsers();
+            if (email) {
+                await setDoc(doc(db, "authorized_workers", email.toLowerCase()), { email: email.toLowerCase(), status: 'pending' });
+                Swal.fire("Authorized", "User can now register.", "success");
             }
         };
+
     </script>
 </body>
 </html>
