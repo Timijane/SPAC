@@ -3,182 +3,161 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Portal | SPAC Ecosystem</title>
+    <title>SPAC Portal | Leadership Feed</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
     <style>
-        @import url('https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;600;800&display=swap');
+        @import url('https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;600;700;800&display=swap');
         
         body {
-            background-color: #020617;
-            background-image: radial-gradient(at 0% 0%, rgba(30, 58, 138, 0.15) 0, transparent 50%), 
-                              radial-gradient(at 100% 100%, rgba(139, 92, 246, 0.1) 0, transparent 50%);
+            background-color: #f0f2f5;
             font-family: 'Plus Jakarta Sans', sans-serif;
-            color: #f8fafc;
-            min-height: 100vh;
+            color: #1c1e21;
         }
 
-        .glass-panel {
-            background: rgba(255, 255, 255, 0.03);
-            backdrop-filter: blur(12px);
-            border: 1px solid rgba(255, 255, 255, 0.08);
+        /* Side Navigation Styling */
+        .sidebar-link {
+            display: flex;
+            align-items: center;
+            padding: 12px 16px;
+            border-radius: 12px;
+            transition: all 0.2s cubic-bezier(0.4, 0, 0.2, 1);
+            color: #4b5563;
+            font-weight: 600;
+            margin-bottom: 4px;
         }
 
-        .bento-card {
-            background: rgba(255, 255, 255, 0.04);
-            border: 1px solid rgba(255, 255, 255, 0.08);
-            border-radius: 28px;
-            transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+        .sidebar-link:hover, .sidebar-link.active {
+            background-color: #e4e6eb;
+            color: #1877f2;
         }
 
-        .bento-card:hover {
-            background: rgba(255, 255, 255, 0.07);
-            border-color: rgba(59, 130, 246, 0.5);
-            transform: translateY(-6px);
-            box-shadow: 0 20px 40px -15px rgba(0, 0, 0, 0.5);
+        /* Feed Post Styling */
+        .feed-card {
+            background: white;
+            border-radius: 12px;
+            box-shadow: 0 1px 2px rgba(0, 0, 0, 0.1);
+            margin-bottom: 16px;
+            border: 1px solid #dddfe2;
         }
 
-        .nav-active {
-            background: linear-gradient(90deg, rgba(59, 130, 246, 0.2) 0%, transparent 100%);
-            border-left: 4px solid #3b82f6;
-            color: #3b82f6;
+        .duty-item {
+            border-left: 4px solid #1877f2;
+            background: #f8fafc;
+            padding: 12px;
+            border-radius: 8px;
+            margin-bottom: 10px;
+            transition: opacity 0.3s;
         }
 
+        .duty-done {
+            border-left-color: #10b981;
+            opacity: 0.6;
+            text-decoration: line-through;
+        }
+
+        /* Mobile Menu */
         #mobile-menu {
             transition: transform 0.3s ease-in-out;
+            z-index: 1000;
         }
-        
+
         .hide-scrollbar::-webkit-scrollbar { display: none; }
     </style>
 </head>
-<body class="flex overflow-hidden">
+<body>
 
-    <aside class="hidden lg:flex flex-col w-72 h-screen glass-panel p-8 sticky top-0">
-        <div class="mb-12">
-            <h1 class="text-3xl font-black tracking-tighter text-white">SPAC<span class="text-blue-500">.</span></h1>
-            <p class="text-[10px] uppercase tracking-[0.3em] text-slate-500 font-bold">Leadership Portal</p>
+    <nav class="bg-white border-b sticky top-0 z-50 px-4 lg:px-8 h-16 flex items-center justify-between shadow-sm">
+        <div class="flex items-center gap-4">
+            <button onclick="toggleMenu()" class="lg:hidden p-2 text-xl text-gray-600"><i class="fas fa-bars"></i></button>
+            <h1 class="text-2xl font-black text-[#1877f2] tracking-tighter">SPAC<span class="text-gray-900">.</span></h1>
         </div>
-
-        <nav class="space-y-2 flex-grow">
-            <a href="dashboard.html" class="flex items-center p-4 rounded-xl nav-active group">
-                <i class="fas fa-grid-2 mr-4 opacity-70"></i> Dashboard
-            </a>
-            <a href="profile.html" class="flex items-center p-4 rounded-xl hover:bg-white/5 transition text-slate-400 hover:text-white">
-                <i class="fas fa-user-circle mr-4"></i> My Profile
-            </a>
-            <a href="chat.html" class="flex items-center p-4 rounded-xl hover:bg-white/5 transition text-slate-400 hover:text-white">
-                <i class="fas fa-comment-alt-dots mr-4"></i> Community
-            </a>
-            <a href="ministers.html" class="flex items-center p-4 rounded-xl hover:bg-white/5 transition text-slate-400 hover:text-white">
-                <i class="fas fa-users-viewfinder mr-4"></i> Ministers
-            </a>
-            <a href="control.html" id="admin-link-desktop" class="hidden flex items-center p-4 rounded-xl text-yellow-500/80 hover:text-yellow-400 hover:bg-yellow-500/5 transition">
-                <i class="fas fa-shield-crown mr-4"></i> Admin Control
-            </a>
-        </nav>
-
-        <button id="logoutBtn" class="flex items-center p-4 text-red-400 hover:bg-red-500/10 rounded-xl transition">
-            <i class="fas fa-power-off mr-4"></i> Sign Out
-        </button>
-    </aside>
-
-    <div id="mobile-menu" class="lg:hidden fixed inset-y-0 left-0 w-72 z-50 glass-panel -translate-x-full flex flex-col p-8">
-        <div class="flex justify-between items-center mb-12">
-            <h1 class="text-2xl font-black">SPAC.</h1>
-            <button onclick="toggleMenu()" class="text-white"><i class="fas fa-times text-xl"></i></button>
+        
+        <div class="flex items-center gap-4">
+            <div id="admin-header-tools" class="hidden flex items-center gap-2">
+                <button onclick="createAnnouncement()" class="hidden md:flex items-center bg-[#1877f2] text-white px-4 py-2 rounded-full text-sm font-bold hover:bg-[#166fe5]">
+                    <i class="fas fa-plus mr-2"></i> New Post
+                </button>
+            </div>
+            <div id="user-display" class="flex items-center gap-3 border-l pl-4">
+                <div class="text-right hidden sm:block">
+                    <p class="text-xs font-bold leading-none" id="userRole">...</p>
+                    <p class="text-[10px] text-blue-500 font-bold uppercase" id="userDept">...</p>
+                </div>
+                <div class="w-10 h-10 rounded-full bg-blue-600 text-white flex items-center justify-center font-bold" id="userInitial">?</div>
+            </div>
         </div>
-        <nav class="space-y-4 flex-grow" id="mobile-nav-links">
-            </nav>
-    </div>
+    </nav>
 
-    <main class="flex-1 h-screen overflow-y-auto hide-scrollbar">
-        <header class="lg:hidden p-6 flex justify-between items-center border-b border-white/5 sticky top-0 bg-[#020617]/80 backdrop-blur-md z-40">
-            <h1 class="text-xl font-black">SPAC.</h1>
-            <button onclick="toggleMenu()" class="p-2 bg-white/5 rounded-lg">
-                <i class="fas fa-bars text-xl text-blue-500"></i>
-            </button>
-        </header>
-
-        <div class="p-6 lg:p-12 max-w-7xl mx-auto">
-            <div class="flex flex-col md:flex-row justify-between items-start md:items-center mb-12 gap-6">
-                <div>
-                    <h2 class="text-4xl font-extrabold tracking-tight">Peace be unto you, <span id="userName" class="text-transparent bg-clip-text bg-gradient-to-r from-blue-400 to-purple-400">...</span></h2>
-                    <p class="text-slate-500 mt-2 font-medium" id="currentDate"></p>
-                </div>
-                <div class="flex items-center gap-4 bg-white/5 p-2 pr-6 rounded-full border border-white/5">
-                    <div class="w-12 h-12 rounded-full bg-gradient-to-tr from-blue-600 to-purple-600 flex items-center justify-center font-bold shadow-lg" id="userInitial">?</div>
-                    <div>
-                        <p class="text-sm font-bold" id="userRole">Member</p>
-                        <p class="text-[10px] uppercase tracking-tighter text-blue-400 font-bold" id="userDept">General</p>
-                    </div>
-                </div>
+    <div class="max-w-7xl mx-auto flex">
+        
+        <aside id="mobile-menu" class="fixed lg:sticky top-0 lg:top-16 left-0 h-screen lg:h-[calc(100vh-64px)] w-72 bg-white lg:bg-transparent p-6 -translate-x-full lg:translate-x-0 border-r lg:border-none">
+            <div class="lg:hidden mb-8 flex justify-between items-center">
+                <span class="font-black text-xl">Menu</span>
+                <button onclick="toggleMenu()"><i class="fas fa-times text-xl"></i></button>
             </div>
 
-            <div class="grid grid-cols-1 md:grid-cols-6 gap-6">
+            <nav>
+                <a href="dashboard.html" class="sidebar-link active"><i class="fas fa-house mr-4"></i> Home Feed</a>
+                <a href="profile.html" class="sidebar-link"><i class="fas fa-circle-user mr-4"></i> My Profile</a>
+                <a href="ministers.html" class="sidebar-link"><i class="fas fa-users-rectangle mr-4"></i> Ministers</a>
+                <a href="chat.html" class="sidebar-link"><i class="fas fa-comment-dots mr-4"></i> Community Chat</a>
+                <a href="blog.html" class="sidebar-link"><i class="fas fa-newspaper mr-4"></i> Church Blog</a>
                 
-                <div class="bento-card p-8 md:col-span-4 flex flex-col">
-                    <div class="flex justify-between items-center mb-8">
-                        <h3 class="text-xl font-bold flex items-center">
-                            <i class="fas fa-bullhorn text-blue-500 mr-3"></i> Altar Updates
-                        </h3>
-                        <span class="text-xs text-slate-500 bg-white/5 px-3 py-1 rounded-full italic">Updated Today</span>
-                    </div>
-                    <div class="space-y-6 flex-grow">
-                        <div class="p-4 rounded-2xl bg-white/5 border-l-4 border-blue-500">
-                            <p class="text-sm leading-relaxed text-slate-300">Welcome to the new Leadership Portal. Ensure your profile is updated to appear in the directory.</p>
-                        </div>
+                <div class="mt-8 pt-8 border-t border-gray-300">
+                    <p class="text-[10px] font-black text-gray-400 uppercase tracking-widest mb-4 px-4">Admin Only</p>
+                    <a href="control.html" id="admin-link" class="sidebar-link text-amber-600 hidden"><i class="fas fa-crown mr-4"></i> Control Home</a>
+                    <button id="logoutBtn" class="sidebar-link w-full text-red-500 hover:bg-red-50 mt-2"><i class="fas fa-power-off mr-4"></i> Logout</button>
+                </div>
+            </nav>
+        </aside>
+
+        <main class="flex-1 p-4 lg:p-8 min-h-screen">
+            <div class="max-w-2xl mx-auto">
+                
+                <div class="mb-6 flex justify-between items-end px-2">
+                    <div>
+                        <h2 class="text-2xl font-black tracking-tight">Welcome, <span id="userName">...</span></h2>
+                        <p class="text-sm text-gray-500" id="currentDate"></p>
                     </div>
                 </div>
 
-                <div class="bento-card p-8 md:col-span-2 flex flex-col items-center justify-center text-center">
-                    <div class="relative mb-6">
-                        <svg class="w-24 h-24">
-                            <circle cx="48" cy="48" r="44" stroke="currentColor" stroke-width="8" fill="transparent" class="text-white/5"></circle>
-                            <circle cx="48" cy="48" r="44" stroke="currentColor" stroke-width="8" fill="transparent" class="text-green-500" stroke-dasharray="276" stroke-dashoffset="0"></circle>
-                        </svg>
-                        <i class="fas fa-check-double absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 text-2xl text-green-500"></i>
-                    </div>
-                    <h3 class="text-lg font-bold">Verified Minister</h3>
-                    <p class="text-xs text-slate-500 mt-2 leading-relaxed">Your credentials have been successfully authenticated.</p>
-                </div>
-
-                <div class="bento-card p-8 md:col-span-3 hover:bg-blue-600/10 transition-colors group">
-                    <div class="flex justify-between items-center mb-6">
-                        <div class="w-12 h-12 rounded-2xl bg-blue-500/20 flex items-center justify-center text-blue-500">
-                            <i class="fas fa-comments text-xl"></i>
-                        </div>
-                        <span class="flex h-3 w-3 relative">
-                            <span class="animate-ping absolute inline-flex h-full w-full rounded-full bg-green-400 opacity-75"></span>
-                            <span class="relative inline-flex rounded-full h-3 w-3 bg-green-500"></span>
-                        </span>
-                    </div>
-                    <h3 class="text-xl font-bold mb-2">Fellowship Chat</h3>
-                    <p class="text-sm text-slate-400 mb-6">Join 50+ ministers in our real-time community hub.</p>
-                    <a href="chat.html" class="inline-flex items-center text-blue-400 font-bold group-hover:translate-x-2 transition-transform">Enter Room <i class="fas fa-arrow-right ml-2 text-xs"></i></a>
-                </div>
-
-                <div class="bento-card p-8 md:col-span-3">
-                    <h3 class="text-xl font-bold mb-6">Service Routine</h3>
-                    <div class="grid grid-cols-2 gap-4">
-                        <div class="bg-white/5 p-4 rounded-2xl">
-                            <p class="text-[10px] uppercase font-bold text-slate-500 mb-1">Sunday</p>
-                            <p class="text-sm font-bold">08:00 AM</p>
-                        </div>
-                        <div class="bg-white/5 p-4 rounded-2xl">
-                            <p class="text-[10px] uppercase font-bold text-slate-500 mb-1">Wednesday</p>
-                            <p class="text-sm font-bold">06:00 PM</p>
-                        </div>
+                <div id="admin-quick-post" class="hidden feed-card p-4 mb-6">
+                    <div class="flex gap-3">
+                        <div class="w-10 h-10 rounded-full bg-blue-600 text-white flex items-center justify-center font-bold">A</div>
+                        <button onclick="createAnnouncement()" class="flex-1 bg-gray-100 hover:bg-gray-200 rounded-full text-left px-5 text-gray-500 text-sm">
+                            Drop a new announcement from the altar...
+                        </button>
                     </div>
                 </div>
 
+                <div id="feed-container">
+                    <div class="p-10 text-center opacity-20">
+                        <i class="fas fa-spinner animate-spin text-3xl"></i>
+                    </div>
+                </div>
             </div>
-        </div>
-    </main>
+        </main>
+
+        <aside class="hidden xl:block w-80 p-8 sticky top-16 h-[calc(100vh-64px)] overflow-y-auto">
+            <div class="bg-white rounded-2xl p-6 shadow-sm border border-gray-200">
+                <div class="flex justify-between items-center mb-6">
+                    <h3 class="font-black text-xs uppercase tracking-widest text-gray-400">Duty Roster</h3>
+                    <button id="assign-btn" onclick="assignDuty()" class="hidden text-[#1877f2] font-bold text-xs hover:underline">+ Assign</button>
+                </div>
+
+                <div id="duty-list" class="space-y-4">
+                    </div>
+            </div>
+        </aside>
+
+    </div>
 
     <script type="module">
         import { initializeApp } from "https://www.gstatic.com/firebasejs/10.7.1/firebase-app.js";
         import { getAuth, onAuthStateChanged, signOut } from "https://www.gstatic.com/firebasejs/10.7.1/firebase-auth.js";
-        import { getFirestore, doc, getDoc } from "https://www.gstatic.com/firebasejs/10.7.1/firebase-firestore.js";
+        import { getFirestore, doc, getDoc, collection, addDoc, query, orderBy, onSnapshot, updateDoc, deleteDoc } from "https://www.gstatic.com/firebasejs/10.7.1/firebase-firestore.js";
 
         const firebaseConfig = {
             apiKey: "AIzaSyDJJHdcYziULByZLiNsXfFw9qIO6GkBUYk",
@@ -193,43 +172,151 @@
         const auth = getAuth(app);
         const db = getFirestore(app);
 
-        // UI: Mobile Menu Toggle
+        let userProfile = null;
+
+        // --- UI HELPERS ---
         window.toggleMenu = () => {
             const menu = document.getElementById('mobile-menu');
-            const isOpen = menu.style.transform === 'translateX(0px)';
-            menu.style.transform = isOpen ? 'translateX(-100%)' : 'translateX(0px)';
+            menu.classList.toggle('-translate-x-full');
         };
 
-        // UI: Sync Date
-        document.getElementById('currentDate').innerText = new Date().toLocaleDateString('en-US', { 
-            weekday: 'long', year: 'numeric', month: 'long', day: 'numeric' 
-        });
+        document.getElementById('currentDate').innerText = new Date().toLocaleDateString('en-US', { weekday: 'long', month: 'long', day: 'numeric' });
 
-        // Auth & Data
+        // --- ADMIN: POST ANNOUNCEMENT ---
+        window.createAnnouncement = async () => {
+            const { value: text } = await Swal.fire({
+                title: 'Post to Feed',
+                input: 'textarea',
+                inputPlaceholder: 'Write your message...',
+                confirmButtonColor: '#1877f2'
+            });
+            if (text) {
+                await addDoc(collection(db, "announcements"), {
+                    message: text,
+                    timestamp: new Date(),
+                    sender: userProfile.fullName
+                });
+            }
+        };
+
+        // --- ADMIN: ASSIGN DUTY (Auto-pulled names) ---
+        window.assignDuty = async () => {
+            // Fetch names automatically
+            const usersSnap = await getDocs(collection(db, "users"));
+            let options = "";
+            usersSnap.forEach(doc => {
+                options += `<option value="${doc.data().fullName}">${doc.data().fullName}</option>`;
+            });
+
+            const { value: formValues } = await Swal.fire({
+                title: 'Assign Responsibility',
+                html: `
+                    <select id="duty-name" class="swal2-input w-full">${options}</select>
+                    <input id="duty-task" class="swal2-input w-full" placeholder="Task description">
+                    <select id="duty-type" class="swal2-input w-full">
+                        <option value="Weekly">Weekly</option>
+                        <option value="Monthly">Monthly</option>
+                    </select>
+                `,
+                preConfirm: () => [
+                    document.getElementById('duty-name').value,
+                    document.getElementById('duty-task').value,
+                    document.getElementById('duty-type').value
+                ]
+            });
+
+            if (formValues) {
+                await addDoc(collection(db, "duties"), {
+                    assignee: formValues[0],
+                    task: formValues[1],
+                    type: formValues[2],
+                    status: 'pending',
+                    timestamp: new Date()
+                });
+            }
+        };
+
+        // --- MEMBER: MARK DUTY DONE ---
+        window.completeDuty = async (id, currentStatus) => {
+            const dutyRef = doc(db, "duties", id);
+            await updateDoc(dutyRef, { 
+                status: currentStatus === 'done' ? 'pending' : 'done' 
+            });
+        };
+
+        // --- REAL-TIME LISTENERS ---
+        function startListeners() {
+            // 1. Announcements Feed
+            onSnapshot(query(collection(db, "announcements"), orderBy("timestamp", "desc")), (snap) => {
+                const feed = document.getElementById('feed-container');
+                feed.innerHTML = "";
+                snap.forEach(doc => {
+                    const data = doc.data();
+                    feed.innerHTML += `
+                        <div class="feed-card">
+                            <div class="p-4 flex items-center gap-3">
+                                <div class="w-10 h-10 rounded-full bg-blue-100 text-blue-600 flex items-center justify-center font-bold">S</div>
+                                <div>
+                                    <p class="font-bold text-sm">SPAC Altar <i class="fas fa-check-circle text-blue-500"></i></p>
+                                    <p class="text-[10px] text-gray-400 uppercase">${data.timestamp?.toDate().toLocaleString()}</p>
+                                </div>
+                            </div>
+                            <div class="px-4 pb-6 text-gray-800">${data.message}</div>
+                        </div>`;
+                });
+            });
+
+            // 2. Duty Roster
+            onSnapshot(collection(db, "duties"), (snap) => {
+                const list = document.getElementById('duty-list');
+                list.innerHTML = snap.empty ? '<p class="text-xs text-gray-400 italic">No duties assigned.</p>' : "";
+                snap.forEach(docSnap => {
+                    const d = docSnap.data();
+                    const isDone = d.status === 'done';
+                    const isMine = d.assignee === userProfile.fullName;
+                    
+                    list.innerHTML += `
+                        <div class="duty-item ${isDone ? 'duty-done' : ''}">
+                            <div class="flex justify-between items-start">
+                                <span class="text-[9px] font-black uppercase text-blue-500">${d.type}</span>
+                                ${isMine ? `<input type="checkbox" ${isDone ? 'checked' : ''} onclick="completeDuty('${docSnap.id}', '${d.status}')" class="rounded">` : ''}
+                            </div>
+                            <p class="text-sm font-bold text-gray-800">${d.task}</p>
+                            <p class="text-[11px] text-gray-500">Assignee: ${d.assignee}</p>
+                        </div>`;
+                });
+            });
+        }
+
+        // --- AUTH SYSTEM ---
         onAuthStateChanged(auth, async (user) => {
             if (user) {
-                const userDoc = await getDoc(doc(db, "users", user.uid));
-                if (userDoc.exists()) {
-                    const data = userDoc.data();
-                    document.getElementById('userName').innerText = data.fullName.split(' ')[0];
-                    document.getElementById('userRole').innerText = data.role;
-                    document.getElementById('userDept').innerText = data.department;
-                    document.getElementById('userInitial').innerText = data.fullName.charAt(0);
+                const snap = await getDoc(doc(db, "users", user.uid));
+                if (snap.exists()) {
+                    userProfile = snap.data();
+                    document.getElementById('userName').innerText = userProfile.fullName.split(' ')[0];
+                    document.getElementById('userRole').innerText = userProfile.role;
+                    document.getElementById('userDept').innerText = userProfile.department;
+                    document.getElementById('userInitial').innerText = userProfile.fullName.charAt(0);
                     
-                    if(data.isAdmin) {
-                        document.getElementById('admin-link-desktop').classList.remove('hidden');
+                    if (userProfile.isAdmin) {
+                        document.getElementById('admin-link').classList.remove('hidden');
+                        document.getElementById('admin-header-tools').classList.remove('hidden');
+                        document.getElementById('admin-quick-post').classList.remove('hidden');
+                        document.getElementById('assign-btn').classList.remove('hidden');
                     }
-                } else {
-                    window.location.href = "profile.html";
-                }
-            } else {
-                window.location.href = "login.html";
-            }
+                    startListeners();
+                } else { window.location.href = "profile.html"; }
+            } else { window.location.href = "login.html"; }
         });
 
-        document.getElementById('logoutBtn').onclick = () => {
-            signOut(auth).then(() => window.location.href = "login.html");
-        };
+        document.getElementById('logoutBtn').onclick = () => signOut(auth);
+
+        // Required for dynamic import in assignDuty
+        async function getDocs(col) {
+            const { getDocs } = await import("https://www.gstatic.com/firebasejs/10.7.1/firebase-firestore.js");
+            return await getDocs(col);
+        }
     </script>
 </body>
-                                </html>
+</html>
